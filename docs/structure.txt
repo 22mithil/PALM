@@ -1,0 +1,144 @@
+﻿├── client/
+│   ├── public/
+│   │   ├── favicon.svg
+│   │   └── icons.svg
+│   ├── src/
+│   │   ├── assets/
+│   │   │   ├── hero.png
+│   │   │   ├── react.svg
+│   │   │   └── vite.svg
+│   │   ├── components/
+│   │   │   └── ui/
+│   │   │       ├── button.jsx
+│   │   │       └── card.jsx
+│   │   ├── lib/
+│   │   │   └── utils.js
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── .gitignore
+│   ├── components.json
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── jsconfig.json
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── README.md
+│   └── vite.config.js
+├── docs/
+│   └── prd.md
+├── scripts/
+│   └── generate-structure.ps1
+├── server/
+│   ├── alembic/
+│   ├── app/
+│   │   ├── agents/
+│   │   │   ├── __init__.py
+│   │   │   ├── dialogue_agent.py
+│   │   │   ├── engagement_agent.py
+│   │   │   ├── hint_agent.py
+│   │   │   ├── mastery_agent.py
+│   │   │   ├── quiz_agent.py
+│   │   │   └── rag_agent.py
+│   │   ├── api/
+│   │   │   ├── v1/
+│   │   │   │   ├── routes/
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── curriculum.py
+│   │   │   │   │   ├── mastery.py
+│   │   │   │   │   ├── sessions.py
+│   │   │   │   │   └── students.py
+│   │   │   │   ├── websockets/
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── audio_ws.py
+│   │   │   │   │   ├── tutor_ws.py
+│   │   │   │   │   └── video_ws.py
+│   │   │   │   └── __init__.py
+│   │   │   ├── __init__.py
+│   │   │   └── deps.py
+│   │   ├── core/
+│   │   │   ├── __init__.py
+│   │   │   ├── config.py
+│   │   │   ├── constants.py
+│   │   │   └── logging.py
+│   │   ├── db/
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py
+│   │   │   ├── init_db.py
+│   │   │   └── session.py
+│   │   ├── integrations/
+│   │   │   ├── fastrouter/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── embeddings.py
+│   │   │   │   ├── llm.py
+│   │   │   │   ├── stt.py
+│   │   │   │   └── tts.py
+│   │   │   └── __init__.py
+│   │   ├── models/
+│   │   │   ├── __init__.py
+│   │   │   ├── curriculum.py
+│   │   │   ├── mastery.py
+│   │   │   ├── session.py
+│   │   │   ├── session_event.py
+│   │   │   └── student.py
+│   │   ├── orchestrator/
+│   │   │   ├── __init__.py
+│   │   │   ├── executor.py
+│   │   │   ├── graph.py
+│   │   │   └── router.py
+│   │   ├── perception/
+│   │   │   ├── audio/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── stt.py
+│   │   │   │   ├── tone_analysis.py
+│   │   │   │   └── vad.py
+│   │   │   ├── vision/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── emotion_model.py
+│   │   │   │   ├── face_detection.py
+│   │   │   │   ├── gaze_tracking.py
+│   │   │   │   └── pipeline.py
+│   │   │   ├── __init__.py
+│   │   │   └── processor.py
+│   │   ├── rag/
+│   │   │   ├── __init__.py
+│   │   │   ├── embeddings.py
+│   │   │   ├── pinecone_client.py
+│   │   │   ├── pipeline.py
+│   │   │   ├── reranker.py
+│   │   │   └── retriever.py
+│   │   ├── schemas/
+│   │   │   ├── __init__.py
+│   │   │   ├── mastery.py
+│   │   │   ├── session.py
+│   │   │   ├── state_prompt.py
+│   │   │   ├── student.py
+│   │   │   └── websocket.py
+│   │   ├── services/
+│   │   │   ├── __init__.py
+│   │   │   ├── curriculum_service.py
+│   │   │   ├── mastery_service.py
+│   │   │   ├── session_service.py
+│   │   │   └── student_service.py
+│   │   ├── state/
+│   │   │   ├── __init__.py
+│   │   │   ├── context_manager.py
+│   │   │   ├── session_store.py
+│   │   │   └── state_prompt_builder.py
+│   │   ├── utils/
+│   │   │   └── __init__.py
+│   │   ├── validators/
+│   │   │   ├── __init__.py
+│   │   │   ├── correctness.py
+│   │   │   ├── pipeline.py
+│   │   │   └── tone.py
+│   │   ├── __init__.py
+│   │   └── main.py
+│   ├── scripts/
+│   │   ├── ingest_pdfs.py
+│   │   └── seed_pinecone.py
+│   └── tests/
+├── .env
+├── README.md
+└── structure.txt
