@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react"
 import useVideoStream from "../hooks/useVideoStream"
 import useAudioStream from "../hooks/useAudioStream"
+import PerceptionHUD from "./PerceptionHUD"
 import "./WebcamCapture.css"
 
 /**
@@ -49,6 +50,7 @@ export default function WebcamCapture({ sessionId = "default" }) {
     stopStreaming: stopVideoStreaming,
     wsState: videoWsState,
     framesSent,
+    perception,
   } = useVideoStream(sessionId)
 
   /* ── audio stream transport ────────────────────────────── */
@@ -215,6 +217,13 @@ export default function WebcamCapture({ sessionId = "default" }) {
               <span className={`webcam-capture__stream-badge webcam-capture__stream-badge--${videoWsState}`}>
                 {videoWsState === "open" ? "⬆ STREAMING" : videoWsState === "connecting" ? "CONNECTING…" : "RECONNECTING…"}
               </span>
+            )}
+
+            {/* Perception HUD overlay */}
+            {perception && isStreaming && (
+              <div className="webcam-capture__perception-hud">
+                <PerceptionHUD perception={perception} />
+              </div>
             )}
 
             {/* Resolution badge */}

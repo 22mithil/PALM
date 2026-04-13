@@ -23,9 +23,15 @@ from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
 from app.services.frame_buffer import frame_buffer_manager, FrameEntry
 from app.perception.vision.pipeline import VisionPipeline
+from app.services.session_context import session_context_manager
+from app.services.change_detector import ChangeDetector
+from app.services.event_logger import event_logger
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
+
+# Max frequency for sending perception_update messages to the client
+_PERCEPTION_SEND_INTERVAL: float = 1.0  # seconds
 
 # Registry of active pipelines per session
 _active_pipelines: dict[str, VisionPipeline] = {}
@@ -64,8 +70,16 @@ async def video_websocket(websocket: WebSocket, session_id: str):
     Message format (JSON text frame):
         { "type": "frame", "data": "<base64 JPEG>" }
 
-    Sends periodic status messages back to the client:
-        { "type": "vision", "data": { "emotion": {...}, "gaze": "..." } }
+    Sends perception updates to the client on meaningful changes
+    (max 1/sec)::
+
+        {
+          "type": "perception_update",
+          "payload": {
+            "emotion": { "label": "...", "confidence": ... },
+            "gaze": "..."
+          }
+        }
     """
     await websocket.accept()
     logger.info(
@@ -75,7 +89,10 @@ async def video_websocket(websocket: WebSocket, session_id: str):
     )
 
     buffer = await frame_buffer_manager.get_or_create(session_id)
+    ctx = await session_context_manager.get_or_create(session_id)
+    detector = ChangeDetector()
     frames_this_connection = 0
+    last_perception_send: float = 0.0  # monotonic clock for WS throttle
 
     # ── Start the vision pipeline for this session ───────────────
     pipeline = VisionPipeline(session_id=session_id)
@@ -111,12 +128,58 @@ async def video_websocket(websocket: WebSocket, session_id: str):
             await buffer.push(entry)
             frames_this_connection += 1
 
-            # ── Send vision result back to client (every 10 frames) ──
+            # ── Perception check (every 10 frames) ───────────────
             if frames_this_connection % 10 == 0 and pipeline.latest:
+                result = pipeline.latest
+
+                # Always keep session context up-to-date
+                await ctx.update_perception(
+                    emotion_label=result.emotion["label"],
+                    emotion_confidence=result.emotion["confidence"],
+                    gaze=result.gaze,
+                )
+
+                # ── Change detection ─────────────────────────────
+                delta = detector.detect(
+                    emotion_label=result.emotion["label"],
+                    emotion_confidence=result.emotion["confidence"],
+                    gaze=result.gaze,
+                )
+
+                if not delta.any_changed:
+                    continue
+
+                # ── Event logging (async, throttled internally) ──
+                if delta.emotion_changed:
+                    await event_logger.log_emotion(
+                        session_id,
+                        emotion_label=result.emotion["label"],
+                        gaze_status=result.gaze,
+                    )
+                if delta.gaze_changed:
+                    await event_logger.log_gaze(
+                        session_id,
+                        gaze_status=result.gaze,
+                        emotion_label=result.emotion["label"],
+                    )
+
+                # ── Send to frontend (max 1/sec) ────────────────
+                now = time.monotonic()
+                if (now - last_perception_send) < _PERCEPTION_SEND_INTERVAL:
+                    continue
+
+                last_perception_send = now
                 try:
                     await websocket.send_json({
-                        "type": "vision",
-                        "data": pipeline.latest.to_dict(),
+                        "type": "perception_update",
+                        "payload": {
+                            "emotion": result.emotion,
+                            "gaze": result.gaze,
+                            "gaze_tracking": {
+                                "gaze_duration": round(ctx.gaze_duration, 2),
+                                "gaze_away_flag": ctx.gaze_away_flag,
+                            },
+                        },
                     })
                 except Exception:
                     pass  # Don't crash the receive loop for send errors
@@ -138,6 +201,7 @@ async def video_websocket(websocket: WebSocket, session_id: str):
         # ── Stop the vision pipeline ─────────────────────────────
         await pipeline.stop()
         _active_pipelines.pop(session_id, None)
+        event_logger.clear_session(session_id)
         logger.info(
             "🎥  Video WS closed  session=%s  buffered=%d  total_received=%d  dropped=%d  pipeline_stats=%s",
             session_id,

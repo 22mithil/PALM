@@ -1,16 +1,23 @@
 import { useRef, useCallback, useEffect, useState } from "react"
 
 /**
- * useVideoStream — Transport-only hook.
+ * useVideoStream — Transport + perception-receive hook.
  *
  * Captures JPEG frames from a <video> element via an offscreen canvas,
  * resizes to 320×240, compresses at quality ~0.6, and sends each frame
  * over a WebSocket at ~5 FPS (every 200 ms).
  *
- * Wire format:
+ * Wire format (outbound):
  *   { "type": "frame", "data": "<base64>" }
  *
- * Does NOT process or analyse frames on the frontend.
+ * Receives real-time perception updates from the backend (max 1/sec):
+ *   {
+ *     "type": "perception_update",
+ *     "payload": {
+ *       "emotion": { "label": "...", "confidence": ... },
+ *       "gaze": "..."
+ *     }
+ *   }
  *
  * @param {string}  sessionId   — unique session identifier
  * @param {Object}  options
@@ -20,6 +27,7 @@ import { useRef, useCallback, useEffect, useState } from "react"
  * @param {number}  [options.quality=0.6]     — JPEG quality 0-1
  * @param {number}  [options.reconnectDelay=3000] — ms before reconnect attempt
  * @param {number}  [options.maxReconnects=5]     — max consecutive reconnects
+ * @param {Function} [options.onPerceptionUpdate] — optional callback fired on each perception update
  */
 
 const WS_READY_STATE = {
@@ -37,6 +45,7 @@ export default function useVideoStream(sessionId, options = {}) {
     quality = 0.6,
     reconnectDelay = 3000,
     maxReconnects = 5,
+    onPerceptionUpdate = null,
   } = options
 
   /* ── refs ──────────────────────────────────────────────── */
@@ -47,10 +56,20 @@ export default function useVideoStream(sessionId, options = {}) {
   const reconnectCountRef = useRef(0)
   const reconnectTimerRef = useRef(null)
   const isStreamingRef = useRef(false)
+  const perceptionCbRef = useRef(onPerceptionUpdate)   // stable ref for callback
+
+  // Keep the callback ref in sync without triggering re-memoisation
+  useEffect(() => {
+    perceptionCbRef.current = onPerceptionUpdate
+  }, [onPerceptionUpdate])
 
   /* ── state (for UI consumption) ────────────────────────── */
   const [wsState, setWsState] = useState("idle")       // idle | connecting | open | closed | error
   const [framesSent, setFramesSent] = useState(0)
+
+  /** Latest perception update received from the backend. */
+  const [perception, setPerception] = useState(null)
+  //  shape: { emotion: { label, confidence }, gaze: string }
 
   /* ── lazy-init the offscreen canvas ────────────────────── */
   const getCanvas = useCallback(() => {
@@ -148,10 +167,16 @@ export default function useVideoStream(sessionId, options = {}) {
       // onclose will fire next — reconnect logic lives there
     }
 
-    // We don't need to handle incoming messages for this transport layer,
-    // but keep the handler in case the server sends acks or errors.
-    ws.onmessage = () => {
-      // no-op for now
+    ws.onmessage = (event) => {
+      try {
+        const msg = JSON.parse(event.data)
+        if (msg.type === "perception_update" && msg.payload) {
+          setPerception(msg.payload)
+          perceptionCbRef.current?.(msg.payload)
+        }
+      } catch {
+        // Ignore malformed messages — non-blocking
+      }
     }
   }, [buildWsUrl, startSendLoop, stopSendLoop, maxReconnects, reconnectDelay])
 
@@ -212,5 +237,10 @@ export default function useVideoStream(sessionId, options = {}) {
     wsState,
     /** Total frames sent this session. */
     framesSent,
+    /**
+     * Latest perception update from the backend.
+     * Shape: { emotion: { label: string, confidence: number }, gaze: string } | null
+     */
+    perception,
   }
 }

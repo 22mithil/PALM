@@ -351,6 +351,21 @@
   color: var(--wc-text-dim) !important;
 }
 
+/* ─── Perception HUD overlay ────────────────────────── */
+
+.webcam-capture__perception-hud {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 0.75rem;
+  z-index: 10;
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.625rem;
+  background: oklch(0.08 0.01 260 / 65%);
+  border: 1px solid oklch(1 0 0 / 8%);
+  backdrop-filter: blur(14px);
+  animation: wc-fade-in 0.4s ease-out;
+}
+
 /* ─── Keyframes ─────────────────────────────────────── */
 
 @keyframes wc-pulse {
