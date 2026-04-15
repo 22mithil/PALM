@@ -2,15 +2,20 @@
 FastRouter — Speech-to-Text via Gemini Flash Lite.
 
 Sends base64-encoded WebM/Opus audio to google/gemini-3.1-flash-lite-preview
-through FastRouter's Anthropic-compatible /v1/messages endpoint and returns
-the plain transcript.
+through FastRouter's OpenAI-compatible /v1/chat/completions endpoint and
+returns the plain transcript.
 """
 
 import asyncio
 import base64
 import logging
 
-import httpx
+from openai import (
+    AsyncOpenAI,
+    APIConnectionError,
+    RateLimitError,
+    APIStatusError,
+)
 
 from app.core.config import settings
 
@@ -41,6 +46,24 @@ class STTError(Exception):
         self.status_code = status_code
         self.body = body
         super().__init__(f"STT API error {status_code}: {body}")
+
+
+# ── Client (lazy singleton) ─────────────────────────────────────────────
+
+_client: AsyncOpenAI | None = None
+
+
+def _get_client() -> AsyncOpenAI:
+    """Return a cached async OpenAI client pointed at FastRouter."""
+    global _client
+    if _client is None:
+        _client = AsyncOpenAI(
+            api_key=settings.FASTROUTER_API_KEY,
+            base_url=settings.FASTROUTER_BASE_URL,
+            max_retries=0,  # We handle retries manually for finer control
+            timeout=_TIMEOUT_S,
+        )
+    return _client
 
 
 # ── Public API ───────────────────────────────────────────────────────────
@@ -75,96 +98,102 @@ async def transcribe_audio(audio_bytes: bytes) -> str:
 
     # -- Encode audio for the API ----------------------------------------
     audio_b64 = base64.standard_b64encode(audio_bytes).decode("ascii")
+    data_uri = f"data:audio/webm;base64,{audio_b64}"
 
-    payload = {
-        "model": _STT_MODEL,
-        "max_tokens": 1024,
-        "system": _SYSTEM_PROMPT,
-        "messages": [
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image",
-                        "source": {
-                            "type": "base64",
-                            "media_type": "audio/webm",
-                            "data": audio_b64,
-                        },
-                    },
-                    {
-                        "type": "text",
-                        "text": "Transcribe this audio.",
-                    },
-                ],
-            }
-        ],
-    }
-
-    headers = {
-        "Content-Type": "application/json",
-        "x-api-key": settings.FASTROUTER_API_KEY,
-        "anthropic-version": "2023-06-01",
-    }
-
-    url = f"{settings.FASTROUTER_BASE_URL}/messages"
+    # OpenAI-compatible multimodal message format
+    # Audio is sent as a data-URI inside an "image_url" content block.
+    # Despite the name, OpenRouter-compatible providers (including FastRouter)
+    # route any media type through this block for multimodal models.
+    messages = [
+        {"role": "system", "content": _SYSTEM_PROMPT},
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "image_url",
+                    "image_url": {"url": data_uri},
+                },
+                {
+                    "type": "text",
+                    "text": "Transcribe this audio.",
+                },
+            ],
+        },
+    ]
 
     # -- Request with retry loop -----------------------------------------
     last_error: STTError | None = None
+    client = _get_client()
 
-    async with httpx.AsyncClient(timeout=_TIMEOUT_S) as client:
-        for attempt in range(_MAX_RETRIES + 1):  # 1 initial + up to 2 retries
-            try:
-                resp = await client.post(url, json=payload, headers=headers)
+    for attempt in range(_MAX_RETRIES + 1):  # 1 initial + up to 2 retries
+        try:
+            response = await client.chat.completions.create(
+                model=_STT_MODEL,
+                messages=messages,
+                max_tokens=1024,
+                temperature=0.0,  # Deterministic for transcription
+            )
 
-                if resp.status_code == 200:
-                    data = resp.json()
-                    # Anthropic response shape:
-                    #   {"content": [{"type": "text", "text": "…"}, …]}
-                    text_blocks = [
-                        block["text"]
-                        for block in data.get("content", [])
-                        if block.get("type") == "text"
-                    ]
-                    return " ".join(text_blocks).strip()
+            content = response.choices[0].message.content or ""
+            transcript = content.strip()
 
-                # -- Non-200 ------------------------------------------------
-                body_text = resp.text
-                last_error = STTError(resp.status_code, body_text)
+            logger.debug(
+                "STT transcript [%s]: %d chars",
+                _STT_MODEL,
+                len(transcript),
+            )
+            return transcript
 
-                # Retry only on transient 5xx errors
-                if resp.status_code >= 500 and attempt < _MAX_RETRIES:
-                    logger.warning(
-                        "STT transient error %d (attempt %d/%d), retrying in %gs…",
-                        resp.status_code,
-                        attempt + 1,
-                        _MAX_RETRIES + 1,
-                        _RETRY_DELAY_S,
-                    )
-                    await asyncio.sleep(_RETRY_DELAY_S)
-                    continue
-
-                # 4xx or final 5xx attempt — raise immediately
-                logger.error(
-                    "STT API error %d: %.200s", resp.status_code, body_text
+        except RateLimitError as exc:
+            last_error = STTError(429, str(exc))
+            if attempt < _MAX_RETRIES:
+                logger.warning(
+                    "STT rate limit (attempt %d/%d), retrying in %gs…",
+                    attempt + 1,
+                    _MAX_RETRIES + 1,
+                    _RETRY_DELAY_S,
                 )
-                raise last_error
+                await asyncio.sleep(_RETRY_DELAY_S)
+                continue
+            logger.error("STT rate limit after %d attempts.", _MAX_RETRIES + 1)
+            raise last_error
 
-            except httpx.TimeoutException:
-                last_error = STTError(0, "Request timed out")
-                if attempt < _MAX_RETRIES:
-                    logger.warning(
-                        "STT timeout (attempt %d/%d), retrying in %gs…",
-                        attempt + 1,
-                        _MAX_RETRIES + 1,
-                        _RETRY_DELAY_S,
-                    )
-                    await asyncio.sleep(_RETRY_DELAY_S)
-                    continue
-                logger.error(
-                    "STT timed out after %d attempts.", _MAX_RETRIES + 1
+        except APIStatusError as exc:
+            last_error = STTError(exc.status_code, exc.message)
+
+            # Retry only on transient 5xx errors
+            if exc.status_code >= 500 and attempt < _MAX_RETRIES:
+                logger.warning(
+                    "STT transient error %d (attempt %d/%d), retrying in %gs…",
+                    exc.status_code,
+                    attempt + 1,
+                    _MAX_RETRIES + 1,
+                    _RETRY_DELAY_S,
                 )
-                raise last_error
+                await asyncio.sleep(_RETRY_DELAY_S)
+                continue
+
+            # 4xx or final 5xx attempt — raise immediately
+            logger.error(
+                "STT API error %d: %.200s", exc.status_code, exc.message
+            )
+            raise last_error
+
+        except APIConnectionError:
+            last_error = STTError(0, "Connection failed / timed out")
+            if attempt < _MAX_RETRIES:
+                logger.warning(
+                    "STT connection error (attempt %d/%d), retrying in %gs…",
+                    attempt + 1,
+                    _MAX_RETRIES + 1,
+                    _RETRY_DELAY_S,
+                )
+                await asyncio.sleep(_RETRY_DELAY_S)
+                continue
+            logger.error(
+                "STT connection failed after %d attempts.", _MAX_RETRIES + 1
+            )
+            raise last_error
 
     # Unreachable in practice, but satisfies the type checker
     raise last_error or STTError(0, "Unknown STT failure")
