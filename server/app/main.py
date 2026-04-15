@@ -20,6 +20,7 @@ from app.core.config import settings
 from app.api.v1 import router as api_v1_router
 from app.api.v1.websockets.video_ws import router as video_ws_router
 from app.api.v1.websockets.audio_ws import router as audio_ws_router
+from app.api.v1.websockets.tutor_ws import router as tutor_ws_router
 from app.db.session import async_engine, async_session_factory
 
 logger = logging.getLogger(__name__)
@@ -81,6 +82,7 @@ def create_app() -> FastAPI:
     app.include_router(api_v1_router, prefix=settings.API_V1_STR)
     app.include_router(video_ws_router, tags=["Video WebSocket"])
     app.include_router(audio_ws_router, tags=["Audio WebSocket"])
+    app.include_router(tutor_ws_router, tags=["Tutor WebSocket"])
 
     # ── Health Check ─────────────────────────────────────────────────
     @app.get("/health", tags=["Health"])
