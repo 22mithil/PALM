@@ -31,7 +31,7 @@ const AUDIO_CONSTRAINTS = {
   autoGainControl: true,
 }
 
-export default function WebcamCapture({ sessionId = "default" }) {
+export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
   /* ── state ────────────────────────────────────────────── */
   const [stream, setStream] = useState(null)
   const [isCapturing, setIsCapturing] = useState(false)

@@ -69,10 +69,13 @@ from __future__ import annotations
 import asyncio
 import logging
 import time
+import uuid
 
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect
 
 from app.db.session import async_session_factory
+from app.schemas.session import SessionCreate
+from app.services.session_service import create_session, get_session_by_id
 from app.orchestrator import run_orchestrator
 from app.state.context_manager import context_aggregator
 from app.state.state_prompt_builder import build_state_prompt_from_session
@@ -202,6 +205,31 @@ async def tutor_websocket(websocket: WebSocket, session_id: str):
                 student_id,
                 repr((query_override or "<stt>")[:80]),
             )
+
+            # ── 1.5. Ensure session is persisted to DB ─────────────────
+            try:
+                async with async_session_factory() as db:
+                    try:
+                        await get_session_by_id(db, uuid.UUID(session_id))
+                    except HTTPException as exc:
+                        if exc.status_code == 404:
+                            await create_session(
+                                db,
+                                SessionCreate(
+                                    student_id=uuid.UUID(student_id),
+                                    grade=1,
+                                    topic=None,
+                                ),
+                                session_id_override=uuid.UUID(session_id),
+                            )
+                        else:
+                            raise
+            except Exception as exc:
+                logger.error(
+                    "🎓  Failed to initialize DB session  session=%s: %s",
+                    session_id,
+                    exc,
+                )
 
             # ── 2. Build StatePrompt ───────────────────────────────
             try:

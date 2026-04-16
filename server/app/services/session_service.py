@@ -14,20 +14,35 @@ from app.schemas.session import SessionCreate, SessionEnd
 from app.services.student_service import get_student_by_id
 
 
-async def create_session(db: AsyncSession, payload: SessionCreate) -> Session:
+async def create_session(
+    db: AsyncSession,
+    payload: SessionCreate,
+    session_id_override: uuid.UUID | None = None,
+) -> Session:
     """Start a new learning session.
 
     Validates that the student exists, then creates a session row
     with difficulty_level = 1 (easiest).
+
+    Parameters
+    ----------
+    session_id_override:
+        If provided, the session row is created with this specific UUID
+        instead of relying on the DB default.  Used by the WebSocket
+        handler so the session_id from the URL matches the DB row.
     """
     # Verify student exists (raises 404 if not)
     await get_student_by_id(db, payload.student_id)
 
-    session = Session(
+    kwargs: dict = dict(
         student_id=payload.student_id,
         grade=payload.grade,
         topic=payload.topic,
     )
+    if session_id_override is not None:
+        kwargs["id"] = session_id_override
+
+    session = Session(**kwargs)
     db.add(session)
     await db.flush()
     await db.refresh(session)

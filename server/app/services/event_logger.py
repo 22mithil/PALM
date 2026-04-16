@@ -27,9 +27,13 @@ from __future__ import annotations
 import asyncio
 import logging
 import time
+import uuid
 from typing import Optional
 
+from sqlalchemy import select
+
 from app.db.session import async_session_factory
+from app.models.session import Session
 from app.models.session_event import SessionEvent
 
 logger = logging.getLogger(__name__)
@@ -157,7 +161,31 @@ class EventLogger:
         """Persist a single event row.  Errors are swallowed to avoid
         crashing the caller's task tree."""
         try:
+            uuid.UUID(session_id)
+        except ValueError:
+            logger.error(
+                "Invalid UUID '%s' provided for session_event insert. Aborting.",
+                session_id,
+            )
+            return
+
+        try:
             async with async_session_factory() as session:
+                # Guard: skip if the session row hasn't been created yet
+                # (video/audio WS may fire events before tutor WS persists it)
+                exists = await session.execute(
+                    select(Session.id).where(
+                        Session.id == uuid.UUID(session_id)
+                    )
+                )
+                if exists.scalar_one_or_none() is None:
+                    logger.debug(
+                        "Session %s not yet in DB — skipping %s event",
+                        session_id,
+                        event_type,
+                    )
+                    return
+
                 event = SessionEvent(
                     session_id=session_id,
                     event_type=event_type,
