@@ -1,6 +1,17 @@
+// ──────────────────────────────────────────────────────────────────────
+// DEPRECATED: This hook is no longer used in the active code path.
+// Emotion + gaze tracking are now handled entirely client-side by
+// useFaceMesh.js. Perception results are sent to the backend via
+// usePerceptionStream.js as lightweight JSON (~100 bytes/sec) instead
+// of JPEG frames (~50KB/sec).
+//
+// Kept for reference only. Do not import in new code.
+// ──────────────────────────────────────────────────────────────────────
+
 import { useRef, useCallback, useEffect, useState } from "react"
 
 /**
+ * @deprecated Use usePerceptionStream.js instead.
  * useVideoStream — Transport + perception-receive hook.
  *
  * Captures JPEG frames from a <video> element via an offscreen canvas,

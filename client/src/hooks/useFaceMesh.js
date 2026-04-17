@@ -6,15 +6,17 @@ import {
 } from "@mediapipe/tasks-vision"
 
 /**
- * useFaceMesh — Client-side face mesh overlay + emotion classification
+ * useFaceMesh — Client-side face mesh overlay + emotion + gaze classification
  * using MediaPipe FaceLandmarker (Tasks Vision JS SDK).
  *
  * Renders face mesh landmarks onto a <canvas> overlaid on the video.
  * Classifies emotions from blendshape scores using threshold logic
  * matching the backend EmotionModel.
+ * Classifies gaze direction from iris landmarks (473/468) relative to
+ * eye corner landmarks (33/133/362/263).
  *
  * Usage:
- *   const { canvasRef, emotion, fps, isReady } = useFaceMesh(videoRef, isActive)
+ *   const { canvasRef, emotion, gaze, fps, isReady } = useFaceMesh(videoRef, isActive)
  */
 
 const MODEL_URL =
@@ -55,9 +57,47 @@ function classifyEmotion(blendshapes) {
   return "neutral"
 }
 
+// ── Gaze classification from iris landmarks ──────────────────────
+function classifyGaze(landmarks, blendshapes) {
+  // Build blendshape score map
+  const s = {}
+  blendshapes.forEach((b) => {
+    s[b.categoryName] = b.score
+  })
+
+  // Closed eyes takes priority (blendshape-based)
+  if ((s.eyeBlinkLeft || 0) > 0.5 && (s.eyeBlinkRight || 0) > 0.5) {
+    return "closed_eyes"
+  }
+
+  // Iris landmark indices (MediaPipe FaceLandmarker)
+  // Left iris center: 473, Right iris center: 468
+  // Left eye corners: 33 (inner), 133 (outer)
+  // Right eye corners: 362 (inner), 263 (outer)
+  const leftIris = landmarks[473]
+  const leftEyeInner = landmarks[33]
+  const leftEyeOuter = landmarks[133]
+
+  const rightIris = landmarks[468]
+  const rightEyeInner = landmarks[362]
+  const rightEyeOuter = landmarks[263]
+
+  if (!leftIris || !rightIris) return "on_screen" // fallback
+
+  const leftGazeRatio =
+    (leftIris.x - leftEyeInner.x) / (leftEyeOuter.x - leftEyeInner.x)
+  const rightGazeRatio =
+    (rightIris.x - rightEyeInner.x) / (rightEyeOuter.x - rightEyeInner.x)
+  const avgGazeRatio = (leftGazeRatio + rightGazeRatio) / 2
+
+  if (avgGazeRatio < 0.35 || avgGazeRatio > 0.65) return "off_screen"
+  return "on_screen"
+}
+
 export default function useFaceMesh(videoRef, isActive) {
   const canvasRef = useRef(null)
   const [emotion, setEmotion] = useState("neutral")
+  const [gaze, setGaze] = useState("on_screen")
   const [fps, setFps] = useState(0)
   const [isReady, setIsReady] = useState(false)
 
@@ -149,10 +189,18 @@ export default function useFaceMesh(videoRef, isActive) {
         results.faceBlendshapes &&
         results.faceBlendshapes.length > 0
       ) {
-        const detected = classifyEmotion(
-          results.faceBlendshapes[0].categories
-        )
+        const blendshapeCategories = results.faceBlendshapes[0].categories
+        const detected = classifyEmotion(blendshapeCategories)
         setEmotion(detected)
+
+        // Gaze classification from iris landmarks + blendshapes
+        if (results.faceLandmarks && results.faceLandmarks.length > 0) {
+          const gazeState = classifyGaze(
+            results.faceLandmarks[0],
+            blendshapeCategories
+          )
+          setGaze(gazeState)
+        }
 
         // Draw face mesh
         const drawingUtils = new DrawingUtils(ctx)
@@ -214,6 +262,7 @@ export default function useFaceMesh(videoRef, isActive) {
         }
       } else {
         setEmotion("neutral")
+        setGaze("on_screen")
       }
     } catch {
       // Silently skip frames that fail
@@ -238,5 +287,5 @@ export default function useFaceMesh(videoRef, isActive) {
     return () => cancelAnimationFrame(rafRef.current)
   }, [isReady, isActive, detect])
 
-  return { canvasRef, emotion, fps, isReady }
+  return { canvasRef, emotion, gaze, fps, isReady }
 }

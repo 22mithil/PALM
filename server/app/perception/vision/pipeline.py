@@ -2,12 +2,13 @@
 Vision Pipeline — Orchestrates face detection, gaze tracking,
 emotional inference, and prediction stabilisation.
 
-Design principles:
-  • Pulls frames from the per-session FrameBuffer (non-blocking)
-  • Processes only every Nth frame to control CPU load
-  • Single-frame emotion inference via MediaPipe FaceLandmarker blendshapes
-  • All heavy work runs in an asyncio executor to avoid blocking the event loop
-  • Returns a clean, stabilised output dict
+DEPRECATED: This module is no longer used in the active video WebSocket
+path. As of April 2025, emotion classification and gaze tracking run
+entirely client-side in useFaceMesh.js using MediaPipe FaceLandmarker.
+The client sends lightweight JSON perception updates (~100 bytes/sec)
+instead of JPEG frames (~50KB/sec).
+
+Kept intact for offline/batch processing and reference.
 
 Usage:
     pipeline = VisionPipeline(session_id="abc")
@@ -31,7 +32,6 @@ import numpy as np
 
 from app.services.frame_buffer import frame_buffer_manager, FrameEntry
 from app.perception.vision.face_detection import FaceDetector
-from app.perception.vision.gaze_tracking import GazeTracker
 from app.perception.vision.emotion_model import EmotionModel
 from app.perception.vision.stabiliser import PredictionStabiliser
 
@@ -84,7 +84,6 @@ class VisionPipeline:
 
         # ── Sub-modules (lazy-init inside their own classes) ─────
         self._face_detector = FaceDetector()
-        self._gaze_tracker = GazeTracker()
         self._emotion_model = EmotionModel()
         self._stabiliser = PredictionStabiliser()
 
@@ -125,7 +124,6 @@ class VisionPipeline:
             self._task = None
 
         self._face_detector.close()
-        self._gaze_tracker.close()
         self._emotion_model.close()
         logger.info(
             "VisionPipeline stopped  session=%s  processed=%d  faces=%d",
@@ -203,9 +201,8 @@ class VisionPipeline:
 
         self.faces_detected += 1
 
-        # ── 2. Gaze Tracking ────────────────────────────────────
-        gaze_result = self._gaze_tracker.analyse(frame)
-        gaze_state = gaze_result.state if gaze_result else "off_screen"
+        # ── 2. Gaze — now handled client-side, default to off_screen ─
+        gaze_state = "off_screen"
 
         # ── 3. Emotion: single-frame MediaPipe blendshape inference ─
         emo_result = self._emotion_model.predict(frame)

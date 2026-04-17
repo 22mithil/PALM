@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react"
-import useVideoStream from "../hooks/useVideoStream"
+import usePerceptionStream from "../hooks/usePerceptionStream"
 import useAudioStream from "../hooks/useAudioStream"
 import useFaceMesh from "../hooks/useFaceMesh"
 import PerceptionHUD from "./PerceptionHUD"
@@ -44,18 +44,16 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
 
   const videoRef = useRef(null)
 
-  /* ── face mesh overlay + local emotion ──────────────── */
-  const { canvasRef, emotion: localEmotion, fps: meshFps, isReady: meshReady } = useFaceMesh(videoRef, isCapturing)
+  /* ── face mesh overlay + local emotion + gaze ──────────── */
+  const { canvasRef, emotion, gaze, fps: meshFps, isReady: meshReady } = useFaceMesh(videoRef, isCapturing)
 
-  /* ── video stream transport ────────────────────────────── */
+  /* ── perception stream (lightweight JSON to backend) ────── */
   const {
-    setVideoElement,
-    startStreaming: startVideoStreaming,
-    stopStreaming: stopVideoStreaming,
-    wsState: videoWsState,
-    framesSent,
-    perception,
-  } = useVideoStream(sessionId)
+    startStream: startPerceptionStream,
+    stopStream: stopPerceptionStream,
+    sendPerception,
+    wsState: perceptionWsState,
+  } = usePerceptionStream(sessionId)
 
   /* ── audio stream transport ────────────────────────────── */
   const {
@@ -101,8 +99,8 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
       setStream(mediaStream)
       setIsCapturing(true)
 
-      // Start streaming frames + audio to backend
-      startVideoStreaming()
+      // Start perception + audio streaming to backend
+      startPerceptionStream()
       startAudioStreaming(mediaStream)
       setIsStreaming(true)
 
@@ -124,7 +122,7 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
   /* ── stop capture ─────────────────────────────────────── */
   const stopCapture = useCallback(() => {
     // Stop streaming first
-    stopVideoStreaming()
+    stopPerceptionStream()
     stopAudioStreaming()
     setIsStreaming(false)
 
@@ -136,7 +134,7 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
     }
     setStream(null)
     setIsCapturing(false)
-  }, [stream, stopVideoStreaming, stopAudioStreaming])
+  }, [stream, stopPerceptionStream, stopAudioStreaming])
 
   /* ── toggle mic mute ──────────────────────────────────── */
   const toggleMute = useCallback(() => {
@@ -176,9 +174,15 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
   useEffect(() => {
     if (stream && videoRef.current) {
       videoRef.current.srcObject = stream
-      setVideoElement(videoRef.current)
     }
-  }, [stream, setVideoElement])
+  }, [stream])
+
+  /* ── send perception updates to backend on change ──────── */
+  useEffect(() => {
+    if (isCapturing && isStreaming) {
+      sendPerception(emotion, gaze)
+    }
+  }, [emotion, gaze, isCapturing, isStreaming, sendPerception])
 
   /* ── cleanup on unmount ───────────────────────────────── */
   useEffect(() => {
@@ -222,25 +226,21 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
               LIVE
             </span>
 
-            {/* Local emotion badge */}
+            {/* Emotion + Gaze badge */}
             {meshReady && (
-              <span className={`webcam-capture__emotion-badge webcam-capture__emotion-badge--${localEmotion}`}>
-                {localEmotion.toUpperCase()}
+              <span className={`webcam-capture__emotion-badge webcam-capture__emotion-badge--${emotion}`}>
+                {emotion.toUpperCase()}
+                {gaze !== "on_screen" && (
+                  <span className="webcam-capture__gaze-indicator"> · {gaze === "closed_eyes" ? "EYES CLOSED" : "LOOKING AWAY"}</span>
+                )}
                 <span className="webcam-capture__mesh-fps">{meshFps} FPS</span>
               </span>
             )}
 
-            {/* Streaming badge */}
-            {isStreaming && (
-              <span className={`webcam-capture__stream-badge webcam-capture__stream-badge--${videoWsState}`}>
-                {videoWsState === "open" ? "⬆ STREAMING" : videoWsState === "connecting" ? "CONNECTING…" : "RECONNECTING…"}
-              </span>
-            )}
-
             {/* Perception HUD overlay */}
-            {perception && isStreaming && (
+            {meshReady && isCapturing && (
               <div className="webcam-capture__perception-hud">
-                <PerceptionHUD perception={perception} />
+                <PerceptionHUD emotion={emotion} gaze={gaze} />
               </div>
             )}
 
@@ -248,9 +248,6 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
             {videoSettings && (
               <span className="webcam-capture__res-badge">
                 {videoSettings.width}×{videoSettings.height}
-                {isStreaming && videoWsState === "open" && (
-                  <span className="webcam-capture__frame-counter"> · {framesSent} frames</span>
-                )}
               </span>
             )}
           </>
@@ -405,21 +402,15 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
             </span>
           </div>
           <div className="webcam-capture__meta-item">
-            <span className="webcam-capture__meta-label">Video WS</span>
-            <span className={`webcam-capture__meta-value webcam-capture__ws-${videoWsState}`}>
-              {videoWsState}
+            <span className="webcam-capture__meta-label">Perception WS</span>
+            <span className={`webcam-capture__meta-value webcam-capture__ws-${perceptionWsState}`}>
+              {perceptionWsState}
             </span>
           </div>
           <div className="webcam-capture__meta-item">
             <span className="webcam-capture__meta-label">Audio WS</span>
             <span className={`webcam-capture__meta-value webcam-capture__ws-${audioWsState}`}>
               {audioWsState}
-            </span>
-          </div>
-          <div className="webcam-capture__meta-item">
-            <span className="webcam-capture__meta-label">Frames</span>
-            <span className="webcam-capture__meta-value">
-              {framesSent} sent
             </span>
           </div>
           <div className="webcam-capture__meta-item">

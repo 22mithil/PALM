@@ -1,3 +1,9 @@
+# ──────────────────────────────────────────────────────────────────────
+# DEPRECATED: Superseded by client-side emotion classification in
+# useFaceMesh.js. The client runs MediaPipe FaceLandmarker locally and
+# classifies emotions from blendshapes using the same threshold logic.
+# Kept for reference and offline/batch processing.
+# ──────────────────────────────────────────────────────────────────────
 import cv2
 import mediapipe as mp
 from mediapipe.tasks import python

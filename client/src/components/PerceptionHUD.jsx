@@ -1,5 +1,5 @@
 import { memo, useMemo } from "react"
-import { Eye } from "lucide-react"
+import { Eye, EyeOff } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import {
   Tooltip,
@@ -11,14 +11,15 @@ import { cn } from "@/lib/utils"
 /**
  * PerceptionHUD — Real-time emotion + gaze indicators.
  *
- * Consumes the `perception` payload from the video WebSocket
- * and renders shadcn Badge + Tooltip widgets.
+ * Consumes client-side perception state (emotion string + gaze string)
+ * from useFaceMesh and renders shadcn Badge + Tooltip widgets.
  *
  * Wrapped in React.memo to prevent re-renders from parent
  * state changes that don't affect perception.
  *
- * @param {Object}  perception — latest perception_update payload (or null)
- * @param {string}  className  — optional extra classes on the root container
+ * @param {string}  emotion   — current emotion label ("neutral", "confused", etc.)
+ * @param {string}  gaze      — gaze state: "on_screen" | "off_screen" | "closed_eyes"
+ * @param {string}  className — optional extra classes on the root container
  */
 
 // ── Emotion config ──────────────────────────────────────────────────────
@@ -44,22 +45,31 @@ function resolveEmotion(label) {
   return EMOTION_MAP[key] || FALLBACK_EMOTION
 }
 
+// ── Gaze config ─────────────────────────────────────────────────────────
+
+const GAZE_CONFIG = {
+  on_screen:   { label: "Focused",     away: false },
+  off_screen:  { label: "Looking Away", away: true },
+  closed_eyes: { label: "Eyes Closed",  away: true },
+}
+
+function resolveGaze(gaze) {
+  return GAZE_CONFIG[gaze] || GAZE_CONFIG.on_screen
+}
+
 // ── Component ───────────────────────────────────────────────────────────
 
-function PerceptionHUD({ perception, className }) {
+function PerceptionHUD({ emotion, gaze, className }) {
   // Derive emotion display values (memoised to avoid object churn)
   const emotionInfo = useMemo(
-    () => resolveEmotion(perception?.emotion?.label),
-    [perception?.emotion?.label],
+    () => resolveEmotion(emotion),
+    [emotion],
   )
 
-  const confidence = perception?.emotion?.confidence
-  const confidencePct = confidence != null ? Math.round(confidence * 100) : null
-
-  const gazeAway = perception?.gaze_tracking?.gaze_away_flag ?? false
-  const gazeDuration = perception?.gaze_tracking?.gaze_duration ?? 0
-
-  if (!perception) return null
+  const gazeInfo = useMemo(
+    () => resolveGaze(gaze),
+    [gaze],
+  )
 
   return (
     <div
@@ -85,17 +95,11 @@ function PerceptionHUD({ perception, className }) {
               {emotionInfo.emoji}
             </span>
             {emotionInfo.label}
-            {confidencePct != null && (
-              <span className="ml-0.5 text-[0.65rem] opacity-60 font-mono tabular-nums">
-                {confidencePct}%
-              </span>
-            )}
           </Badge>
         </TooltipTrigger>
         <TooltipContent side="bottom" sideOffset={6}>
           <span>
             Detected emotion: <strong>{emotionInfo.label}</strong>
-            {confidencePct != null && ` (${confidencePct}% confidence)`}
           </span>
         </TooltipContent>
       </Tooltip>
@@ -108,31 +112,28 @@ function PerceptionHUD({ perception, className }) {
             className={cn(
               "gap-1.5 px-2.5 py-1 h-7 text-[0.8rem] font-semibold border cursor-default",
               "transition-all duration-300 ease-out",
-              gazeAway
+              gazeInfo.away
                 ? "bg-red-500/15 text-red-400 border-red-500/30 animate-pulse"
                 : "bg-zinc-500/10 text-zinc-400 border-zinc-500/20",
             )}
             id="perception-gaze-badge"
           >
-            <Eye
-              className={cn(
-                "size-3.5 transition-colors duration-300",
-                gazeAway ? "text-red-400" : "text-zinc-400",
-              )}
-            />
-            {gazeAway ? "Away" : "Focused"}
-            {gazeAway && gazeDuration > 0 && (
-              <span className="ml-0.5 text-[0.65rem] opacity-70 font-mono tabular-nums">
-                {gazeDuration.toFixed(0)}s
-              </span>
+            {gazeInfo.away ? (
+              <EyeOff
+                className="size-3.5 text-red-400 transition-colors duration-300"
+              />
+            ) : (
+              <Eye
+                className="size-3.5 text-zinc-400 transition-colors duration-300"
+              />
             )}
+            {gazeInfo.label}
           </Badge>
         </TooltipTrigger>
         <TooltipContent side="bottom" sideOffset={6}>
-          {gazeAway ? (
+          {gazeInfo.away ? (
             <span>
-              Learner has been looking away for{" "}
-              <strong>{gazeDuration.toFixed(1)}s</strong>
+              Learner is <strong>{gazeInfo.label.toLowerCase()}</strong>
             </span>
           ) : (
             <span>Learner is focused on screen</span>

@@ -88,14 +88,18 @@ PALM operates on a continuous **Perception–Action Cycle** composed of five arc
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                     CLIENT SIDE                             │
-│   Webcam ──► Vision Pipeline    Microphone ──► STT          │
-│              [Frame Extraction, Face Detect,                │
-│               Gaze Tracking, Emotion CNN-LSTM]              │
+│   Webcam ──► MediaPipe FaceLandmarker (in-browser)          │
+│              [Face Mesh, Emotion (Blendshapes),              │
+│               Gaze Tracking (Iris Landmarks)]                │
+│              ──► perception_update JSON (~100 bytes/sec)     │
+│   Microphone ──► Audio Chunks ──► /ws/audio                 │
 └───────────────────────┬─────────────────────────────────────┘
-                        │ WebSocket
+                        │ WebSocket (JSON)
 ┌───────────────────────▼─────────────────────────────────────┐
-│              PERCEPTION ENGINE (FastAPI)                    │
-│   OpenCV + MediaPipe + STT + Emotion Inference      │
+│              PERCEPTION RECEIVER (FastAPI)                   │
+│   Receives { emotion, gaze } from client                    │
+│   Updates SessionContext + logs events to DB                │
+│   STT via FastRouter                                        │
 └───────────────────────┬─────────────────────────────────────┘
                         │
 ┌───────────────────────▼─────────────────────────────────────┐
@@ -155,9 +159,7 @@ PALM operates on a continuous **Perception–Action Cycle** composed of five arc
 | ---------------------- | ------------------- | -------------------------------------- |
 | FastAPI (Python 3.11+) | API Server          | Async REST + WebSocket endpoints       |
 | LangGraph              | Agent Orchestration | Stateful multi-agent workflow graphs   |
-| OpenCV (cv2)           | Frame Processing    | Video frame extraction + preprocessing |
-| MediaPipe              | Gaze & Face         | Real-time face mesh + gaze tracking    |
-| TensorFlow / PyTorch   | CNN-LSTM Inference  | Emotion recognition model runtime      |
+| MediaPipe (client)     | Face + Gaze + Emotion | Runs in browser via @mediapipe/tasks-vision |
 | FastRouter API         | Speech-to-Text      | Audio transcription                    |
 | FastRouter API         | Text-to-Speech      | Natural voice synthesis                |
 | Pydantic               | Data Validation     | Schema enforcement for API models      |
@@ -220,10 +222,13 @@ The backend will not directly integrate with individual model providers (e.g., O
 
 | Component           | Implementation                                                                 | Output                                                                                |
 | ------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
-| Frame Extraction    | OpenCV `VideoCapture` over WebRTC stream (MJPEG or base64 frames from browser) | Raw BGR frames at 5–10 FPS                                                            |
-| Face Detection      | MediaPipe `FaceDetection`                                                      | Face bounding box; presence/absence flag                                              |
-| Face Mesh & Gaze    | MediaPipe `FaceMesh` (468 landmarks)                                           | Gaze vector (pitch, yaw); head pose estimation                                        |
-| Emotion Recognition | EfficientNetB7 + LSTM (trained on FER-2013 + AffectNet)                        | Emotion label: `{confident, confused, bored, frustrated, neutral}` + confidence score |
+| Face Mesh + Gaze    | MediaPipe FaceLandmarker (client-side, @mediapipe/tasks-vision)                | 478 landmarks + iris landmarks → gaze state (on_screen/off_screen/closed_eyes)       |
+| Emotion Recognition | MediaPipe FaceLandmarker blendshapes (client-side, threshold logic)            | Emotion label: `{confident, confused, bored, frustrated, neutral}`                   |
+| Perception Sender   | usePerceptionStream.js (client → server JSON at max 1/sec)                     | `{"type": "perception_update", "emotion": str, "gaze": str}` ~100 bytes/sec         |
+
+**Note:** The vision pipeline previously ran server-side (OpenCV + MediaPipe + CNN-LSTM on JPEG frames).
+As of April 2025, all perception runs client-side using the browser MediaPipe FaceLandmarker SDK.
+The server receives only lightweight JSON perception updates (~500x bandwidth reduction).
 
 **Gaze Logic:**
 - Compute eye landmark ratios to determine gaze direction
@@ -496,7 +501,7 @@ Detailed breakdown in Section 10.
 
 | Path                     | Direction       | Description                                                                                        |
 | ------------------------ | --------------- | -------------------------------------------------------------------------------------------------- |
-| `/ws/video/{session_id}` | Client → Server | Stream video frames (base64 JPEG at 5 FPS)                                                         |
+| `/ws/video/{session_id}` | Client → Server | Receive perception updates (JSON: emotion + gaze, max 1/sec, ~100 bytes/sec)                       |
 | `/ws/audio/{session_id}` | Client → Server | Stream audio chunks (WAV)                                                                          |
 | `/ws/tutor/{session_id}` | Bidirectional   | Main interaction channel: send `StatePrompt`, receive streamed LLM response tokens + TTS audio URL |
 
@@ -683,9 +688,11 @@ and other relevant shadcn/ui components.
 ### 10.4 Emotion & Gaze Overlay
 
 - Webcam preview rendered in a `<video>` element (WebRTC)
+- Emotion + gaze classified client-side via MediaPipe FaceLandmarker (useFaceMesh.js)
 - Emotion label displayed as a shadcn `Badge` below the webcam (`Confused 😕`, `Bored 😴`, etc.)
-- Gaze indicator: small icon (👁) turns red when `gaze_away_flag` is active
-- All perception data sent via WebSocket every 200ms (video frames) and 5s (audio chunks)
+- Gaze indicator: Eye icon shows `Focused` / `Looking Away` / `Eyes Closed` with color change
+- Perception updates sent to backend via WebSocket as JSON at max 1/sec (~100 bytes/sec)
+- No JPEG frames are streamed to the backend
 
 ### 10.5 Math Rendering
 
@@ -811,7 +818,7 @@ Two things happen simultaneously:
 
 **WebSocket connections open:**
 ```
-/ws/video/{session_id}   ← frontend starts streaming webcam frames
+/ws/video/{session_id}   ← client sends perception updates (JSON, max 1/sec)
 /ws/tutor/{session_id}   ← main interaction channel opens
 ```
 
@@ -826,15 +833,15 @@ This is delivered as streamed tokens to the UI + TTS audio plays.
 ---
 
 ### Step 4 — Perception Engine Activates
-From this point on, every ~200ms:
+From this point on, on every animation frame:
 
 ```
-Webcam frames → /ws/video/{session_id}
-                → FastAPI → OpenCV (frame extraction)
-                          → MediaPipe (face detection, gaze tracking)
-                          → CNN-LSTM (emotion classification)
-                → Result: { emotion: "neutral", gaze: "on_screen" }
-                → Stored in SessionContext (in-memory)
+Webcam video → MediaPipe FaceLandmarker (in-browser)
+              → Emotion classification (blendshape thresholds)
+              → Gaze tracking (iris landmarks 473/468)
+              → Result: { emotion: "neutral", gaze: "on_screen" }
+              → Sent to /ws/video/{session_id} as JSON (max 1/sec)
+              → FastAPI → Stored in SessionContext (in-memory)
 ```
 
 And whenever the student speaks:
