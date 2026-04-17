@@ -7,6 +7,11 @@ Provides a lightweight, reusable face detector that:
   • Lazy-initialises the MediaPipe detector on first call
 
 This module owns detection only — no mesh, no gaze, no emotion.
+
+NOTE: The face_crop output is no longer consumed by the emotion model.
+Emotion inference now uses MediaPipe FaceLandmarker (which handles face
+detection internally). This module is still used for face presence
+detection and by the gaze tracker.
 """
 
 from __future__ import annotations

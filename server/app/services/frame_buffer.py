@@ -5,6 +5,11 @@ Each session gets its own buffer (asyncio.Queue backed) so the WebSocket
 receive loop can push frames without blocking, and downstream processors
 can consume frames at their own pace.
 
+NOTE: This buffer is NO LONGER used for emotion inference sequence windowing.
+The old CNN+LSTM model required an 8-frame sliding window; the new MediaPipe
+FaceLandmarker approach performs single-frame inference. This buffer remains
+in use for the VisionPipeline's general frame transport (gaze, face detection, etc.).
+
 Thread-safety: uses asyncio primitives — safe for concurrent coroutines.
 """
 

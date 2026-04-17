@@ -8,9 +8,18 @@
 │   │   │   ├── react.svg
 │   │   │   └── vite.svg
 │   │   ├── components/
-│   │   │   └── ui/
-│   │   │       ├── button.jsx
-│   │   │       └── card.jsx
+│   │   │   ├── ui/
+│   │   │   │   ├── badge.jsx
+│   │   │   │   ├── button.jsx
+│   │   │   │   ├── card.jsx
+│   │   │   │   └── tooltip.jsx
+│   │   │   ├── ChatTest.jsx
+│   │   │   ├── PerceptionHUD.jsx
+│   │   │   ├── WebcamCapture.css
+│   │   │   └── WebcamCapture.jsx
+│   │   ├── hooks/
+│   │   │   ├── useAudioStream.js
+│   │   │   └── useVideoStream.js
 │   │   ├── lib/
 │   │   │   └── utils.js
 │   │   ├── App.css
@@ -27,14 +36,22 @@
 │   ├── README.md
 │   └── vite.config.js
 ├── docs/
-│   └── prd.md
+│   ├── prd.md
+│   └── structure.txt
 ├── scripts/
-│   └── generate-structure.ps1
+│   ├── chunks_v2.json
+│   └── upsert-pinecone.py
 ├── server/
 │   ├── alembic/
+│   │   ├── versions/
+│   │   │   └── 780c678c3200_initial_schema.py
+│   │   ├── env.py
+│   │   ├── README
+│   │   └── script.py.mako
 │   ├── app/
 │   │   ├── agents/
 │   │   │   ├── __init__.py
+│   │   │   ├── base.py
 │   │   │   ├── dialogue_agent.py
 │   │   │   ├── engagement_agent.py
 │   │   │   ├── hint_agent.py
@@ -45,6 +62,7 @@
 │   │   │   ├── v1/
 │   │   │   │   ├── routes/
 │   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── chat.py
 │   │   │   │   │   ├── curriculum.py
 │   │   │   │   │   ├── mastery.py
 │   │   │   │   │   ├── sessions.py
@@ -76,6 +94,11 @@
 │   │   │   │   └── tts.py
 │   │   │   └── __init__.py
 │   │   ├── models/
+│   │   │   ├── emotion/
+│   │   │   │   └── README.md
+│   │   │   ├── mediapipe/
+│   │   │   │   ├── blaze_face_short_range.tflite
+│   │   │   │   └── face_landmarker.task
 │   │   │   ├── __init__.py
 │   │   │   ├── curriculum.py
 │   │   │   ├── mastery.py
@@ -86,7 +109,8 @@
 │   │   │   ├── __init__.py
 │   │   │   ├── executor.py
 │   │   │   ├── graph.py
-│   │   │   └── router.py
+│   │   │   ├── router.py
+│   │   │   └── state.py
 │   │   ├── perception/
 │   │   │   ├── audio/
 │   │   │   │   ├── __init__.py
@@ -98,7 +122,8 @@
 │   │   │   │   ├── emotion_model.py
 │   │   │   │   ├── face_detection.py
 │   │   │   │   ├── gaze_tracking.py
-│   │   │   │   └── pipeline.py
+│   │   │   │   ├── pipeline.py
+│   │   │   │   └── stabiliser.py
 │   │   │   ├── __init__.py
 │   │   │   └── processor.py
 │   │   ├── rag/
@@ -117,9 +142,14 @@
 │   │   │   └── websocket.py
 │   │   ├── services/
 │   │   │   ├── __init__.py
+│   │   │   ├── change_detector.py
 │   │   │   ├── curriculum_service.py
+│   │   │   ├── event_logger.py
+│   │   │   ├── frame_buffer.py
 │   │   │   ├── mastery_service.py
+│   │   │   ├── session_context.py
 │   │   │   ├── session_service.py
+│   │   │   ├── stt_worker.py
 │   │   │   └── student_service.py
 │   │   ├── state/
 │   │   │   ├── __init__.py
@@ -138,7 +168,13 @@
 │   ├── scripts/
 │   │   ├── ingest_pdfs.py
 │   │   └── seed_pinecone.py
-│   └── tests/
+│   ├── tests/
+│   ├── .gitignore
+│   ├── alembic.ini
+│   └── requirements.txt
 ├── .env
+├── App.tsx
+├── classifier.py
 ├── README.md
-└── structure.txt
+├── structure.txt
+└── tree.ps1

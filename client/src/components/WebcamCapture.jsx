@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react"
 import useVideoStream from "../hooks/useVideoStream"
 import useAudioStream from "../hooks/useAudioStream"
+import useFaceMesh from "../hooks/useFaceMesh"
 import PerceptionHUD from "./PerceptionHUD"
 import "./WebcamCapture.css"
 
@@ -42,6 +43,9 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
   const [selectedDeviceId, setSelectedDeviceId] = useState("")
 
   const videoRef = useRef(null)
+
+  /* ── face mesh overlay + local emotion ──────────────── */
+  const { canvasRef, emotion: localEmotion, fps: meshFps, isReady: meshReady } = useFaceMesh(videoRef, isCapturing)
 
   /* ── video stream transport ────────────────────────────── */
   const {
@@ -206,11 +210,25 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
               className="webcam-capture__video"
             />
 
+            {/* Face mesh canvas overlay */}
+            <canvas
+              ref={canvasRef}
+              className="webcam-capture__mesh-canvas"
+            />
+
             {/* Live badge */}
             <span className="webcam-capture__live-badge">
               <span className="webcam-capture__live-dot" />
               LIVE
             </span>
+
+            {/* Local emotion badge */}
+            {meshReady && (
+              <span className={`webcam-capture__emotion-badge webcam-capture__emotion-badge--${localEmotion}`}>
+                {localEmotion.toUpperCase()}
+                <span className="webcam-capture__mesh-fps">{meshFps} FPS</span>
+              </span>
+            )}
 
             {/* Streaming badge */}
             {isStreaming && (

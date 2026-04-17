@@ -1,11 +1,11 @@
 """
 Vision Pipeline — Orchestrates face detection, gaze tracking,
-emotion inference, and prediction stabilisation.
+emotional inference, and prediction stabilisation.
 
 Design principles:
   • Pulls frames from the per-session FrameBuffer (non-blocking)
   • Processes only every Nth frame to control CPU load
-  • Maintains a small rolling buffer of recent frames for the CNN-LSTM
+  • Single-frame emotion inference via MediaPipe FaceLandmarker blendshapes
   • All heavy work runs in an asyncio executor to avoid blocking the event loop
   • Returns a clean, stabilised output dict
 
@@ -32,14 +32,13 @@ import numpy as np
 from app.services.frame_buffer import frame_buffer_manager, FrameEntry
 from app.perception.vision.face_detection import FaceDetector
 from app.perception.vision.gaze_tracking import GazeTracker
-from app.perception.vision.emotion_model import EmotionInferenceEngine
+from app.perception.vision.emotion_model import EmotionModel
 from app.perception.vision.stabiliser import PredictionStabiliser
 
 logger = logging.getLogger(__name__)
 
 # ── Defaults ─────────────────────────────────────────────────────────────
 DEFAULT_PROCESS_EVERY_N = 3        # process 1-in-3 frames (~1.7 FPS @ 5 incoming)
-DEFAULT_FRAME_HISTORY = 8          # rolling buffer for CNN-LSTM
 DEFAULT_POLL_TIMEOUT = 0.5         # seconds to wait for a frame before retrying
 
 # Shared thread pool for CV work (bounded to avoid starving the server)
@@ -73,24 +72,20 @@ class VisionPipeline:
         Must match the session key in FrameBufferManager.
     process_every_n : int
         Skip N-1 frames between processing passes.
-    frame_history : int
-        Number of recent frames kept for CNN-LSTM.
     """
 
     def __init__(
         self,
         session_id: str,
         process_every_n: int = DEFAULT_PROCESS_EVERY_N,
-        frame_history: int = DEFAULT_FRAME_HISTORY,
     ) -> None:
         self.session_id = session_id
         self._process_every_n = process_every_n
-        self._frame_history = frame_history
 
         # ── Sub-modules (lazy-init inside their own classes) ─────
         self._face_detector = FaceDetector()
         self._gaze_tracker = GazeTracker()
-        self._emotion_engine = EmotionInferenceEngine(seq_len=frame_history)
+        self._emotion_model = EmotionModel()
         self._stabiliser = PredictionStabiliser()
 
         # ── State ────────────────────────────────────────────────
@@ -131,6 +126,7 @@ class VisionPipeline:
 
         self._face_detector.close()
         self._gaze_tracker.close()
+        self._emotion_model.close()
         logger.info(
             "VisionPipeline stopped  session=%s  processed=%d  faces=%d",
             self.session_id,
@@ -211,17 +207,10 @@ class VisionPipeline:
         gaze_result = self._gaze_tracker.analyse(frame)
         gaze_state = gaze_result.state if gaze_result else "off_screen"
 
-        # ── 3. Emotion: push face crop into sliding window ───────
-        self._emotion_engine.push_face(face.face_crop)
-
-        emotion_label = "neutral"
-        emotion_conf = 0.5
-
-        if self._emotion_engine.ready:
-            emo = self._emotion_engine.predict()
-            if emo is not None:
-                emotion_label = emo.label
-                emotion_conf = emo.confidence
+        # ── 3. Emotion: single-frame MediaPipe blendshape inference ─
+        emo_result = self._emotion_model.predict(frame)
+        emotion_label = emo_result["emotion"]
+        emotion_conf = emo_result["confidence"]
 
         # ── 4. Stabilise ────────────────────────────────────────
         prediction = self._stabiliser.update(
