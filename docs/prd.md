@@ -38,7 +38,7 @@ This PRD covers the **Stage 2 full-system build** using the following confirmed 
 | Vector Database          | Pinecone                         |
 | Relational Database      | NeonDB (serverless PostgreSQL)   |
 | Orchestration            | LangGraph                        |
-| Vision                   | OpenCV + MediaPipe + CNN-LSTM    |
+| Vision                   | MediaPipe FaceLandmarker (Client-side) |
 | STT                      | FastRouter                       |
 | TTS                      | FastRouter                       |
 
@@ -61,7 +61,7 @@ Modern AI tutoring systems and e-learning platforms suffer from three critical g
 | #   | Objective                             | Description                                                                                                  |
 | --- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | G1  | Dynamic Learning Path Synthesis       | Assess prior knowledge before each topic; adjust curriculum in real time based on performance and mastery.   |
-| G2  | Real-Time Affective State Recognition | Classify boredom, confusion, frustration, and engagement from webcam video using CNN-LSTM.                   |
+| G2  | Real-Time Affective State Recognition | Classify boredom, confusion, frustration, and engagement directly in-browser using MediaPipe blendshapes.      |
 | G3  | Gaze & Attention Quantification       | Detect gaze deviation and zone-out events using MediaPipe non-intrusively.                                   |
 | G4  | Adaptive Feedback Loops               | Implement Struggle, Boredom, and Mastery loops that alter lesson trajectory based on combined state signals. |
 | G5  | Low-Latency Multimodal Perception     | Achieve near real-time processing of audio and visual inputs (< 300ms for perception pipeline).              |
@@ -235,10 +235,10 @@ The server receives only lightweight JSON perception updates (~500x bandwidth re
 - Label: `on_screen`, `off_screen`, `closed_eyes`
 - Track sustained off-screen duration → trigger `gaze_away_flag` if > 3 seconds
 
-**Emotion CNN-LSTM Architecture:**
-- EfficientNetB7 extracts spatial features per frame
-- LSTM (2 layers, hidden size 256) models temporal sequences of 8 consecutive frames
-- Output: softmax over 5 emotion classes
+**Emotion Classification Logic:**
+- MediaPipe FaceLandmarker computes 52 facial blendshapes per frame
+- Threshold-based heuristics map specific blendshapes (e.g., browDown, jawDrop) to discrete emotion labels
+- Output: categorical emotion state (`confident`, `confused`, `bored`, `frustrated`, `neutral`)
 
 #### 7.1.2 Audio Pipeline
 
@@ -1015,9 +1015,9 @@ This is the complete flow. The only assumptions baked in are that name + grade i
 ### Phase 2 — Perception Engine
 
 - [ ] WebRTC video + audio capture in React
-- [ ] WebSocket frame streaming to FastAPI backend
-- [ ] OpenCV frame extraction + MediaPipe gaze/face tracking
-- [ ] CNN-LSTM emotion model integration (load pre-trained weights)
+- [ ] Lightweight JSON WebSocket streaming (perception updates) to FastAPI backend
+- [ ] MediaPipe FaceLandmarker integration on the client-side (gaze/face tracking)
+- [ ] Threshold-based emotion classification using facial blendshapes
 - [ ] STT integration for audio chunks
 - [ ] Emotion + gaze signal display in UI (badge + indicator)
 - [ ] `session_events` recording pipeline operational
