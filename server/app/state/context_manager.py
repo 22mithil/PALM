@@ -244,8 +244,12 @@ class ContextAggregator:
                 "confidence": round(perception.emotion_confidence, 3),
             }
             gaze = perception.gaze
+            logger.info(
+                "🧠 [Context] Received perception  session=%s  emotion=%s (%.2f)  gaze=%s  query_len=%d",
+                session_id, emotion["label"], emotion["confidence"], gaze, len(query)
+            )
         else:
-            logger.warning("No session context found for session=%s", session_id)
+            logger.warning("⚠️ [Context] No session context found  session=%s (using default unknown perception)", session_id)
             query = ""
             emotion = {"label": "unknown", "confidence": 0.0}
             gaze = "unknown"
@@ -266,6 +270,11 @@ class ContextAggregator:
             self._fetch_session_summary(db, session_uuid),
         )
 
+        logger.info(
+            "🧠 [Context] Fetched DB state  session=%s  topic=%s  mastery=%s  has_summary=%s",
+            session_id, current_topic, mastery_score, bool(session_summary)
+        )
+
         # ── 4. Assemble structured output ────────────────────────────
         structured: dict[str, Any] = {
             "student_id": student_id,
@@ -280,11 +289,19 @@ class ContextAggregator:
             "session_summary": session_summary,
         }
 
-        logger.debug(
-            "Context aggregated  session=%s  topic=%s  mastery=%s",
+        logger.info(
+            "🧠 [Context] Aggregation complete  session=%s.\n"
+            "   ┝ Topic:      %s (Difficulty: %s)\n"
+            "   ┝ Mastery:    %s\n"
+            "   ┝ Emotion:    %s (Gaze: %s)\n"
+            "   ┕ History:    %d recent responses",
             session_id,
             current_topic,
+            structured["difficulty_level"],
             mastery_score,
+            emotion["label"],
+            gaze,
+            len(structured["last_responses"])
         )
 
         return structured

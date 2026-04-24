@@ -82,8 +82,9 @@ def route_student(state: OrchestratorState) -> str:
     # ── Priority 1: Frustrated + many wrong → remedial ───────────────
     if emotion == "frustrated" and consecutive_wrong >= _FRUSTRATED_WRONG_THRESHOLD:
         logger.info(
-            "Route: %s  (emotion=%s, consecutive_wrong=%d)  session=%s",
-            ROUTE_MASTERY_REMEDIAL, emotion, consecutive_wrong,
+            "🧭 [Router] Route chosen: %s\n"
+            "   ┕ Reason: Student is frustrated (emotion=%s) AND struggling (consecutive_wrong=%d >= %d).  session=%s",
+            ROUTE_MASTERY_REMEDIAL, emotion, consecutive_wrong, _FRUSTRATED_WRONG_THRESHOLD,
             prompt.session_id,
         )
         return ROUTE_MASTERY_REMEDIAL
@@ -91,7 +92,8 @@ def route_student(state: OrchestratorState) -> str:
     # ── Priority 2: Disengaged (gaze away / bored) → engagement ──────
     if gaze == "off_screen" or emotion == "bored":
         logger.info(
-            "Route: %s  (gaze=%s, emotion=%s)  session=%s",
+            "🧭 [Router] Route chosen: %s\n"
+            "   ┕ Reason: Student appears disengaged (gaze=%s, emotion=%s).  session=%s",
             ROUTE_ENGAGEMENT, gaze, emotion,
             prompt.session_id,
         )
@@ -100,7 +102,8 @@ def route_student(state: OrchestratorState) -> str:
     # ── Priority 3: Confused OR 2+ wrong → hint ─────────────────────
     if emotion == "confused" or consecutive_wrong >= _CONFUSED_WRONG_THRESHOLD:
         logger.info(
-            "Route: %s  (emotion=%s, consecutive_wrong=%d)  session=%s",
+            "🧭 [Router] Route chosen: %s\n"
+            "   ┕ Reason: Student needs help (emotion=%s, consecutive_wrong=%d).  session=%s",
             ROUTE_HINT, emotion, consecutive_wrong,
             prompt.session_id,
         )
@@ -109,15 +112,16 @@ def route_student(state: OrchestratorState) -> str:
     # ── Priority 4: Correct + confident mastery → mastery → quiz ─────
     if is_correct is True and mastery >= _CONFIDENT_MASTERY_THRESHOLD:
         logger.info(
-            "Route: %s  (correct=%s, mastery=%.2f)  session=%s",
-            ROUTE_MASTERY_QUIZ, is_correct, mastery,
+            "🧭 [Router] Route chosen: %s\n"
+            "   ┕ Reason: Answer correct AND mastery is high (%.2f >= %.2f).  session=%s",
+            ROUTE_MASTERY_QUIZ, mastery, _CONFIDENT_MASTERY_THRESHOLD,
             prompt.session_id,
         )
         return ROUTE_MASTERY_QUIZ
 
-    # ── Priority 5: Normal query → RAG → dialogue ───────────────────
     logger.info(
-        "Route: %s  (fallback)  session=%s",
+        "🧭 [Router] Route chosen: %s\n"
+        "   ┕ Reason: Fallback to standard curriculum-supported dialogue.  session=%s",
         ROUTE_RAG_DIALOGUE,
         prompt.session_id,
     )

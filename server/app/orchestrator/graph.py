@@ -73,9 +73,11 @@ async def hint_node(state: OrchestratorState) -> dict[str, Any]:
     response = await hint_agent(prompt)
 
     logger.info(
-        "hint_node complete  session=%s  tier=%s",
-        prompt.session_id,
+        "🤖 [Hint Node] Generated Tier %s Hint\n"
+        "   ┕ Response: %s  session=%s",
         response.metadata.get("tier"),
+        response.text.replace('\n', ' '),
+        prompt.session_id,
     )
 
     return {
@@ -91,9 +93,11 @@ async def engagement_node(state: OrchestratorState) -> dict[str, Any]:
     response = await engagement_agent(prompt)
 
     logger.info(
-        "engagement_node complete  session=%s  content_type=%s",
-        prompt.session_id,
+        "🤖 [Engagement Node] Generated Content (%s)\n"
+        "   ┕ Response: %s  session=%s",
         response.metadata.get("content_type"),
+        response.text.replace('\n', ' '),
+        prompt.session_id,
     )
 
     return {
@@ -109,9 +113,11 @@ async def mastery_remedial_node(state: OrchestratorState) -> dict[str, Any]:
     response = await mastery_agent(prompt)
 
     logger.info(
-        "mastery_remedial_node complete  session=%s  mode=%s",
-        prompt.session_id,
+        "🤖 [Mastery Remedial Node] Generated Coaching (Mode: %s)\n"
+        "   ┕ Response: %s  session=%s",
         response.metadata.get("mode"),
+        response.text.replace('\n', ' '),
+        prompt.session_id,
     )
 
     return {
@@ -135,9 +141,11 @@ async def mastery_advance_node(state: OrchestratorState) -> dict[str, Any]:
     response = await mastery_agent(prompt)
 
     logger.info(
-        "mastery_advance_node complete  session=%s  mode=%s",
-        prompt.session_id,
+        "🤖 [Mastery Advance Node] Generated Intro (Mode: %s)\n"
+        "   ┕ Response: %s  session=%s",
         response.metadata.get("mode"),
+        response.text.replace('\n', ' '),
+        prompt.session_id,
     )
 
     return {
@@ -162,9 +170,11 @@ async def quiz_node(state: OrchestratorState) -> dict[str, Any]:
     combined = f"{mastery_text}\n\n---\n\n{response.text}" if mastery_text else response.text
 
     logger.info(
-        "quiz_node complete  session=%s  question_type=%s",
-        prompt.session_id,
+        "🤖 [Quiz Node] Generated Question (Type: %s)\n"
+        "   ┕ Question: %s  session=%s",
         response.metadata.get("question_type"),
+        response.text.replace('\n', ' '),
+        prompt.session_id,
     )
 
     return {
@@ -188,9 +198,12 @@ async def rag_node(state: OrchestratorState) -> dict[str, Any]:
     response = await rag_agent(prompt)
 
     logger.info(
-        "rag_node complete  session=%s  chunks=%s",
-        prompt.session_id,
+        "🤖 [RAG Node] Retrieved Curriculum Context\n"
+        "   ┝ Chunks loaded: %s\n"
+        "   ┕ Response: %s  session=%s",
         response.metadata.get("chunks_after_rerank"),
+        response.text.replace('\n', ' '),
+        prompt.session_id,
     )
 
     return {
@@ -212,9 +225,12 @@ async def dialogue_node(state: OrchestratorState) -> dict[str, Any]:
     response = await dialogue_agent(prompt)
 
     logger.info(
-        "dialogue_node complete  session=%s  emotion=%s",
-        prompt.session_id,
+        "🤖 [Dialogue Node] Generated Conversational Response\n"
+        "   ┝ Assumed Emotion: %s\n"
+        "   ┕ Response: %s  session=%s",
         response.metadata.get("emotion"),
+        response.text.replace('\n', ' '),
+        prompt.session_id,
     )
 
     return {
