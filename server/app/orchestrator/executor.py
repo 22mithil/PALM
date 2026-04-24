@@ -131,13 +131,19 @@ async def run_orchestrator(state_prompt: StatePrompt) -> OrchestratorResult:
         )
 
         logger.info(
-            "Orchestrator complete  session=%s  route=%s  agent=%s  "
-            "nodes=%d  latency=%.0fms",
+            "✅ [Orchestrator] Pipeline execution complete!\n"
+            "   ┝ Session:  %s\n"
+            "   ┝ Route:    %s\n"
+            "   ┝ Agent:    %s\n"
+            "   ┝ Nodes:    %d\n"
+            "   ┝ Latency:  %.0fms\n"
+            "   ┕ Response: %s",
             state_prompt.session_id,
             result.route,
             result.agent_used,
             len(result.all_responses),
             elapsed * 1000,
+            result.final_response.replace('\n', ' '),
         )
 
         return result

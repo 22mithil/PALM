@@ -82,7 +82,6 @@ async def generate_response(
             model=resolved_model,
             messages=messages,
             temperature=temperature,
-            max_tokens=max_tokens,
             **kwargs,
         )
         content = response.choices[0].message.content or ""
@@ -136,7 +135,6 @@ async def stream_response(
             model=resolved_model,
             messages=messages,
             temperature=temperature,
-            max_tokens=max_tokens,
             stream=True,
             **kwargs,
         )
