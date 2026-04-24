@@ -49,6 +49,17 @@ def main():
         
     index = pc.Index(PINECONE_INDEX_NAME)
     
+    # Delete existing records
+    print("Deleting existing records from index...")
+    try:
+        index.delete(delete_all=True)
+        print("Successfully deleted existing records.")
+        time.sleep(5) # Wait for deletion to propagate
+    except Exception as e:
+        print(f"Error deleting records: {e}")
+        # Note: Some older Pinecone client versions or specific setups might not support delete_all without a namespace.
+        # If this fails, we'll continue anyway, but it's good to print the warning.
+        
     # Prepare records
     print("Preparing records for upsert...")
     records = []
@@ -68,7 +79,7 @@ def main():
                 "grade": chunk.get("grade", 0),
                 "subject": chunk.get("subject", ""),
                 "chapter_id": chunk.get("chapter_id", ""),
-                "chapter_title": chunk.get("chapter_title", ""),
+                "topic": chunk.get("topic", ""),
                 "section_title": chunk.get("section_title", ""),
                 "difficulty": chunk.get("difficulty", 1),
                 "topic_tags": ",".join(chunk.get("topic_tags", [])),

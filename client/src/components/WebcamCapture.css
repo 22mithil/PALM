@@ -198,6 +198,41 @@
   flex-shrink: 0;
 }
 
+/* ─── Tutor Response ────────────────────────────────── */
+
+.webcam-capture__tutor-response {
+  padding: 1rem;
+  border-radius: var(--wc-radius);
+  background: var(--wc-surface-alt);
+  border: 1px solid var(--wc-border);
+  animation: wc-fade-in 0.3s ease-out;
+}
+
+.webcam-capture__tutor-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.8rem;
+  color: var(--wc-accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.webcam-capture__tutor-text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--wc-text);
+  white-space: pre-wrap;
+}
+
+.webcam-capture__tutor-meta {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--wc-text-dim);
+  font-style: italic;
+}
+
 /* ─── Controls ──────────────────────────────────────── */
 
 .webcam-capture__controls {

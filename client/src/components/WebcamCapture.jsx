@@ -438,6 +438,21 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID(), student
         </div>
       )}
 
+      {/* ─── Tutor Response ─────────────────────────────── */}
+      {(tutorStreamingText || tutorLastResponse) && (
+        <div className="webcam-capture__tutor-response">
+          <h3 className="webcam-capture__tutor-title">Tutor says:</h3>
+          <p className="webcam-capture__tutor-text">
+            {tutorStreamingText || tutorLastResponse?.full_text}
+          </p>
+          {tutorLastResponse?.agent_used && (
+            <span className="webcam-capture__tutor-meta">
+              Agent: {tutorLastResponse.agent_used}
+            </span>
+          )}
+        </div>
+      )}
+
       {/* ─── Controls ───────────────────────────────────── */}
       <div className="webcam-capture__controls">
         {/* Camera selector */}

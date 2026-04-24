@@ -14,7 +14,7 @@ function App() {
         background: "oklch(0.13 0.01 260)",
       }}>
         <WebcamCapture />
-        {/* <ChatTest /> */}
+        <ChatTest />
       </div>
     </TooltipProvider>
   )

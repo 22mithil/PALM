@@ -132,6 +132,10 @@ class RAGAgent(BaseAgent):
             top_n=self.rerank_top_n,
         )
 
+        print(f"\n{'='*40}\nRETRIEVED CHUNKS AFTER RERANKING\n{'='*40}")
+        for i, r in enumerate(reranked, 1):
+            print(f"Chunk {i}:\n{r}\n{'-'*40}")
+
         # ── 4. Build augmented prompt ────────────────────────────────
         context_text = "\n\n---\n\n".join(
             r.text for r in reranked if r.text
@@ -211,6 +215,10 @@ class RAGAgent(BaseAgent):
             rag_result.retrieval.results,
             top_n=self.rerank_top_n,
         )
+
+        print(f"\n{'='*40}\nRETRIEVED CHUNKS AFTER RERANKING (STREAMING)\n{'='*40}")
+        for i, r in enumerate(reranked, 1):
+            print(f"Chunk {i}:\n{r.text}\n{'-'*40}")
 
         # 4. Build prompt
         context_text = "\n\n---\n\n".join(
