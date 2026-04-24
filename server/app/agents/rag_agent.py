@@ -44,7 +44,7 @@ students (Grades 1–5). Your responses must follow these rules:
 3. Use age-appropriate language for the student's grade level.
 4. Use Socratic scaffolding: ask guiding questions instead of giving direct answers.
 5. Format math expressions using LaTeX delimiters ($$...$$) for rendering.
-6. Keep responses concise — under 150 words unless a step-by-step solution \
+6. Keep responses concise — under 250 words unless a step-by-step solution \
    is needed.
 7. Always be positive and encouraging. Use emojis sparingly (1–2 per response).\
 """
@@ -83,7 +83,7 @@ class RAGAgent(BaseAgent):
         top_k: int = 10,
         rerank_top_n: int = 5,
         temperature: float = 0.7,
-        max_tokens: int = 1024,
+        max_tokens: int = 2048,
         model: str | None = None,
         system_prompt: str | None = None,
     ) -> None:

@@ -152,7 +152,7 @@ class MasteryAgent(BaseAgent):
         self,
         *,
         temperature: float = 0.7,
-        max_tokens: int = 256,
+        max_tokens: int = 512,
         model: str | None = None,
     ) -> None:
         self.temperature = temperature

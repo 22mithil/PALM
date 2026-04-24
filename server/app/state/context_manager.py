@@ -203,6 +203,31 @@ class ContextAggregator:
             logger.exception("Failed to fetch session summary for session=%s", session_id)
             return None
 
+    @staticmethod
+    async def _fetch_session_row(
+        db: AsyncSession,
+        session_id: uuid.UUID,
+    ) -> Optional[dict[str, Any]]:
+        """Fetch the session's grade and topic from the DB.
+
+        Returns a dict with ``grade`` and ``topic`` keys, or ``None``
+        if the session row is not found.
+        """
+        try:
+            result = await db.execute(
+                select(SessionModel.grade, SessionModel.topic)
+                .where(SessionModel.id == session_id)
+            )
+            row = result.one_or_none()
+            if row is not None:
+                return {"grade": row[0], "topic": row[1]}
+            return None
+        except Exception:
+            logger.exception(
+                "Failed to fetch session row for session=%s", session_id
+            )
+            return None
+
     # ── Primary entry-point ──────────────────────────────────────────
 
     async def build(
@@ -258,24 +283,41 @@ class ContextAggregator:
         meta = await self._get_or_create_meta(session_id)
         meta_snap = meta.snapshot()
 
-        # Resolve topic: prefer meta override, fall back to perception context
-        current_topic = meta_snap["current_topic"]
-
-        # ── 3. DB lookups (mastery + summary) — run concurrently ─────
+        # ── 3. DB lookups (session row, mastery, summary) ────────────
+        #    Run sequentially — AsyncSession does not support concurrent
+        #    operations on the same connection.
         student_uuid = uuid.UUID(student_id)
         session_uuid = uuid.UUID(session_id)
 
-        mastery_score, session_summary = await asyncio.gather(
-            self._fetch_mastery_score(db, student_uuid, current_topic),
-            self._fetch_session_summary(db, session_uuid),
+        session_row = await self._fetch_session_row(db, session_uuid)
+        mastery_score = await self._fetch_mastery_score(
+            db, student_uuid, meta_snap["current_topic"]
         )
+        session_summary = await self._fetch_session_summary(db, session_uuid)
+
+        # ── 4. Resolve topic and grade ───────────────────────────────
+        #    Priority: in-memory meta override > DB session row > defaults
+        current_topic = meta_snap["current_topic"]
+        difficulty_level = meta_snap["difficulty_level"]
+
+        if session_row:
+            if not current_topic:
+                current_topic = session_row.get("topic")
+            if difficulty_level == 1:  # still at default — use DB grade
+                difficulty_level = session_row.get("grade", 1)
+
+        # Re-fetch mastery if topic was resolved from DB and meta had None
+        if current_topic and meta_snap["current_topic"] is None and mastery_score is None:
+            mastery_score = await self._fetch_mastery_score(
+                db, student_uuid, current_topic
+            )
 
         logger.info(
             "🧠 [Context] Fetched DB state  session=%s  topic=%s  mastery=%s  has_summary=%s",
             session_id, current_topic, mastery_score, bool(session_summary)
         )
 
-        # ── 4. Assemble structured output ────────────────────────────
+        # ── 5. Assemble structured output ────────────────────────────
         structured: dict[str, Any] = {
             "student_id": student_id,
             "session_id": session_id,
@@ -283,7 +325,7 @@ class ContextAggregator:
             "emotion": emotion,
             "gaze": gaze,
             "current_topic": current_topic,
-            "difficulty_level": meta_snap["difficulty_level"],
+            "difficulty_level": difficulty_level,
             "mastery_score": mastery_score,
             "last_responses": meta_snap["last_responses"],
             "session_summary": session_summary,

@@ -131,7 +131,7 @@ class HintAgent(BaseAgent):
         self,
         *,
         temperature: float = 0.7,
-        max_tokens: int = 512,
+        max_tokens: int = 768,
         model: str | None = None,
     ) -> None:
         self.temperature = temperature

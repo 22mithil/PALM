@@ -102,19 +102,24 @@ async def retrieve(
     query_vector = await get_embeddings(query)
 
     # 2. Build metadata filter
+    #    Pinecone metadata has a ``topic`` field matching the chapter name
+    #    (e.g. "Weight and Capacity", "Fractions") and a ``grade`` int.
     pinecone_filter: dict[str, Any] = {
         "grade": {"$eq": grade},
-        "topic": {"$eq": topic},
     }
-    if subtopic:
-        pinecone_filter["subtopic"] = {"$eq": subtopic}
 
-    # 3. Resolve namespace (default: grade-N)
-    resolved_namespace = namespace or f"grade-{grade}"
+    # Only add topic filter if we have a specific topic (not "general")
+    if topic and topic.lower() not in ("general", "math", "mathematics", ""):
+        pinecone_filter["topic"] = {"$eq": topic}
+
+    # 3. Resolve namespace
+    #    The upsert script stores all vectors in the default (empty) namespace,
+    #    so we query the default namespace unless explicitly overridden.
+    resolved_namespace = namespace or ""
 
     # 4. Query Pinecone
     logger.debug(
-        "Querying Pinecone: namespace=%s, top_k=%d, filter=%s",
+        "Querying Pinecone: namespace='%s', top_k=%d, filter=%s",
         resolved_namespace,
         top_k,
         pinecone_filter,
@@ -126,6 +131,23 @@ async def retrieve(
         filter=pinecone_filter,
         include_metadata=True,
     )
+
+    # 4b. Fallback: if no results with topic filter, retry without it
+    if not raw_matches and pinecone_filter.get("topic"):
+        logger.info(
+            "No results with topic filter, retrying grade-only  "
+            "grade=%d, topic=%s",
+            grade,
+            topic,
+        )
+        grade_only_filter: dict[str, Any] = {"grade": {"$eq": grade}}
+        raw_matches = query_vectors(
+            vector=query_vector,
+            namespace=resolved_namespace,
+            top_k=top_k,
+            filter=grade_only_filter,
+            include_metadata=True,
+        )
 
     # 5. Parse into structured results
     results: list[RetrievalResult] = []

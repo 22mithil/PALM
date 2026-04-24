@@ -110,7 +110,7 @@ class EngagementAgent(BaseAgent):
         self,
         *,
         temperature: float = 0.9,
-        max_tokens: int = 256,
+        max_tokens: int = 512,
         model: str | None = None,
     ) -> None:
         self.temperature = temperature

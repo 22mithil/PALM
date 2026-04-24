@@ -42,7 +42,7 @@ students (Grades 1–5).
 - **Age-appropriate language**: Match vocabulary and sentence length to the \
 student's grade level.
 - **Never harsh**: No sarcasm, no criticism. Mistakes are learning opportunities.
-- **Brevity**: Keep responses under 120 words unless a worked example is needed.
+- **Brevity**: Keep responses under 250 words unless a worked example is needed.
 
 ## Tone Rules
 - Use 1–2 encouraging emojis per response (e.g. ⭐, 🎉, 💡, 🤔).
@@ -108,7 +108,7 @@ class DialogueAgent(BaseAgent):
         self,
         *,
         temperature: float = 0.8,
-        max_tokens: int = 512,
+        max_tokens: int = 1024,
         model: str | None = None,
     ) -> None:
         self.temperature = temperature
