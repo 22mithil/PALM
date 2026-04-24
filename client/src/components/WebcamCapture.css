@@ -311,6 +311,34 @@
   border-color: oklch(0.55 0.18 25 / 30%);
 }
 
+.webcam-capture__btn--stt-active {
+  color: var(--wc-accent);
+  border-color: oklch(0.72 0.19 155 / 40%);
+  box-shadow: 0 0 8px oklch(0.72 0.19 155 / 25%);
+  animation: wc-pulse 1.8s ease-in-out infinite;
+}
+
+/* ─── Error dismiss button ──────────────────────────── */
+
+.webcam-capture__error-dismiss {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 0.15rem 0.35rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.webcam-capture__error-dismiss:hover {
+  opacity: 1;
+}
+
 /* ─── Stream metadata ───────────────────────────────── */
 
 .webcam-capture__meta {

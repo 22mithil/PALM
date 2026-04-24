@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from "react"
 import usePerceptionStream from "../hooks/usePerceptionStream"
-import useAudioStream from "../hooks/useAudioStream"
+import { useSpeechRecognition } from "../hooks/useSpeechRecognition"
+import useTutorStream from "../hooks/useTutorStream"
 import useFaceMesh from "../hooks/useFaceMesh"
 import PerceptionHUD from "./PerceptionHUD"
+import SubtitleOverlay from "./SubtitleOverlay"
 import "./WebcamCapture.css"
 
 /**
@@ -11,7 +13,8 @@ import "./WebcamCapture.css"
  * Responsibilities:
  *   • Captures video + audio via navigator.mediaDevices.getUserMedia
  *   • Renders a mirrored webcam preview in a <video> element
- *   • Stores the MediaStream in local React state
+ *   • Runs browser-native speech recognition via Web Speech API
+ *   • Sends transcript text to the tutor backend via WebSocket
  *   • Provides start / stop controls
  *
  * Constraints:
@@ -32,17 +35,21 @@ const AUDIO_CONSTRAINTS = {
   autoGainControl: true,
 }
 
-export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
+// Placeholder student ID — should be passed as prop in production
+const PLACEHOLDER_STUDENT_ID = "00000000-0000-0000-0000-000000000001"
+
+export default function WebcamCapture({ sessionId = crypto.randomUUID(), studentId = PLACEHOLDER_STUDENT_ID }) {
   /* ── state ────────────────────────────────────────────── */
   const [stream, setStream] = useState(null)
   const [isCapturing, setIsCapturing] = useState(false)
   const [isStreaming, setIsStreaming] = useState(false)
   const [error, setError] = useState(null)
-  const [isMuted, setIsMuted] = useState(false)
+  const [sttErrorDismissed, setSttErrorDismissed] = useState(false)
   const [devices, setDevices] = useState([])
   const [selectedDeviceId, setSelectedDeviceId] = useState("")
 
   const videoRef = useRef(null)
+  const prevFinalLengthRef = useRef(0) // tracks previous finalTranscript length for diff
 
   /* ── face mesh overlay + local emotion + gaze ──────────── */
   const { canvasRef, emotion, gaze, fps: meshFps, isReady: meshReady } = useFaceMesh(videoRef, isCapturing)
@@ -55,13 +62,57 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
     wsState: perceptionWsState,
   } = usePerceptionStream(sessionId)
 
-  /* ── audio stream transport ────────────────────────────── */
+  /* ── speech recognition (Web Speech API) ────────────────── */
   const {
-    startStreaming: startAudioStreaming,
-    stopStreaming: stopAudioStreaming,
-    wsState: audioWsState,
-    chunksSent,
-  } = useAudioStream(sessionId)
+    start: startSTT,
+    stop: stopSTT,
+    isListening,
+    interimTranscript,
+    finalTranscript,
+    clearTranscript,
+    isSupported: sttSupported,
+    error: sttError,
+  } = useSpeechRecognition()
+
+  /* ── tutor stream (WebSocket to /ws/tutor/) ─────────────── */
+  const {
+    startStream: startTutorStream,
+    stopStream: stopTutorStream,
+    sendTrigger,
+    wsState: tutorWsState,
+    isStreaming: tutorIsStreaming,
+    streamingText: tutorStreamingText,
+    lastResponse: tutorLastResponse,
+    tutorError,
+    clearTutorError,
+  } = useTutorStream(sessionId)
+
+  /* ── send new transcript segments to tutor on finalTranscript change ── */
+  useEffect(() => {
+    if (!finalTranscript) return
+
+    const prevLength = prevFinalLengthRef.current
+    const newSegment = finalTranscript.slice(prevLength)
+    prevFinalLengthRef.current = finalTranscript.length
+
+    if (newSegment.trim()) {
+      sendTrigger(studentId, newSegment.trim())
+    }
+  }, [finalTranscript, sendTrigger, studentId])
+
+  /* ── reset transcript length ref when transcript is cleared ── */
+  useEffect(() => {
+    if (!finalTranscript) {
+      prevFinalLengthRef.current = 0
+    }
+  }, [finalTranscript])
+
+  /* ── dismiss STT error when a new one arrives ─────────── */
+  useEffect(() => {
+    if (sttError) {
+      setSttErrorDismissed(false)
+    }
+  }, [sttError])
 
   /* ── enumerate cameras ────────────────────────────────── */
   const enumerateDevices = useCallback(async () => {
@@ -99,9 +150,12 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
       setStream(mediaStream)
       setIsCapturing(true)
 
-      // Start perception + audio streaming to backend
+      // Start perception streaming to backend
       startPerceptionStream()
-      startAudioStreaming(mediaStream)
+
+      // Start tutor WS connection
+      startTutorStream()
+
       setIsStreaming(true)
 
       // Re-enumerate so we get labels now that permission is granted
@@ -117,13 +171,18 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
           : `Could not access media devices: ${err.message}`
       setError(msg)
     }
-  }, [selectedDeviceId, enumerateDevices])
+  }, [selectedDeviceId, enumerateDevices, startPerceptionStream, startTutorStream])
 
   /* ── stop capture ─────────────────────────────────────── */
   const stopCapture = useCallback(() => {
-    // Stop streaming first
+    // Stop STT if listening
+    stopSTT()
+    clearTranscript()
+    prevFinalLengthRef.current = 0
+
+    // Stop streaming
     stopPerceptionStream()
-    stopAudioStreaming()
+    stopTutorStream()
     setIsStreaming(false)
 
     if (stream) {
@@ -134,15 +193,39 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
     }
     setStream(null)
     setIsCapturing(false)
-  }, [stream, stopPerceptionStream, stopAudioStreaming])
+  }, [stream, stopPerceptionStream, stopTutorStream, stopSTT, clearTranscript])
 
-  /* ── toggle mic mute ──────────────────────────────────── */
-  const toggleMute = useCallback(() => {
-    if (!stream) return
-    const audioTracks = stream.getAudioTracks()
-    audioTracks.forEach((t) => (t.enabled = !t.enabled))
-    setIsMuted((prev) => !prev)
-  }, [stream])
+  /* ── push-to-talk: hold spacebar to listen ──────────────── */
+  useEffect(() => {
+    if (!isCapturing || !sttSupported) return
+
+    const isInputFocused = () => {
+      const tag = document.activeElement?.tagName
+      return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT"
+    }
+
+    const handleKeyDown = (e) => {
+      if (e.code === "Space" && !e.repeat && !isInputFocused()) {
+        e.preventDefault()
+        startSTT()
+      }
+    }
+
+    const handleKeyUp = (e) => {
+      if (e.code === "Space" && !isInputFocused()) {
+        e.preventDefault()
+        stopSTT()
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    window.addEventListener("keyup", handleKeyUp)
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+      window.removeEventListener("keyup", handleKeyUp)
+    }
+  }, [isCapturing, sttSupported, startSTT, stopSTT])
 
   /* ── switch camera ────────────────────────────────────── */
   const switchCamera = useCallback(
@@ -202,6 +285,28 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
   /* ── render ───────────────────────────────────────────── */
   return (
     <div className="webcam-capture">
+      {/* ─── Unsupported browser warning ────────────────── */}
+      {!sttSupported && (
+        <div className="webcam-capture__error">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          <span>Speech Recognition is not supported in this browser. Please use Chrome or Edge.</span>
+        </div>
+      )}
+
       {/* ─── Video viewport ─────────────────────────────── */}
       <div className="webcam-capture__viewport">
         {isCapturing ? (
@@ -250,6 +355,13 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
                 {videoSettings.width}×{videoSettings.height}
               </span>
             )}
+
+            {/* Subtitle overlay (speech recognition) */}
+            <SubtitleOverlay
+              interimTranscript={interimTranscript}
+              finalTranscript={finalTranscript}
+              isListening={isListening}
+            />
           </>
         ) : (
           <div className="webcam-capture__placeholder">
@@ -297,6 +409,35 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
         </div>
       )}
 
+      {/* ─── STT error (dismissible) ────────────────────── */}
+      {sttError && !sttErrorDismissed && (
+        <div className="webcam-capture__error">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <span>{sttError}</span>
+          <button
+            onClick={() => setSttErrorDismissed(true)}
+            className="webcam-capture__error-dismiss"
+            title="Dismiss"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
       {/* ─── Controls ───────────────────────────────────── */}
       <div className="webcam-capture__controls">
         {/* Camera selector */}
@@ -316,17 +457,24 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
         )}
 
         <div className="webcam-capture__btn-group">
-          {/* Mute / unmute */}
-          {isCapturing && (
+          {/* STT indicator — hold spacebar to talk */}
+          {isCapturing && sttSupported && (
             <button
-              onClick={toggleMute}
               className={`webcam-capture__btn webcam-capture__btn--icon ${
-                isMuted ? "webcam-capture__btn--muted" : ""
+                isListening ? "webcam-capture__btn--stt-active" : ""
               }`}
-              title={isMuted ? "Unmute microphone" : "Mute microphone"}
-              id="webcam-toggle-mute"
+              title="Hold Spacebar to speak"
+              id="webcam-toggle-stt"
+              tabIndex={-1}
             >
-              {isMuted ? (
+              {isListening ? (
+                /* Mic on (active) icon */
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                  <line x1="12" y1="19" x2="12" y2="22" />
+                </svg>
+              ) : (
                 /* Mic off icon */
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="2" y1="2" x2="22" y2="22" />
@@ -334,13 +482,6 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
                   <path d="M5 10v2a7 7 0 0 0 12 5" />
                   <path d="M15 9.34V5a3 3 0 0 0-5.68-1.33" />
                   <path d="M9 9v3a3 3 0 0 0 5.12 2.12" />
-                  <line x1="12" y1="19" x2="12" y2="22" />
-                </svg>
-              ) : (
-                /* Mic on icon */
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
-                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
                   <line x1="12" y1="19" x2="12" y2="22" />
                 </svg>
               )}
@@ -389,10 +530,7 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
           <div className="webcam-capture__meta-item">
             <span className="webcam-capture__meta-label">Audio</span>
             <span className="webcam-capture__meta-value">
-              {audioTrack?.label || "—"}{" "}
-              {isMuted && (
-                <span className="webcam-capture__meta-muted">(muted)</span>
-              )}
+              {audioTrack?.label || "—"}
             </span>
           </div>
           <div className="webcam-capture__meta-item">
@@ -408,15 +546,15 @@ export default function WebcamCapture({ sessionId = crypto.randomUUID() }) {
             </span>
           </div>
           <div className="webcam-capture__meta-item">
-            <span className="webcam-capture__meta-label">Audio WS</span>
-            <span className={`webcam-capture__meta-value webcam-capture__ws-${audioWsState}`}>
-              {audioWsState}
+            <span className="webcam-capture__meta-label">Tutor WS</span>
+            <span className={`webcam-capture__meta-value webcam-capture__ws-${tutorWsState}`}>
+              {tutorWsState}
             </span>
           </div>
           <div className="webcam-capture__meta-item">
-            <span className="webcam-capture__meta-label">Audio Chunks</span>
-            <span className="webcam-capture__meta-value">
-              {chunksSent} sent
+            <span className="webcam-capture__meta-label">STT</span>
+            <span className={`webcam-capture__meta-value ${isListening ? "webcam-capture__ws-open" : "webcam-capture__ws-idle"}`}>
+              {isListening ? "listening" : "idle"}
             </span>
           </div>
         </div>
