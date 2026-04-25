@@ -14,7 +14,7 @@ router = APIRouter()
 
 class ChatRequest(BaseModel):
     message: str = Field(..., min_length=1)
-    grade: int = Field(default=3, ge=1, le=5)
+    grade: int = Field(default=5, ge=1, le=5)
     topic: str = Field(default="Fractions")
 
 

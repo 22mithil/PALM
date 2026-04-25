@@ -76,6 +76,8 @@ from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect
 from app.db.session import async_session_factory
 from app.schemas.session import SessionCreate
 from app.services.session_service import create_session, get_session_by_id
+from app.services.student_service import get_student_by_id
+from app.models.student import Student
 from app.orchestrator import run_orchestrator
 from app.state.context_manager import context_aggregator
 from app.state.state_prompt_builder import build_state_prompt_from_session
@@ -156,7 +158,12 @@ async def _compute_mastery_delta(
 
 
 @router.websocket("/ws/tutor/{session_id}")
-async def tutor_websocket(websocket: WebSocket, session_id: str):
+async def tutor_websocket(
+    websocket: WebSocket,
+    session_id: str,
+    grade: int = 5,
+    topic: str = "Fractions",
+):
     """Accept a WebSocket, listen for triggers, and stream tutor responses.
 
     The connection stays open for the lifetime of the tutoring session.
@@ -213,12 +220,27 @@ async def tutor_websocket(websocket: WebSocket, session_id: str):
                         await get_session_by_id(db, uuid.UUID(session_id))
                     except HTTPException as exc:
                         if exc.status_code == 404:
+                            try:
+                                await get_student_by_id(db, uuid.UUID(student_id))
+                            except HTTPException as student_exc:
+                                if student_exc.status_code == 404:
+                                    logger.info(f"Auto-creating placeholder student {student_id}")
+                                    dummy_student = Student(
+                                        id=uuid.UUID(student_id),
+                                        name="Test Student",
+                                        grade=grade,
+                                        age=10,
+                                    )
+                                    db.add(dummy_student)
+                                    await db.flush()
+                                else:
+                                    raise
                             await create_session(
                                 db,
                                 SessionCreate(
                                     student_id=uuid.UUID(student_id),
-                                    grade=1,
-                                    topic=None,
+                                    grade=grade,
+                                    topic=topic,
                                 ),
                                 session_id_override=uuid.UUID(session_id),
                             )

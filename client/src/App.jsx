@@ -1,21 +1,29 @@
-import ChatTest from "./components/ChatTest"
-import WebcamCapture from "./components/WebcamCapture"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Landing from "./pages/Landing";
+import Dashboard from "./pages/Dashboard";
+import ProgressPage from "./pages/ProgressPage";
+import Session from "./pages/Session";
+import AppShell from "./components/layout/AppShell";
+import NotFound from "./pages/NotFound";
+import { Toaster } from "@/components/ui/sonner";
+
 
 function App() {
   return (
     <TooltipProvider>
-      <div className="dark" style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "2rem",
-        background: "oklch(0.13 0.01 260)",
-      }}>
-        <WebcamCapture />
-        <ChatTest />
-      </div>
+      <Toaster />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route element={<AppShell />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/progress" element={<ProgressPage />} />
+          </Route>
+          <Route path="/session/:sessionId" element={<Session />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </TooltipProvider>
   )
 }
