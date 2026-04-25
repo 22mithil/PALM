@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mic, Send, X, Video, Square } from "lucide-react";
+import { Mic, Send, X, Video, Square, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -115,6 +115,7 @@ const Session = () => {
   const [isCapturing, setIsCapturing] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
   const [camError, setCamError] = useState(null);
+  const [isCameraHidden, setIsCameraHidden] = useState(false);
   const videoRef = useRef(null);
   const prevFinalLengthRef = useRef(0);
 
@@ -459,7 +460,7 @@ const Session = () => {
         <aside className="hidden md:flex w-[300px] flex-col gap-3 p-3 border-r bg-background overflow-y-auto">
           {/* ─── Live Webcam Card ──────────────────────────── */}
           <div className="rounded-xl overflow-hidden border">
-            <div className="relative aspect-[4/3] bg-neutral-900">
+            <div className="relative aspect-[4/3] bg-neutral-900 group">
               {isCapturing ? (
                 <>
                   <video
@@ -473,11 +474,47 @@ const Session = () => {
                   {/* Face mesh canvas overlay */}
                   <canvas
                     ref={canvasRef}
-                    className="absolute inset-0 w-full h-full pointer-events-none"
+                    className={cn(
+                      "absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300",
+                      isCameraHidden ? "opacity-0" : "opacity-100"
+                    )}
                     style={{ transform: "scaleX(-1)" }}
                   />
+                  
+                  {/* Hidden Camera Overlay */}
+                  <AnimatePresence>
+                    {isCameraHidden && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute inset-0 bg-neutral-800 flex flex-col items-center justify-center z-10"
+                      >
+                        <div className="text-neutral-400 flex flex-col items-center mt-12">
+                          <EyeOff className="h-8 w-8 opacity-40 mb-2" />
+                          <span className="text-xs font-medium">Camera hidden</span>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Hide/Show Camera Button Overlay */}
+                  <div className={cn(
+                    "absolute inset-0 flex items-center justify-center z-20 pointer-events-none transition-opacity duration-300",
+                    isCameraHidden ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                  )}>
+                    <button
+                      onClick={() => setIsCameraHidden(!isCameraHidden)}
+                      className="pointer-events-auto bg-black/60 hover:bg-black/80 text-white p-3.5 rounded-full backdrop-blur-md transition-all transform hover:scale-105 shadow-lg"
+                      aria-label={isCameraHidden ? "Show camera" : "Hide camera"}
+                    >
+                      {isCameraHidden ? <Eye className="h-6 w-6" /> : <EyeOff className="h-6 w-6" />}
+                    </button>
+                  </div>
+
                   {/* Live badge */}
-                  <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/60 text-white text-[10px] font-medium px-2 py-0.5 rounded-full">
+                  <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/60 text-white text-[10px] font-medium px-2 py-0.5 rounded-full z-20">
                     <span className="relative flex h-1.5 w-1.5">
                       <span className="absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75 animate-ping" />
                       <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500" />
@@ -485,11 +522,13 @@ const Session = () => {
                     LIVE
                   </div>
                   {/* Subtitle overlay (speech recognition) */}
-                  <SubtitleOverlay
-                    interimTranscript={interimTranscript}
-                    finalTranscript={finalTranscript}
-                    isListening={sttListening}
-                  />
+                  <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+                    <SubtitleOverlay
+                      interimTranscript={interimTranscript}
+                      finalTranscript={finalTranscript}
+                      isListening={sttListening}
+                    />
+                  </div>
                 </>
               ) : (
                 <>
