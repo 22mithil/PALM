@@ -1,68 +1,17 @@
-import { NavLink, Outlet, useLocation, Navigate, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Home as HomeIcon, LogOut } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
 import { usePalmStore } from "@/store/usePalmStore";
-
-const navItems = [{ to: "/dashboard", label: "Home", icon: HomeIcon, end: true }];
+import Navbar from "./Navbar";
 
 const AppShell = () => {
-  const { learnerName, grade, onboarded, logout } = usePalmStore();
+  const { onboarded } = usePalmStore();
   const location = useLocation();
-  const navigate = useNavigate();
 
   if (!onboarded) return <Navigate to="/" replace />;
 
   return (
     <div className="min-h-screen bg-muted/30">
-      <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-          <NavLink to="/dashboard" className="flex items-center gap-2">
-            <div className="h-9 w-9 rounded-xl bg-primary text-primary-foreground grid place-items-center font-bold">
-              P
-            </div>
-            <div className="leading-tight">
-              <p className="font-semibold tracking-tight">PALM</p>
-              <p className="text-[11px] text-muted-foreground -mt-0.5">Learning Mentor</p>
-            </div>
-          </NavLink>
-
-          <nav className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.end}
-                className={({ isActive }) =>
-                  cn(
-                    "px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                    "text-muted-foreground hover:text-foreground hover:bg-accent",
-                    isActive && "text-foreground bg-accent"
-                  )
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <Badge variant="outline">Grade {grade}</Badge>
-            <Avatar className="h-9 w-9">
-              <AvatarFallback>{learnerName[0]?.toUpperCase() || "P"}</AvatarFallback>
-            </Avatar>
-            <button
-              onClick={() => { logout(); navigate("/", { replace: true }); }}
-              className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-              title="Sign out"
-            >
-              <LogOut className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       <main className="max-w-6xl mx-auto px-4 py-6 pb-10">
         <motion.div

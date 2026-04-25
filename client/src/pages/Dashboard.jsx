@@ -45,6 +45,7 @@ const Dashboard = () => {
   // ── Data from backend ─────────────────────────────────────────────
   const [topics, setTopics] = useState([]);
   const [masteryMap, setMasteryMap] = useState({});
+  const [allSessions, setAllSessions] = useState([]);
   const [recentSessions, setRecentSessions] = useState([]);
 
   // Fetch curriculum topics for the student's grade
@@ -61,6 +62,7 @@ const Dashboard = () => {
       setMasteryMap(map);
     }).catch(() => {});
     getStudentSessions(studentId, token).then((sessions) => {
+      setAllSessions(sessions);
       setRecentSessions(sessions.slice(0, 6));
     }).catch(() => {});
   }, [studentId, token]);
@@ -68,20 +70,24 @@ const Dashboard = () => {
   // ── Derived state ─────────────────────────────────────────────────
 
   // Enrich topics with mastery data
-  const enrichedTopics = useMemo(() => topics.map((t) => {
-    const m = masteryMap[t.topic] ?? 0;
-    const status = m >= 100 ? "completed" : m > 0 ? "inprogress" : "notstarted";
-    const diff = diffLabel(t.difficulty || 2);
-    return {
-      id: t.id,
-      name: t.topic,
-      description: t.description || "",
-      difficulty: diff,
-      status,
-      mastery: m,
-      recommended: m > 0 && m < 50, // recommend topics in progress but low
-    };
-  }), [topics, masteryMap]);
+  const enrichedTopics = useMemo(() => {
+    const startedSet = new Set(allSessions.map(s => s.topic));
+    return topics.map((t) => {
+      const m = masteryMap[t.topic] ?? 0;
+      const hasStarted = startedSet.has(t.topic);
+      const status = m >= 100 ? "completed" : (m > 0 || hasStarted) ? "inprogress" : "notstarted";
+      const diff = diffLabel(t.difficulty || 2);
+      return {
+        id: t.id,
+        name: t.topic,
+        description: t.description || "",
+        difficulty: diff,
+        status,
+        mastery: m,
+        recommended: m > 0 && m < 50, // recommend topics in progress but low
+      };
+    });
+  }, [topics, masteryMap, allSessions]);
 
   const overall = useMemo(() => {
     if (enrichedTopics.length === 0) return 0;
@@ -154,14 +160,7 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
-      <motion.section {...fadeUp} transition={{ duration: 0.35, ease: "easeOut" }} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">Hi, {learnerName || "Learner"} 👋</h1>
-          <p className="text-sm text-muted-foreground mt-1">Let's continue your learning journey</p>
-        </div>
-        <Badge variant="outline" className="w-fit">Grade {grade}</Badge>
-      </motion.section>
+
 
       {/* Progress card */}
       <motion.section {...fadeUp} transition={{ duration: 0.35, ease: "easeOut", delay: 0.05 }}>
@@ -175,14 +174,14 @@ const Dashboard = () => {
             </div>
             <Progress value={animatedOverall} className="h-2 [&>div]:bg-emerald-500 [&>div]:transition-all [&>div]:duration-700" />
             <p className="text-sm text-muted-foreground">
-              {overall === 0
+              {overall === 0 && allSessions.length === 0
                 ? "Start a topic to begin your learning journey!"
                 : `You've completed ${overall}% of your learning journey`}
             </p>
             <div className="grid grid-cols-3 gap-3 pt-1">
               {[
                 { label: "Topics Done", value: completedCount, icon: BookOpen },
-                { label: "Sessions", value: recentSessions.length, icon: Sparkles },
+                { label: "Sessions", value: allSessions.length, icon: Sparkles },
                 { label: "Total Topics", value: enrichedTopics.length, icon: Target },
               ].map((s) => {
                 const Icon = s.icon;

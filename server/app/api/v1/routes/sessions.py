@@ -11,7 +11,7 @@ GET    /api/v1/sessions/{id}/events           — Get chat history for a session
 import uuid
 from typing import Optional
 
-from fastapi import APIRouter, Body, Depends, status
+from fastapi import APIRouter, Body, Depends, status, BackgroundTasks
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -133,14 +133,14 @@ async def get_session(
 )
 async def end_session(
     session_id: uuid.UUID,
+    background_tasks: BackgroundTasks,
     payload: Optional[SessionEnd] = Body(None),
     db: AsyncSession = Depends(get_db),
 ):
     """End an active session.
 
-    Sets ``ended_at`` to the current timestamp and optionally stores
-    an LLM-generated session summary. Returns 409 if the session
-    has already ended.
+    Sets ``ended_at`` to the current timestamp and triggers a background task
+    to generate an LLM summary of the session.
     """
-    session = await session_service.end_session(db, session_id, payload)
+    session = await session_service.end_session(db, session_id, payload, background_tasks)
     return session

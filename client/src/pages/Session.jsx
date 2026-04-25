@@ -282,8 +282,11 @@ const Session = () => {
         const str = videoRef.current.srcObject;
         str.getTracks().forEach((track) => track.stop());
       }
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
     };
-  }, []);
+  }, [stream]);
 
   /* ══════════════════════════════════════════════════════════
      Chat state — connected to WebSocket orchestrator pipeline
@@ -571,7 +574,7 @@ const Session = () => {
                       >
                         <div className="text-neutral-400 flex flex-col items-center mt-12">
                           <EyeOff className="h-8 w-8 opacity-40 mb-2" />
-                          <span className="text-xs font-medium">Camera hidden</span>
+
                         </div>
                       </motion.div>
                     )}
@@ -631,7 +634,7 @@ const Session = () => {
                 <PerceptionHUD emotion={emotion} gaze={gaze} className="scale-[0.85] origin-left" />
               ) : (
                 <span className="text-[11px] text-muted-foreground">
-                  {isCameraHidden ? "Camera hidden" : "No detection"}
+                  {!isCameraHidden && "No detection"}
                 </span>
               )}
             </div>

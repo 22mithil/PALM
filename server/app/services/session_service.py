@@ -16,11 +16,14 @@ import logging
 import uuid
 from datetime import datetime, timezone
 
-from fastapi import HTTPException, status
+from fastapi import HTTPException, status, BackgroundTasks
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.db.session import async_session_factory
+from app.integrations.fastrouter.llm import generate_response
 from app.models.session import Session
+from app.models.session_event import SessionEvent
 from app.schemas.session import SessionCreate, SessionEnd
 from app.services.student_service import get_student_by_id
 
@@ -105,10 +108,50 @@ async def get_session_by_id(db: AsyncSession, session_id: uuid.UUID) -> Session:
     return session
 
 
+async def _generate_session_summary_task(session_id: uuid.UUID):
+    """Background task to generate a session summary via LLM."""
+    async with async_session_factory() as db:
+        try:
+            # 1. Fetch chat events
+            result = await db.execute(
+                select(SessionEvent)
+                .where(SessionEvent.session_id == session_id)
+                .order_by(SessionEvent.timestamp)
+            )
+            events = result.scalars().all()
+            
+            chat_history = ""
+            for e in events:
+                if e.query_text: chat_history += f"Student: {e.query_text}\n"
+                if e.response_text: chat_history += f"Tutor: {e.response_text}\n"
+                
+            # 2. Generate summary
+            if not chat_history.strip():
+                summary = "No chat messages recorded during this session."
+            else:
+                prompt = (
+                    "Summarize the following tutoring session in 2-3 sentences. "
+                    "Focus strictly on what the student learned and any struggles they had.\n\n"
+                    f"{chat_history}"
+                )
+                summary = await generate_response(prompt)
+                
+            # 3. Save to DB
+            session_result = await db.execute(select(Session).where(Session.id == session_id))
+            session = session_result.scalars().first()
+            if session:
+                session.summary = summary
+                await db.commit()
+                logger.info("Generated summary for session %s", session_id)
+        except Exception as e:
+            logger.error("Failed to generate session summary for %s: %s", session_id, e)
+
+
 async def end_session(
     db: AsyncSession,
     session_id: uuid.UUID,
     payload: SessionEnd | None = None,
+    background_tasks: BackgroundTasks | None = None,
 ) -> Session:
     """Pause / end an active session.
 
@@ -122,12 +165,8 @@ async def end_session(
 
     session.ended_at = datetime.now(timezone.utc)
 
-    # Summary
-    session.summary = (
-        payload.summary
-        if payload and payload.summary
-        else session.summary or f"Session on {session.topic or 'general'} ended."
-    )
+    # Set placeholder summary while generating
+    session.summary = "Loading summary..."
 
     if payload:
         # Accumulate duration
@@ -150,4 +189,9 @@ async def end_session(
         "Ended session=%s  duration=%s  mastery=%s",
         session.id, session.duration_seconds, session.mastery_score,
     )
+    
+    # Trigger background summary generation
+    if background_tasks:
+        background_tasks.add_task(_generate_session_summary_task, session_id)
+        
     return session

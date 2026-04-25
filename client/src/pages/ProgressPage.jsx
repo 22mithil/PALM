@@ -16,10 +16,10 @@ import {
 import { usePalmStore } from "@/store/usePalmStore";
 import { getTopics, getMastery, getStudentSessions } from "@/lib/api";
 
-const masteryStatus = (m) => {
+const masteryStatus = (m, hasStarted) => {
   if (m >= 80) return { label: "Strong", variant: "default" };
   if (m >= 50) return { label: "Progressing", variant: "secondary" };
-  if (m > 0) return { label: "Needs Practice", variant: "outline" };
+  if (m > 0 || hasStarted) return { label: "Needs Practice", variant: "outline" };
   return { label: "Not Started", variant: "outline" };
 };
 
@@ -73,6 +73,35 @@ const ProgressPage = () => {
       }));
     }).catch(() => {});
   }, [studentId, token, grade]);
+
+  // ── Poll for background summaries ──────────────────────────────────
+  useEffect(() => {
+    if (!studentId || !token) return;
+    const hasLoading = sessions.some(s => s.summary === "Loading summary...");
+    if (!hasLoading) return;
+
+    const interval = setInterval(() => {
+      getStudentSessions(studentId, token).then((sess) => {
+        setSessions(sess.map((s) => {
+          const d = s.started_at ? new Date(s.started_at) : new Date();
+          const mins = s.duration_seconds ? Math.round(s.duration_seconds / 60) : 0;
+          return {
+            id: s.id,
+            topic: s.topic || "Practice",
+            date: d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+            duration: `${mins > 0 ? mins : 1} min`,
+            result: s.performance_result || "Completed",
+            summary: s.summary || "Session completed.",
+            mastery_score: s.mastery_score || 0,
+            learnings: [],
+            mistakes: [],
+          };
+        }));
+      }).catch(() => {});
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [sessions, studentId, token]);
 
   // ── Derived state ──────────────────────────────────────────────────
   const totalSessions = sessions.length;
@@ -162,7 +191,6 @@ const ProgressPage = () => {
       >
         <div className="flex items-end justify-between">
           <h2 className="text-xl font-semibold">Topic Mastery</h2>
-          <p className="text-xs text-muted-foreground">Click a topic to start a session</p>
         </div>
 
         {topics.length === 0 ? (
@@ -174,10 +202,11 @@ const ProgressPage = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {topics.map((t) => {
-              const status = masteryStatus(t.mastery);
-              const muted = t.mastery < 30;
+              const hasStarted = sessions.some(s => s.topic === t.name);
+              const status = masteryStatus(t.mastery, hasStarted);
+              const muted = t.mastery < 30 && !hasStarted;
               return (
-                <Link key={t.id} to={`/session/${t.id}`}>
+                <div key={t.id}>
                   <Card
                     className={`rounded-2xl transition-all hover:shadow-md hover:scale-[1.02] ${
                       muted ? "opacity-80" : ""
@@ -194,7 +223,7 @@ const ProgressPage = () => {
                       <p className="text-xs text-muted-foreground">{status.label}</p>
                     </CardContent>
                   </Card>
-                </Link>
+                </div>
               );
             })}
           </div>
