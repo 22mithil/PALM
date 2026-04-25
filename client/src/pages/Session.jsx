@@ -265,14 +265,24 @@ const Session = () => {
     }
   }, [emotion, gaze, isCapturing, isStreaming, sendPerception]);
 
+  /* ── auto-start on mount ───────────────────────────────── */
+  const initRef = useRef(false);
+  useEffect(() => {
+    if (!initRef.current) {
+      initRef.current = true;
+      startCapture();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   /* ── cleanup on unmount ───────────────────────────────── */
   useEffect(() => {
     return () => {
-      if (stream) {
-        stream.getTracks().forEach((track) => track.stop());
+      if (videoRef.current && videoRef.current.srcObject) {
+        const str = videoRef.current.srcObject;
+        str.getTracks().forEach((track) => track.stop());
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /* ══════════════════════════════════════════════════════════
@@ -615,28 +625,15 @@ const Session = () => {
                 </>
               )}
             </div>
-            {/* Bottom bar: emotion/gaze + camera toggle */}
-            <div className="flex items-center justify-between px-3 py-2 gap-2">
-              {isCapturing && meshReady ? (
+            {/* Bottom bar: emotion/gaze + camera status */}
+            <div className="flex items-center px-3 py-2 gap-2">
+              {isCapturing && meshReady && !isCameraHidden ? (
                 <PerceptionHUD emotion={emotion} gaze={gaze} className="scale-[0.85] origin-left" />
               ) : (
-                <span className="text-[11px] text-muted-foreground">No detection</span>
+                <span className="text-[11px] text-muted-foreground">
+                  {isCameraHidden ? "Camera hidden" : "No detection"}
+                </span>
               )}
-              <button
-                onClick={isCapturing ? stopCapture : startCapture}
-                className={cn(
-                  "inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full border transition-colors",
-                  isCapturing
-                    ? "border-red-300 text-red-600 hover:bg-red-50"
-                    : "border-teal-300 text-teal-600 hover:bg-teal-50",
-                )}
-              >
-                {isCapturing ? (
-                  <><Square className="h-3 w-3" /> Stop</>
-                ) : (
-                  <><Video className="h-3 w-3" /> Start</>
-                )}
-              </button>
             </div>
             {/* Camera error */}
             {camError && (
