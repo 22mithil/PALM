@@ -2,26 +2,96 @@
 Student service layer — all DB operations for students.
 """
 
+import logging
 import uuid
 
+import bcrypt
 from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.student import Student
-from app.schemas.student import StudentCreate, StudentUpdate
+from app.schemas.student import StudentCreate, StudentRegister, StudentUpdate
+
+logger = logging.getLogger(__name__)
+
+
+# ── Password helpers ─────────────────────────────────────────────────────
+
+
+def _hash_password(plain: str) -> str:
+    """Hash a plaintext password using bcrypt."""
+    return bcrypt.hashpw(plain.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+
+
+def _verify_password(plain: str, hashed: str) -> bool:
+    """Verify a plaintext password against a bcrypt hash."""
+    return bcrypt.checkpw(plain.encode("utf-8"), hashed.encode("utf-8"))
+
+
+# ── CRUD ─────────────────────────────────────────────────────────────────
 
 
 async def create_student(db: AsyncSession, payload: StudentCreate) -> Student:
-    """Insert a new student and return the created row."""
+    """Insert a new student and return the created row (legacy, no auth)."""
     student = Student(
         name=payload.name,
+        email=f"{payload.name.lower().replace(' ', '_')}@palm.local",
+        password_hash=_hash_password("default_password"),
         grade=payload.grade,
         age=payload.age,
     )
     db.add(student)
     await db.flush()          # populate server-generated fields (id, timestamps)
     await db.refresh(student)
+    return student
+
+
+async def register_student(db: AsyncSession, payload: StudentRegister) -> Student:
+    """Register a new student with email and hashed password.
+
+    Raises 409 if the email is already taken.
+    """
+    # Check for duplicate email
+    existing = await db.execute(
+        select(Student).where(Student.email == payload.email)
+    )
+    if existing.scalars().first() is not None:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="A student with this email already exists",
+        )
+
+    student = Student(
+        name=payload.name,
+        email=payload.email,
+        password_hash=_hash_password(payload.password),
+        grade=payload.grade,
+        age=payload.age,
+    )
+    db.add(student)
+    await db.flush()
+    await db.refresh(student)
+    logger.info("Registered student  id=%s  email=%s", student.id, student.email)
+    return student
+
+
+async def authenticate_student(
+    db: AsyncSession,
+    email: str,
+    password: str,
+) -> Student:
+    """Verify email + password. Returns the student or raises 401."""
+    result = await db.execute(select(Student).where(Student.email == email))
+    student = result.scalars().first()
+
+    if student is None or not _verify_password(password, student.password_hash):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid email or password",
+        )
+
+    logger.info("Authenticated student  id=%s  email=%s", student.id, student.email)
     return student
 
 

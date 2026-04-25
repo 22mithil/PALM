@@ -328,6 +328,14 @@ async def tutor_websocket(
             # ── 7. Push response into context history ──────────────
             await context_aggregator.push_response(session_id, full_text)
 
+            # ── 8. Log dialogue turn for chat history ──────────────
+            await event_logger.log_response(
+                session_id=session_id,
+                query_text=query_override or state_prompt.query,
+                response_text=full_text,
+                agent_used=result.agent_used,
+            )
+
             total_ms = (time.perf_counter() - t_start) * 1000
             logger.info(
                 "🎓  Response delivered  session=%s  agent=%s  "

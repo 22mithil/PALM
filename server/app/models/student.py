@@ -6,7 +6,7 @@ import uuid
 from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
-from sqlalchemy import CheckConstraint, SmallInteger, String, text
+from sqlalchemy import CheckConstraint, SmallInteger, String, UniqueConstraint, text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.types import DateTime
@@ -27,6 +27,8 @@ class Student(Base):
         server_default=text("gen_random_uuid()"),
     )
     name: Mapped[str] = mapped_column(String(100), nullable=False)
+    email: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
+    password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     grade: Mapped[int] = mapped_column(SmallInteger, nullable=False)
     age: Mapped[Optional[int]] = mapped_column(SmallInteger, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
@@ -42,6 +44,7 @@ class Student(Base):
     # ── Constraints ──────────────────────────────────────────────────
     __table_args__ = (
         CheckConstraint("grade BETWEEN 1 AND 5", name="ck_students_grade"),
+        UniqueConstraint("email", name="uq_students_email"),
     )
 
     # ── Relationships ────────────────────────────────────────────────

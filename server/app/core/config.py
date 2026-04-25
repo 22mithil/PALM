@@ -44,6 +44,11 @@ class Settings(BaseSettings):
     PINECONE_INDEX_NAME: str = "palm-fyp"
     PINECONE_ENVIRONMENT: str = "us-east-1"
 
+    # ── Auth / JWT ───────────────────────────────────────────────────────
+    JWT_SECRET_KEY: str = "change-me-in-production"
+    JWT_ALGORITHM: str = "HS256"
+    JWT_EXPIRE_MINUTES: int = 1440  # 24 hours
+
     @property
     def async_database_url(self) -> str:
         """Convert a standard postgresql:// URL to postgresql+asyncpg://.

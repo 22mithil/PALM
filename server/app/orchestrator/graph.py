@@ -34,6 +34,7 @@ from app.agents.hint_agent import hint_agent
 from app.agents.mastery_agent import mastery_agent
 from app.agents.quiz_agent import quiz_agent
 from app.agents.rag_agent import rag_agent
+from app.db.session import async_session_factory
 
 from app.orchestrator.router import (
     ROUTE_ENGAGEMENT,
@@ -108,14 +109,21 @@ async def engagement_node(state: OrchestratorState) -> dict[str, Any]:
 
 
 async def mastery_remedial_node(state: OrchestratorState) -> dict[str, Any]:
-    """Invoke the Mastery Agent in remedial mode (low mastery coaching)."""
+    """Invoke the Mastery Agent in remedial mode and persist score drop."""
     prompt = state["state_prompt"]
-    response = await mastery_agent(prompt)
+
+    # Student is struggling — persist mastery decrease to DB
+    async with async_session_factory() as db:
+        response = await mastery_agent.assess(
+            prompt, correctness=False, db=db
+        )
+        await db.commit()
 
     logger.info(
-        "🤖 [Mastery Remedial Node] Generated Coaching (Mode: %s)\n"
+        "🤖 [Mastery Remedial Node] Assessed + Coached (Mode: %s, delta=%.4f)\n"
         "   ┕ Response: %s  session=%s",
         response.metadata.get("mode"),
+        response.metadata.get("mastery_delta", 0.0),
         response.text.replace('\n', ' '),
         prompt.session_id,
     )
@@ -131,19 +139,26 @@ async def mastery_remedial_node(state: OrchestratorState) -> dict[str, Any]:
 
 
 async def mastery_advance_node(state: OrchestratorState) -> dict[str, Any]:
-    """Invoke the Mastery Agent for high-mastery coaching.
+    """Invoke the Mastery Agent for high-mastery coaching and persist score bump.
 
     This is the *first* node in the mastery_quiz chain.  It produces
     coaching text; the subsequent ``quiz_node`` generates the actual
     quiz question.
     """
     prompt = state["state_prompt"]
-    response = await mastery_agent(prompt)
+
+    # Student answered correctly + high mastery — persist mastery increase to DB
+    async with async_session_factory() as db:
+        response = await mastery_agent.assess(
+            prompt, correctness=True, db=db
+        )
+        await db.commit()
 
     logger.info(
-        "🤖 [Mastery Advance Node] Generated Intro (Mode: %s)\n"
+        "🤖 [Mastery Advance Node] Assessed + Intro (Mode: %s, delta=%.4f)\n"
         "   ┕ Response: %s  session=%s",
         response.metadata.get("mode"),
+        response.metadata.get("mastery_delta", 0.0),
         response.text.replace('\n', ' '),
         prompt.session_id,
     )

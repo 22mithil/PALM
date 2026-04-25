@@ -79,12 +79,12 @@ def route_student(state: OrchestratorState) -> str:
     is_correct = prompt.is_correct
     mastery = prompt.mastery_score
 
-    # ── Priority 1: Frustrated + many wrong → remedial ───────────────
-    if emotion == "frustrated" and consecutive_wrong >= _FRUSTRATED_WRONG_THRESHOLD:
+    # ── Priority 1: 3+ consecutive wrong answers → remedial ────────────
+    if consecutive_wrong >= _FRUSTRATED_WRONG_THRESHOLD:
         logger.info(
             "🧭 [Router] Route chosen: %s\n"
-            "   ┕ Reason: Student is frustrated (emotion=%s) AND struggling (consecutive_wrong=%d >= %d).  session=%s",
-            ROUTE_MASTERY_REMEDIAL, emotion, consecutive_wrong, _FRUSTRATED_WRONG_THRESHOLD,
+            "   ┕ Reason: Student is struggling (consecutive_wrong=%d >= %d).  session=%s",
+            ROUTE_MASTERY_REMEDIAL, consecutive_wrong, _FRUSTRATED_WRONG_THRESHOLD,
             prompt.session_id,
         )
         return ROUTE_MASTERY_REMEDIAL

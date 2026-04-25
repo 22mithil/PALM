@@ -114,6 +114,26 @@ class EventLogger:
             query_text=query_text.strip(),
         )
 
+    async def log_response(
+        self,
+        session_id: str,
+        query_text: str,
+        response_text: str,
+        agent_used: str = "",
+    ) -> None:
+        """Log a complete dialogue turn (query + response).
+
+        Not throttled — every interaction should be persisted for
+        chat history / session continuation.
+        """
+        self._dispatch(
+            session_id=session_id,
+            event_type="dialogue_turn",
+            query_text=query_text.strip() if query_text else "",
+            response_text=response_text,
+            agent_used=agent_used,
+        )
+
     # ── Throttle ─────────────────────────────────────────────────────
 
     def _should_emit(self, session_id: str, event_type: str) -> bool:
@@ -137,6 +157,8 @@ class EventLogger:
         emotion_label: str = "",
         gaze_status: str = "",
         query_text: str = "",
+        response_text: str = "",
+        agent_used: str = "",
     ) -> None:
         """Create a fire-and-forget background task for the DB write."""
         asyncio.create_task(
@@ -146,6 +168,8 @@ class EventLogger:
                 emotion_label=emotion_label or None,
                 gaze_status=gaze_status or None,
                 query_text=query_text or None,
+                response_text=response_text or None,
+                agent_used=agent_used or None,
             ),
             name=f"event-log-{session_id}-{event_type}",
         )
@@ -157,6 +181,8 @@ class EventLogger:
         emotion_label: Optional[str],
         gaze_status: Optional[str],
         query_text: Optional[str],
+        response_text: Optional[str] = None,
+        agent_used: Optional[str] = None,
     ) -> None:
         """Persist a single event row.  Errors are swallowed to avoid
         crashing the caller's task tree."""
@@ -192,16 +218,19 @@ class EventLogger:
                     emotion_label=emotion_label,
                     gaze_status=gaze_status,
                     query_text=query_text,
+                    response_text=response_text,
+                    agent_used=agent_used,
                 )
                 session.add(event)
                 await session.commit()
 
                 logger.debug(
-                    "Logged %s  session=%s  emotion=%s  gaze=%s",
+                    "Logged %s  session=%s  emotion=%s  gaze=%s  agent=%s",
                     event_type,
                     session_id,
                     emotion_label,
                     gaze_status,
+                    agent_used,
                 )
         except Exception as exc:
             logger.error(
