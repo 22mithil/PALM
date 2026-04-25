@@ -12,7 +12,6 @@ import usePerceptionStream from "@/hooks/usePerceptionStream";
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
 import PerceptionHUD from "@/components/PerceptionHUD";
 import SubtitleOverlay from "@/components/SubtitleOverlay";
-import "@/components/WebcamCapture.css";
 
 const sessionMeta = {
   topic: "Fractions",
