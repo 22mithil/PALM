@@ -1,7 +1,18 @@
 """
 Session service layer — all DB operations for learning sessions.
+
+Key design decisions:
+  • **One session per topic per student.**  ``create_session`` first looks for
+    an existing session with the same ``(student_id, topic)``.  If found it
+    clears ``ended_at`` so the student can resume, and returns it.
+  • **Accumulative duration.**  ``end_session`` *adds* the new
+    ``duration_seconds`` to the running total rather than overwriting.
+  • **Pausable sessions.**  ``end_session`` no longer raises 409 when the
+    session was already ended — it simply re-stamps ``ended_at`` and
+    accumulates the latest metrics.
 """
 
+import logging
 import uuid
 from datetime import datetime, timezone
 
@@ -13,16 +24,19 @@ from app.models.session import Session
 from app.schemas.session import SessionCreate, SessionEnd
 from app.services.student_service import get_student_by_id
 
+logger = logging.getLogger(__name__)
+
 
 async def create_session(
     db: AsyncSession,
     payload: SessionCreate,
     session_id_override: uuid.UUID | None = None,
 ) -> Session:
-    """Start a new learning session.
+    """Start or resume a learning session.
 
-    Validates that the student exists, then creates a session row
-    with difficulty_level = 1 (easiest).
+    If a session already exists for the same ``(student_id, topic)``, it is
+    resumed: ``ended_at`` is cleared so the student picks up where they
+    left off.  Otherwise a brand-new session row is created.
 
     Parameters
     ----------
@@ -34,6 +48,32 @@ async def create_session(
     # Verify student exists (raises 404 if not)
     await get_student_by_id(db, payload.student_id)
 
+    # ── Check for an existing session on this topic ──────────────────
+    if payload.topic:
+        result = await db.execute(
+            select(Session)
+            .where(
+                Session.student_id == payload.student_id,
+                Session.topic == payload.topic,
+            )
+            .order_by(Session.started_at.desc())
+            .limit(1)
+        )
+        existing = result.scalars().first()
+
+        if existing is not None:
+            # Resume: clear ended_at so it's treated as active again
+            if existing.ended_at is not None:
+                existing.ended_at = None
+                await db.flush()
+                await db.refresh(existing)
+            logger.info(
+                "Resuming existing session=%s for student=%s topic=%s",
+                existing.id, payload.student_id, payload.topic,
+            )
+            return existing
+
+    # ── No existing session — create a new one ───────────────────────
     kwargs: dict = dict(
         student_id=payload.student_id,
         grade=payload.grade,
@@ -46,6 +86,10 @@ async def create_session(
     db.add(session)
     await db.flush()
     await db.refresh(session)
+    logger.info(
+        "Created new session=%s for student=%s topic=%s",
+        session.id, payload.student_id, payload.topic,
+    )
     return session
 
 
@@ -66,25 +110,44 @@ async def end_session(
     session_id: uuid.UUID,
     payload: SessionEnd | None = None,
 ) -> Session:
-    """End an active session.
+    """Pause / end an active session.
 
-    Sets ``ended_at`` to now and optionally stores an LLM-generated summary.
+    • Sets ``ended_at`` to now.
+    • **Accumulates** ``duration_seconds`` so multiple visits sum up.
+    • Saves the latest ``mastery_score`` and ``performance_result``.
+    • Does **not** raise 409 if the session was already ended — the user
+      can pause and resume freely.
     """
     session = await get_session_by_id(db, session_id)
 
-    if session.ended_at is not None:
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail="Session has already ended",
-        )
-
     session.ended_at = datetime.now(timezone.utc)
+
+    # Summary
     session.summary = (
         payload.summary
         if payload and payload.summary
-        else f"Session on {session.topic or 'general'} ended."
+        else session.summary or f"Session on {session.topic or 'general'} ended."
     )
+
+    if payload:
+        # Accumulate duration
+        if payload.duration_seconds is not None:
+            session.duration_seconds = (
+                (session.duration_seconds or 0) + payload.duration_seconds
+            )
+
+        # Save latest mastery score
+        if payload.mastery_score is not None:
+            session.mastery_score = payload.mastery_score
+
+        # Save performance result
+        if payload.performance_result is not None:
+            session.performance_result = payload.performance_result
 
     await db.flush()
     await db.refresh(session)
+    logger.info(
+        "Ended session=%s  duration=%s  mastery=%s",
+        session.id, session.duration_seconds, session.mastery_score,
+    )
     return session

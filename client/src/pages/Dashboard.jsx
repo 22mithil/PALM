@@ -110,9 +110,9 @@ const Dashboard = () => {
         id: s.id || i,
         topic: s.topic || "Practice",
         days,
-        mins: Math.round(s.total_turns * 1.5) || 0,
+        mins: s.duration_seconds ? Math.round(s.duration_seconds / 60) : 0,
         questions: s.total_turns || 0,
-        status: s.total_turns > 5 ? "Improved" : "Needs Practice",
+        status: s.performance_result || "Completed",
       };
     });
   }, [recentSessions]);

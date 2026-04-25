@@ -31,6 +31,7 @@ class Student(Base):
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     grade: Mapped[int] = mapped_column(SmallInteger, nullable=False)
     age: Mapped[Optional[int]] = mapped_column(SmallInteger, nullable=True)
+    streak: Mapped[int] = mapped_column(SmallInteger, server_default=text("0"))
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         server_default=text("now()"),

@@ -62,8 +62,8 @@ class StatePrompt(BaseModel):
         Current difficulty tier (1 – 5).
     mastery_score : float
         Student's mastery on the current topic [0.0 – 1.0].
-    last_responses : list[str]
-        Rolling window of the last ≤ 5 agent responses.
+    last_responses : list[dict[str, str]]
+        Rolling window of the last ≤ 10 dialogue turns (user + assistant).
     session_summary : str | None
         LLM-compressed summary of the session so far (may be null
         for sessions still in progress).
@@ -105,10 +105,10 @@ class StatePrompt(BaseModel):
         le=1.0,
         description="Student mastery on the current topic [0.0 – 1.0].",
     )
-    last_responses: list[str] = Field(
+    last_responses: list[dict[str, str]] = Field(
         default_factory=list,
-        max_length=5,
-        description="Rolling window of the last ≤ 5 agent responses.",
+        max_length=10,
+        description="Rolling window of the last ≤ 10 message dicts (role, content).",
     )
     session_summary: Optional[str] = Field(
         default=None,
@@ -137,8 +137,8 @@ class StatePrompt(BaseModel):
                     "difficulty_level": 2,
                     "mastery_score": 0.35,
                     "last_responses": [
-                        "Let's start with the basics of fractions.",
-                        "A fraction has a numerator and denominator.",
+                        {"role": "user", "content": "What is a fraction?"},
+                        {"role": "assistant", "content": "A fraction has a numerator and denominator."},
                     ],
                     "session_summary": None,
                 }

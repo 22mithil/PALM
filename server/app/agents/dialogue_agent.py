@@ -215,10 +215,8 @@ class DialogueAgent(BaseAgent):
         ]
 
         # Inject recent conversation history as alternating turns
-        for i, resp in enumerate(state.last_responses):
-            # Approximate: odd = student, even = assistant
-            # In practice these are all assistant responses from the rolling window
-            messages.append({"role": "assistant", "content": resp})
+        for msg in state.last_responses:
+            messages.append({"role": msg["role"], "content": msg["content"]})
 
         # Current student query
         messages.append({"role": "user", "content": state.query})

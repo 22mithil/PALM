@@ -58,13 +58,15 @@ const ProgressPage = () => {
     getStudentSessions(studentId, token).then((sess) => {
       setSessions(sess.map((s) => {
         const d = s.started_at ? new Date(s.started_at) : new Date();
+        const mins = s.duration_seconds ? Math.round(s.duration_seconds / 60) : 0;
         return {
           id: s.id,
           topic: s.topic || "Practice",
           date: d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
-          duration: `${Math.max(1, Math.round(s.total_turns * 1.5))} min`,
-          result: s.total_turns > 5 ? "Improved" : "Needs Practice",
+          duration: `${mins > 0 ? mins : 1} min`,
+          result: s.performance_result || "Completed",
           summary: s.summary || "Session completed.",
+          mastery_score: s.mastery_score || 0,
           learnings: [],
           mistakes: [],
         };
@@ -86,9 +88,9 @@ const ProgressPage = () => {
     if (sessions.length === 0) return [];
     return sessions.slice(-7).reverse().map((s, i) => ({
       session: `S${i + 1}`,
-      mastery: Math.round(Math.random() * 30 + overallMastery * 0.7), // approximate
+      mastery: s.mastery_score || 0,
     }));
-  }, [sessions, overallMastery]);
+  }, [sessions]);
 
   const stats = [
     { label: "Total Sessions", value: totalSessions, icon: Activity },

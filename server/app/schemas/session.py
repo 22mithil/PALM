@@ -26,6 +26,9 @@ class SessionEnd(BaseModel):
         None,
         description="LLM-compressed session summary. If omitted, a placeholder is generated.",
     )
+    duration_seconds: Optional[int] = None
+    performance_result: Optional[str] = None
+    mastery_score: Optional[int] = None
 
 
 # ── Response Schemas ─────────────────────────────────────────────────────
@@ -41,5 +44,8 @@ class SessionResponse(BaseModel):
     ended_at: Optional[datetime] = None
     summary: Optional[str] = None
     total_turns: int
+    duration_seconds: Optional[int] = None
+    performance_result: Optional[str] = None
+    mastery_score: Optional[int] = None
 
     model_config = {"from_attributes": True}

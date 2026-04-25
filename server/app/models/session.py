@@ -43,6 +43,9 @@ class Session(Base):
     )
     summary: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     total_turns: Mapped[int] = mapped_column(Integer, server_default=text("0"))
+    duration_seconds: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    performance_result: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    mastery_score: Mapped[Optional[int]] = mapped_column(SmallInteger, nullable=True)
 
     # ── Indexes ──────────────────────────────────────────────────────
     __table_args__ = (

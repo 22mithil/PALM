@@ -50,11 +50,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.mastery import MasteryScore
 from app.models.session import Session as SessionModel
+from app.models.session_event import SessionEvent
 from app.services.session_context import session_context_manager
 
 logger = logging.getLogger(__name__)
 
-MAX_LAST_RESPONSES = 5
+MAX_LAST_RESPONSES = 10
 
 
 # ── Per-session metadata (topic, difficulty, response history) ───────────
@@ -78,13 +79,15 @@ class _SessionMeta:
     def __init__(self) -> None:
         self.current_topic: Optional[str] = None
         self.difficulty_level: int = 1
-        self._last_responses: deque[str] = deque(maxlen=MAX_LAST_RESPONSES)
+        self._last_responses: deque[dict[str, str]] = deque(maxlen=MAX_LAST_RESPONSES)
         self._lock = asyncio.Lock()
 
-    async def push_response(self, response: str) -> None:
-        """Append an agent response (thread-safe, auto-evicts oldest)."""
+    async def push_turn(self, query: str, response: str) -> None:
+        """Append a dialogue turn (query + response) to history."""
         async with self._lock:
-            self._last_responses.append(response)
+            if query:
+                self._last_responses.append({"role": "user", "content": query})
+            self._last_responses.append({"role": "assistant", "content": response})
 
     async def set_topic(self, topic: str) -> None:
         async with self._lock:
@@ -94,7 +97,7 @@ class _SessionMeta:
         async with self._lock:
             self.difficulty_level = level
 
-    async def get_last_responses(self) -> list[str]:
+    async def get_last_responses(self) -> list[dict[str, str]]:
         async with self._lock:
             return list(self._last_responses)
 
@@ -143,10 +146,10 @@ class ContextAggregator:
 
     # ── Mutation helpers (called by orchestrator / agents) ───────────
 
-    async def push_response(self, session_id: str, response: str) -> None:
-        """Record an agent response in the rolling window."""
+    async def push_turn(self, session_id: str, query: str, response: str) -> None:
+        """Record a dialogue turn in the rolling window."""
         meta = await self._get_or_create_meta(session_id)
-        await meta.push_response(response)
+        await meta.push_turn(query, response)
 
     async def set_topic(self, session_id: str, topic: str) -> None:
         """Update the current topic being discussed."""
@@ -228,6 +231,46 @@ class ContextAggregator:
             )
             return None
 
+    @staticmethod
+    async def _fetch_recent_responses(
+        db: AsyncSession,
+        session_id: uuid.UUID,
+        limit: int = 5,  # 5 turns (query+response) = up to 10 messages
+    ) -> list[dict[str, str]]:
+        """Fetch the most recent dialogue_turn responses from DB.
+
+        Used to hydrate the in-memory ``last_responses`` rolling window
+        when the server restarts or a WebSocket reconnects, so the
+        orchestrator retains conversation context.
+
+        Returns an empty list if no dialogue events exist yet.
+        """
+        try:
+            result = await db.execute(
+                select(SessionEvent.query_text, SessionEvent.response_text)
+                .where(
+                    SessionEvent.session_id == session_id,
+                    SessionEvent.event_type == "dialogue_turn",
+                )
+                .order_by(SessionEvent.timestamp.desc())
+                .limit(limit)
+            )
+            rows = result.all()
+            # Reverse so oldest-first order matches the rolling window
+            messages = []
+            for query_text, response_text in reversed(rows):
+                if query_text:
+                    messages.append({"role": "user", "content": query_text})
+                if response_text:
+                    messages.append({"role": "assistant", "content": response_text})
+            return messages
+        except Exception:
+            logger.exception(
+                "Failed to fetch recent responses for session=%s",
+                session_id,
+            )
+            return []
+
     # ── Primary entry-point ──────────────────────────────────────────
 
     async def build(
@@ -282,6 +325,25 @@ class ContextAggregator:
         # ── 2. In-memory session meta (topic, difficulty, history) ───
         meta = await self._get_or_create_meta(session_id)
         meta_snap = meta.snapshot()
+
+        # ── 2.5. Hydrate last_responses from DB if in-memory is empty ─
+        #    This covers server restarts and WS reconnections where the
+        #    in-memory _SessionMeta was lost but dialogue events exist
+        #    in the database.
+        if not meta_snap["last_responses"]:
+            db_messages = await self._fetch_recent_responses(
+                db, uuid.UUID(session_id)
+            )
+            if db_messages:
+                async with meta._lock:
+                    for msg in db_messages:
+                        meta._last_responses.append(msg)
+                meta_snap = meta.snapshot()
+                logger.info(
+                    "🧠 [Context] Hydrated %d messages from DB  session=%s",
+                    len(db_messages),
+                    session_id,
+                )
 
         # ── 3. DB lookups (session row, mastery, summary) ────────────
         #    Run sequentially — AsyncSession does not support concurrent

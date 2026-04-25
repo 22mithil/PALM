@@ -83,6 +83,22 @@ export async function createSession({ studentId, grade, topic }, token) {
   return data;
 }
 
+export async function endSession(sessionId, { durationSeconds, masteryScore, summary } = {}, token) {
+  const body = {};
+  if (durationSeconds != null) body.duration_seconds = durationSeconds;
+  if (masteryScore != null) body.mastery_score = masteryScore;
+  if (summary) body.summary = summary;
+
+  const res = await fetch(`${API}/sessions/${sessionId}/end`, {
+    method: "PATCH",
+    headers: headers(token),
+    body: JSON.stringify(body),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.detail || "Failed to end session");
+  return data;
+}
+
 // ── Student ─────────────────────────────────────────────────────────────
 
 export async function getStudent(studentId, token) {

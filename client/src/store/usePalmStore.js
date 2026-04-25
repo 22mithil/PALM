@@ -14,7 +14,6 @@ export const usePalmStore = create(
 
       // ── Gamification (local) ──────────────────────────────────────────
       streak: 0,
-      xp: 0,
       mood: "happy",
 
       // ── Actions ───────────────────────────────────────────────────────
@@ -25,6 +24,7 @@ export const usePalmStore = create(
           studentId: student.id,
           email: student.email,
           grade: student.grade,
+          streak: student.streak || 0,
           token,
         }),
 
@@ -37,15 +37,12 @@ export const usePalmStore = create(
           token: null,
           grade: 3,
           streak: 0,
-          xp: 0,
         }),
 
       completeOnboarding: (name, grade) =>
         set({ onboarded: true, learnerName: name, grade }),
 
       setMood: (mood) => set({ mood }),
-
-      addXp: (amount) => set((s) => ({ xp: s.xp + amount })),
     }),
     {
       name: "palm-storage",
@@ -57,7 +54,6 @@ export const usePalmStore = create(
         token: state.token,
         grade: state.grade,
         streak: state.streak,
-        xp: state.xp,
       }),
     }
   )

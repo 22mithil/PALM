@@ -7,6 +7,7 @@ chunks for prompt augmentation.
 """
 
 import logging
+import re
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
@@ -14,6 +15,72 @@ from app.integrations.fastrouter.embeddings import get_embeddings
 from app.rag.pinecone_client import query_vectors
 
 logger = logging.getLogger(__name__)
+
+
+# ── Topic Normalisation ──────────────────────────────────────────────────
+
+# Roman numeral mapping used in Pinecone topic names (e.g. "We the TravellersI")
+_ARABIC_TO_ROMAN = {
+    "1": "I", "2": "II", "3": "III", "4": "IV", "5": "V",
+    "6": "VI", "7": "VII", "8": "VIII", "9": "IX", "10": "X",
+}
+
+# Reverse map
+_ROMAN_TO_ARABIC = {v: k for k, v in _ARABIC_TO_ROMAN.items()}
+
+# Pattern to detect trailing separators with a number:
+#   "We the Travellers - 1"  →  match(" - 1")
+#   "We the Travellers-1"    →  match("-1")
+_TRAILING_NUM_RE = re.compile(r"[\s\-–—]+(\d+)\s*$")
+
+# Pattern to detect a trailing Roman numeral (capital) glued to the name:
+#   "We the TravellersI"  →  match("I")
+_TRAILING_ROMAN_RE = re.compile(r"(I{1,3}|IV|V|VI{0,3}|IX|X)\s*$")
+
+
+def _generate_topic_variants(topic: str) -> list[str]:
+    """Generate plausible Pinecone topic-name variants for a UI topic string.
+
+    Covers mismatches like:
+        UI: "We the Travellers - 1"   →  Pinecone: "We the TravellersI"
+        UI: "We the Travellers"       →  Pinecone: "We the Travellers"
+
+    Returns a deduplicated list of 1-N candidate strings to use with ``$in``.
+    """
+    variants: set[str] = set()
+    stripped = topic.strip()
+    variants.add(stripped)
+
+    # ── Case 1: trailing " - N" / " – N" / "-N" ─────────────────────
+    m = _TRAILING_NUM_RE.search(stripped)
+    if m:
+        arabic = m.group(1)
+        base = stripped[: m.start()].rstrip()   # "We the Travellers"
+        roman = _ARABIC_TO_ROMAN.get(arabic, arabic)
+
+        variants.add(base)                      # "We the Travellers"
+        variants.add(f"{base}{roman}")           # "We the TravellersI"
+        variants.add(f"{base} {roman}")          # "We the Travellers I"
+        variants.add(f"{base} - {arabic}")       # "We the Travellers - 1"
+        variants.add(f"{base}-{arabic}")         # "We the Travellers-1"
+
+    # ── Case 2: trailing Roman numeral glued to text ─────────────────
+    elif _TRAILING_ROMAN_RE.search(stripped):
+        m2 = _TRAILING_ROMAN_RE.search(stripped)
+        roman = m2.group(1)
+        base = stripped[: m2.start()]
+
+        arabic = _ROMAN_TO_ARABIC.get(roman, "")
+        variants.add(base)
+        variants.add(f"{base}{roman}")
+        if arabic:
+            variants.add(f"{base} - {arabic}")
+            variants.add(f"{base}-{arabic}")
+
+    result = sorted(variants)
+    if len(result) > 1:
+        logger.debug("Topic variants for %r: %s", topic, result)
+    return result
 
 
 # ── Result Schema ────────────────────────────────────────────────────────
@@ -110,7 +177,11 @@ async def retrieve(
 
     # Only add topic filter if we have a specific topic (not "general")
     if topic and topic.lower() not in ("general", "math", "mathematics", ""):
-        pinecone_filter["topic"] = {"$eq": topic}
+        variants = _generate_topic_variants(topic)
+        if len(variants) == 1:
+            pinecone_filter["topic"] = {"$eq": variants[0]}
+        else:
+            pinecone_filter["topic"] = {"$in": variants}
 
     # 3. Resolve namespace
     #    The upsert script stores all vectors in the default (empty) namespace,

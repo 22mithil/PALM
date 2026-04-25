@@ -11,7 +11,7 @@ import usePerceptionStream from "@/hooks/usePerceptionStream";
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
 import PerceptionHUD from "@/components/PerceptionHUD";
 import SubtitleOverlay from "@/components/SubtitleOverlay";
-import { getMastery, getStudentSessions } from "@/lib/api";
+import { getMastery, getStudentSessions, getSessionEvents, endSession } from "@/lib/api";
 
 const VIDEO_CONSTRAINTS = {
   width: { ideal: 640 },
@@ -88,17 +88,38 @@ const Session = () => {
   // Fetch session info on mount
   useEffect(() => {
     if (!studentId || !sessionId) return;
-    // Try to get session details from recent sessions
-    import("@/lib/api").then(({ getStudentSessions }) => {
-      getStudentSessions(studentId, token).then((sessions) => {
-        const match = sessions.find((s) => s.id === sessionId);
-        if (match) {
-          setSessionTopic(match.topic || "Practice");
-          setSessionGrade(match.grade || storeGrade);
-        }
-      }).catch(() => {});
-    });
+    getStudentSessions(studentId, token).then((sessions) => {
+      const match = sessions.find((s) => s.id === sessionId);
+      if (match) {
+        setSessionTopic(match.topic || "Practice");
+        setSessionGrade(match.grade || storeGrade);
+      }
+    }).catch(() => {});
   }, [sessionId, studentId, token, storeGrade]);
+
+  // Load previous chat history when resuming a session
+  const historyLoadedRef = useRef(false);
+  const hasHistoryRef = useRef(false);
+  useEffect(() => {
+    if (!sessionId || historyLoadedRef.current) return;
+    historyLoadedRef.current = true;
+    getSessionEvents(sessionId, token).then((events) => {
+      if (!events || events.length === 0) return;
+      const restored = [];
+      for (const e of events) {
+        if (e.query_text) {
+          restored.push({ id: `h-q-${e.id}`, role: "student", text: e.query_text });
+        }
+        if (e.response_text) {
+          restored.push({ id: `h-r-${e.id}`, role: "tutor", text: e.response_text, meta: e.agent_used });
+        }
+      }
+      if (restored.length > 0) {
+        hasHistoryRef.current = true;
+        setMessages(restored);
+      }
+    }).catch(() => {});
+  }, [sessionId, token]);
 
   // Timer — starts at 0
   const [elapsed, setElapsed] = useState(0);
@@ -255,44 +276,134 @@ const Session = () => {
   }, []);
 
   /* ══════════════════════════════════════════════════════════
-     Chat state — integrated with backend RAG
+     Chat state — connected to WebSocket orchestrator pipeline
      ══════════════════════════════════════════════════════════ */
   const [messages, setMessages] = useState([]);
   const [typing, setTyping] = useState(false);
   const [input, setInput] = useState("");
   const scrollRef = useRef(null);
+  const wsRef = useRef(null);
+  const streamingTextRef = useRef("");
+  const streamingIdRef = useRef(null);
 
-  // Send initial greeting request to tutor on mount
-  const greetingSent = useRef(false);
+  // ── Mastery — fetched from backend, updated live via WS ────
+  const [mastery, setMastery] = useState(0);
   useEffect(() => {
-    if (greetingSent.current || !topic) return;
-    greetingSent.current = true;
-    setTyping(true);
-    fetch("/api/v1/chat/test", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        message: `Greet the student and introduce today's topic: ${topic}. Keep it short and friendly.`,
-        grade,
-        topic,
-      }),
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        setTyping(false);
-        if (data.reply) {
-          setMessages([{ id: `t-greet-${Date.now()}`, role: "tutor", text: data.reply }]);
+    if (!studentId || !topic) return;
+    getMastery(studentId, token).then((scores) => {
+      const match = scores.find((s) => s.topic === topic);
+      if (match) setMastery(Math.round(match.score * 100));
+    }).catch(() => {});
+  }, [studentId, token, topic]);
+
+  // hint
+  const [hint, setHint] = useState(null);
+
+  // ── WebSocket connection ───────────────────────────────────
+  const wsReady = useRef(false);
+  const pendingGreeting = useRef(false);
+
+  useEffect(() => {
+    if (!sessionId || !topic) return;
+
+    const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
+    const wsUrl = `${proto}//${window.location.host}/ws/tutor/${sessionId}?grade=${grade}&topic=${encodeURIComponent(topic)}`;
+
+    const ws = new WebSocket(wsUrl);
+    wsRef.current = ws;
+
+    ws.onopen = () => {
+      console.log("[WS] Connected to tutor");
+      wsReady.current = true;
+      // Only send greeting for new sessions (no prior history)
+      if (!hasHistoryRef.current) {
+        pendingGreeting.current = true;
+        setTyping(true);
+        ws.send(JSON.stringify({
+          type: "trigger",
+          payload: {
+            student_id: studentId,
+            query: `Greet the student named ${learnerName || "there"} and introduce today's topic: ${topic}. Keep it short and friendly (under 80 words).`,
+          },
+        }));
+      }
+    };
+
+    ws.onmessage = (event) => {
+      const msg = JSON.parse(event.data);
+
+      if (msg.type === "token") {
+        const { token: tok, done } = msg.payload;
+        if (!done) {
+          // Accumulate streaming text
+          if (!streamingIdRef.current) {
+            streamingIdRef.current = `t-${Date.now()}`;
+            streamingTextRef.current = "";
+          }
+          streamingTextRef.current += tok;
+
+          // Update or add the streaming message
+          const id = streamingIdRef.current;
+          const text = streamingTextRef.current;
+          setMessages((prev) => {
+            const existing = prev.find((m) => m.id === id);
+            if (existing) {
+              return prev.map((m) => m.id === id ? { ...m, text } : m);
+            }
+            return [...prev, { id, role: "tutor", text }];
+          });
+          setTyping(false);
         }
-      })
-      .catch(() => {
+      }
+
+      if (msg.type === "response_complete") {
+        const { full_text, agent_used, mastery_delta } = msg.payload;
+        // Finalize the message with full text
+        if (streamingIdRef.current) {
+          const id = streamingIdRef.current;
+          setMessages((prev) =>
+            prev.map((m) => m.id === id ? { ...m, text: full_text, meta: agent_used } : m)
+          );
+        }
+        // Update mastery from delta
+        if (mastery_delta && mastery_delta !== 0) {
+          setMastery((prev) => Math.min(100, Math.max(0, Math.round(prev + mastery_delta * 100))));
+        }
+        // Reset streaming state
+        streamingIdRef.current = null;
+        streamingTextRef.current = "";
+        setRagLoading(false);
+        pendingGreeting.current = false;
+      }
+
+      if (msg.type === "error") {
         setTyping(false);
-        setMessages([{
-          id: `t-greet-${Date.now()}`,
-          role: "tutor",
-          text: `Hi ${learnerName || "there"}! Ready to work on ${topic || "today's topic"}? Ask me anything!`,
-        }]);
-      });
-  }, [topic, grade, learnerName]);
+        setRagLoading(false);
+        setMessages((prev) => [
+          ...prev,
+          { id: `e-${Date.now()}`, role: "tutor", text: `⚠️ ${msg.payload?.message || "Error"}` },
+        ]);
+        streamingIdRef.current = null;
+        streamingTextRef.current = "";
+      }
+    };
+
+    ws.onerror = () => {
+      console.error("[WS] Connection error");
+      wsReady.current = false;
+    };
+
+    ws.onclose = () => {
+      console.log("[WS] Disconnected");
+      wsReady.current = false;
+    };
+
+    return () => {
+      ws.close();
+      wsRef.current = null;
+      wsReady.current = false;
+    };
+  }, [sessionId, topic, grade, studentId, learnerName]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({
@@ -338,29 +449,19 @@ const Session = () => {
     }
   }, [sttListening]);
 
-  // ── Mastery — fetched from backend ─────────────────────────
-  const [mastery, setMastery] = useState(0);
-  useEffect(() => {
-    if (!studentId || !topic) return;
-    getMastery(studentId, token).then((scores) => {
-      const match = scores.find((s) => s.topic === topic);
-      if (match) setMastery(Math.round(match.score * 100));
-    }).catch(() => {});
-  }, [studentId, token, topic]);
-
-  // hint
-  const [hint, setHint] = useState(null);
-
-  /* ── send message to backend RAG endpoint ─────────────── */
-  const sendStudentMessage = async (text) => {
+  /* ── send message via WebSocket ───────────────────────── */
+  const sendStudentMessage = (text) => {
     const trimmed = (typeof text === "string" ? text : input).trim();
     if (!trimmed || ragLoading) return;
 
-    // Build history from current messages (before adding the new one)
-    const history = messages.map((m) => ({
-      role: m.role === "tutor" ? "tutor" : "student",
-      text: m.text,
-    }));
+    const ws = wsRef.current;
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+      setMessages((m) => [
+        ...m,
+        { id: `e-${Date.now()}`, role: "tutor", text: "⚠️ Connection lost — please refresh the page." },
+      ]);
+      return;
+    }
 
     setMessages((m) => [
       ...m,
@@ -370,55 +471,13 @@ const Session = () => {
     setTyping(true);
     setRagLoading(true);
 
-    try {
-      const res = await fetch("/api/v1/chat/test", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: trimmed,
-          grade,
-          topic,
-          history,
-          student_id: studentId,
-          session_id: sessionId,
-        }),
-      });
-      const data = await res.json();
-      setTyping(false);
-
-      if (res.ok) {
-        setMessages((m) => [
-          ...m,
-          {
-            id: `t-${Date.now()}`,
-            role: "tutor",
-            text: data.reply,
-            meta: `${data.chunks_used} chunks · ${data.model}`,
-          },
-        ]);
-      } else {
-        setMessages((m) => [
-          ...m,
-          {
-            id: `e-${Date.now()}`,
-            role: "tutor",
-            text: `⚠️ ${data.detail || "Something went wrong"}`,
-          },
-        ]);
-      }
-    } catch (err) {
-      setTyping(false);
-      setMessages((m) => [
-        ...m,
-        {
-          id: `e-${Date.now()}`,
-          role: "tutor",
-          text: "⚠️ Network error — is the backend running?",
-        },
-      ]);
-    } finally {
-      setRagLoading(false);
-    }
+    ws.send(JSON.stringify({
+      type: "trigger",
+      payload: {
+        student_id: studentId,
+        query: trimmed,
+      },
+    }));
   };
 
   const handleKey = (e) => {
@@ -446,7 +505,17 @@ const Session = () => {
             variant="outline"
             size="sm"
             className="border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
-            onClick={() => navigate("/dashboard")}
+            onClick={async () => {
+              try {
+                await endSession(sessionId, {
+                  durationSeconds: elapsed,
+                  masteryScore: mastery,
+                }, token);
+              } catch (err) {
+                console.error("[Session] Failed to end session:", err);
+              }
+              navigate("/dashboard");
+            }}
           >
             <X className="h-4 w-4" /> End Session
           </Button>

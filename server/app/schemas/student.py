@@ -57,6 +57,7 @@ class StudentResponse(BaseModel):
     email: str
     grade: int
     age: Optional[int] = None
+    streak: int
     created_at: datetime
     updated_at: datetime
 

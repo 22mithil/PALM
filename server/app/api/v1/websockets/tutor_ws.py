@@ -78,6 +78,7 @@ from app.schemas.session import SessionCreate
 from app.services.session_service import create_session, get_session_by_id
 from app.services.student_service import get_student_by_id
 from app.services.event_logger import event_logger
+from app.services.session_context import session_context_manager
 from app.models.student import Student
 from app.orchestrator import run_orchestrator
 from app.state.context_manager import context_aggregator
@@ -177,6 +178,10 @@ async def tutor_websocket(
         session_id,
         websocket.client.host if websocket.client else "unknown",
     )
+
+    # Eagerly create a SessionContext so the context_aggregator never
+    # falls back to "No session context found" defaults.
+    await session_context_manager.get_or_create(session_id)
 
     interactions: int = 0
 
@@ -329,7 +334,9 @@ async def tutor_websocket(
             })
 
             # ── 7. Push response into context history ──────────────
-            await context_aggregator.push_response(session_id, full_text)
+            await context_aggregator.push_turn(
+                session_id, query_override or state_prompt.query, full_text
+            )
 
             # ── 8. Log dialogue turn for chat history ──────────────
             await event_logger.log_response(
