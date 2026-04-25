@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Flame, Star, ChevronRight, ArrowRight, Sparkles, BookOpen, Clock, Target,
+  ChevronRight, ArrowRight, Sparkles, BookOpen, Clock, Target,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,28 +10,18 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import { usePalmStore } from "@/store/usePalmStore";
+import { getTopics, getMastery, getStudentSessions, createSession } from "@/lib/api";
 
-const topics = [
-  { id: "fractions", name: "Fractions", description: "Halves, thirds & quarters made simple.", difficulty: "Medium", status: "inprogress", mastery: 55, recommended: true, sessions: 6, accuracy: 72, timeSpent: "1h 20m", subtopics: 5, estTime: "45m" },
-  { id: "multiplication", name: "Multiplication", description: "Times tables and quick patterns.", difficulty: "Easy", status: "inprogress", mastery: 30, recommended: false, sessions: 3, accuracy: 65, timeSpent: "40m", subtopics: 4, estTime: "30m" },
-  { id: "addition", name: "Addition & Subtraction", description: "Build a strong number sense foundation.", difficulty: "Easy", status: "completed", mastery: 100, recommended: false, sessions: 8, accuracy: 92, timeSpent: "2h 10m", subtopics: 4, estTime: "—" },
-  { id: "geometry", name: "Geometry", description: "Shapes, sides and angles around us.", difficulty: "Medium", status: "notstarted", mastery: 0, recommended: false, sessions: 0, accuracy: 0, timeSpent: "0m", subtopics: 6, estTime: "50m" },
-  { id: "measurement", name: "Measurement", description: "Length, weight and time units.", difficulty: "Hard", status: "notstarted", mastery: 0, recommended: false, sessions: 0, accuracy: 0, timeSpent: "0m", subtopics: 5, estTime: "1h" },
-  { id: "wordproblems", name: "Word Problems", description: "Turn stories into math step-by-step.", difficulty: "Hard", status: "notstarted", mastery: 0, recommended: false, sessions: 0, accuracy: 0, timeSpent: "0m", subtopics: 7, estTime: "1h 15m" },
-];
+/* ── difficulty label helper ──────────────────────────────────────────── */
 
-const sessions = [
-  { id: 1, topic: "Fractions", days: 1, mins: 18, questions: 12, status: "Improved" },
-  { id: 2, topic: "Multiplication", days: 2, mins: 14, questions: 10, status: "Needs Practice" },
-  { id: 3, topic: "Addition & Subtraction", days: 3, mins: 22, questions: 15, status: "Improved" },
-  { id: 4, topic: "Fractions", days: 5, mins: 12, questions: 8, status: "Needs Practice" },
-];
+const diffLabel = (d) =>
+  d <= 1 ? "Easy" : d <= 2 ? "Medium" : "Hard";
 
-const focusAreas = [
-  { id: "f1", topic: "Fraction comparisons", mastery: 42 },
-  { id: "f2", topic: "Multi-digit multiplication", mastery: 35 },
-  { id: "f3", topic: "Word problem setup", mastery: 28 },
-];
+const difficultyClasses = {
+  Easy: "bg-emerald-100 text-emerald-700 border-transparent hover:bg-emerald-100",
+  Medium: "bg-amber-100 text-amber-700 border-transparent hover:bg-amber-100",
+  Hard: "bg-rose-100 text-rose-700 border-transparent hover:bg-rose-100",
+};
 
 const filters = [
   { key: "all", label: "All" },
@@ -40,23 +30,94 @@ const filters = [
   { key: "completed", label: "Completed" },
 ];
 
-const difficultyClasses = {
-  Easy: "bg-emerald-100 text-emerald-700 border-transparent hover:bg-emerald-100",
-  Medium: "bg-amber-100 text-amber-700 border-transparent hover:bg-amber-100",
-  Hard: "bg-rose-100 text-rose-700 border-transparent hover:bg-rose-100",
-};
-
 const fadeUp = {
   initial: { opacity: 0, y: 12 },
   animate: { opacity: 1, y: 0 },
 };
 
 const Dashboard = () => {
-  const { learnerName, grade } = usePalmStore();
+  const { learnerName, grade, studentId, token } = usePalmStore();
+  const navigate = useNavigate();
   const [filter, setFilter] = useState("all");
   const [expanded, setExpanded] = useState(null);
+  const [loadingSession, setLoadingSession] = useState(false);
 
-  const overall = 20;
+  // ── Data from backend ─────────────────────────────────────────────
+  const [topics, setTopics] = useState([]);
+  const [masteryMap, setMasteryMap] = useState({});
+  const [recentSessions, setRecentSessions] = useState([]);
+
+  // Fetch curriculum topics for the student's grade
+  useEffect(() => {
+    getTopics(grade).then(setTopics).catch(() => {});
+  }, [grade]);
+
+  // Fetch mastery + sessions
+  useEffect(() => {
+    if (!studentId) return;
+    getMastery(studentId, token).then((scores) => {
+      const map = {};
+      scores.forEach((s) => { map[s.topic] = Math.round(s.score * 100); });
+      setMasteryMap(map);
+    }).catch(() => {});
+    getStudentSessions(studentId, token).then((sessions) => {
+      setRecentSessions(sessions.slice(0, 6));
+    }).catch(() => {});
+  }, [studentId, token]);
+
+  // ── Derived state ─────────────────────────────────────────────────
+
+  // Enrich topics with mastery data
+  const enrichedTopics = useMemo(() => topics.map((t) => {
+    const m = masteryMap[t.topic] ?? 0;
+    const status = m >= 100 ? "completed" : m > 0 ? "inprogress" : "notstarted";
+    const diff = diffLabel(t.difficulty || 2);
+    return {
+      id: t.id,
+      name: t.topic,
+      description: t.description || "",
+      difficulty: diff,
+      status,
+      mastery: m,
+      recommended: m > 0 && m < 50, // recommend topics in progress but low
+    };
+  }), [topics, masteryMap]);
+
+  const overall = useMemo(() => {
+    if (enrichedTopics.length === 0) return 0;
+    const total = enrichedTopics.reduce((a, t) => a + t.mastery, 0);
+    return Math.round(total / enrichedTopics.length);
+  }, [enrichedTopics]);
+
+  const completedCount = useMemo(
+    () => enrichedTopics.filter((t) => t.status === "completed").length,
+    [enrichedTopics]
+  );
+
+  const focusAreas = useMemo(() =>
+    enrichedTopics.filter((t) => t.mastery > 0 && t.mastery < 50).slice(0, 3).map((t, i) => ({
+      id: `f${i}`, topic: t.name, mastery: t.mastery,
+    })),
+    [enrichedTopics]
+  );
+
+  // Format recent sessions for display
+  const displaySessions = useMemo(() => {
+    return recentSessions.map((s, i) => {
+      const started = s.started_at ? new Date(s.started_at) : new Date();
+      const days = Math.max(1, Math.round((Date.now() - started.getTime()) / 86400000));
+      return {
+        id: s.id || i,
+        topic: s.topic || "Practice",
+        days,
+        mins: Math.round(s.total_turns * 1.5) || 0,
+        questions: s.total_turns || 0,
+        status: s.total_turns > 5 ? "Improved" : "Needs Practice",
+      };
+    });
+  }, [recentSessions]);
+
+  // Animations
   const [animatedOverall, setAnimatedOverall] = useState(0);
   const [animatedMastery, setAnimatedMastery] = useState({});
   const [animatedFocus, setAnimatedFocus] = useState({});
@@ -64,16 +125,29 @@ const Dashboard = () => {
   useEffect(() => {
     const t = setTimeout(() => {
       setAnimatedOverall(overall);
-      setAnimatedMastery(Object.fromEntries(topics.map((t) => [t.id, t.mastery])));
+      setAnimatedMastery(Object.fromEntries(enrichedTopics.map((t) => [t.id, t.mastery])));
       setAnimatedFocus(Object.fromEntries(focusAreas.map((f) => [f.id, f.mastery])));
     }, 250);
     return () => clearTimeout(t);
-  }, []);
+  }, [overall, enrichedTopics, focusAreas]);
 
   const filtered = useMemo(
-    () => (filter === "all" ? topics : topics.filter((t) => t.status === filter)),
-    [filter]
+    () => (filter === "all" ? enrichedTopics : enrichedTopics.filter((t) => t.status === filter)),
+    [filter, enrichedTopics]
   );
+
+  const handleStartSession = async (topicName) => {
+    if (loadingSession || !studentId) return;
+    setLoadingSession(true);
+    try {
+      const session = await createSession({ studentId, grade, topic: topicName }, token);
+      navigate(`/session/${session.id}`);
+    } catch {
+      navigate(`/session/${crypto.randomUUID()}`);
+    } finally {
+      setLoadingSession(false);
+    }
+  };
 
   const actionLabel = (s) =>
     s === "completed" ? "Review" : s === "inprogress" ? "Continue →" : "Start →";
@@ -86,10 +160,7 @@ const Dashboard = () => {
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">Hi, {learnerName || "Learner"} 👋</h1>
           <p className="text-sm text-muted-foreground mt-1">Let's continue your learning journey</p>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 text-emerald-700 px-3 py-1.5 text-xs font-medium"><Flame className="h-3.5 w-3.5" /> 5 day streak</span>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 text-emerald-700 px-3 py-1.5 text-xs font-medium"><Star className="h-3.5 w-3.5" /> 340 XP</span>
-        </div>
+        <Badge variant="outline" className="w-fit">Grade {grade}</Badge>
       </motion.section>
 
       {/* Progress card */}
@@ -103,12 +174,16 @@ const Dashboard = () => {
               </Button>
             </div>
             <Progress value={animatedOverall} className="h-2 [&>div]:bg-emerald-500 [&>div]:transition-all [&>div]:duration-700" />
-            <p className="text-sm text-muted-foreground">You've completed {overall}% of your learning journey</p>
+            <p className="text-sm text-muted-foreground">
+              {overall === 0
+                ? "Start a topic to begin your learning journey!"
+                : `You've completed ${overall}% of your learning journey`}
+            </p>
             <div className="grid grid-cols-3 gap-3 pt-1">
               {[
-                { label: "Topics Done", value: 2, icon: BookOpen },
-                { label: "Sessions", value: 5, icon: Sparkles },
-                { label: "Accuracy", value: "70%", icon: Target },
+                { label: "Topics Done", value: completedCount, icon: BookOpen },
+                { label: "Sessions", value: recentSessions.length, icon: Sparkles },
+                { label: "Total Topics", value: enrichedTopics.length, icon: Target },
               ].map((s) => {
                 const Icon = s.icon;
                 return (
@@ -144,62 +219,60 @@ const Dashboard = () => {
           })}
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((t, idx) => {
-              const isOpen = expanded === t.id;
-              const isCompleted = t.status === "completed";
-              return (
-                <motion.div key={t.id} layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.25, delay: idx * 0.04 }} className="relative">
-                  {t.recommended && (
-                    <span className="absolute -top-2 left-3 z-10 rounded-full bg-emerald-500 text-white text-[10px] font-semibold px-2 py-0.5 shadow-sm">Recommended</span>
-                  )}
-                  <div onClick={() => setExpanded(isOpen ? null : t.id)} className={cn("group cursor-pointer rounded-2xl border bg-card p-4 transition-all duration-200", "hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-sm", isCompleted && "opacity-65", t.recommended && "border-teal-500/60")}>
-                    <div className="flex items-start justify-between gap-2">
-                      <p className="font-medium leading-tight">{t.name}</p>
-                      <Badge className={cn("text-[10px]", difficultyClasses[t.difficulty])}>{t.difficulty}</Badge>
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-1">{t.description}</p>
-                    <div className="mt-3">
-                      <Progress value={animatedMastery[t.id] ?? 0} className={cn("h-1.5 [&>div]:transition-all [&>div]:duration-700", isCompleted ? "[&>div]:bg-emerald-500" : "[&>div]:bg-teal-500", t.status === "notstarted" && "[&>div]:bg-muted-foreground/20")} />
-                    </div>
-                    <div className="mt-3 flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground">{t.mastery}% mastered</span>
-                      <Button size="sm" variant={isCompleted ? "secondary" : "outline"} onClick={(e) => e.stopPropagation()} className="h-7 text-xs">{actionLabel(t.status)}</Button>
-                    </div>
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div key="panel" initial={{ maxHeight: 0, opacity: 0 }} animate={{ maxHeight: 240, opacity: 1 }} exit={{ maxHeight: 0, opacity: 0 }} transition={{ duration: 0.35, ease: "easeOut" }} className="overflow-hidden">
-                          <div className="mt-4 pt-4 border-t space-y-3">
-                            <div className="grid grid-cols-3 gap-2">
-                              {t.status === "notstarted" ? (
-                                <>
-                                  <Stat label="Subtopics" value={t.subtopics} />
-                                  <Stat label="Est. Time" value={t.estTime} />
-                                  <Stat label="Difficulty" value={t.difficulty} />
-                                </>
-                              ) : (
-                                <>
-                                  <Stat label="Sessions" value={t.sessions} />
-                                  <Stat label="Accuracy" value={`${t.accuracy}%`} />
-                                  <Stat label="Time Spent" value={t.timeSpent} />
-                                </>
-                              )}
-                            </div>
-                            <div className="flex gap-2">
-                              <Button size="sm" variant="outline" onClick={(e) => e.stopPropagation()} className="flex-1 border-teal-500 text-teal-700 hover:bg-teal-50 hover:text-teal-700">Start Practice</Button>
-                              <Button size="sm" variant="outline" onClick={(e) => e.stopPropagation()} className="flex-1">View Notes</Button>
-                            </div>
-                          </div>
-                        </motion.div>
+        {enrichedTopics.length === 0 ? (
+          <Card>
+            <CardContent className="p-8 text-center text-muted-foreground">
+              <p className="text-sm">Loading topics for Grade {grade}...</p>
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <AnimatePresence mode="popLayout">
+              {filtered.map((t, idx) => {
+                const isOpen = expanded === t.id;
+                const isCompleted = t.status === "completed";
+                return (
+                  <motion.div key={t.id} layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.25, delay: idx * 0.04 }} className="relative">
+                    {t.recommended && (
+                      <span className="absolute -top-2 left-3 z-10 rounded-full bg-emerald-500 text-white text-[10px] font-semibold px-2 py-0.5 shadow-sm">Recommended</span>
+                    )}
+                    <div onClick={() => setExpanded(isOpen ? null : t.id)} className={cn("group cursor-pointer rounded-2xl border bg-card p-4 transition-all duration-200", "hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-sm", isCompleted && "opacity-65", t.recommended && "border-teal-500/60")}>
+                      <div className="flex items-start justify-between gap-2">
+                        <p className="font-medium leading-tight">{t.name}</p>
+                        <Badge className={cn("text-[10px]", difficultyClasses[t.difficulty])}>{t.difficulty}</Badge>
+                      </div>
+                      {t.description && (
+                        <p className="text-xs text-muted-foreground mt-1">{t.description}</p>
                       )}
-                    </AnimatePresence>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
+                      <div className="mt-3">
+                        <Progress value={animatedMastery[t.id] ?? 0} className={cn("h-1.5 [&>div]:transition-all [&>div]:duration-700", isCompleted ? "[&>div]:bg-emerald-500" : "[&>div]:bg-teal-500", t.status === "notstarted" && "[&>div]:bg-muted-foreground/20")} />
+                      </div>
+                      <div className="mt-3 flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">{t.mastery}% mastered</span>
+                        <Button size="sm" variant={isCompleted ? "secondary" : "outline"} onClick={(e) => { e.stopPropagation(); handleStartSession(t.name); }} className="h-7 text-xs" disabled={loadingSession}>{actionLabel(t.status)}</Button>
+                      </div>
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div key="panel" initial={{ maxHeight: 0, opacity: 0 }} animate={{ maxHeight: 240, opacity: 1 }} exit={{ maxHeight: 0, opacity: 0 }} transition={{ duration: 0.35, ease: "easeOut" }} className="overflow-hidden">
+                            <div className="mt-4 pt-4 border-t space-y-3">
+                              <div className="grid grid-cols-2 gap-2">
+                                <Stat label="Difficulty" value={t.difficulty} />
+                                <Stat label="Mastery" value={`${t.mastery}%`} />
+                              </div>
+                              <div className="flex gap-2">
+                                <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); handleStartSession(t.name); }} className="flex-1 border-teal-500 text-teal-700 hover:bg-teal-50 hover:text-teal-700" disabled={loadingSession}>Start Practice</Button>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+        )}
       </motion.section>
 
       {/* Bottom section */}
@@ -211,20 +284,26 @@ const Dashboard = () => {
               <p className="font-medium">Recent Sessions</p>
               <p className="text-xs text-muted-foreground mt-0.5">Your latest practice runs</p>
             </div>
-            <ul>
-              {sessions.map((s) => (
-                <li key={s.id} className="flex items-center justify-between gap-3 px-6 py-3 border-b last:border-b-0 hover:bg-secondary transition-colors cursor-pointer">
-                  <div className="min-w-0">
-                    <p className="font-semibold text-sm truncate">{s.topic}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{s.days} day{s.days > 1 ? "s" : ""} ago · {s.mins} mins · {s.questions} questions</p>
-                  </div>
-                  <div className="flex items-center gap-2 shrink-0">
-                    <Badge className={cn("text-[10px]", s.status === "Improved" ? "bg-teal-100 text-teal-700 border-transparent hover:bg-teal-100" : "bg-amber-100 text-amber-700 border-transparent hover:bg-amber-100")}>{s.status}</Badge>
-                    <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                  </div>
-                </li>
-              ))}
-            </ul>
+            {displaySessions.length === 0 ? (
+              <div className="px-6 py-8 text-center text-sm text-muted-foreground">
+                No sessions yet. Start a topic to begin!
+              </div>
+            ) : (
+              <ul>
+                {displaySessions.map((s) => (
+                  <li key={s.id} className="flex items-center justify-between gap-3 px-6 py-3 border-b last:border-b-0 hover:bg-secondary transition-colors cursor-pointer">
+                    <div className="min-w-0">
+                      <p className="font-semibold text-sm truncate">{s.topic}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{s.days} day{s.days > 1 ? "s" : ""} ago · {s.mins} mins · {s.questions} questions</p>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <Badge className={cn("text-[10px]", s.status === "Improved" ? "bg-teal-100 text-teal-700 border-transparent hover:bg-teal-100" : "bg-amber-100 text-amber-700 border-transparent hover:bg-amber-100")}>{s.status}</Badge>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </CardContent>
         </Card>
 
@@ -238,17 +317,23 @@ const Dashboard = () => {
               </div>
               <Clock className="h-4 w-4 text-muted-foreground" />
             </div>
-            <div className="divide-y">
-              {focusAreas.map((f) => (
-                <div key={f.id} className="py-3 flex items-center gap-4">
-                  <div className="flex-1 min-w-0 space-y-2">
-                    <p className="text-sm font-medium truncate">{f.topic}</p>
-                    <Progress value={animatedFocus[f.id] ?? 0} className="h-1.5 [&>div]:bg-teal-500 [&>div]:transition-all [&>div]:duration-700" />
+            {focusAreas.length === 0 ? (
+              <p className="text-sm text-muted-foreground py-4 text-center">
+                {overall === 0 ? "Start learning to see focus areas here!" : "Great job — no weak areas right now!"}
+              </p>
+            ) : (
+              <div className="divide-y">
+                {focusAreas.map((f) => (
+                  <div key={f.id} className="py-3 flex items-center gap-4">
+                    <div className="flex-1 min-w-0 space-y-2">
+                      <p className="text-sm font-medium truncate">{f.topic}</p>
+                      <Progress value={animatedFocus[f.id] ?? 0} className="h-1.5 [&>div]:bg-teal-500 [&>div]:transition-all [&>div]:duration-700" />
+                    </div>
+                    <Button size="sm" variant="outline" className="border-teal-500 text-teal-700 hover:bg-teal-50 hover:text-teal-700" onClick={() => handleStartSession(f.topic)} disabled={loadingSession}>Practice <ArrowRight className="ml-1 h-3 w-3" /></Button>
                   </div>
-                  <Button size="sm" variant="outline" className="border-teal-500 text-teal-700 hover:bg-teal-50 hover:text-teal-700">Practice <ArrowRight className="ml-1 h-3 w-3" /></Button>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </CardContent>
         </Card>
       </motion.section>

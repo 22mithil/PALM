@@ -1,6 +1,6 @@
-import { NavLink, Outlet, useLocation, Navigate } from "react-router-dom";
+import { NavLink, Outlet, useLocation, Navigate, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Home as HomeIcon, Flame } from "lucide-react";
+import { Home as HomeIcon, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -9,8 +9,9 @@ import { usePalmStore } from "@/store/usePalmStore";
 const navItems = [{ to: "/dashboard", label: "Home", icon: HomeIcon, end: true }];
 
 const AppShell = () => {
-  const { learnerName, streak, xp, onboarded } = usePalmStore();
+  const { learnerName, grade, onboarded, logout } = usePalmStore();
   const location = useLocation();
+  const navigate = useNavigate();
 
   if (!onboarded) return <Navigate to="/" replace />;
 
@@ -48,15 +49,17 @@ const AppShell = () => {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Badge variant="secondary" className="gap-1">
-              <Flame className="h-3.5 w-3.5" /> {streak}
-            </Badge>
-            <Badge variant="outline" className="hidden sm:inline-flex">
-              {xp} XP
-            </Badge>
+            <Badge variant="outline">Grade {grade}</Badge>
             <Avatar className="h-9 w-9">
               <AvatarFallback>{learnerName[0]?.toUpperCase() || "P"}</AvatarFallback>
             </Avatar>
+            <button
+              onClick={() => { logout(); navigate("/", { replace: true }); }}
+              className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+              title="Sign out"
+            >
+              <LogOut className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </header>

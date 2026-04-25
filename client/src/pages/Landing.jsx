@@ -11,45 +11,96 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 import { usePalmStore } from "@/store/usePalmStore";
+import { register, login } from "@/lib/api";
 
-const schema = z.object({
-  name: z.string().trim().min(1, { message: "Please enter your name" }).max(40, { message: "Name must be under 40 characters" }),
+const registerSchema = z.object({
+  name: z.string().trim().min(1, { message: "Please enter your name" }).max(40),
+  email: z.string().email({ message: "Please enter a valid email" }),
+  password: z.string().min(8, { message: "Password must be at least 8 characters" }),
   grade: z.string().min(1, { message: "Please pick your grade" }),
+});
+
+const loginSchema = z.object({
+  email: z.string().email({ message: "Please enter a valid email" }),
+  password: z.string().min(1, { message: "Please enter your password" }),
 });
 
 const Landing = () => {
   const navigate = useNavigate();
-  const completeOnboarding = usePalmStore((s) => s.completeOnboarding);
+  const storeLogin = usePalmStore((s) => s.login);
+  const onboarded = usePalmStore((s) => s.onboarded);
   const nameRef = useRef(null);
 
+  const [mode, setMode] = useState("register"); // "register" | "login"
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [grade, setGrade] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState("");
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (onboarded) navigate("/dashboard", { replace: true });
+  }, [onboarded, navigate]);
 
   useEffect(() => {
     nameRef.current?.focus();
     document.title = "PALM — Your AI Learning Companion";
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = schema.safeParse({ name, grade });
-    if (!result.success) {
-      const fieldErrors = {};
-      result.error.issues.forEach((i) => {
-        const k = i.path[0];
-        fieldErrors[k] = i.message;
-      });
-      setErrors(fieldErrors);
-      return;
+    setApiError("");
+
+    if (mode === "register") {
+      const result = registerSchema.safeParse({ name, email, password, grade });
+      if (!result.success) {
+        const fieldErrors = {};
+        result.error.issues.forEach((i) => { fieldErrors[i.path[0]] = i.message; });
+        setErrors(fieldErrors);
+        return;
+      }
+      setErrors({});
+      setLoading(true);
+      try {
+        const data = await register({
+          name: result.data.name,
+          email: result.data.email,
+          password: result.data.password,
+          grade: Number(result.data.grade),
+        });
+        storeLogin(data.student, data.access_token);
+        navigate("/dashboard", { replace: true });
+      } catch (err) {
+        setApiError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      const result = loginSchema.safeParse({ email, password });
+      if (!result.success) {
+        const fieldErrors = {};
+        result.error.issues.forEach((i) => { fieldErrors[i.path[0]] = i.message; });
+        setErrors(fieldErrors);
+        return;
+      }
+      setErrors({});
+      setLoading(true);
+      try {
+        const data = await login({
+          email: result.data.email,
+          password: result.data.password,
+        });
+        storeLogin(data.student, data.access_token);
+        navigate("/dashboard", { replace: true });
+      } catch (err) {
+        setApiError(err.message);
+      } finally {
+        setLoading(false);
+      }
     }
-    setErrors({});
-    setLoading(true);
-    setTimeout(() => {
-      completeOnboarding(result.data.name, Number(result.data.grade));
-      navigate("/dashboard", { replace: true });
-    }, 700);
   };
 
   return (
@@ -75,46 +126,91 @@ const Landing = () => {
 
             {/* Intro */}
             <p className="text-base text-center text-muted-foreground">
-              Let's start your learning journey!
+              {mode === "register"
+                ? "Create your account to start learning!"
+                : "Welcome back! Sign in to continue."}
             </p>
+
+            {/* API Error */}
+            {apiError && (
+              <div className="bg-destructive/10 text-destructive text-sm rounded-lg px-3 py-2 text-center">
+                {apiError}
+              </div>
+            )}
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              {mode === "register" && (
+                <div className="space-y-1.5">
+                  <Label htmlFor="name">Your Name</Label>
+                  <Input
+                    id="name"
+                    ref={nameRef}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter your name"
+                    maxLength={40}
+                    className="h-11 rounded-lg"
+                    aria-invalid={!!errors.name}
+                  />
+                  {errors.name && (
+                    <p className="text-xs text-destructive">{errors.name}</p>
+                  )}
+                </div>
+              )}
+
               <div className="space-y-1.5">
-                <Label htmlFor="name">Your Name</Label>
+                <Label htmlFor="email">Email</Label>
                 <Input
-                  id="name"
-                  ref={nameRef}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your name"
-                  maxLength={40}
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
                   className="h-11 rounded-lg"
-                  aria-invalid={!!errors.name}
+                  aria-invalid={!!errors.email}
                 />
-                {errors.name && (
-                  <p className="text-xs text-destructive">{errors.name}</p>
+                {errors.email && (
+                  <p className="text-xs text-destructive">{errors.email}</p>
                 )}
               </div>
 
               <div className="space-y-1.5">
-                <Label htmlFor="grade">Select Grade</Label>
-                <Select value={grade} onValueChange={setGrade}>
-                  <SelectTrigger id="grade" className="h-11 rounded-lg w-full">
-                    <SelectValue placeholder="Pick your grade" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {[1, 2, 3, 4, 5].map((g) => (
-                      <SelectItem key={g} value={String(g)}>
-                        Grade {g}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {errors.grade && (
-                  <p className="text-xs text-destructive">{errors.grade}</p>
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder={mode === "register" ? "At least 8 characters" : "Enter your password"}
+                  className="h-11 rounded-lg"
+                  aria-invalid={!!errors.password}
+                />
+                {errors.password && (
+                  <p className="text-xs text-destructive">{errors.password}</p>
                 )}
               </div>
+
+              {mode === "register" && (
+                <div className="space-y-1.5">
+                  <Label htmlFor="grade">Select Grade</Label>
+                  <Select value={grade} onValueChange={setGrade}>
+                    <SelectTrigger id="grade" className="h-11 rounded-lg w-full">
+                      <SelectValue placeholder="Pick your grade" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {[1, 2, 3, 4, 5].map((g) => (
+                        <SelectItem key={g} value={String(g)}>
+                          Grade {g}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.grade && (
+                    <p className="text-xs text-destructive">{errors.grade}</p>
+                  )}
+                </div>
+              )}
 
               <Button
                 type="submit"
@@ -124,13 +220,40 @@ const Landing = () => {
                 {loading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Getting ready...
+                    {mode === "register" ? "Creating account..." : "Signing in..."}
                   </>
                 ) : (
-                  "Start Learning"
+                  mode === "register" ? "Start Learning" : "Sign In"
                 )}
               </Button>
             </form>
+
+            {/* Toggle mode */}
+            <p className="text-center text-sm text-muted-foreground">
+              {mode === "register" ? (
+                <>
+                  Already have an account?{" "}
+                  <button
+                    type="button"
+                    onClick={() => { setMode("login"); setErrors({}); setApiError(""); }}
+                    className="text-primary font-medium hover:underline"
+                  >
+                    Sign in
+                  </button>
+                </>
+              ) : (
+                <>
+                  New here?{" "}
+                  <button
+                    type="button"
+                    onClick={() => { setMode("register"); setErrors({}); setApiError(""); }}
+                    className="text-primary font-medium hover:underline"
+                  >
+                    Create account
+                  </button>
+                </>
+              )}
+            </p>
           </CardContent>
         </Card>
 

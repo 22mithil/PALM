@@ -77,6 +77,7 @@ from app.db.session import async_session_factory
 from app.schemas.session import SessionCreate
 from app.services.session_service import create_session, get_session_by_id
 from app.services.student_service import get_student_by_id
+from app.services.event_logger import event_logger
 from app.models.student import Student
 from app.orchestrator import run_orchestrator
 from app.state.context_manager import context_aggregator
@@ -228,6 +229,8 @@ async def tutor_websocket(
                                     dummy_student = Student(
                                         id=uuid.UUID(student_id),
                                         name="Test Student",
+                                        email=f"test_{student_id[:8]}@palm.local",
+                                        password_hash="placeholder_no_login",
                                         grade=grade,
                                         age=10,
                                     )

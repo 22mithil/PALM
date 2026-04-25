@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mic, Send, X, Video, Square } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { usePalmStore } from "@/store/usePalmStore";
@@ -13,22 +12,7 @@ import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
 import PerceptionHUD from "@/components/PerceptionHUD";
 import SubtitleOverlay from "@/components/SubtitleOverlay";
 import "@/components/WebcamCapture.css";
-
-const sessionMeta = {
-  topic: "Fractions",
-  grade: "Grade 3",
-  sessionNumber: 4,
-  initialMastery: 55,
-};
-
-const challenge = {
-  id: "q1",
-  icon: "🍫",
-  question:
-    "You have a chocolate bar with 8 equal pieces. You eat 3 pieces. What fraction did you eat?",
-  options: ["3/5", "3/8", "8/3", "5/8"],
-  correct: "3/8",
-};
+import { getMastery, getStudentSessions } from "@/lib/api";
 
 const VIDEO_CONSTRAINTS = {
   width: { ideal: 640 },
@@ -42,8 +26,6 @@ const AUDIO_CONSTRAINTS = {
   noiseSuppression: true,
   autoGainControl: true,
 };
-
-const PLACEHOLDER_STUDENT_ID = "00000000-0000-0000-0000-000000000001";
 
 const formatTime = (s) => {
   const m = Math.floor(s / 60).toString().padStart(2, "0");
@@ -63,8 +45,17 @@ const StudentAvatar = ({ initial }) => (
   </div>
 );
 
+const cleanLatex = (text) =>
+  text
+    .replace(/\$\$(.*?)\$\$/g, "$1")       // $$...$$ → content
+    .replace(/\$(.*?)\$/g, "$1")           // $...$ → content
+    .replace(/\\text\{(.*?)\}/g, "$1")     // \text{kg} → kg
+    .replace(/\\frac\{(.*?)\}\{(.*?)\}/g, "$1/$2")  // \frac{3}{8} → 3/8
+    .replace(/\\\\/g, "");                 // stray backslashes
+
 const renderInline = (text) => {
-  const parts = text.split(/(`[^`]+`|\b\d+\/\d+\b)/g);
+  const cleaned = cleanLatex(text);
+  const parts = cleaned.split(/(`[^`]+`|\b\d+\/\d+\b)/g);
   return parts.map((p, i) => {
     if (/^`[^`]+`$/.test(p)) {
       return (
@@ -87,19 +78,38 @@ const renderInline = (text) => {
 const Session = () => {
   const { sessionId } = useParams();
   const navigate = useNavigate();
-  const { learnerName } = usePalmStore();
+  const { learnerName, studentId: storeStudentId, grade: storeGrade, token } = usePalmStore();
   const initial = (learnerName?.[0] || "S").toUpperCase();
-  const studentId = PLACEHOLDER_STUDENT_ID;
+  const studentId = storeStudentId || "00000000-0000-0000-0000-000000000001";
 
-  // timer
-  const [elapsed, setElapsed] = useState(504);
+  // ── Session metadata from backend ──────────────────────────────────
+  const [sessionTopic, setSessionTopic] = useState("");
+  const [sessionGrade, setSessionGrade] = useState(storeGrade || 3);
+
+  // Fetch session info on mount
+  useEffect(() => {
+    if (!studentId || !sessionId) return;
+    // Try to get session details from recent sessions
+    import("@/lib/api").then(({ getStudentSessions }) => {
+      getStudentSessions(studentId, token).then((sessions) => {
+        const match = sessions.find((s) => s.id === sessionId);
+        if (match) {
+          setSessionTopic(match.topic || "Practice");
+          setSessionGrade(match.grade || storeGrade);
+        }
+      }).catch(() => {});
+    });
+  }, [sessionId, studentId, token, storeGrade]);
+
+  // Timer — starts at 0
+  const [elapsed, setElapsed] = useState(0);
   useEffect(() => {
     const t = setInterval(() => setElapsed((s) => s + 1), 1000);
     return () => clearInterval(t);
   }, []);
 
   /* ══════════════════════════════════════════════════════════
-     Webcam capture state (replaces static camera placeholder)
+     Webcam capture state
      ══════════════════════════════════════════════════════════ */
   const [stream, setStream] = useState(null);
   const [isCapturing, setIsCapturing] = useState(false);
@@ -130,9 +140,14 @@ const Session = () => {
   } = useSpeechRecognition();
 
   /* ── grade & topic for RAG queries ───────────────────────── */
-  const [grade, setGrade] = useState(3);
-  const [topic, setTopic] = useState("Fractions");
+  const [grade, setGrade] = useState(storeGrade || 3);
+  const [topic, setTopic] = useState("");
   const [ragLoading, setRagLoading] = useState(false);
+
+  // Sync topic when sessionTopic loads
+  useEffect(() => {
+    if (sessionTopic) setTopic(sessionTopic);
+  }, [sessionTopic]);
 
   /* ── start capture ────────────────────────────────────── */
   const startCapture = useCallback(async () => {
@@ -240,18 +255,44 @@ const Session = () => {
   }, []);
 
   /* ══════════════════════════════════════════════════════════
-     Chat / challenge state — integrated with backend RAG
+     Chat state — integrated with backend RAG
      ══════════════════════════════════════════════════════════ */
-  const [messages, setMessages] = useState([
-    {
-      id: "m1",
-      role: "tutor",
-      text: "Hi! Let's keep going with fractions. Remember, a fraction shows part of a whole — like 1/2 means one out of two equal parts.",
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [typing, setTyping] = useState(false);
   const [input, setInput] = useState("");
   const scrollRef = useRef(null);
+
+  // Send initial greeting request to tutor on mount
+  const greetingSent = useRef(false);
+  useEffect(() => {
+    if (greetingSent.current || !topic) return;
+    greetingSent.current = true;
+    setTyping(true);
+    fetch("/api/v1/chat/test", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: `Greet the student and introduce today's topic: ${topic}. Keep it short and friendly.`,
+        grade,
+        topic,
+      }),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        setTyping(false);
+        if (data.reply) {
+          setMessages([{ id: `t-greet-${Date.now()}`, role: "tutor", text: data.reply }]);
+        }
+      })
+      .catch(() => {
+        setTyping(false);
+        setMessages([{
+          id: `t-greet-${Date.now()}`,
+          role: "tutor",
+          text: `Hi ${learnerName || "there"}! Ready to work on ${topic || "today's topic"}? Ask me anything!`,
+        }]);
+      });
+  }, [topic, grade, learnerName]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({
@@ -285,7 +326,6 @@ const Session = () => {
       wasSttActiveRef.current = true;
     } else if (wasSttActiveRef.current) {
       wasSttActiveRef.current = false;
-      // Small delay to let final transcript arrive
       const t = setTimeout(() => {
         setInput((currentInput) => {
           if (currentInput.trim()) {
@@ -298,25 +338,29 @@ const Session = () => {
     }
   }, [sttListening]);
 
-  // mastery
+  // ── Mastery — fetched from backend ─────────────────────────
   const [mastery, setMastery] = useState(0);
   useEffect(() => {
-    const t = setTimeout(() => setMastery(sessionMeta.initialMastery), 300);
-    return () => clearTimeout(t);
-  }, []);
+    if (!studentId || !topic) return;
+    getMastery(studentId, token).then((scores) => {
+      const match = scores.find((s) => s.topic === topic);
+      if (match) setMastery(Math.round(match.score * 100));
+    }).catch(() => {});
+  }, [studentId, token, topic]);
 
   // hint
   const [hint, setHint] = useState(null);
-
-  // challenge modal
-  const [challengeOpen, setChallengeOpen] = useState(true);
-  const [picked, setPicked] = useState(null);
-  const [resolved, setResolved] = useState(false);
 
   /* ── send message to backend RAG endpoint ─────────────── */
   const sendStudentMessage = async (text) => {
     const trimmed = (typeof text === "string" ? text : input).trim();
     if (!trimmed || ragLoading) return;
+
+    // Build history from current messages (before adding the new one)
+    const history = messages.map((m) => ({
+      role: m.role === "tutor" ? "tutor" : "student",
+      text: m.text,
+    }));
 
     setMessages((m) => [
       ...m,
@@ -330,7 +374,14 @@ const Session = () => {
       const res = await fetch("/api/v1/chat/test", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed, grade, topic }),
+        body: JSON.stringify({
+          message: trimmed,
+          grade,
+          topic,
+          history,
+          student_id: studentId,
+          session_id: sessionId,
+        }),
       });
       const data = await res.json();
       setTyping(false);
@@ -377,50 +428,14 @@ const Session = () => {
     }
   };
 
-  const handlePick = (opt) => {
-    if (resolved) return;
-    setPicked(opt);
-    if (opt === challenge.correct) {
-      setResolved(true);
-      setMastery((m) => Math.min(100, m + 10));
-      setMessages((m) => [
-        ...m,
-        {
-          id: `t-correct-${Date.now()}`,
-          role: "tutor",
-          text: "🎉 Correct! 3/8 it is — 3 eaten out of 8 equal pieces.",
-        },
-      ]);
-      setTimeout(() => {
-        setChallengeOpen(false);
-        setTyping(true);
-        setTimeout(() => {
-          setTyping(false);
-          setMessages((m) => [
-            ...m,
-            {
-              id: `t-follow-${Date.now()}`,
-              role: "tutor",
-              text: "Now try this: if you eat 2 more pieces, what fraction have you eaten in total?",
-            },
-          ]);
-        }, 1400);
-      }, 1200);
-    } else {
-      setHint(
-        "Count the pieces eaten (top number) and the total equal pieces (bottom number). Total pieces = 8.",
-      );
-    }
-  };
-
   return (
     <div className="h-screen flex flex-col bg-background overflow-hidden">
       {/* Top bar */}
       <div className="sticky top-0 z-20 flex items-center justify-between px-4 py-3 border-b bg-background">
         <div className="leading-tight">
-          <p className="font-medium">{sessionMeta.topic}</p>
+          <p className="font-medium">{sessionTopic || "Loading..."}</p>
           <p className="text-xs text-muted-foreground">
-            {sessionMeta.grade} · Session {sessionMeta.sessionNumber}
+            Grade {sessionGrade}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -601,7 +616,7 @@ const Session = () => {
           {/* Mastery bar */}
           <div className="border-t px-4 pt-2 pb-0 bg-background flex-shrink-0">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-muted-foreground">{sessionMeta.topic} Mastery</span>
+              <span className="text-muted-foreground">{sessionTopic || "Topic"} Mastery</span>
               <span className="font-mono text-teal-600">{mastery}%</span>
             </div>
             <div className="mt-1 h-1 w-full bg-muted rounded-full overflow-hidden">
@@ -651,66 +666,6 @@ const Session = () => {
               <Send className="h-4 w-4" />
             </button>
           </div>
-
-          {/* Quick Challenge modal overlay */}
-          <AnimatePresence>
-            {challengeOpen && (
-              <motion.div
-                key="challenge"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="absolute inset-0 bg-background/60 backdrop-blur-sm flex items-center justify-center z-20"
-              >
-                <motion.div
-                  initial={{ scale: 0.95, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.95, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: "easeOut" }}
-                  className="w-full max-w-sm mx-4"
-                >
-                  <Card className="rounded-2xl border-teal-300 border p-5 shadow-lg">
-                    <div className="flex items-center gap-2 text-teal-600 text-sm font-medium">
-                      <span>{challenge.icon}</span>
-                      <span>Quick Challenge</span>
-                    </div>
-                    <p className="text-sm leading-relaxed mt-2 mb-4">
-                      {challenge.question}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {challenge.options.map((opt) => {
-                        const isPicked = picked === opt;
-                        const isCorrect = opt === challenge.correct;
-                        const showCorrect = resolved && isCorrect;
-                        const showWrong = isPicked && !isCorrect;
-                        const dimmed =
-                          picked && !isPicked && !(resolved && isCorrect);
-                        return (
-                          <button
-                            key={opt}
-                            onClick={() => handlePick(opt)}
-                            className={cn(
-                              "px-4 py-1.5 rounded-full border text-sm font-medium transition-colors",
-                              "hover:bg-accent",
-                              showCorrect &&
-                                "bg-green-50 border-green-400 text-green-800 hover:bg-green-50",
-                              showWrong &&
-                                "bg-red-50 border-red-300 text-red-700 hover:bg-red-50",
-                              dimmed && "opacity-40",
-                            )}
-                            disabled={resolved}
-                          >
-                            {opt}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </Card>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </section>
       </div>
     </div>
