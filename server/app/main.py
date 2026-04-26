@@ -11,6 +11,13 @@ Creates the FastAPI app with:
 import logging
 from contextlib import asynccontextmanager
 from collections.abc import AsyncIterator
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Load environment variables into os.environ before anything else (critical for LangSmith)
+_env_path = Path(__file__).resolve().parents[2] / ".env"
+load_dotenv(dotenv_path=_env_path)
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware

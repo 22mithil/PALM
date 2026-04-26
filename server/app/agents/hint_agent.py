@@ -195,13 +195,13 @@ class HintAgent(BaseAgent):
     # ── Tier resolution ──────────────────────────────────────────────
 
     @staticmethod
-    def _resolve_tier(last_responses: list[str]) -> int:
+    def _resolve_tier(last_responses: list[dict[str, str]]) -> int:
         """Count prior hints in history to determine current tier.
 
         Returns 1, 2, or 3.
         """
         prior_hints = sum(
-            1 for r in last_responses if r.strip().startswith(HINT_TAG)
+            1 for r in last_responses if r.get("role") == "assistant" and r.get("content", "").strip().startswith(HINT_TAG)
         )
 
         if prior_hints == 0:
@@ -232,8 +232,8 @@ class HintAgent(BaseAgent):
 
         # Prior hint context (so LLM doesn't repeat itself)
         prior_hints = [
-            r for r in state.last_responses
-            if r.strip().startswith(HINT_TAG)
+            r.get("content", "") for r in state.last_responses
+            if r.get("role") == "assistant" and r.get("content", "").strip().startswith(HINT_TAG)
         ]
         if prior_hints:
             parts.append(
@@ -260,7 +260,7 @@ class HintAgent(BaseAgent):
             "emotion": state.emotion.label,
             "prior_hints": sum(
                 1 for r in state.last_responses
-                if r.strip().startswith(HINT_TAG)
+                if r.get("role") == "assistant" and r.get("content", "").strip().startswith(HINT_TAG)
             ),
         }
 
