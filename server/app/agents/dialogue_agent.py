@@ -1,238 +1,124 @@
 """
-Dialogue Agent — conversational Socratic tutor.
+Dialogue Agent — sole output generator.
 
-Generates friendly, age-appropriate responses that encourage
-the student to *think* rather than passively receive answers.
-Uses the student's emotional state, mastery level, and recent
-conversation history to calibrate tone and complexity.
-
-Flow:
-    1. Build a dynamic system prompt tuned to grade + emotion + mastery
-    2. Assemble conversation history from last_responses
-    3. Call LLM via FastRouter
-    4. Return AgentResponse
-
-Usage::
-
-    from app.agents.dialogue_agent import dialogue_agent
-
-    response = await dialogue_agent(state_prompt)
-    print(response.text)
+Runs unconditionally as the last agent. Reads orchestrator_intent.goal
+and all non-null agent_outputs, then synthesizes a single student-facing
+message. This is the ONLY agent that writes to state.final_message.
 """
 
 import logging
-from typing import Any
 
-from app.agents.base import BaseAgent, AgentResponse
 from app.integrations.fastrouter.llm import generate_response
-from app.schemas.state_prompt import StatePrompt
+from app.pipeline.state import TurnState
 
 logger = logging.getLogger(__name__)
 
+_SYSTEM_PROMPT = """\
+You are Pal, a warm and friendly AI math tutor for Grade {grade} primary school students.
 
-# ── System Prompt ────────────────────────────────────────────────────────
+Your job is to synthesize a single, cohesive response to the student.
+You will receive:
+- The orchestrator's goal (what you should accomplish this turn)
+- Outputs from other agents (hints, quiz questions, corrections, encouragement)
+- The current section's content for reference
+- Recent conversation history
 
-SYSTEM_PROMPT = """\
-You are Pal, a warm and encouraging AI math tutor for primary school \
-students (Grades 1–5).
-
-## Core Principles
-- **Socratic method**: Guide students with questions, never blurt out answers.
-- **Warmth first**: Be kind, patient, and celebratory of effort.
-- **Age-appropriate language**: Match vocabulary and sentence length to the \
-student's grade level.
-- **Never harsh**: No sarcasm, no criticism. Mistakes are learning opportunities.
-- **Brevity**: Keep responses under 250 words unless a worked example is needed.
-
-## Tone Rules
-- Use 1–2 encouraging emojis per response (e.g. ⭐, 🎉, 💡, 🤔).
-- Praise effort, not just correctness ("Great thinking!" not just "Correct!").
-- When the student is wrong, say "Hmm, let's think about this together…" \
-  instead of "That's wrong."
-- When the student is confused, simplify and offer a concrete example.
-- When the student is bored/disengaged, inject curiosity ("Did you know…?").
-
-## Math Formatting
-- Use LaTeX delimiters ($$...$$) for all math expressions.
-- Show step-by-step work when helping with a problem.\
+Rules:
+1. Weave all agent outputs into ONE natural, conversational message.
+2. Write in plain prose — no bullet points, no numbered lists.
+3. Use warm, grade-appropriate language. Imagine talking to a {grade}-year-old.
+4. Keep the response under 150 words unless explaining a concept for the first time.
+5. Use 1–2 emojis maximum.
+6. If introducing a concept (goal mentions "introduce"), use the section's explanation.
+7. If a quiz question is provided, present it naturally — don't just dump it.
+8. If a correction is provided, incorporate it gently.
+9. If encouragement is provided, blend it naturally at the start.
+10. Never say "the agent said" or reference internal systems.
+11. Address the student directly with "you".
+12. Format math with $$ for LaTeX when needed.\
 """
 
-# ── Emotion-aware prompt fragments ───────────────────────────────────────
+_USER_TEMPLATE = """\
+GOAL: {goal}
 
-_EMOTION_HINTS: dict[str, str] = {
-    "happy": (
-        "The student seems happy and engaged. Match their energy, "
-        "keep the momentum going, and introduce slightly more challenge."
-    ),
-    "confused": (
-        "The student appears confused. Slow down, use simpler language, "
-        "provide a concrete example, and ask a single guiding question."
-    ),
-    "sad": (
-        "The student seems sad or frustrated. Be extra gentle and "
-        "encouraging. Celebrate any small progress they've made."
-    ),
-    "angry": (
-        "The student appears frustrated or angry. Acknowledge their "
-        "feelings, keep things calm, and offer to try a different approach."
-    ),
-    "surprised": (
-        "The student seems surprised. Use this as a teaching moment — "
-        "explore what surprised them and build understanding from it."
-    ),
-    "bored": (
-        "The student appears disengaged or bored. Make the topic more "
-        "interesting with a fun fact, a real-world connection, or a "
-        "mini-challenge."
-    ),
-    "fearful": (
-        "The student seems anxious. Reassure them that making mistakes "
-        "is okay and part of learning. Keep the question very simple."
-    ),
-}
+SECTION: {section_title} — {concept}
+SECTION EXPLANATION: {explanation}
+
+AGENT OUTPUTS:
+{agent_outputs}
+
+SESSION SUMMARY: {summary}
+
+RECENT CONVERSATION:
+{recent}
+
+STUDENT'S MESSAGE: {student_message}
+
+Generate your response to the student.\
+"""
 
 
-# ── Agent ────────────────────────────────────────────────────────────────
+async def run_dialogue(state: TurnState) -> None:
+    """Synthesize the final student-facing message."""
+    # Collect agent outputs
+    outputs_parts = []
+    ao = state.agent_outputs
+    if ao.hint:
+        outputs_parts.append(f"[HINT]: {ao.hint}")
+    if ao.quiz:
+        outputs_parts.append(f"[QUIZ]: {ao.quiz}")
+    if ao.correction:
+        outputs_parts.append(f"[CORRECTION]: {ao.correction}")
+    if ao.encouragement:
+        outputs_parts.append(f"[ENCOURAGEMENT]: {ao.encouragement}")
+    if ao.engagement:
+        outputs_parts.append(f"[ENGAGEMENT]: {ao.engagement}")
 
+    agent_outputs_text = "\n".join(outputs_parts) if outputs_parts else "(none)"
 
-class DialogueAgent(BaseAgent):
-    """Socratic dialogue agent for conversational tutoring.
+    # Section info
+    section_title = ""
+    concept = ""
+    explanation = ""
+    if state.current_section:
+        section_title = state.current_section.title
+        concept = state.current_section.concept
+        explanation = state.current_section.explanation[:500]
 
-    Adapts tone and complexity based on the student's emotion,
-    mastery level, and grade.
-    """
+    # Recent conversation
+    recent = ""
+    for msg in state.last_10_messages[-6:]:
+        role = msg.get("role", "?")
+        content = msg.get("content", "")[:200]
+        recent += f"  {role}: {content}\n"
+    if not recent:
+        recent = "  (first message of session)"
 
-    name = "dialogue_agent"
+    goal = state.orchestrator_intent.goal or "Continue the conversation"
 
-    def __init__(
-        self,
-        *,
-        temperature: float = 0.8,
-        max_tokens: int = 1024,
-        model: str | None = None,
-    ) -> None:
-        self.temperature = temperature
-        self.max_tokens = max_tokens
-        self.model = model
-
-    # ── BaseAgent interface ──────────────────────────────────────────
-
-    async def run(self, state: StatePrompt) -> AgentResponse:
-        """Generate a Socratic conversational response.
-
-        Parameters
-        ----------
-        state : StatePrompt
-            Validated context snapshot from the Context Aggregator.
-
-        Returns
-        -------
-        AgentResponse
-            Friendly, age-appropriate dialogue response.
-        """
-        query = state.query
-
-        if not query.strip():
-            return self.respond(
-                text="",
-                metadata={"skipped": True, "reason": "empty_query"},
-            )
-
-        # ── Build messages ───────────────────────────────────────────
-        system = self._build_system_prompt(state)
-        messages = self._build_messages(system, state)
-
-        # ── Call LLM ─────────────────────────────────────────────────
-        answer = await generate_response(
-            query,
-            messages=messages,
-            model=self.model,
-            temperature=self.temperature,
-            max_tokens=self.max_tokens,
+    try:
+        text = await generate_response(
+            _USER_TEMPLATE.format(
+                goal=goal,
+                section_title=section_title,
+                concept=concept,
+                explanation=explanation,
+                agent_outputs=agent_outputs_text,
+                summary=state.session_summary or "(none)",
+                recent=recent,
+                student_message=state.student_message or "(session start — introduce yourself and the concept)",
+            ),
+            system_prompt=_SYSTEM_PROMPT.format(grade=state.grade),
+            temperature=0.7,
+            max_tokens=512,
         )
-
-        return self.respond(
-            text=answer,
-            metadata=self._build_metadata(state),
+        state.final_message = text
+        logger.info("Dialogue agent: generated %d chars", len(text))
+    except Exception:
+        logger.exception("Dialogue agent failed — using fallback")
+        state.final_message = (
+            "That's a great question! 🌟 "
+            "Let me think about the best way to explain this. "
+            "Can you tell me what part is most confusing? "
+            "We'll figure it out together! 💪"
         )
-
-    # ── Prompt construction ──────────────────────────────────────────
-
-    def _build_system_prompt(self, state: StatePrompt) -> str:
-        """Assemble a dynamic system prompt based on student state."""
-        parts: list[str] = [SYSTEM_PROMPT]
-
-        # Grade-level calibration
-        parts.append(
-            f"\n## Current Student Context\n"
-            f"- Grade level: {state.difficulty_level}\n"
-            f"- Topic: {state.current_topic}"
-        )
-
-        # Mastery-aware scaffolding
-        if state.mastery_score < 0.3:
-            parts.append(
-                "- Mastery: LOW — use very simple language, "
-                "break problems into tiny steps, lots of encouragement."
-            )
-        elif state.mastery_score < 0.7:
-            parts.append(
-                "- Mastery: MODERATE — student has some understanding. "
-                "Use guiding questions to deepen their knowledge."
-            )
-        else:
-            parts.append(
-                "- Mastery: HIGH — student is doing well! "
-                "Challenge them with extension questions or connections."
-            )
-
-        # Emotion-aware tone
-        emotion_label = state.emotion.label.lower()
-        if emotion_label in _EMOTION_HINTS and state.emotion.confidence > 0.4:
-            parts.append(f"- Emotion guidance: {_EMOTION_HINTS[emotion_label]}")
-
-        # Gaze awareness
-        if state.gaze == "off_screen":
-            parts.append(
-                "- The student appears to be looking away. "
-                "Re-engage them with a direct, interesting question."
-            )
-
-        return "\n".join(parts)
-
-    @staticmethod
-    def _build_messages(
-        system: str,
-        state: StatePrompt,
-    ) -> list[dict[str, str]]:
-        """Assemble the full message list for the LLM call.
-
-        Includes conversation history from ``last_responses`` to
-        maintain continuity.
-        """
-        messages: list[dict[str, str]] = [
-            {"role": "system", "content": system},
-        ]
-
-        # Inject recent conversation history as alternating turns
-        for msg in state.last_responses:
-            messages.append({"role": msg["role"], "content": msg["content"]})
-
-        # Current student query
-        messages.append({"role": "user", "content": state.query})
-
-        return messages
-
-    @staticmethod
-    def _build_metadata(state: StatePrompt) -> dict[str, Any]:
-        return {
-            "topic": state.current_topic,
-            "grade": state.difficulty_level,
-            "emotion": state.emotion.label,
-            "emotion_confidence": state.emotion.confidence,
-            "mastery_score": state.mastery_score,
-        }
-
-
-# ── Singleton ────────────────────────────────────────────────────────────
-dialogue_agent = DialogueAgent()

@@ -1,11 +1,5 @@
 """
 PALM — FastAPI Application Entrypoint
-
-Creates the FastAPI app with:
-- CORS middleware
-- API v1 router
-- Health check endpoint
-- Startup/shutdown lifecycle events for DB connection
 """
 
 import logging
@@ -15,7 +9,6 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# Load environment variables into os.environ before anything else (critical for LangSmith)
 _env_path = Path(__file__).resolve().parents[2] / ".env"
 load_dotenv(dotenv_path=_env_path)
 
@@ -30,7 +23,6 @@ from app.api.v1.websockets.audio_ws import router as audio_ws_router
 from app.api.v1.websockets.tutor_ws import router as tutor_ws_router
 from app.db.session import async_engine, async_session_factory
 
-# ── Configure logging so all app.* loggers output to terminal ────────────
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s  %(name)s  %(levelname)s  %(message)s",
@@ -39,15 +31,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-# ── Lifecycle ────────────────────────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-    """Startup / shutdown lifecycle.
-
-    - On startup: verify DB connectivity.
-    - On shutdown: dispose the engine connection pool.
-    """
-    # ── Startup ──────────────────────────────────────────────────────
     logger.info("Starting PALM server …")
     try:
         async with async_engine.connect() as conn:
@@ -60,47 +45,39 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
             "Could not connect to the database. Check DATABASE_URL."
         ) from exc
 
-    yield  # ← app is running
+    yield
 
-    # ── Shutdown ─────────────────────────────────────────────────────
     logger.info("Shutting down PALM server …")
     await async_engine.dispose()
     logger.info("Database connection pool disposed.")
 
 
-# ── App Factory ──────────────────────────────────────────────────────────
 def create_app() -> FastAPI:
-    """Build and return the configured FastAPI application."""
-
     app = FastAPI(
         title=settings.PROJECT_NAME,
         description="Personalized Adaptive Learning Mentor — AI tutoring API",
-        version="0.1.0",
+        version="0.2.0",
         openapi_url=f"{settings.API_V1_STR}/openapi.json",
         docs_url="/docs",
         redoc_url="/redoc",
         lifespan=lifespan,
     )
 
-    # ── CORS ─────────────────────────────────────────────────────────
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],          # Tighten in production
+        allow_origins=["*"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
 
-    # ── Routers ──────────────────────────────────────────────────────
     app.include_router(api_v1_router, prefix=settings.API_V1_STR)
     app.include_router(video_ws_router, tags=["Video WebSocket"])
     app.include_router(audio_ws_router, tags=["Audio WebSocket"])
     app.include_router(tutor_ws_router, tags=["Tutor WebSocket"])
 
-    # ── Health Check ─────────────────────────────────────────────────
     @app.get("/health", tags=["Health"])
     async def health_check():
-        """Basic liveness probe. Returns DB connectivity status."""
         try:
             async with async_session_factory() as session:
                 await session.execute(text("SELECT 1"))

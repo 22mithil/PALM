@@ -17,7 +17,7 @@ export async function getTopics(grade) {
     headers: headers(),
   });
   if (!res.ok) return [];
-  return res.json(); // [{ id, grade, topic, subtopic, difficulty, description }]
+  return res.json(); // [{ id, grade, topic, subject, section_count }]
 }
 
 // ── Auth ────────────────────────────────────────────────────────────────
@@ -44,14 +44,14 @@ export async function login({ email, password }) {
   return data; // { access_token, token_type, student }
 }
 
-// ── Mastery ─────────────────────────────────────────────────────────────
+// ── Mastery / Progress ──────────────────────────────────────────────────
 
 export async function getMastery(studentId, token) {
   const res = await fetch(`${API}/mastery/${studentId}`, {
     headers: headers(token),
   });
   if (!res.ok) return [];
-  return res.json(); // [{ topic, grade, score, attempts, last_updated }]
+  return res.json(); // [{ chapter_id, current_section_id, section_statuses, completion_percent, last_updated }]
 }
 
 // ── Sessions ────────────────────────────────────────────────────────────
@@ -61,7 +61,7 @@ export async function getStudentSessions(studentId, token) {
     headers: headers(token),
   });
   if (!res.ok) return [];
-  return res.json(); // [{ id, grade, topic, started_at, ended_at, total_turns, summary }]
+  return res.json(); // [{ id, chapter_id, grade, started_at, turn_count, session_summary }]
 }
 
 export async function getSessionEvents(sessionId, token) {
@@ -69,14 +69,22 @@ export async function getSessionEvents(sessionId, token) {
     headers: headers(token),
   });
   if (!res.ok) return [];
-  return res.json(); // [{ event_type, query_text, response_text, agent_used, ... }]
+  return res.json(); // [{ role, content }] — last_10_messages JSONB
 }
 
 export async function createSession({ studentId, grade, topic }, token) {
+  // Find chapter_id from topic name — fetch topics first
+  let chapter_id = 2; // default: Fractions
+  try {
+    const topics = await getTopics(grade);
+    const match = topics.find((t) => t.topic === topic);
+    if (match) chapter_id = match.id;
+  } catch (_) {}
+
   const res = await fetch(`${API}/sessions/`, {
     method: "POST",
     headers: headers(token),
-    body: JSON.stringify({ student_id: studentId, grade, topic }),
+    body: JSON.stringify({ student_id: studentId, grade, chapter_id }),
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data.detail || "Failed to create session");
@@ -84,19 +92,37 @@ export async function createSession({ studentId, grade, topic }, token) {
 }
 
 export async function endSession(sessionId, { durationSeconds, masteryScore, summary } = {}, token) {
-  const body = {};
-  if (durationSeconds != null) body.duration_seconds = durationSeconds;
-  if (masteryScore != null) body.mastery_score = masteryScore;
-  if (summary) body.summary = summary;
+  // End session is now a no-op PATCH — session data is already persisted by the pipeline.
+  // We keep the call so the frontend doesn't break, but there's nothing to update.
+  // Just return the session data.
+  try {
+    const res = await fetch(`${API}/sessions/${sessionId}`, {
+      headers: headers(token),
+    });
+    if (res.ok) return res.json();
+  } catch (_) {}
+  return {};
+}
 
-  const res = await fetch(`${API}/sessions/${sessionId}/end`, {
-    method: "PATCH",
-    headers: headers(token),
-    body: JSON.stringify(body),
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.detail || "Failed to end session");
-  return data;
+// ── Chat History ────────────────────────────────────────────────────────
+
+export async function getChatHistory(studentId, chapterId, token) {
+  // Fetch all sessions for this student, filter by chapter, collect messages
+  const sessions = await getStudentSessions(studentId, token);
+  const chapterSessions = sessions.filter((s) => s.chapter_id === chapterId);
+
+  const allMessages = [];
+  for (const sess of chapterSessions) {
+    const events = await getSessionEvents(sess.id, token);
+    if (events && events.length > 0) {
+      allMessages.push({
+        sessionId: sess.id,
+        startedAt: sess.started_at,
+        messages: events,
+      });
+    }
+  }
+  return allMessages; // [{ sessionId, startedAt, messages: [{role, content}] }]
 }
 
 // ── Student ─────────────────────────────────────────────────────────────

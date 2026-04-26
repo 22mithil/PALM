@@ -58,7 +58,7 @@ const Dashboard = () => {
     if (!studentId) return;
     getMastery(studentId, token).then((scores) => {
       const map = {};
-      scores.forEach((s) => { map[s.topic] = Math.round(s.score * 100); });
+      scores.forEach((s) => { map[s.chapter_id] = Math.round(s.completion_percent || 0); });
       setMasteryMap(map);
     }).catch(() => {});
     getStudentSessions(studentId, token).then((sessions) => {
@@ -71,20 +71,19 @@ const Dashboard = () => {
 
   // Enrich topics with mastery data
   const enrichedTopics = useMemo(() => {
-    const startedSet = new Set(allSessions.map(s => s.topic));
+    const startedChapters = new Set(allSessions.map(s => s.chapter_id));
     return topics.map((t) => {
-      const m = masteryMap[t.topic] ?? 0;
-      const hasStarted = startedSet.has(t.topic);
+      const m = masteryMap[t.id] ?? 0;
+      const hasStarted = startedChapters.has(t.id);
       const status = m >= 100 ? "completed" : (m > 0 || hasStarted) ? "inprogress" : "notstarted";
-      const diff = diffLabel(t.difficulty || 2);
       return {
         id: t.id,
         name: t.topic,
-        description: t.description || "",
-        difficulty: diff,
+        description: "",
+        difficulty: "Medium",
         status,
         mastery: m,
-        recommended: m > 0 && m < 50, // recommend topics in progress but low
+        recommended: m > 0 && m < 50,
       };
     });
   }, [topics, masteryMap, allSessions]);
@@ -109,19 +108,23 @@ const Dashboard = () => {
 
   // Format recent sessions for display
   const displaySessions = useMemo(() => {
+    // Build chapter_id → topic name lookup
+    const chapterNames = {};
+    topics.forEach((t) => { chapterNames[t.id] = t.topic; });
+
     return recentSessions.map((s, i) => {
       const started = s.started_at ? new Date(s.started_at) : new Date();
       const days = Math.max(1, Math.round((Date.now() - started.getTime()) / 86400000));
       return {
         id: s.id || i,
-        topic: s.topic || "Practice",
+        topic: chapterNames[s.chapter_id] || "Practice",
         days,
-        mins: s.duration_seconds ? Math.round(s.duration_seconds / 60) : 0,
-        questions: s.total_turns || 0,
-        status: s.performance_result || "Completed",
+        mins: 0,
+        questions: s.turn_count || 0,
+        status: s.session_summary ? "Completed" : "In Progress",
       };
     });
-  }, [recentSessions]);
+  }, [recentSessions, topics]);
 
   // Animations
   const [animatedOverall, setAnimatedOverall] = useState(0);

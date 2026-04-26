@@ -1,0 +1,269 @@
+[
+  {
+    "chapter_id": 2,
+    "chapter_name": "Fractions",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": [
+      "ch2_s1",
+      "ch2_s2",
+      "ch2_s3",
+      "ch2_s4",
+      "ch2_s5",
+      "ch2_s6",
+      "ch2_s7"
+    ]
+  },
+  {
+    "section_id": "ch2_s1",
+    "chapter_id": 2,
+    "order": 1,
+    "concept": "fraction_of_a_whole",
+    "title": "What Is a Fraction?",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "A fraction represents a part of a whole. The whole must always be the same size when you are comparing fractions. The bottom number (denominator) tells you how many equal parts the whole is cut into, and the top number (numerator) tells you how many of those parts you are taking.",
+    "examples": [
+      "Tamanna cuts a small chocolate into 2 equal parts and takes 1. She has 1/2 of that chocolate.",
+      "A larger chocolate is cut into 3 equal parts and she takes 1. She has 1/3 of that chocolate. Even though 1/3 looks smaller as a number, the actual piece could be bigger if the chocolate was bigger.",
+      "To compare 1/2 and 1/3 fairly, both fractions must come from the same size whole — you cannot compare fractions of different sized wholes."
+    ],
+    "common_misconceptions": [
+      "Students think 1/3 is always smaller than 1/2 without checking if the wholes are the same size.",
+      "Students confuse the numerator and denominator — they think the bottom number is how many parts you have taken."
+    ],
+    "hint_progression": [
+      "Think about what the bottom number of a fraction tells you. If you cut a pizza into 3 equal slices, what does each slice represent?",
+      "The bottom number tells you how many equal parts the whole is divided into. The top number tells you how many parts you have. So 1/3 means 1 part out of 3 equal parts.",
+      "Draw two equal-sized rectangles. Divide the first into 2 equal parts and shade 1. Divide the second into 3 equal parts and shade 1. The shaded part in the first rectangle is 1/2 and in the second is 1/3. Which shaded part is bigger?"
+    ],
+    "quiz_questions": [
+      {
+        "question": "A pizza is cut into 4 equal slices and you eat 1 slice. What fraction of the pizza did you eat?",
+        "answer": "1/4",
+        "explanation": "The pizza is divided into 4 equal parts (denominator = 4) and you took 1 part (numerator = 1), so you ate 1/4 of the pizza."
+      },
+      {
+        "question": "True or False: 1/2 of a small chocolate is always bigger than 1/3 of a large chocolate.",
+        "answer": "False",
+        "explanation": "It depends on the size of the whole. To compare fractions meaningfully, the wholes must be the same size. 1/3 of a very large chocolate could easily be bigger than 1/2 of a tiny one."
+      }
+    ]
+  },
+  {
+    "section_id": "ch2_s2",
+    "chapter_id": 2,
+    "order": 2,
+    "concept": "equivalent_fractions",
+    "title": "Equivalent Fractions",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["fraction_of_a_whole"],
+    "explanation": "Equivalent fractions are different fractions that represent the same part of a whole. You can make an equivalent fraction by multiplying or dividing both the numerator and the denominator by the same number. For example, 1/3 and 2/6 look different but they shade the exact same portion of a whole.",
+    "examples": [
+      "1/2 = 2/4 = 3/6 = 4/8. Each of these fractions covers exactly half of the whole, just divided into more pieces.",
+      "1/3 = 2/6 = 3/9 = 4/12. Sameer shaded 1/3 of a rectangle, then drew extra lines to split it into 6 parts — now the same shaded area shows 2/6.",
+      "To find an equivalent fraction for 2/5, multiply both numbers by 2: 2×2 = 4 and 5×2 = 10, so 2/5 = 4/10."
+    ],
+    "common_misconceptions": [
+      "Students think you can add the same number to numerator and denominator to get an equivalent fraction (e.g., adding 1 to both: 1/3 becomes 2/4, which is wrong).",
+      "Students confuse equivalent fractions with equal fractions — they think only fractions that look the same (like 2/4 and 2/4) are equivalent."
+    ],
+    "hint_progression": [
+      "Look at the fraction 1/2. If you cut each of those 2 pieces into 2 smaller pieces, how many pieces does the whole have now? And how many pieces do you have?",
+      "Cutting each piece in half doubles both the total number of pieces and your share. So 1 piece out of 2 becomes 2 pieces out of 4. Both still cover half the whole. This is why 1/2 = 2/4.",
+      "To find any equivalent fraction, multiply the top and bottom by the same number. For 1/3: multiply both by 3 to get 3/9. Multiply both by 4 to get 4/12. The key rule: whatever you do to the bottom, do the same to the top."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Fill in the blank: 3/4 = ?/16",
+        "answer": "12",
+        "explanation": "To go from denominator 4 to 16, you multiply by 4. So you must also multiply the numerator by 4: 3 × 4 = 12. Therefore 3/4 = 12/16."
+      },
+      {
+        "question": "Are 4/12 and 2/6 equivalent? How do you know?",
+        "answer": "Yes",
+        "explanation": "Divide both numbers in 4/12 by 2: 4÷2 = 2 and 12÷2 = 6, giving 2/6. Since you applied the same operation to both numbers, the fractions are equivalent."
+      }
+    ]
+  },
+  {
+    "section_id": "ch2_s3",
+    "chapter_id": 2,
+    "order": 3,
+    "concept": "comparing_fractions_same_denominator",
+    "title": "Comparing Fractions with the Same Denominator",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["fraction_of_a_whole", "equivalent_fractions"],
+    "explanation": "When two fractions have the same denominator, they are cut from the same sized pieces. The fraction with the bigger numerator is larger because you simply have more of those same-sized pieces.",
+    "examples": [
+      "Sevi ate 1/3 of a chikki and Shami ate 2/3. Both fractions use pieces of the same size (thirds). Shami has 2 pieces versus Sevi's 1 piece, so 2/3 > 1/3.",
+      "Comparing 5/7 and 2/7: both use sevenths. Since 5 > 2, we know 5/7 > 2/7.",
+      "Comparing 3/8 and 7/8: both use eighths. Since 7 > 3, we know 7/8 > 3/8."
+    ],
+    "common_misconceptions": [
+      "Students sometimes try to compare the denominators when they are the same, looking for a difference that is not there.",
+      "Students think fractions with bigger numbers are always bigger — forgetting that the denominator determines piece size."
+    ],
+    "hint_progression": [
+      "When two fractions have the same bottom number, what does that tell you about the size of each piece?",
+      "Same denominator means every piece is the same size. So 3/8 and 7/8 are both made of eighths — the same size of piece. Which number tells you how many pieces you have?",
+      "The numerator (top number) tells you how many pieces you have. Since both fractions use the same size of piece, more pieces simply means more. So compare just the numerators: 7 > 3, therefore 7/8 > 3/8."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Which is greater: 5/10 or 6/10? Use < or > to write your answer.",
+        "answer": "5/10 < 6/10",
+        "explanation": "Both fractions use tenths, so the pieces are the same size. 6 pieces is more than 5 pieces, so 6/10 is greater."
+      },
+      {
+        "question": "True or False: 7/8 > 3/8 because 7 > 3.",
+        "answer": "True",
+        "explanation": "When denominators are the same, you only need to compare numerators. 7 > 3, and both fractions use eighths, so 7/8 is greater."
+      }
+    ]
+  },
+  {
+    "section_id": "ch2_s4",
+    "chapter_id": 2,
+    "order": 4,
+    "concept": "comparing_fractions_same_numerator",
+    "title": "Comparing Fractions with the Same Numerator",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["fraction_of_a_whole", "comparing_fractions_same_denominator"],
+    "explanation": "When two fractions have the same numerator, you have the same count of pieces from each fraction. But the size of each piece depends on the denominator — a larger denominator means the whole is cut into more pieces, so each piece is smaller. Therefore, the fraction with the larger denominator is actually smaller.",
+    "examples": [
+      "Sevi ate 4/6 paratha and Shami ate 4/5 paratha. Both ate 4 pieces. But 1/6 is a smaller piece than 1/5 because sixths are cut from more parts. So 4/6 < 4/5.",
+      "Comparing 3/7 and 3/8: you have 3 pieces of each. But eighths are smaller pieces than sevenths. So 3/8 < 3/7.",
+      "Comparing 2/5 and 2/7: sevenths are smaller pieces than fifths, so 2/7 < 2/5."
+    ],
+    "common_misconceptions": [
+      "Students think a bigger denominator means a bigger fraction because they see a larger number.",
+      "Students apply the same-denominator rule (bigger numerator = bigger fraction) incorrectly to same-numerator comparisons."
+    ],
+    "hint_progression": [
+      "If you cut a pizza into 5 slices and another into 8 slices, which slices are bigger?",
+      "More cuts means smaller pieces — so eighths are smaller than fifths. If you take 3 slices from each pizza, which gives you more pizza: 3 large slices or 3 small slices?",
+      "3 large slices (fifths) is more than 3 small slices (eighths). So when numerators are the same, the fraction with the smaller denominator is actually larger. 3/5 > 3/8."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Which is greater: 4/9 or 4/10? Write your answer using < or >.",
+        "answer": "4/9 > 4/10",
+        "explanation": "Both fractions have 4 pieces. Ninths are larger pieces than tenths because 9 cuts create bigger portions than 10 cuts. So 4 ninths is more than 4 tenths."
+      },
+      {
+        "question": "Raju ate 6/9 of a roti and Priya ate 6/10 of the same sized roti. Who ate more?",
+        "answer": "Raju",
+        "explanation": "Both ate 6 pieces. But ninths are bigger pieces than tenths, so 6/9 > 6/10. Raju ate more."
+      }
+    ]
+  },
+  {
+    "section_id": "ch2_s5",
+    "chapter_id": 2,
+    "order": 5,
+    "concept": "fractions_greater_than_one",
+    "title": "Fractions Greater Than 1",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["fraction_of_a_whole", "equivalent_fractions"],
+    "explanation": "When the numerator is larger than the denominator, the fraction is greater than 1. This means you have more than one whole. These are called improper fractions and can also be written as mixed numbers — a whole number part plus a fraction part.",
+    "examples": [
+      "Maa took 5 pieces of 1/2 paratha. 5/2 = 2 + 1/2 = 2 and 1/2 parathas. She ate more than 2 whole parathas.",
+      "Dadaji took 9 pieces of 1/4 paratha. 9/4 = 2 + 1/4 = 2 and 1/4 parathas. On a number line, you count 9 steps of 1/4 each, landing at 9/4 which is past the 2 mark.",
+      "6/2 = 3 exactly (a whole number), because 6 halves make exactly 3 wholes. 7/2 = 3 and 1/2."
+    ],
+    "common_misconceptions": [
+      "Students think a fraction must always be less than 1 — they do not recognise 5/2 or 9/4 as valid fractions.",
+      "Students confuse the mixed number format — they write 2 1/4 and think it means 2 × 1/4 instead of 2 + 1/4."
+    ],
+    "hint_progression": [
+      "If you have 5 half-pieces of paratha, can you put any of them together to make full parathas? How many full parathas can you make?",
+      "Every 2 halves make 1 whole paratha. So in 5 halves: 2 halves = 1 whole, another 2 halves = another whole. That is 2 whole parathas with 1 half left over. So 5/2 = 2 and 1/2.",
+      "Divide the numerator by the denominator. 5 ÷ 2 = 2 remainder 1. The quotient (2) is the whole number part and the remainder (1) goes back over the denominator (2). So 5/2 = 2 and 1/2."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Radhika ate 7 pieces of 1/4 paratha. Write this as a mixed number.",
+        "answer": "1 and 3/4",
+        "explanation": "7 ÷ 4 = 1 remainder 3. So 7/4 = 1 whole and 3/4 remaining = 1 and 3/4 parathas."
+      },
+      {
+        "question": "Which of these fractions is greater than 1: 7/9, 9/7, 5/5, 3/4?",
+        "answer": "9/7 and 5/5",
+        "explanation": "A fraction is greater than 1 when the numerator is larger than the denominator. 9/7 has numerator 9 > denominator 7, so it is greater than 1. 5/5 equals exactly 1. 7/9 and 3/4 are less than 1."
+      }
+    ]
+  },
+  {
+    "section_id": "ch2_s6",
+    "chapter_id": 2,
+    "order": 6,
+    "concept": "comparing_fractions_reference_to_one",
+    "title": "Comparing Fractions Using 1 as a Reference",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["fractions_greater_than_one", "comparing_fractions_same_denominator"],
+    "explanation": "When two fractions have different numerators and denominators, one useful strategy is to check whether each fraction is less than 1, equal to 1, or greater than 1. If one fraction is less than 1 and the other is greater than 1, you immediately know which is bigger without needing any calculation.",
+    "examples": [
+      "Sevi ate 7/8 paratha and Shami ate 8/6 paratha. 7/8 is less than 1 (numerator < denominator). 8/6 is greater than 1 (numerator > denominator). So 7/8 < 8/6 immediately.",
+      "Comparing 8/7 and 9/15: 8/7 > 1 (numerator > denominator). 9/15 < 1 (numerator < denominator). So 8/7 > 9/15.",
+      "Comparing 6/6 and 19/12: 6/6 = 1 exactly. 19/12 > 1. So 6/6 < 19/12."
+    ],
+    "common_misconceptions": [
+      "Students try to find a common denominator even when a simple reference-to-1 check would immediately solve the comparison.",
+      "Students forget that a fraction equals exactly 1 when the numerator and denominator are the same (like 6/6 or 8/8)."
+    ],
+    "hint_progression": [
+      "Look at the two fractions. For each one, is the top number smaller than, equal to, or bigger than the bottom number?",
+      "If the top number is smaller than the bottom number, the fraction is less than 1. If the top is bigger, the fraction is greater than 1. Can you use this to compare them without doing any calculation?",
+      "One fraction is less than 1 and the other is greater than 1. A number that is greater than 1 is always bigger than a number that is less than 1. So you can write the answer directly."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Compare 13/20 and 17/15 using 1 as a reference. Which is greater?",
+        "answer": "17/15",
+        "explanation": "13/20: numerator 13 < denominator 20, so 13/20 < 1. 17/15: numerator 17 > denominator 15, so 17/15 > 1. A number greater than 1 is always bigger than one less than 1. So 17/15 > 13/20."
+      },
+      {
+        "question": "True or False: 12/9 > 4/5 because 12/9 is greater than 1 and 4/5 is less than 1.",
+        "answer": "True",
+        "explanation": "12/9 has numerator 12 > denominator 9, so it is greater than 1. 4/5 has numerator 4 < denominator 5, so it is less than 1. Any number above 1 is larger than any number below 1."
+      }
+    ]
+  },
+  {
+    "section_id": "ch2_s7",
+    "chapter_id": 2,
+    "order": 7,
+    "concept": "comparing_fractions_reference_to_half",
+    "title": "Comparing Fractions Using 1/2 as a Reference",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["equivalent_fractions", "comparing_fractions_reference_to_one"],
+    "explanation": "When both fractions are on the same side of 1 (both less than 1 or both greater than 1), using 1/2 as a reference can help. A fraction equals 1/2 when the numerator is exactly half the denominator. If one fraction is less than 1/2 and the other is more than 1/2, you can compare them without finding a common denominator.",
+    "examples": [
+      "3/6 = 1/2 exactly because 3 is half of 6. 5/8 is more than 1/2 because 4/8 = 1/2 and 5 > 4. So 5/8 > 3/6.",
+      "4/8 = 1/2 exactly. 3/8 < 1/2. 5/8 > 1/2.",
+      "To check if a fraction is more or less than 1/2: double the numerator and compare to the denominator. For 5/8: 5 × 2 = 10, which is more than 8, so 5/8 > 1/2. For 3/9: 3 × 2 = 6, which is less than 9, so 3/9 < 1/2."
+    ],
+    "common_misconceptions": [
+      "Students think 1/2 is the reference only when the denominator is even — they do not apply the doubling trick for odd denominators.",
+      "Students memorise that 2/4 = 1/2 but cannot identify that 3/7 is less than 1/2 or that 5/9 is greater than 1/2."
+    ],
+    "hint_progression": [
+      "What fraction is exactly equal to 1/2? How do you know when a fraction equals 1/2?",
+      "A fraction equals 1/2 when the numerator is exactly half the denominator. Try doubling the numerator of your fraction. Is the result less than, equal to, or greater than the denominator? This tells you whether the fraction is below, equal to, or above 1/2.",
+      "For fraction A: double the numerator and compare to denominator — this tells you if A is below or above 1/2. Do the same for fraction B. If one is below 1/2 and the other is above, the one above 1/2 is larger. Write your comparison."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Is 5/9 greater than or less than 1/2? Show your reasoning.",
+        "answer": "Greater than 1/2",
+        "explanation": "Double the numerator: 5 × 2 = 10. Compare to denominator: 10 > 9. Since double the numerator exceeds the denominator, 5/9 is greater than 1/2."
+      },
+      {
+        "question": "Compare 2/9 and 4/7 using 1/2 as reference. Which is greater?",
+        "answer": "4/7",
+        "explanation": "For 2/9: double numerator = 4, denominator = 9, 4 < 9, so 2/9 < 1/2. For 4/7: double numerator = 8, denominator = 7, 8 > 7, so 4/7 > 1/2. One is below 1/2 and the other is above, so 4/7 > 2/9."
+      }
+    ]
+  }
+]

@@ -12,7 +12,8 @@ import usePerceptionStream from "@/hooks/usePerceptionStream";
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
 import PerceptionHUD from "@/components/PerceptionHUD";
 
-import { getMastery, getStudentSessions, getSessionEvents, endSession } from "@/lib/api";
+import { getMastery, getStudentSessions, getSessionEvents, endSession, getChatHistory } from "@/lib/api";
+import { History } from "lucide-react";
 
 const VIDEO_CONSTRAINTS = {
   width: { ideal: 640 },
@@ -87,40 +88,49 @@ const Session = () => {
   const [sessionGrade, setSessionGrade] = useState(storeGrade || 3);
 
   // Fetch session info on mount
+  const [chapterId, setChapterId] = useState(null);
   useEffect(() => {
     if (!studentId || !sessionId) return;
-    getStudentSessions(studentId, token).then((sessions) => {
+    getStudentSessions(studentId, token).then(async (sessions) => {
       const match = sessions.find((s) => s.id === sessionId);
       if (match) {
-        setSessionTopic(match.topic || "Practice");
         setSessionGrade(match.grade || storeGrade);
+        setChapterId(match.chapter_id || 2);
+        // Resolve chapter name from topics
+        try {
+          const { getTopics } = await import("@/lib/api");
+          const topics = await getTopics(match.grade || storeGrade);
+          const topicMatch = topics.find((t) => t.id === match.chapter_id);
+          setSessionTopic(topicMatch ? topicMatch.topic : "Practice");
+        } catch (_) {
+          setSessionTopic("Practice");
+        }
       }
     }).catch(() => {});
   }, [sessionId, studentId, token, storeGrade]);
 
-  // Load previous chat history when resuming a session
-  const historyLoadedRef = useRef(false);
+  // New sessions always start fresh — no loading previous messages into chat
   const hasHistoryRef = useRef(false);
-  useEffect(() => {
-    if (!sessionId || historyLoadedRef.current) return;
-    historyLoadedRef.current = true;
-    getSessionEvents(sessionId, token).then((events) => {
-      if (!events || events.length === 0) return;
-      const restored = [];
-      for (const e of events) {
-        if (e.query_text) {
-          restored.push({ id: `h-q-${e.id}`, role: "student", text: e.query_text });
-        }
-        if (e.response_text) {
-          restored.push({ id: `h-r-${e.id}`, role: "tutor", text: e.response_text, meta: e.agent_used });
-        }
-      }
-      if (restored.length > 0) {
-        hasHistoryRef.current = true;
-        setMessages(restored);
-      }
-    }).catch(() => {});
-  }, [sessionId, token]);
+
+  // ── Chat history panel state ─────────────────────────────────────────
+  const [showHistory, setShowHistory] = useState(false);
+  const [chatHistory, setChatHistory] = useState([]);
+  const [historyLoading, setHistoryLoading] = useState(false);
+
+  const loadChatHistory = async () => {
+    if (!studentId || !chapterId) return;
+    setHistoryLoading(true);
+    try {
+      const history = await getChatHistory(studentId, chapterId, token);
+      // Filter out current session
+      const past = history.filter((h) => h.sessionId !== sessionId);
+      setChatHistory(past);
+    } catch (e) {
+      console.error("Failed to load history:", e);
+    } finally {
+      setHistoryLoading(false);
+    }
+  };
 
   // Timer — starts at 0
   const [elapsed, setElapsed] = useState(0);
@@ -327,12 +337,14 @@ const Session = () => {
   // ── Mastery — fetched from backend, updated live via WS ────
   const [mastery, setMastery] = useState(0);
   useEffect(() => {
-    if (!studentId || !topic) return;
+    if (!studentId) return;
     getMastery(studentId, token).then((scores) => {
-      const match = scores.find((s) => s.topic === topic);
-      if (match) setMastery(Math.round(match.score * 100));
+      // Find progress for current chapter
+      const chapId = chapterId || 2;
+      const match = scores.find((s) => s.chapter_id === chapId);
+      if (match) setMastery(Math.round(match.completion_percent || 0));
     }).catch(() => {});
-  }, [studentId, token, topic]);
+  }, [studentId, token, chapterId]);
 
   // hint
   const [hint, setHint] = useState(null);
@@ -395,7 +407,7 @@ const Session = () => {
       }
 
       if (msg.type === "response_complete") {
-        const { full_text, agent_used, mastery_delta } = msg.payload;
+        const { full_text, agent_used, completion_percent } = msg.payload;
         // Finalize the message with full text
         if (streamingIdRef.current) {
           const id = streamingIdRef.current;
@@ -403,9 +415,9 @@ const Session = () => {
             prev.map((m) => m.id === id ? { ...m, text: full_text, meta: agent_used } : m)
           );
         }
-        // Update mastery from delta
-        if (mastery_delta && mastery_delta !== 0) {
-          setMastery((prev) => Math.min(100, Math.max(0, Math.round(prev + mastery_delta * 100))));
+        // Update mastery from completion_percent
+        if (completion_percent != null) {
+          setMastery(Math.round(completion_percent));
         }
         // Speak the response via TTS if enabled
         if (isTtsEnabled && full_text) {
@@ -556,14 +568,18 @@ const Session = () => {
           <Button
             variant="outline"
             size="sm"
+            onClick={() => { loadChatHistory(); setShowHistory(true); }}
+          >
+            <History className="h-4 w-4 mr-1" /> History
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
             className="border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
             onClick={async () => {
-              ttsStop(); // Stop any ongoing TTS
+              ttsStop();
               try {
-                await endSession(sessionId, {
-                  durationSeconds: elapsed,
-                  masteryScore: mastery,
-                }, token);
+                await endSession(sessionId, {}, token);
               } catch (err) {
                 console.error("[Session] Failed to end session:", err);
               }
@@ -840,6 +856,85 @@ const Session = () => {
           </div>
         </section>
       </div>
+      {/* Chat History Overlay */}
+      <AnimatePresence>
+        {showHistory && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex justify-end"
+          >
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+              onClick={() => setShowHistory(false)}
+            />
+            {/* Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="relative w-full max-w-md bg-background border-l shadow-2xl flex flex-col"
+            >
+              <div className="flex items-center justify-between px-4 py-3 border-b">
+                <div>
+                  <p className="font-medium">Previous Chats</p>
+                  <p className="text-xs text-muted-foreground">
+                    {chatHistory.length} past session{chatHistory.length !== 1 ? "s" : ""}
+                  </p>
+                </div>
+                <Button variant="ghost" size="sm" onClick={() => setShowHistory(false)}>
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+              <div className="flex-1 overflow-y-auto px-4 py-3 space-y-6">
+                {historyLoading ? (
+                  <div className="text-center text-sm text-muted-foreground py-12">
+                    Loading history...
+                  </div>
+                ) : chatHistory.length === 0 ? (
+                  <div className="text-center text-sm text-muted-foreground py-12">
+                    No previous sessions for this topic yet.
+                  </div>
+                ) : (
+                  chatHistory.map((session, idx) => (
+                    <div key={session.sessionId} className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                          Session {idx + 1}
+                        </span>
+                        {session.startedAt && (
+                          <span className="text-[10px] text-muted-foreground">
+                            {new Date(session.startedAt).toLocaleDateString()} {new Date(session.startedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                          </span>
+                        )}
+                      </div>
+                      <div className="space-y-1.5 pl-2 border-l-2 border-muted">
+                        {session.messages.map((m, mi) => (
+                          <div
+                            key={mi}
+                            className={cn(
+                              "text-xs px-3 py-2 rounded-lg max-w-[90%]",
+                              m.role === "user"
+                                ? "bg-teal-50 border border-teal-200 text-teal-900 ml-auto"
+                                : "bg-card border"
+                            )}
+                          >
+                            {(m.content || m.text || "").slice(0, 300)}
+                            {(m.content || m.text || "").length > 300 ? "…" : ""}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

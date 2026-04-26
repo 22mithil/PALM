@@ -3,22 +3,20 @@ Session API routes.
 
 POST   /api/v1/sessions                       — Start a new learning session
 GET    /api/v1/sessions/{id}                  — Get session details
-PATCH  /api/v1/sessions/{id}/end              — End and summarize a session
 GET    /api/v1/sessions/student/{student_id}  — List all sessions for a student
-GET    /api/v1/sessions/{id}/events           — Get chat history for a session
+GET    /api/v1/sessions/{id}/events           — Get chat history (from last_10_messages)
 """
 
 import uuid
 from typing import Optional
 
-from fastapi import APIRouter, Body, Depends, status, BackgroundTasks
+from fastapi import APIRouter, Depends, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_db
-from app.models.session import Session
-from app.models.session_event import SessionEvent
-from app.schemas.session import SessionCreate, SessionEnd, SessionResponse
+from app.models.session import StudentSession
+from app.schemas.session import SessionCreate, SessionResponse
 from app.services import session_service
 
 router = APIRouter()
@@ -34,12 +32,12 @@ async def create_session(
     payload: SessionCreate,
     db: AsyncSession = Depends(get_db),
 ):
-    """Start a new tutoring session for a student.
-
-    Creates a session row with ``difficulty_level = 1`` (easiest).
-    Validates that the referenced student exists.
-    """
-    session = await session_service.create_session(db, payload)
+    session = await session_service.create_session(
+        db,
+        student_id=payload.student_id,
+        chapter_id=payload.chapter_id,
+        grade=payload.grade,
+    )
     return session
 
 
@@ -51,26 +49,20 @@ async def list_student_sessions(
     student_id: str,
     db: AsyncSession = Depends(get_db),
 ):
-    """Return all sessions for a student, ordered by most recent first.
-
-    Includes topic, timestamps, turn count, and summary.
-    Used by the frontend to show session history and enable topic continuation.
-    """
     result = await db.execute(
-        select(Session)
-        .where(Session.student_id == uuid.UUID(student_id))
-        .order_by(Session.started_at.desc())
+        select(StudentSession)
+        .where(StudentSession.student_id == uuid.UUID(student_id))
+        .order_by(StudentSession.started_at.desc())
     )
     sessions = result.scalars().all()
     return [
         {
             "id": str(s.id),
+            "chapter_id": s.chapter_id,
             "grade": s.grade,
-            "topic": s.topic,
             "started_at": s.started_at.isoformat() if s.started_at else None,
-            "ended_at": s.ended_at.isoformat() if s.ended_at else None,
-            "total_turns": s.total_turns,
-            "summary": s.summary,
+            "turn_count": s.turn_count,
+            "session_summary": s.session_summary,
         }
         for s in sessions
     ]
@@ -84,32 +76,15 @@ async def get_session_events(
     session_id: str,
     db: AsyncSession = Depends(get_db),
 ):
-    """Return all events for a session, ordered chronologically.
-
-    Includes dialogue turns (query + response pairs), emotion/gaze events,
-    and agent metadata. Used to restore a previous conversation when a
-    student resumes a topic.
-    """
+    """Return the last_10_messages JSONB from the session."""
     result = await db.execute(
-        select(SessionEvent)
-        .where(SessionEvent.session_id == uuid.UUID(session_id))
-        .order_by(SessionEvent.timestamp)
+        select(StudentSession)
+        .where(StudentSession.id == uuid.UUID(session_id))
     )
-    events = result.scalars().all()
-    return [
-        {
-            "id": e.id,
-            "event_type": e.event_type,
-            "query_text": e.query_text,
-            "response_text": e.response_text,
-            "agent_used": e.agent_used,
-            "emotion_label": e.emotion_label,
-            "gaze_status": e.gaze_status,
-            "is_correct": e.is_correct,
-            "timestamp": e.timestamp.isoformat() if e.timestamp else None,
-        }
-        for e in events
-    ]
+    session = result.scalars().first()
+    if session is None:
+        return []
+    return session.last_10_messages or []
 
 
 @router.get(
@@ -121,26 +96,5 @@ async def get_session(
     session_id: uuid.UUID,
     db: AsyncSession = Depends(get_db),
 ):
-    """Retrieve a session by its UUID. Returns 404 if not found."""
     session = await session_service.get_session_by_id(db, session_id)
-    return session
-
-
-@router.patch(
-    "/{session_id}/end",
-    response_model=SessionResponse,
-    summary="End and summarize a session",
-)
-async def end_session(
-    session_id: uuid.UUID,
-    background_tasks: BackgroundTasks,
-    payload: Optional[SessionEnd] = Body(None),
-    db: AsyncSession = Depends(get_db),
-):
-    """End an active session.
-
-    Sets ``ended_at`` to the current timestamp and triggers a background task
-    to generate an LLM summary of the session.
-    """
-    session = await session_service.end_session(db, session_id, payload, background_tasks)
     return session

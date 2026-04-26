@@ -14,8 +14,8 @@ from sqlalchemy.types import DateTime
 from app.db.base import Base
 
 if TYPE_CHECKING:
-    from app.models.mastery import MasteryScore
-    from app.models.session import Session
+    from app.models.mastery import StudentProgress
+    from app.models.session import StudentSession
 
 
 class Student(Base):
@@ -49,12 +49,12 @@ class Student(Base):
     )
 
     # ── Relationships ────────────────────────────────────────────────
-    sessions: Mapped[list["Session"]] = relationship(
+    sessions: Mapped[list["StudentSession"]] = relationship(
         back_populates="student",
         cascade="all, delete-orphan",
         lazy="selectin",
     )
-    mastery_scores: Mapped[list["MasteryScore"]] = relationship(
+    progress: Mapped[list["StudentProgress"]] = relationship(
         back_populates="student",
         cascade="all, delete-orphan",
         lazy="selectin",
