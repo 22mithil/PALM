@@ -183,7 +183,7 @@ async def end_session(
         if payload.performance_result is not None:
             session.performance_result = payload.performance_result
 
-    await db.flush()
+    await db.commit()
     await db.refresh(session)
     logger.info(
         "Ended session=%s  duration=%s  mastery=%s",

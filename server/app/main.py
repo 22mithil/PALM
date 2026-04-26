@@ -23,6 +23,12 @@ from app.api.v1.websockets.audio_ws import router as audio_ws_router
 from app.api.v1.websockets.tutor_ws import router as tutor_ws_router
 from app.db.session import async_engine, async_session_factory
 
+# ── Configure logging so all app.* loggers output to terminal ────────────
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s  %(name)s  %(levelname)s  %(message)s",
+)
+
 logger = logging.getLogger(__name__)
 
 

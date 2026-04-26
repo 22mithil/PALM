@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mic, Send, X, Video, Square, Eye, EyeOff } from "lucide-react";
+import { Mic, Send, X, Video, Square, Eye, EyeOff, Volume2, VolumeX } from "lucide-react";
+import { useTextToSpeech } from "@/hooks/useTextToSpeech";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -10,7 +11,7 @@ import useFaceMesh from "@/hooks/useFaceMesh";
 import usePerceptionStream from "@/hooks/usePerceptionStream";
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
 import PerceptionHUD from "@/components/PerceptionHUD";
-import SubtitleOverlay from "@/components/SubtitleOverlay";
+
 import { getMastery, getStudentSessions, getSessionEvents, endSession } from "@/lib/api";
 
 const VIDEO_CONSTRAINTS = {
@@ -160,6 +161,17 @@ const Session = () => {
     isSupported: sttSupported,
   } = useSpeechRecognition();
 
+  /* ── text-to-speech (Web Speech API) ─────────────────── */
+  const {
+    speak: ttsSpeak,
+    stop: ttsStop,
+    isSpeaking: ttsSpeaking,
+    isSupported: ttsSupported,
+  } = useTextToSpeech();
+  const [isTtsEnabled, setIsTtsEnabled] = useState(true);
+  // Track which message id is currently being spoken
+  const ttsSpeakingIdRef = useRef(null);
+
   /* ── grade & topic for RAG queries ───────────────────────── */
   const [grade, setGrade] = useState(storeGrade || 3);
   const [topic, setTopic] = useState("");
@@ -214,6 +226,7 @@ const Session = () => {
 
   /* ── push-to-talk: hold spacebar → fill input, release → send ── */
   const sttActiveRef = useRef(false);
+  const sttTriggerRef = useRef(null); // 'spacebar' | 'button'
   useEffect(() => {
     if (!sttSupported) return;
     const isInputFocused = () => {
@@ -224,6 +237,7 @@ const Session = () => {
       if (e.code === "Space" && !e.repeat && !isInputFocused()) {
         e.preventDefault();
         sttActiveRef.current = true;
+        sttTriggerRef.current = 'spacebar';
         startSTT();
       }
     };
@@ -241,6 +255,16 @@ const Session = () => {
       window.removeEventListener("keyup", handleKeyUp);
     };
   }, [sttSupported, startSTT, stopSTT]);
+
+  /* ── mic button click toggle ─────────────────────────────── */
+  const toggleMic = useCallback(() => {
+    if (sttListening) {
+      stopSTT();
+    } else {
+      sttTriggerRef.current = 'button';
+      startSTT();
+    }
+  }, [sttListening, startSTT, stopSTT]);
 
   /* ── sync stream → video element ──────────────────────── */
   useEffect(() => {
@@ -278,6 +302,7 @@ const Session = () => {
   /* ── cleanup on unmount ───────────────────────────────── */
   useEffect(() => {
     return () => {
+      ttsStop(); // Stop any ongoing TTS on navigation/unmount
       if (videoRef.current && videoRef.current.srcObject) {
         const str = videoRef.current.srcObject;
         str.getTracks().forEach((track) => track.stop());
@@ -286,7 +311,7 @@ const Session = () => {
         stream.getTracks().forEach((track) => track.stop());
       }
     };
-  }, [stream]);
+  }, [stream, ttsStop]);
 
   /* ══════════════════════════════════════════════════════════
      Chat state — connected to WebSocket orchestrator pipeline
@@ -382,6 +407,15 @@ const Session = () => {
         if (mastery_delta && mastery_delta !== 0) {
           setMastery((prev) => Math.min(100, Math.max(0, Math.round(prev + mastery_delta * 100))));
         }
+        // Speak the response via TTS if enabled
+        if (isTtsEnabled && full_text) {
+          try {
+            ttsSpeakingIdRef.current = streamingIdRef.current;
+            ttsSpeak(full_text);
+          } catch (_) {
+            // Silently fail if browser blocks autoplay audio
+          }
+        }
         // Reset streaming state
         streamingIdRef.current = null;
         streamingTextRef.current = "";
@@ -450,15 +484,20 @@ const Session = () => {
       wasSttActiveRef.current = true;
     } else if (wasSttActiveRef.current) {
       wasSttActiveRef.current = false;
-      const t = setTimeout(() => {
-        setInput((currentInput) => {
-          if (currentInput.trim()) {
-            sendStudentMessage(currentInput);
-          }
-          return "";
-        });
-      }, 300);
-      return () => clearTimeout(t);
+      // Only auto-send when STT was triggered via spacebar push-to-talk
+      if (sttTriggerRef.current === 'spacebar') {
+        const t = setTimeout(() => {
+          setInput((currentInput) => {
+            if (currentInput.trim()) {
+              sendStudentMessage(currentInput);
+            }
+            return "";
+          });
+        }, 300);
+        sttTriggerRef.current = null;
+        return () => clearTimeout(t);
+      }
+      sttTriggerRef.current = null;
     }
   }, [sttListening]);
 
@@ -519,6 +558,7 @@ const Session = () => {
             size="sm"
             className="border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
             onClick={async () => {
+              ttsStop(); // Stop any ongoing TTS
               try {
                 await endSession(sessionId, {
                   durationSeconds: elapsed,
@@ -602,14 +642,7 @@ const Session = () => {
                     </span>
                     LIVE
                   </div>
-                  {/* Subtitle overlay (speech recognition) */}
-                  <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
-                    <SubtitleOverlay
-                      interimTranscript={interimTranscript}
-                      finalTranscript={finalTranscript}
-                      isListening={sttListening}
-                    />
-                  </div>
+
                 </>
               ) : (
                 <>
@@ -684,7 +717,17 @@ const Session = () => {
                   )}
                 >
                   {m.role === "tutor" ? (
-                    <TutorAvatar />
+                    <div className="relative">
+                      <TutorAvatar />
+                      {/* Animated wave indicator while TTS is speaking this message */}
+                      {ttsSpeaking && ttsSpeakingIdRef.current === m.id && (
+                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 flex items-end gap-[2px]">
+                          <span className="w-[3px] h-2 bg-teal-500 rounded-full animate-pulse [animation-delay:-0.3s]" />
+                          <span className="w-[3px] h-3 bg-teal-500 rounded-full animate-pulse [animation-delay:-0.15s]" />
+                          <span className="w-[3px] h-2 bg-teal-500 rounded-full animate-pulse" />
+                        </div>
+                      )}
+                    </div>
                   ) : (
                     <StudentAvatar initial={initial} />
                   )}
@@ -740,21 +783,43 @@ const Session = () => {
           <div className="flex items-center gap-2 px-4 py-3 bg-background flex-shrink-0">
             <button
               type="button"
+              onClick={toggleMic}
               className={cn(
                 "relative h-10 w-10 rounded-full border grid place-items-center transition-colors shrink-0",
                 sttListening
                   ? "border-teal-500 text-teal-600"
                   : "border-input text-muted-foreground hover:bg-accent",
               )}
-              aria-label="Hold spacebar to speak"
-              title="Hold Spacebar to speak"
-              tabIndex={-1}
+              aria-label={sttListening ? "Stop listening" : "Click to speak"}
+              title={sttListening ? "Stop listening" : "Click to speak (or hold Spacebar)"}
             >
               {sttListening && (
                 <span className="absolute inset-0 rounded-full border-2 border-teal-400 animate-ping" />
               )}
               <Mic className="h-4 w-4" />
             </button>
+            {/* TTS mute / unmute toggle */}
+            {ttsSupported && (
+              <button
+                type="button"
+                onClick={() => {
+                  setIsTtsEnabled((prev) => {
+                    if (prev) ttsStop(); // turning off → stop current speech
+                    return !prev;
+                  });
+                }}
+                className={cn(
+                  "relative h-10 w-10 rounded-full border grid place-items-center transition-colors shrink-0",
+                  isTtsEnabled
+                    ? "border-teal-500 text-teal-600"
+                    : "border-input text-muted-foreground hover:bg-accent",
+                )}
+                aria-label={isTtsEnabled ? "Mute tutor voice" : "Unmute tutor voice"}
+                title={isTtsEnabled ? "Mute tutor voice" : "Unmute tutor voice"}
+              >
+                {isTtsEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+              </button>
+            )}
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}

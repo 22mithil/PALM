@@ -1,0 +1,13 @@
+#Frontend Issues
+1. dashboard page -> recent sessions: all showing complete badge
+2. progress page -> session history: card styling, all showing complete badge
+3. progress page -> Your Growth: graph
+4. tts seems like a bot voice.
+
+#Backend Issues
+1. 
+
+#Session issues
+1. sometimes the tutor resets the question. instead of evaluating the answer and asking
+2. No acknowledgment of the answer to question. 
+3. Session summary not proper

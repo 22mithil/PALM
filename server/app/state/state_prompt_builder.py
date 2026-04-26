@@ -111,11 +111,9 @@ def build_state_prompt(raw: dict[str, Any]) -> StatePrompt:
 
     prompt = StatePrompt(**cleaned)
 
-    logger.debug(
-        "StatePrompt built  session=%s  topic=%s  mastery=%.2f",
-        prompt.session_id,
-        prompt.current_topic,
-        prompt.mastery_score,
+    logger.info(
+        "━━━ StatePrompt built ━━━\n%s",
+        prompt.model_dump_json(indent=2),
     )
 
     return prompt
