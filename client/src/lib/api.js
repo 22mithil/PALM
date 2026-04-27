@@ -20,6 +20,14 @@ export async function getTopics(grade) {
   return res.json(); // [{ id, grade, topic, subject, section_count }]
 }
 
+export async function getChapterSections(chapterId, token) {
+  const res = await fetch(`${API}/topics/${chapterId}/sections`, {
+    headers: headers(token),
+  });
+  if (!res.ok) return [];
+  return res.json(); // [{ section_id, order, concept, title, difficulty }]
+}
+
 // ── Auth ────────────────────────────────────────────────────────────────
 
 export async function register({ name, email, password, grade, age }) {
@@ -51,7 +59,18 @@ export async function getMastery(studentId, token) {
     headers: headers(token),
   });
   if (!res.ok) return [];
-  return res.json(); // [{ chapter_id, current_section_id, section_statuses, completion_percent, last_updated }]
+  return res.json(); // [{ chapter_id, current_section_id, section_statuses, completion_percent, was_completed, last_updated }]
+}
+
+export async function resetSection(studentId, chapterId, sectionId, token) {
+  const res = await fetch(`${API}/mastery/${studentId}/${chapterId}/reset-section`, {
+    method: "POST",
+    headers: headers(token),
+    body: JSON.stringify({ section_id: sectionId }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.detail || "Failed to reset section");
+  return data;
 }
 
 // ── Sessions ────────────────────────────────────────────────────────────
@@ -61,7 +80,7 @@ export async function getStudentSessions(studentId, token) {
     headers: headers(token),
   });
   if (!res.ok) return [];
-  return res.json(); // [{ id, chapter_id, grade, started_at, turn_count, session_summary }]
+  return res.json(); // [{ id, chapter_id, grade, started_at, ended_at, turn_count, duration_seconds, session_summary, message_count }]
 }
 
 export async function getSessionEvents(sessionId, token) {
@@ -69,7 +88,15 @@ export async function getSessionEvents(sessionId, token) {
     headers: headers(token),
   });
   if (!res.ok) return [];
-  return res.json(); // [{ role, content }] — last_10_messages JSONB
+  return res.json(); // { total, messages: [{role, content}] }
+}
+
+export async function getSessionMessages(sessionId, offset = 0, limit = 20, token) {
+  const res = await fetch(`${API}/sessions/${sessionId}/events?offset=${offset}&limit=${limit}`, {
+    headers: headers(token),
+  });
+  if (!res.ok) return { total: 0, messages: [] };
+  return res.json(); // { total, messages }
 }
 
 export async function createSession({ studentId, grade, topic }, token) {
@@ -91,12 +118,11 @@ export async function createSession({ studentId, grade, topic }, token) {
   return data;
 }
 
-export async function endSession(sessionId, { durationSeconds, masteryScore, summary } = {}, token) {
-  // End session is now a no-op PATCH — session data is already persisted by the pipeline.
-  // We keep the call so the frontend doesn't break, but there's nothing to update.
-  // Just return the session data.
+export async function endSession(sessionId, { durationSeconds } = {}, token) {
+  // Issue 9: PATCH to set ended_at and compute duration
   try {
-    const res = await fetch(`${API}/sessions/${sessionId}`, {
+    const res = await fetch(`${API}/sessions/${sessionId}/end`, {
+      method: "PATCH",
       headers: headers(token),
     });
     if (res.ok) return res.json();
@@ -104,25 +130,31 @@ export async function endSession(sessionId, { durationSeconds, masteryScore, sum
   return {};
 }
 
-// ── Chat History ────────────────────────────────────────────────────────
+// ── Chat History (legacy — kept for compatibility) ───────────────────────
 
 export async function getChatHistory(studentId, chapterId, token) {
-  // Fetch all sessions for this student, filter by chapter, collect messages
   const sessions = await getStudentSessions(studentId, token);
   const chapterSessions = sessions.filter((s) => s.chapter_id === chapterId);
-
   const allMessages = [];
   for (const sess of chapterSessions) {
     const events = await getSessionEvents(sess.id, token);
-    if (events && events.length > 0) {
+    const msgs = events.messages || events || [];
+    if (msgs.length > 0) {
       allMessages.push({
         sessionId: sess.id,
         startedAt: sess.started_at,
-        messages: events,
+        messages: msgs,
       });
     }
   }
-  return allMessages; // [{ sessionId, startedAt, messages: [{role, content}] }]
+  return allMessages;
+}
+
+// ── Session History (new lazy approach) ──────────────────────────────────
+
+export async function getSessionHistory(studentId, chapterId, token) {
+  const sessions = await getStudentSessions(studentId, token);
+  return sessions.filter((s) => s.chapter_id === chapterId);
 }
 
 // ── Student ─────────────────────────────────────────────────────────────

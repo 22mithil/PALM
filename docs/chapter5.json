@@ -1,0 +1,413 @@
+[
+    {
+        "chapter_id": 5,
+        "chapter_name": "Far and Near",
+        "grade": 4,
+        "subject": "Mathematics",
+        "section_ids": [
+            "5-1",
+            "5-2",
+            "5-3",
+            "5-4",
+            "5-5",
+            "5-6",
+            "5-7",
+            "5-8",
+            "5-9",
+            "5-10"
+        ]
+    },
+    {
+        "section_id": "5-1",
+        "chapter_id": 5,
+        "order": 1,
+        "concept": "choosing_appropriate_units_of_length",
+        "title": "Choosing the Right Unit: Metres or Centimetres",
+        "difficulty": "intro",
+        "prerequisite_concepts": [],
+        "explanation": "We measure length using different units depending on how big or small the object is. Centimetres (cm) are used for smaller objects like a mobile phone or a handkerchief, while metres (m) are used for larger things like the height of a building or the length of an elephant's trunk. Choosing the right unit makes measurement easier and more sensible. For example, saying an elephant's trunk is 2 m long is much clearer than saying it is 200 cm.",
+        "examples": [
+            "The India Gate is 42 metres tall — we use metres because it is a very large structure, and writing '4,200 cm' would be unnecessarily large and confusing.",
+            "A handkerchief is about 40 centimetres long — we use centimetres because it is a small object and '0.40 m' would be awkward.",
+            "The distance between two buttons on a shirt is about 5 centimetres — metres would be far too large a unit for such a tiny gap."
+        ],
+        "common_misconceptions": [
+            "Students sometimes write '2 cm' for an elephant's trunk because they see the small number 2 and pick cm by habit, forgetting that 2 m and 2 cm represent very different sizes.",
+            "Some students think any measurement can use either unit freely, not realising that the wrong unit produces an awkward or misleading number — for example, 0.13 m for a mobile phone instead of 13 cm.",
+            "Students may confuse the number shown in the table with the unit — for example, seeing '42' for India Gate and writing cm instead of m because 42 sounds like a small number to them."
+        ],
+        "hint_progression": [
+            "Think about how big or small the real object actually is — would you be comfortable describing it in centimetres, or does it feel like you need a bigger unit?",
+            "Remember: centimetres are for small things you can hold or touch easily, while metres are for things that are taller or longer than a person.",
+            "The India Gate is taller than a building — that is definitely metres. A handkerchief fits in your pocket — that is centimetres. Now look at the object and ask: is it closer in size to a handkerchief or to a building?"
+        ],
+        "quiz_questions": [
+            {
+                "question": "Ritika wants to measure the depth of a well. The well is about 50 units deep. Should she write 50 m or 50 cm?",
+                "answer": "50 m",
+                "explanation": "A well can be many metres deep — 50 cm would only be half a metre, which is far too shallow for a real well. Metres is the correct unit here because the depth is much greater than a person's height."
+            },
+            {
+                "question": "Fill in the correct unit (m or cm): The length of a mobile phone is 13 ____.",
+                "answer": "cm",
+                "explanation": "A mobile phone is a small object that fits in your hand, so centimetres is the appropriate unit. 13 m would be as long as a large bus, which makes no sense for a phone."
+            }
+        ]
+    },
+    {
+        "section_id": "5-2",
+        "chapter_id": 5,
+        "order": 2,
+        "concept": "metres_and_centimetres_conversion",
+        "title": "Different Units but Same Measure: Converting Between m and cm",
+        "difficulty": "intro",
+        "prerequisite_concepts": [
+            "choosing_appropriate_units_of_length"
+        ],
+        "explanation": "One metre is equal to 100 centimetres, so the same length can be written in either unit. To convert metres to centimetres, multiply by 100; to convert centimetres to metres, divide by 100. Shikha and Sonu use a double number line to match sari lengths written in cm to the same lengths written in m — for example, 400 cm and 4 m describe the same sari.",
+        "examples": [
+            "Shikha measures a sari as 500 cm. Sonu writes the same sari as 5 m. Both are correct — 500 ÷ 100 = 5, so 500 cm = 5 m.",
+            "A stole in the weaving centre is 2 m long. In centimetres that is 2 × 100 = 200 cm.",
+            "The double number line shows that 700 cm lines up with 7 m, because 700 ÷ 100 = 7."
+        ],
+        "common_misconceptions": [
+            "Students often multiply by 10 instead of 100 when converting m to cm — for example writing 2 m = 20 cm, confusing the m-to-cm factor with the cm-to-mm factor.",
+            "Some students think 204 cm equals 2 m 4 cm but write it as 2 m 40 cm, incorrectly adding a zero to the centimetre part when separating the units.",
+            "When using a double number line, students may assume the top and bottom scales always increase by the same amount, missing that the two scales have a ×100 relationship with each other."
+        ],
+        "hint_progression": [
+            "Think about what 'one metre' really means — how many centimetre marks fit into one metre on a ruler?",
+            "To convert metres to centimetres, multiply by 100. To go the other way from cm to m, divide by 100.",
+            "For 400 cm: 400 ÷ 100 = 4, so 400 cm = 4 m. Now use the same idea: what is 700 cm in metres? Divide 700 by 100 to get your answer."
+        ],
+        "quiz_questions": [
+            {
+                "question": "Sonu finds a stole that is 240 cm long. Shikha wants to write the same stole's length in metres and centimetres. What should Shikha write?",
+                "answer": "2 m 40 cm",
+                "explanation": "240 cm = 200 cm + 40 cm. Since 200 cm = 2 m, the measurement becomes 2 m 40 cm. We take out as many full hundreds as possible and the remainder stays as centimetres."
+            },
+            {
+                "question": "Fill in the blank: 6 m = ______ cm.",
+                "answer": "600 cm",
+                "explanation": "Since 1 m = 100 cm, we multiply 6 × 100 = 600. So 6 m = 600 cm. This is like having 6 groups of 100 centimetres each."
+            }
+        ]
+    },
+    {
+        "section_id": "5-3",
+        "chapter_id": 5,
+        "order": 3,
+        "concept": "comparing_lengths_in_mixed_units",
+        "title": "Let Us Compare: Using <, =, > with Mixed Units",
+        "difficulty": "intermediate",
+        "prerequisite_concepts": [
+            "metres_and_centimetres_conversion"
+        ],
+        "explanation": "To compare two lengths in different or mixed units, convert them to the same unit first and then compare. For example, to compare 456 cm and 5 m, convert 5 m to 500 cm, then compare 456 and 500 — so 456 cm < 5 m. This same skill applies to real data like comparing the heights of the world's tallest statues using subtraction.",
+        "examples": [
+            "Ritika compares 456 cm and 5 m. She converts 5 m = 500 cm, then sees 456 < 500, so 456 cm < 5 m.",
+            "Comparing 6 m 5 cm and 6 m 50 cm: the metres part is the same, so compare the cm part — 5 cm < 50 cm, so 6 m 5 cm < 6 m 50 cm.",
+            "The Statue of Unity (182 m) versus the Spring Temple Buddha (128 m): both are in metres, so compare directly — 182 > 128, so the Statue of Unity is taller."
+        ],
+        "common_misconceptions": [
+            "Students may compare digits without converting — for example, thinking 2 m 150 cm > 3 m 50 cm because '150 > 50', not noticing that 3 m alone is already greater than 2 m.",
+            "When one length mixes cm and another mixes m, students sometimes forget to convert 1 m to 100 cm before adding — for example, treating '138 cm + 1 m' as '138 + 1 = 139 cm' instead of 238 cm.",
+            "Students often assume bigger numerals mean bigger lengths without checking units — they might say 456 cm > 5 m because 456 > 5."
+        ],
+        "hint_progression": [
+            "Before you can compare two lengths, ask yourself: are they both in the same unit? If not, you need to do something first.",
+            "Convert both lengths to centimetres so you are comparing like with like. Remember: 1 m = 100 cm.",
+            "For 2 m 150 cm vs 3 m 50 cm: convert both fully. 2 m 150 cm = 200 + 150 = 350 cm. 3 m 50 cm = 300 + 50 = 350 cm. Now compare those two numbers — what do you notice?"
+        ],
+        "quiz_questions": [
+            {
+                "question": "Ritika compares two rods: 238 cm and 138 cm + 1 m. Fill in the blank with <, =, or >: 238 cm ____ 138 cm + 1 m.",
+                "answer": "=",
+                "explanation": "138 cm + 1 m = 138 cm + 100 cm = 238 cm. Both sides equal 238 cm, so the answer is =. The key step is converting 1 m to 100 cm before adding."
+            },
+            {
+                "question": "The Statue of Unity is 182 m tall and the Statue of Liberty is 93 m tall. How much taller is the Statue of Unity?",
+                "answer": "89 m",
+                "explanation": "182 m − 93 m = 89 m. Both heights are already in metres, so we subtract directly. The Statue of Unity is 89 metres taller than the Statue of Liberty."
+            }
+        ]
+    },
+    {
+        "section_id": "5-4",
+        "chapter_id": 5,
+        "order": 4,
+        "concept": "kilometre_unit_and_tools",
+        "title": "Measuring Long Distances: The Kilometre",
+        "difficulty": "intro",
+        "prerequisite_concepts": [
+            "metres_and_centimetres_conversion"
+        ],
+        "explanation": "When distances are very long — like between two towns — we use the kilometre (km). Walking 1,000 metres means you have walked 1 kilometre, so 1 km = 1,000 m. The word 'kilo' means one thousand. Long distances can be measured using tools such as a Long Tape, a Rodometer (measuring wheel), a Rangefinder, or a Laser Distance Meter.",
+        "examples": [
+            "A rope of 100 m length would need to be laid end-to-end 10 times to make 1 km, because 10 × 100 = 1,000 m.",
+            "A rope of 250 m needs 4 repetitions to make 1 km, because 4 × 250 = 1,000 m — so you need 4 such ropes.",
+            "A Rodometer (measuring wheel) rolls along the ground and counts distance automatically — useful for measuring long roads where a tape would be too short to use."
+        ],
+        "common_misconceptions": [
+            "Students often think 1 km = 100 m by analogy with 1 m = 100 cm, confusing the two different conversion factors.",
+            "When filling the ropes table, students may write 2.5 ropes for a 500 m rope length by dividing 1,000 ÷ 500 = 2 and then getting confused, instead of correctly seeing that 2 × 500 = 1,000 so 2 ropes are needed.",
+            "Students may think 'kilo' simply means 'large' rather than specifically meaning one thousand, leading to errors when calculating."
+        ],
+        "hint_progression": [
+            "Think about how many times you would need to repeat a shorter distance end-to-end before you reach 1,000 m — that is how many ropes you need.",
+            "Use division: number of ropes needed = 1,000 m ÷ (length of one rope in metres).",
+            "For a 200 m rope: 1,000 ÷ 200 = 5, so you need 5 ropes. Try the same with 500 m: 1,000 ÷ 500 = ___."
+        ],
+        "quiz_questions": [
+            {
+                "question": "How many ropes of 250 m each would you need to lay end-to-end to make exactly 1 km?",
+                "answer": "4 ropes",
+                "explanation": "1 km = 1,000 m. We divide 1,000 by 250: 1,000 ÷ 250 = 4. So 4 ropes of 250 m placed end-to-end make exactly 1 km."
+            },
+            {
+                "question": "True or false: 1 km = 100 m.",
+                "answer": "False",
+                "explanation": "1 km = 1,000 m, not 100 m. The prefix 'kilo' means one thousand. This is a common confusion because 1 m = 100 cm, but the rule is different for kilometres."
+            }
+        ]
+    },
+    {
+        "section_id": "5-5",
+        "chapter_id": 5,
+        "order": 5,
+        "concept": "applying_kilometres_in_real_contexts",
+        "title": "Kilometre Race and the Longest Train Journey",
+        "difficulty": "intermediate",
+        "prerequisite_concepts": [
+            "kilometre_unit_and_tools"
+        ],
+        "explanation": "Once we know 1 km = 1,000 m, we can solve real-world problems by converting and calculating. For a 3 km race that is 3,000 m long, we can find how many 500 m sections fit (6 sections), how many 300 m intervals fit (10 intervals), and how many 50 m flag positions exist (60 positions). We can also subtract km distances to find how far apart two places are, as in the Vivek Express station table.",
+        "examples": [
+            "Sheena and Jennifer place water stations every 500 m in a 3 km race. Since 3,000 ÷ 500 = 6, there are 6 water stations at 500 m, 1,000 m, 1,500 m, 2,000 m, 2,500 m, and 3,000 m.",
+            "On the Vivek Express, Guwahati is 556 km from Dibrugarh and Dimapur is 306 km away, so the distance between Dimapur and Guwahati is 556 − 306 = 250 km.",
+            "Red and blue flags alternate every 50 m along a 3,000 m race: 3,000 ÷ 50 = 60 flag positions, so 30 red and 30 blue flags are needed."
+        ],
+        "common_misconceptions": [
+            "Students may forget to convert km to m before dividing — for example dividing 3 km by 500 m directly and getting 0.006 instead of converting 3 km to 3,000 m first.",
+            "When counting intervals or positions, students often get an off-by-one error — they may count 9 children for 300 m intervals instead of 10 by stopping before the finish line.",
+            "When using the train station table, students may subtract distances from zero instead of subtracting the two relevant station distances from each other."
+        ],
+        "hint_progression": [
+            "Picture the race as a number line from 0 to the finish. Where exactly do the stations or flags appear along this line?",
+            "First convert the total race distance to metres: 3 km = 3,000 m. Then divide by the interval to find how many positions there are.",
+            "For water stations every 500 m in 3,000 m: 3,000 ÷ 500 = 6 stations. List them: 500, 1,000, 1,500, 2,000, 2,500, 3,000. For children every 300 m: 3,000 ÷ 300 = ___ — list each position the same way."
+        ],
+        "quiz_questions": [
+            {
+                "question": "On the Vivek Express, Visakhapatnam is 2,450 km from Dibrugarh and Vijayawada JN is 2,800 km from Dibrugarh. What is the distance between Visakhapatnam and Vijayawada JN?",
+                "answer": "350 km",
+                "explanation": "To find the distance between two stations, subtract the smaller distance from the larger: 2,800 − 2,450 = 350 km. Both distances are measured from the same starting point, Dibrugarh, so subtraction gives the gap between them."
+            },
+            {
+                "question": "In Sheena and Jennifer's 3 km race, children stand every 300 m to direct runners. How many children are needed in total?",
+                "answer": "10 children",
+                "explanation": "3 km = 3,000 m. Dividing: 3,000 ÷ 300 = 10. Children stand at 300, 600, 900, 1,200, 1,500, 1,800, 2,100, 2,400, 2,700, and 3,000 m — that is 10 positions in total, including the finish line."
+            }
+        ]
+    },
+    {
+        "section_id": "5-6",
+        "chapter_id": 5,
+        "order": 6,
+        "concept": "millimetre_unit",
+        "title": "The World of Small Things: Introducing the Millimetre",
+        "difficulty": "intro",
+        "prerequisite_concepts": [
+            "choosing_appropriate_units_of_length"
+        ],
+        "explanation": "When objects are too small to measure accurately in whole centimetres, we use millimetres (mm). One centimetre is divided into 10 equal parts, and each part is 1 millimetre, so 1 cm = 10 mm. The tiny marks you see between centimetre marks on a ruler are millimetre marks. We can write a measurement in both cm and mm — for example, a sprout that reaches the 3rd small mark past the 1 cm point is 1 cm 3 mm long.",
+        "examples": [
+            "A small screw might be only 8 mm long — it is too short to measure in whole centimetres, so we say 8 mm instead of trying to express it as a fraction of a centimetre.",
+            "Between the 1 cm and 2 cm marks on a ruler there are 9 small lines making 10 equal spaces — each space is 1 mm, confirming that 1 cm = 10 mm.",
+            "Over four days a moong sprout grows from 3 mm on Day 1 to about 12 mm on Day 4 — we record in mm because the lengths are too small for whole centimetres to show the change accurately."
+        ],
+        "common_misconceptions": [
+            "Students count the number of marks (not spaces) between two cm marks and say 1 cm = 9 mm, instead of counting the 10 spaces that those 9 marks create.",
+            "Students think mm is only for tiny objects like seeds, not realising it is a precise sub-unit useful whenever accuracy beyond whole centimetres is needed.",
+            "When recording sprout growth over four days, students write the same value each day because they round to the nearest cm, missing the millimetre detail the activity is designed to develop."
+        ],
+        "hint_progression": [
+            "Look at a ruler — can you see the tiny marks between each centimetre? Those marks divide the centimetre into equal smaller pieces.",
+            "Count the spaces (not the marks) between 1 cm and 2 cm on the ruler — each space is one millimetre. How many spaces are there?",
+            "There are 10 spaces between any two centimetre marks, so 1 cm = 10 mm. If a sprout reaches the 3rd small mark past the 1 cm point, its length is 1 cm and 3 mm, which is the same as 10 + 3 = 13 mm."
+        ],
+        "quiz_questions": [
+            {
+                "question": "On Day 2, your moong sprout reaches exactly the 7th small mark past the 1 cm mark on the ruler. What is the sprout's total length in mm?",
+                "answer": "17 mm",
+                "explanation": "The sprout is at 1 cm plus 7 more mm. Since 1 cm = 10 mm, the total is 10 + 7 = 17 mm. Each small mark on the ruler represents exactly 1 mm."
+            },
+            {
+                "question": "A nail is 2 cm 4 mm long. How many millimetres is that in total?",
+                "answer": "24 mm",
+                "explanation": "2 cm = 2 × 10 = 20 mm. Adding the remaining 4 mm gives 20 + 4 = 24 mm. To convert centimetres to millimetres, multiply by 10, then add the extra mm."
+            }
+        ]
+    },
+    {
+        "section_id": "5-7",
+        "chapter_id": 5,
+        "order": 7,
+        "concept": "relationships_between_all_units",
+        "title": "Relationships Between All Units: mm, cm, m, and km",
+        "difficulty": "intermediate",
+        "prerequisite_concepts": [
+            "metres_and_centimetres_conversion",
+            "kilometre_unit_and_tools",
+            "millimetre_unit"
+        ],
+        "explanation": "All four units of length are connected: 10 mm = 1 cm, 100 cm = 1 m, and 1,000 m = 1 km. To convert from a larger unit to a smaller unit, multiply; to convert from a smaller unit to a larger unit, divide. Double number lines help us see these relationships visually. For example, 89 mm = 8 cm 9 mm (divide 89 by 10: quotient 8, remainder 9), and 5,792 cm = 57 m 92 cm (divide 5,792 by 100: quotient 57, remainder 92).",
+        "examples": [
+            "To convert 4 cm 5 mm to mm: 4 × 10 = 40 mm, then add 5 mm to get 45 mm total.",
+            "To convert 89 mm into cm and mm: 89 ÷ 10 = 8 remainder 9, so 89 mm = 8 cm 9 mm.",
+            "To convert 5,792 cm to m and cm: 5,792 ÷ 100 = 57 remainder 92, so 5,792 cm = 57 m 92 cm."
+        ],
+        "common_misconceptions": [
+            "Students apply the wrong multiplier — for example multiplying by 10 instead of 100 when converting cm to m, writing 397 m = 3,970 cm instead of the correct 39,700 cm.",
+            "When splitting 514 mm into cm and mm, students write 5 cm 14 mm (taking only the hundreds digit) instead of dividing by 10 correctly to get 51 cm 4 mm.",
+            "For km-to-m conversion, students may multiply by 100 instead of 1,000 — for example writing 9 km = 900 m instead of 9,000 m, confusing the km-to-m factor with the m-to-cm factor."
+        ],
+        "hint_progression": [
+            "Ask yourself: am I going from a bigger unit to a smaller unit, or from a smaller unit to a bigger one? That tells you whether to multiply or divide.",
+            "Use the chain: ×10 for cm→mm, ×100 for m→cm, ×1,000 for km→m. Going the other way, divide by the same number.",
+            "For 514 mm into cm and mm: divide 514 by 10. 514 ÷ 10 = 51 with a remainder of 4. So there are 51 whole centimetres and 4 leftover millimetres: 514 mm = 51 cm 4 mm."
+        ],
+        "quiz_questions": [
+            {
+                "question": "Fill in the blank: 6 m 34 cm = ______ cm.",
+                "answer": "634 cm",
+                "explanation": "6 m = 6 × 100 = 600 cm. Adding the 34 cm gives 600 + 34 = 634 cm. We convert metres to centimetres by multiplying by 100, then add the remaining centimetres."
+            },
+            {
+                "question": "Convert 67,000 m to km.",
+                "answer": "67 km",
+                "explanation": "Since 1,000 m = 1 km, we divide: 67,000 ÷ 1,000 = 67. So 67,000 m = 67 km. This matches the pattern on the double number line where 1,000 m pairs with 1 km."
+            }
+        ]
+    },
+    {
+        "section_id": "5-8",
+        "chapter_id": 5,
+        "order": 8,
+        "concept": "adding_and_subtracting_lengths",
+        "title": "Adding and Subtracting Lengths",
+        "difficulty": "intermediate",
+        "prerequisite_concepts": [
+            "relationships_between_all_units",
+            "comparing_lengths_in_mixed_units"
+        ],
+        "explanation": "To add or subtract lengths in mixed units, you can either operate on like units separately and regroup when needed, or convert everything to the smaller unit first. For addition, if the smaller unit total reaches or exceeds the next unit (e.g. 1,000 m or 100 cm), regroup it. For subtraction, if the smaller unit being subtracted is larger, borrow from the bigger unit (1 m = 100 cm, 1 km = 1,000 m) and regroup before subtracting.",
+        "examples": [
+            "Saji walks 3 km 450 m in the morning and 4 km 650 m in the evening. Adding: 3 + 4 = 7 km; 450 + 650 = 1,100 m = 1 km 100 m; total = 8 km 100 m.",
+            "Electricians need 63 m of cable and have used 16 m 75 cm. Converting: 6,300 cm − 1,675 cm = 4,625 cm = 46 m 25 cm of cable remaining.",
+            "Rani has ribbon rolls of 3 m 75 cm and 2 m 25 cm. Adding: 3 + 2 = 5 m; 75 + 25 = 100 cm = 1 m; total = 6 m."
+        ],
+        "common_misconceptions": [
+            "When the metres sum reaches 1,100, students often leave the answer as 7 km 1,100 m instead of converting 1,100 m to 1 km 100 m and writing the correct 8 km 100 m.",
+            "During subtraction, students write the cm column as '00 − 75' and either skip it or get a wrong answer, rather than borrowing 1 m = 100 cm from the metres column first.",
+            "Students add only the km parts and only the m parts but then list them without checking whether the m part needs to be regrouped into km."
+        ],
+        "hint_progression": [
+            "Think about what happens when the metres total reaches 1,000 or more — is your answer still in a clean km and m form, or do you need to regroup?",
+            "Add km parts together and m parts together separately. If the metres total is 1,000 or more, convert 1,000 m into 1 km and carry it to the km column.",
+            "For 3 km 450 m + 4 km 650 m: km: 3 + 4 = 7. Metres: 450 + 650 = 1,100. Since 1,100 m = 1 km 100 m, add the 1 km to 7 km to get 8 km and keep the 100 m. Final answer: 8 km ___ m."
+        ],
+        "quiz_questions": [
+            {
+                "question": "The Gulmarg Gondola cable car has two sections: the first is 2 km 300 m and the second is 2 km 650 m. What is the total distance of the cable car ride?",
+                "answer": "4 km 950 m",
+                "explanation": "Add the km: 2 + 2 = 4 km. Add the metres: 300 + 650 = 950 m. Since 950 m is less than 1,000 m, no regrouping is needed. Total: 4 km 950 m."
+            },
+            {
+                "question": "The distance from Bhopal to Sanchi is 48 km 700 m. Bhadbhada Ghat waterfall is 17 km 900 m from Bhopal and lies on the way. How far is Sanchi from the waterfall?",
+                "answer": "30 km 800 m",
+                "explanation": "Subtract 17 km 900 m from 48 km 700 m. Since 700 m < 900 m, borrow 1 km from the km column: 47 km + 1,700 m − 17 km 900 m = 30 km 800 m. Borrowing converts 1 km into 1,000 m, giving 700 + 1,000 = 1,700 m before subtracting."
+            }
+        ]
+    },
+    {
+        "section_id": "5-9",
+        "chapter_id": 5,
+        "order": 9,
+        "concept": "multiplying_and_dividing_lengths",
+        "title": "Multiplying and Dividing Lengths",
+        "difficulty": "advanced",
+        "prerequisite_concepts": [
+            "adding_and_subtracting_lengths",
+            "relationships_between_all_units"
+        ],
+        "explanation": "To multiply a length in mixed units, break it into its unit parts, multiply each part separately, then combine and convert if needed. For example, 20 × 1 m 80 cm = (20 × 1 m) + (20 × 80 cm) = 20 m + 1,600 cm = 20 m + 16 m = 36 m. To divide a mixed-unit length, convert to the smaller unit first, divide, then express the result back in mixed units.",
+        "examples": [
+            "To make shirts for 20 children, each needing 1 m 80 cm of cloth: 20 × 1 m = 20 m and 20 × 80 cm = 1,600 cm = 16 m, so total cloth = 20 + 16 = 36 m.",
+            "A shop sells cloth at ₹100 for 5 m. Cost of 1 m = 100 ÷ 5 = ₹20. Cost of 40 m = 40 × ₹20 = ₹800 — found using the double number line.",
+            "A 12 km 600 m road divided equally over 6 days: 12,600 m ÷ 6 = 2,100 m = 2 km 100 m laid per day."
+        ],
+        "common_misconceptions": [
+            "When multiplying a mixed unit, students often multiply only the metre part and forget the centimetre part — writing 20 × 1 m 80 cm = 20 m instead of 36 m.",
+            "After multiplying the centimetre part, students add the centimetres directly to metres without converting — writing 20 m + 1,600 cm as '1,620 m' instead of converting 1,600 cm = 16 m to get 36 m.",
+            "For division, students divide only the km part and drop the metres — writing 12 km 600 m ÷ 6 = 2 km instead of converting to 12,600 m first and then dividing."
+        ],
+        "hint_progression": [
+            "Break the length into its two parts — the bigger unit and the smaller unit — and think about what happens when you multiply or divide each part on its own.",
+            "Multiply (or divide) each unit part separately: handle km or m first, then handle cm or m. After multiplying the smaller part, check if the result needs to be converted to the bigger unit.",
+            "For 20 × 1 m 80 cm: 20 × 1 m = 20 m. 20 × 80 cm = 1,600 cm. Now convert 1,600 cm to metres: 1,600 ÷ 100 = 16 m. Finally add: 20 m + 16 m = ___ m."
+        ],
+        "quiz_questions": [
+            {
+                "question": "Anita needs 1 m of thread to embroider a 50 cm sari border. How much thread does she need for a 5 m sari border?",
+                "answer": "10 m",
+                "explanation": "A 5 m border = 500 cm = 10 × 50 cm. Since each 50 cm of border needs 1 m of thread, a 10 × longer border needs 10 × 1 m = 10 m of thread. The thread needed scales proportionally with the border length."
+            },
+            {
+                "question": "A 12 km 600 m road is being built. Workers lay an equal length each day and finish in 6 days. How much road do they lay each day?",
+                "answer": "2 km 100 m",
+                "explanation": "Convert 12 km 600 m to metres: 12,000 + 600 = 12,600 m. Divide by 6: 12,600 ÷ 6 = 2,100 m. Convert back: 2,100 m = 2,000 m + 100 m = 2 km 100 m. Converting to a single unit first makes the division straightforward."
+            }
+        ]
+    },
+    {
+        "section_id": "5-10",
+        "chapter_id": 5,
+        "order": 10,
+        "concept": "feet_and_inches_informal_units",
+        "title": "Feet and Inches: Other Units of Measuring Length",
+        "difficulty": "intro",
+        "prerequisite_concepts": [
+            "millimetre_unit",
+            "relationships_between_all_units"
+        ],
+        "explanation": "In daily life, especially for measuring height, people often use feet and inches. One inch equals 2 cm 5 mm, and one foot equals 12 inches or about 30 cm. To measure your height, stand against a wall, mark the top of your head, and measure from the floor to that mark in feet and inches. Good estimation of heights uses a known reference object — such as a door frame or electric pole — to compare.",
+        "examples": [
+            "On a ruler, 1 inch spans just past the 2 cm mark and reaches 2 cm 5 mm — you can verify this by counting 25 millimetre marks from zero.",
+            "A student who is 4 feet 2 inches tall is approximately 4 × 30 cm + 2 × 2.5 cm = 120 cm + 5 cm = 125 cm, or about 1 m 25 cm.",
+            "To estimate the height of a single-storeyed house, use a door frame as a reference — a door is about 7 feet tall — and judge how many door-heights the house measures."
+        ],
+        "common_misconceptions": [
+            "Students often think 1 foot = 10 inches by analogy with the decimal metric system, not remembering that 1 foot = 12 inches — a non-decimal relationship.",
+            "Students may think inches and centimetres are the same size because both appear on rulers, but 1 inch = 2.5 cm, which is 2.5 times larger than 1 cm.",
+            "When estimating heights, students may guess randomly without using a reference object, not understanding that good estimation always anchors to something of known size."
+        ],
+        "hint_progression": [
+            "Look at the two sides of your ruler — one side shows centimetres and the other shows inches. Can you find where the 1-inch mark lines up on the centimetre side?",
+            "Use the fact that 1 inch = 2 cm 5 mm. To find how many cm are in 2 inches, double both: 2 inches = 4 cm 10 mm = 5 cm.",
+            "To measure your height: mark the wall at the top of your head. Measure from the floor to that mark. Count how many full 30 cm lengths fit (those are your feet). The leftover centimetres convert to inches using 1 inch ≈ 2.5 cm."
+        ],
+        "quiz_questions": [
+            {
+                "question": "Your classmate measures her height as 4 feet and 6 inches. What is her total height in inches only?",
+                "answer": "54 inches",
+                "explanation": "4 feet = 4 × 12 = 48 inches, because 1 foot = 12 inches. Adding the 6 inches gives 48 + 6 = 54 inches. It is important to use 12 (not 10) as the conversion factor from feet to inches."
+            },
+            {
+                "question": "Fill in the blanks: 1 foot = ___ inches = approximately ___ cm.",
+                "answer": "1 foot = 12 inches = 30 cm",
+                "explanation": "The textbook states that 1 foot = 12 inches or 30 cm. Unlike the metric system where units relate by powers of 10, feet and inches use a base-12 relationship. Knowing both equivalences helps us switch between the two systems."
+            }
+        ]
+    }
+]

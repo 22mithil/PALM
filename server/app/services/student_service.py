@@ -128,3 +128,36 @@ async def update_student(
     await db.flush()
     await db.refresh(student)
     return student
+
+
+async def update_login_streak(db: AsyncSession, student: Student) -> None:
+    """Update the student's daily login streak.
+
+    - If last login was yesterday → streak += 1
+    - If last login was today → no change
+    - If last login was >1 day ago or None → streak = 1
+    """
+    from datetime import date, timezone
+
+    today = date.today()
+    last_login = student.last_login_date
+
+    if last_login is not None:
+        last_date = last_login.date() if hasattr(last_login, 'date') else last_login
+        diff = (today - last_date).days
+        if diff == 0:
+            # Already logged in today — no change
+            return
+        elif diff == 1:
+            student.streak = (student.streak or 0) + 1
+        else:
+            student.streak = 1
+    else:
+        student.streak = 1
+
+    from datetime import datetime
+    student.last_login_date = datetime.now(timezone.utc)
+    await db.flush()
+    await db.refresh(student)
+    logger.info("Updated streak for student %s to %d", student.id, student.streak)
+

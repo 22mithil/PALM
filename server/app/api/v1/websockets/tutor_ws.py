@@ -152,6 +152,9 @@ async def tutor_websocket(
             # ── Run pipeline ─────────────────────────────────────────
             student_message = query_override or ""
 
+            # Extract response_time_ms from payload (Issue 4)
+            response_time_ms = payload.get("response_time_ms")
+
             # If no query override, try getting transcript from session context
             if not student_message.strip():
                 session_ctx = session_context_manager.get(session_id)
@@ -166,6 +169,7 @@ async def tutor_websocket(
                         session_id=session_id,
                         student_message=student_message,
                         db=db,
+                        response_time_ms=response_time_ms,
                     )
                     await db.commit()
 

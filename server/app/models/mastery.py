@@ -62,6 +62,9 @@ class StudentProgress(Base):
         DateTime(timezone=True),
         server_default=text("now()"),
     )
+    was_completed: Mapped[bool] = mapped_column(
+        server_default=text("false"),
+    )
 
     # ── Relationships ────────────────────────────────────────────────
     student: Mapped["Student"] = relationship(back_populates="progress")

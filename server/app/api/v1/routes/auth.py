@@ -55,6 +55,10 @@ async def login(
     student = await student_service.authenticate_student(
         db, payload.email, payload.password
     )
+    # Update login streak (Issue 10)
+    await student_service.update_login_streak(db, student)
+    await db.commit()
+
     token = create_access_token(student.id)
     return AuthResponse(
         access_token=token,

@@ -1,0 +1,157 @@
+[
+  {
+    "chapter_id": 10,
+    "chapter_name": "Symmetrical Designs",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["10.1", "10.2", "10.3", "10.4"]
+  },
+  {
+    "section_id": "10.1",
+    "chapter_id": 10,
+    "order": 1,
+    "concept": "reflection_symmetry_and_lines_of_symmetry",
+    "title": "Reflection Symmetry and Lines of Symmetry",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+    "examples": [
+      "Prem cuts out the letter A for Lali's birthday banner by folding paper in half vertically, drawing just the left half of A along the fold, cutting along the outline, and opening the paper to reveal the complete, perfectly symmetrical letter A.",
+      "Manu cuts out the letter H by folding the paper into one-fourth (once vertically and once horizontally), drawing only one-quarter of H in the corner, cutting it out, and unfolding to see the full H — because H has both a vertical and a horizontal line of symmetry.",
+      "Among the letters E, N, X, T, K, V, and O — E has only a horizontal line of symmetry, V has only a vertical line of symmetry, and X and O have both vertical and horizontal lines of symmetry, while N has no line of symmetry at all."
+    ],
+    "common_misconceptions": [
+      "Students often think any fold that splits a shape into two equal-area parts creates a line of symmetry — but the two halves must be exact mirror images, not just equal in size.",
+      "Students may assume all capital letters have at least one line of symmetry — but letters like N and Z have no line of symmetry; rotating them looks the same, but folding does not produce matching halves.",
+      "Students sometimes confuse a diagonal fold with a line of symmetry for letters — a diagonal fold only works as a line of symmetry for shapes like X or O, not for most other letters, because the halves won't match."
+    ],
+    "hint_progression": [
+      "Think about what happens when you physically fold the paper along a line — should both sides land exactly on top of each other?",
+      "A line of symmetry means both halves are mirror images. Try imagining a vertical fold, then a horizontal fold — does either one make both sides match perfectly for the letter you are checking?",
+      "For the letter V, draw a vertical line right down the middle. The left arm of the V is a mirror of the right arm, so both halves match — that is a vertical line of symmetry. Now try a horizontal line across the middle of V and check whether the top half matches the bottom half."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Prem wants to cut out the letter V for Lali's birthday banner using the fold-and-cut method. How many lines of symmetry does V have, which direction are they, and how should he fold the paper?",
+        "answer": "V has one line of symmetry — a vertical line down the middle. Prem should fold the paper once vertically (in half), draw the right half of V along the fold, cut along the outline, and unfold to get the complete letter.",
+        "explanation": "A vertical line of symmetry means the left and right halves are mirror images. Folding along this line lets you cut both halves simultaneously with a single cut, producing a perfectly symmetrical letter."
+      },
+      {
+        "question": "Manu says the letter N has a vertical line of symmetry because it looks balanced and tall. Is Manu correct? Explain why or why not.",
+        "answer": "No, Manu is incorrect. The letter N does not have a vertical line of symmetry — if you fold it down the middle, the two halves do not match as mirror images. It also has no horizontal line of symmetry.",
+        "explanation": "For a line of symmetry to exist, folding along that line must make both halves land exactly on top of each other. When you fold N vertically, the diagonal stroke creates halves that look very different from each other, so there is no line of symmetry."
+      }
+    ]
+  },
+  {
+    "section_id": "10.2",
+    "chapter_id": 10,
+    "order": 2,
+    "concept": "rotational_symmetry",
+    "title": "Rotational Symmetry",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["reflection_symmetry_and_lines_of_symmetry"],
+    "explanation": "A shape has rotational symmetry if it looks exactly the same after being rotated (turned) by a fraction of a full turn around its centre point. The fractions we check are 1/4 turn, 1/2 turn, and 3/4 turn. A shape that only looks the same after a full turn does not count as having rotational symmetry. You can track this by placing a dot on the shape and observing where the dot ends up after each turn.",
+    "examples": [
+      "Lali's firki (windmill) has four identical blades equally spaced around the centre — it looks exactly the same after a 1/4 turn, a 1/2 turn, and a 3/4 turn, so it has rotational symmetry.",
+      "The letter H looks the same after a 1/2 turn around its centre — if you mark a dot on one corner of H, rotate it halfway, and the H looks unchanged (though the dot has moved), so H has rotational symmetry at 1/2 turn.",
+      "Among the digits 0–9, the digit 8 has rotational symmetry at the 1/2 turn (it looks the same upside-down), while the digit 0 also has rotational symmetry; the digit 1 does not look the same after any fractional turn."
+    ],
+    "common_misconceptions": [
+      "Students often confuse rotational symmetry with reflection symmetry — a shape can have one without the other. For example, the letter N has rotational symmetry at 1/2 turn but no line of reflection symmetry.",
+      "Students think a shape must look the same at every fractional turn (1/4, 1/2, 3/4) to have rotational symmetry — but a shape qualifies if it looks the same at even just one fractional turn (other than the full turn).",
+      "Students often skip using a dot to track orientation, then mistakenly conclude a shape has rotational symmetry just because it looks visually similar after turning — the dot method is essential to confirm the shape truly looks identical, not just similar."
+    ],
+    "hint_progression": [
+      "Imagine placing a small dot on one part of the shape. Slowly rotate the shape in your mind — when does it look exactly the way it did at the start, dot and all?",
+      "Check each fraction one at a time: rotate the shape by 1/4 turn (a quarter of the way around), then 1/2 turn (halfway), then 3/4 turn. At each step, compare it carefully with how the shape looked at the very beginning.",
+      "For the letter H: place a dot at the top-left corner of H. After a 1/2 turn, the dot moves to the bottom-right — but look at the overall shape of H. Does the H itself still look the same? If yes, then H has rotational symmetry at 1/2 turn. Now try a 1/4 turn and check if H looks the same — it won't, because H becomes sideways."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Lali's firki has 4 identical blades equally spaced around the centre. At which fractional turns does the firki look exactly the same as its starting position?",
+        "answer": "The firki looks the same after a 1/4 turn, a 1/2 turn, a 3/4 turn, and a full turn.",
+        "explanation": "Because the firki has 4 identical blades evenly spaced at 90° intervals, rotating it by 1/4 of a full circle brings the next identical blade into the same position, making the overall firki look unchanged. This repeats at every 1/4 turn."
+      },
+      {
+        "question": "Look at the digits 0 to 9. Which digits have rotational symmetry, and at which turn? Also, does the two-digit number '88' have rotational symmetry?",
+        "answer": "The digit 0 has rotational symmetry at 1/2 turn, the digit 1 has rotational symmetry at 1/2 turn (as a vertical stroke), and the digit 8 has rotational symmetry at 1/2 turn. The number '88' also has rotational symmetry at 1/2 turn because rotating it halfway gives '88' again.",
+        "explanation": "Rotational symmetry in numbers depends on how the digits look when rotated. The digit 8 flipped upside-down still looks like 8. When two 8s are placed side by side, rotating the whole number 180° swaps their positions but both still look like 8s, so '88' is unchanged."
+      }
+    ]
+  },
+  {
+    "section_id": "10.3",
+    "chapter_id": 10,
+    "order": 3,
+    "concept": "making_symmetrical_designs",
+    "title": "Making Symmetrical Designs",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["reflection_symmetry_and_lines_of_symmetry", "rotational_symmetry"],
+    "explanation": "You can deliberately create designs that have rotational symmetry, reflection symmetry, or both by carefully arranging or colouring shapes. A design has rotational symmetry if it looks the same after a fractional turn, and it has reflection symmetry if a mirror line splits it into two matching halves. The same set of shapes — such as squares and equilateral triangles with equal side lengths — can be arranged in different ways to produce designs with different symmetry properties. Designs can be sorted into three groups: only rotational symmetry, only reflection symmetry, or both.",
+    "examples": [
+      "A 2×2 square grid coloured so that the top-left and bottom-right cells are pink while the top-right and bottom-left cells are green looks the same after a 1/2 turn — it has rotational symmetry — but it does not have a vertical or horizontal line of symmetry.",
+      "A square divided into 8 triangular sections by diagonal, vertical, and horizontal lines, then coloured in an alternating pinwheel pattern with two colours, can be made to look the same after every 1/4 turn, giving it rotational symmetry at 1/4 turn.",
+      "When Lali arranges equilateral triangles and squares with the same side length to form a flower-like design with 4-fold symmetry, the final design may have both 1/4-turn rotational symmetry and 4 lines of reflection symmetry."
+    ],
+    "common_misconceptions": [
+      "Students often assume that any design with rotational symmetry automatically also has reflection symmetry — but a pinwheel pattern can rotate into itself without having any mirror line that divides it into matching halves.",
+      "Students may believe a design that looks the same after 1/4 turn must also look the same after 1/2 turn — this is true (since two 1/4 turns equal one 1/2 turn), but they sometimes incorrectly conclude the reverse: that 1/2-turn symmetry implies 1/4-turn symmetry, which is not always true.",
+      "Students sometimes judge symmetry by 'looks balanced' rather than by actually rotating or folding — a design can look visually pleasing without having true mathematical symmetry."
+    ],
+    "hint_progression": [
+      "Before checking symmetry, pick one distinctive cell or shape in your design as a reference point. Track exactly where it ends up after each turn.",
+      "To test rotational symmetry, trace or copy your design on a separate sheet, then rotate the copy by 1/4 turn and lay it over the original — if they match perfectly, the design has 1/4-turn rotational symmetry. For reflection symmetry, fold your design along a possible mirror line and check whether both halves overlap.",
+      "For the 2×2 grid with pink and green squares: after a 1/4 turn, the top-left pink cell moves to the top-right position — but that position was green in the original. So it does not have 1/4-turn symmetry. After a 1/2 turn, the top-left pink cell moves to the bottom-right — which was also pink. Check all four cells the same way to confirm whether 1/2-turn symmetry holds."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Lali colours a 2×2 grid so the top-left and bottom-right squares are pink, and the top-right and bottom-left squares are green. Does her design have rotational symmetry? If yes, at which turn? Does it also have reflection symmetry?",
+        "answer": "Yes, it has rotational symmetry at the 1/2 turn — after rotating by half a full turn, the pink squares swap positions with each other and the green squares swap with each other, so the pattern looks the same. It does not have vertical or horizontal reflection symmetry, but it does have diagonal reflection symmetry.",
+        "explanation": "After a 1/2 turn, each cell moves to the opposite corner. Since both opposite-corner pairs have the same colour (pink-pink and green-green), the pattern is unchanged. Folding vertically or horizontally places a pink cell over a green cell, so those are not lines of symmetry — but folding along a diagonal places like colours over like colours."
+      },
+      {
+        "question": "Prem makes a design using squares and equilateral triangles that looks the same after every 1/4 turn. Must his design also have reflection symmetry?",
+        "answer": "No, not necessarily. A design with 1/4-turn rotational symmetry might or might not have reflection symmetry. Prem would need to test it separately by checking whether any fold line divides the design into two matching halves.",
+        "explanation": "Rotational symmetry and reflection symmetry are independent properties. A pinwheel arrangement can look the same after every 1/4 turn (rotational symmetry) while having no fold line that creates mirror-image halves — the two types of symmetry do not automatically come together."
+      }
+    ]
+  },
+  {
+    "section_id": "10.4",
+    "chapter_id": 10,
+    "order": 4,
+    "concept": "symmetry_in_block_printing_patterns",
+    "title": "Symmetry in Block Printing Patterns",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["reflection_symmetry_and_lines_of_symmetry", "rotational_symmetry", "making_symmetrical_designs"],
+    "explanation": "Block printing is a traditional craft from Rajasthan where artisans carve a design into a wooden block and press it repeatedly onto fabric to create beautiful repeating patterns. When the same block is stamped multiple times in different orientations, the final printed design can have rotational symmetry, reflection symmetry, or both. Importantly, the print produced by a block is the mirror image of the carved block, because the block is pressed face-down. By analysing how a block is repeated and rotated, you can predict and identify the symmetry of the resulting pattern.",
+    "examples": [
+      "Design A is made by stamping a leaf-shaped wooden block 4 times, each time rotated by 1/4 turn — the resulting cross-like print looks the same after every 1/4 turn, so it has rotational symmetry at 1/4 turn.",
+      "Design B (a flower-like print made from a petal-shaped block stamped 4 times in a circular arrangement) looks the same after every 1/4 turn and also has multiple lines of reflection symmetry, so it has both rotational and reflection symmetry.",
+      "A paisley-shaped block (curved and asymmetric on its own) produces a print that is the mirror image of the carved block — when artisans in Rajasthan match blocks to their prints, they must account for this left-right flip."
+    ],
+    "common_misconceptions": [
+      "Students often think the print looks identical to the wooden block — but the print is a mirror image of the block, because pressing the block face-down onto fabric flips the design left to right.",
+      "Students may assume that repeating any shape automatically creates a symmetric pattern — but symmetry in the final design depends on how the block is oriented each time it is stamped; random repetition does not guarantee symmetry.",
+      "Students sometimes confuse the symmetry of the individual block with the symmetry of the whole printed design — a non-symmetric block can produce a symmetric overall pattern when stamped multiple times with careful rotations, and vice versa."
+    ],
+    "hint_progression": [
+      "When matching a wooden block to its print, think about what happens to a design when you press it face-down onto paper — which way does the image end up facing?",
+      "Remember that a print is the mirror image of the block. Look at the carved block's design, mentally flip it left-to-right, and then compare that flipped version to each print option to find the match.",
+      "For Design A in the chapter: a leaf-shaped block is stamped 4 times, each rotated 90° from the previous one. To check if the final design has 1/4-turn rotational symmetry, ask: after rotating the whole design by 90°, does each stamped leaf move into the position of the next stamped leaf? If all 4 stamps are identical and equally spaced, the answer is yes."
+    ],
+    "quiz_questions": [
+      {
+        "question": "An artisan stamps a lotus-shaped wooden block 4 times onto fabric, rotating it by 1/4 turn each time before stamping. Does the final printed design have rotational symmetry? If yes, at which turns does it look the same?",
+        "answer": "Yes, the final design has rotational symmetry. It looks the same after a 1/4 turn, a 1/2 turn, a 3/4 turn, and a full turn.",
+        "explanation": "Because the block is stamped 4 times at equal 90° intervals, rotating the entire finished design by 90° moves each lotus stamp exactly into the position where the next lotus was — so the overall pattern looks unchanged. This repeats at every 1/4 turn."
+      },
+      {
+        "question": "Manu says that the design printed on fabric will look exactly the same as the carved wooden block. Prem says it will be a mirror image. Who is correct, and why does this matter when matching blocks to their prints?",
+        "answer": "Prem is correct. The print is the mirror image of the carved block, because the block is pressed face-down, which flips the design left to right. This matters because you must mentally flip the block's design before comparing it to a print — a direct comparison without flipping will lead to the wrong match.",
+        "explanation": "When any object is pressed face-down and lifted, its left side appears on the right side of the impression. Block printing works the same way: the carved design is reversed in the print. If a block shows a bird facing right, the print will show the bird facing left."
+      }
+    ]
+  }
+]

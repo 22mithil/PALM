@@ -41,6 +41,7 @@ async def run_turn_pipeline(
     session_id: str,
     student_message: str,
     db: AsyncSession,
+    response_time_ms: float | None = None,
 ) -> str:
     """Execute the full 13-step turn pipeline.
 
@@ -122,6 +123,23 @@ async def run_turn_pipeline(
                 await db.refresh(progress)
                 logger.info("Auto-created progress for student=%s chapter=%d", student_id, chapter_id)
 
+    # ── Issue 5: Early return if chapter already 100% on first pass ─────
+    if progress and progress.completion_percent and progress.completion_percent >= 100 and not progress.was_completed:
+        # Mark as completed on first hit
+        progress.was_completed = True
+        await db.flush()
+    if progress and progress.completion_percent and progress.completion_percent >= 100 and student_message.strip():
+        # If already completed AND was_completed was already True, skip pipeline
+        if progress.was_completed:
+            # Check if a section was specifically reset for review
+            raw_statuses = progress.section_statuses or {}
+            has_not_started = any(
+                isinstance(v, dict) and v.get('status') == 'not_started'
+                for v in raw_statuses.values()
+            )
+            if not has_not_started:
+                return "🎉 You've already mastered this chapter! Head back to the dashboard to explore more topics, or click Restart to practice again."
+
     # Get perception from session_context_manager
     emotion = "neutral"
     emotion_conf = 0.0
@@ -190,6 +208,7 @@ async def run_turn_pipeline(
         chapter_progress=chapter_progress,
         asked_questions=session.asked_questions or [],
         previous_agent_outputs_quiz=None,
+        response_time_ms=response_time_ms,
     )
 
     # Check if previous turn had quiz output by inspecting last assistant message
@@ -232,7 +251,11 @@ async def run_turn_pipeline(
             "role": "user",
             "content": student_message,
         })
-        # Trim to 10
+        # Also append to all_messages for full history (Issue 6)
+        if not hasattr(session, '_all_msgs_buffer'):
+            session._all_msgs_buffer = list(session.all_messages or [])
+        session._all_msgs_buffer.append({"role": "student", "content": student_message})
+        # Trim last_10 to 10
         if len(state.last_10_messages) > 10:
             state.last_10_messages = state.last_10_messages[-10:]
 
@@ -307,6 +330,10 @@ async def run_turn_pipeline(
             "role": "assistant",
             "content": state.final_message,
         })
+        # Also append to all_messages (Issue 6)
+        if not hasattr(session, '_all_msgs_buffer'):
+            session._all_msgs_buffer = list(session.all_messages or [])
+        session._all_msgs_buffer.append({"role": "tutor", "content": state.final_message})
         if len(state.last_10_messages) > 10:
             state.last_10_messages = state.last_10_messages[-10:]
 
@@ -315,18 +342,21 @@ async def run_turn_pipeline(
     # ═══════════════════════════════════════════════════════════════════
     session.turn_count = state.turn_count + 1
     session.last_10_messages = state.last_10_messages
+    session.all_messages = getattr(session, '_all_msgs_buffer', session.all_messages or [])
     session.session_summary = state.session_summary
     session.asked_questions = state.asked_questions
 
     if progress and state.chapter_progress:
         progress.current_section_id = state.chapter_progress.current_section_id
-        # Convert SectionStatus objects back to dicts for JSONB
         progress.section_statuses = {
             sid: {"status": ss.status}
             for sid, ss in state.chapter_progress.section_statuses.items()
         }
         progress.completion_percent = state.chapter_progress.completion_percent
         progress.last_updated = datetime.now(timezone.utc)
+        # Issue 7/8: Mark was_completed when first reaching 100%
+        if state.chapter_progress.completion_percent >= 100 and not progress.was_completed:
+            progress.was_completed = True
 
     await db.flush()
 

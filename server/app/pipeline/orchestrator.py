@@ -52,6 +52,7 @@ Gaze: {gaze} | Consecutive away: {gaze_away}
 Last answer correct: {last_answer}
 Attempt count: {attempt_count} | Hint count: {hint_count}
 Session duration: {duration:.1f} min
+Response time: {response_time}
 
 Student message: {message}
 
@@ -102,6 +103,7 @@ async def run_orchestrator(state: TurnState) -> None:
         attempt_count=state.attempt_count,
         hint_count=state.hint_count,
         duration=state.session_duration_mins,
+        response_time=f"{int(state.response_time_ms)}ms" if state.response_time_ms else "N/A",
         message=state.student_message or "(empty — session start)",
         recent_messages=recent,
     )

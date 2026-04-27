@@ -4,13 +4,15 @@ Session API routes.
 POST   /api/v1/sessions                       — Start a new learning session
 GET    /api/v1/sessions/{id}                  — Get session details
 GET    /api/v1/sessions/student/{student_id}  — List all sessions for a student
-GET    /api/v1/sessions/{id}/events           — Get chat history (from last_10_messages)
+GET    /api/v1/sessions/{id}/events           — Get chat history (paginated from all_messages)
+PATCH  /api/v1/sessions/{id}/end              — End a session and record duration
 """
 
 import uuid
+from datetime import datetime, timezone
 from typing import Optional
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, Query, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -61,8 +63,11 @@ async def list_student_sessions(
             "chapter_id": s.chapter_id,
             "grade": s.grade,
             "started_at": s.started_at.isoformat() if s.started_at else None,
+            "ended_at": s.ended_at.isoformat() if s.ended_at else None,
             "turn_count": s.turn_count,
+            "duration_seconds": s.duration_seconds,
             "session_summary": s.session_summary,
+            "message_count": len(s.all_messages) if s.all_messages else 0,
         }
         for s in sessions
     ]
@@ -70,21 +75,63 @@ async def list_student_sessions(
 
 @router.get(
     "/{session_id}/events",
-    summary="Get chat history for a session",
+    summary="Get chat history for a session (paginated)",
 )
 async def get_session_events(
     session_id: str,
+    offset: int = Query(0, ge=0),
+    limit: int = Query(20, ge=1, le=100),
     db: AsyncSession = Depends(get_db),
 ):
-    """Return the last_10_messages JSONB from the session."""
+    """Return paginated messages from all_messages, falling back to last_10_messages."""
     result = await db.execute(
         select(StudentSession)
         .where(StudentSession.id == uuid.UUID(session_id))
     )
     session = result.scalars().first()
     if session is None:
-        return []
-    return session.last_10_messages or []
+        return {"total": 0, "messages": []}
+
+    all_msgs = session.all_messages or session.last_10_messages or []
+    total = len(all_msgs)
+    # Return slice from offset
+    sliced = all_msgs[offset:offset + limit]
+    return {"total": total, "messages": sliced}
+
+
+@router.patch(
+    "/{session_id}/end",
+    summary="End a session and record duration",
+)
+async def end_session(
+    session_id: str,
+    db: AsyncSession = Depends(get_db),
+):
+    """Set ended_at and compute duration_seconds."""
+    result = await db.execute(
+        select(StudentSession)
+        .where(StudentSession.id == uuid.UUID(session_id))
+    )
+    session = result.scalars().first()
+    if session is None:
+        return {"error": "Session not found"}
+
+    now = datetime.now(timezone.utc)
+    session.ended_at = now
+    if session.started_at:
+        delta = now - session.started_at.replace(tzinfo=timezone.utc) if session.started_at.tzinfo is None else now - session.started_at
+        session.duration_seconds = int(delta.total_seconds())
+    else:
+        session.duration_seconds = 0
+
+    await db.commit()
+    await db.refresh(session)
+
+    return {
+        "id": str(session.id),
+        "ended_at": session.ended_at.isoformat(),
+        "duration_seconds": session.duration_seconds,
+    }
 
 
 @router.get(

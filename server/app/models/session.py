@@ -12,7 +12,8 @@ import uuid
 from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
-from sqlalchemy import ForeignKey, Integer, SmallInteger, String, Text, text
+
+from sqlalchemy import Boolean, Float, ForeignKey, Integer, SmallInteger, String, Text, text
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.types import DateTime
@@ -56,10 +57,23 @@ class StudentSession(Base):
         nullable=False,
         server_default="[]",
     )
+    all_messages: Mapped[list] = mapped_column(
+        JSONB,
+        nullable=False,
+        server_default="[]",
+    )
     asked_questions: Mapped[list] = mapped_column(
         JSONB,
         nullable=False,
         server_default="[]",
+    )
+    ended_at: Mapped[Optional[datetime]] = mapped_column(
+        DateTime(timezone=True),
+        nullable=True,
+    )
+    duration_seconds: Mapped[Optional[int]] = mapped_column(
+        Integer,
+        nullable=True,
     )
 
     # ── Relationships ────────────────────────────────────────────────

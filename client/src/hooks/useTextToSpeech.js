@@ -96,7 +96,7 @@ export const useTextToSpeech = () => {
     if (voiceRef.current) {
       utterance.voice = voiceRef.current;
     }
-    utterance.rate = 1;
+    utterance.rate = 0.85;
     utterance.pitch = 1;
 
     utterance.onend = () => {

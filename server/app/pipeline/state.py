@@ -125,3 +125,6 @@ class TurnState(BaseModel):
     # ── Quiz context tracking ────────────────────────────────────────
     asked_questions: list[str] = Field(default_factory=list)
     previous_agent_outputs_quiz: Optional[str] = None
+
+    # ── Response time tracking (Issue 4) ─────────────────────────────
+    response_time_ms: Optional[float] = None

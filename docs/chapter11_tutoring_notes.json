@@ -1,0 +1,268 @@
+[
+  {
+    "chapter_id": 11,
+    "chapter_name": "Grandmother's Quilt",
+    "grade": 4,
+    "subject": "Mathematics",
+    "section_ids": ["11.1", "11.2", "11.3", "11.4", "11.5", "11.6", "11.7"]
+  },
+  {
+    "section_id": "11.1",
+    "chapter_id": 11,
+    "order": 1,
+    "concept": "perimeter_of_shapes",
+    "title": "Perimeter: The Length of the Border",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "The perimeter of a shape is the total length of its border — the distance all the way around it. To find the perimeter, add up the lengths of all the sides. When Preetha and Adrit's grandmother wanted to decorate her quilt with lace, she needed to find the perimeter of the quilt to buy enough lace to cover the entire border. If all sides of a shape are equal, you can multiply the side length by the number of sides instead of adding each one separately.",
+    "examples": [
+      "Grandmother's quilt has a border that measures 46 units all the way around. The green lace roll has 50 units, which is enough to cover the full perimeter — but the red lace (40 units) and blue lace (25 units) are both too short.",
+      "A pentagon (5-sided shape) with all sides equal to 4 cm has a perimeter of 5 × 4 = 20 cm. Preetha could also add: 4 + 4 + 4 + 4 + 4 = 20 cm.",
+      "In the 'Let Us Play' tile game, two players add square tiles turn by turn and track the perimeter of the growing shape. When the tiles are arranged to give a perimeter of exactly 24 units, that player wins the game."
+    ],
+    "common_misconceptions": [
+      "Students often confuse perimeter with the number of sides. Perimeter is a total length measured in cm or units — not a count of how many sides a shape has.",
+      "When all sides are equal, students may multiply by the wrong number of sides — for example, treating a pentagon as if it has 4 sides instead of 5.",
+      "Students sometimes believe a shape with more sides always has a larger perimeter than one with fewer. But a small hexagon can have a smaller perimeter than a large triangle."
+    ],
+    "hint_progression": [
+      "Imagine walking all the way around the edge of the shape without lifting your feet. How far would you travel in total?",
+      "To find the perimeter, you need to add the lengths of every single side. If all sides are equal, there is a quicker way — try using multiplication.",
+      "Count the number of sides and note the length of one side. Then multiply: number of sides × side length. For a pentagon with sides of 4 cm: 5 × 4 = ___."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Preetha is choosing lace to decorate grandmother's quilt. The quilt's border measures 46 units. Three lace rolls are available: red (40 units), green (50 units), and blue (25 units). Which roll is long enough to cover the entire border?",
+        "answer": "Green lace (50 units)",
+        "explanation": "Only the green lace with 50 units is longer than the 46-unit perimeter. Red (40 units) and blue (25 units) are both shorter than 46, so they would leave part of the border uncovered."
+      },
+      {
+        "question": "Adrit draws a regular hexagon (6 equal sides) for a quilt patch, with each side measuring 3 cm. What is the perimeter of this patch?",
+        "answer": "18 cm",
+        "explanation": "A hexagon has 6 sides. Since all sides are equal at 3 cm, the perimeter is 6 × 3 = 18 cm. This is the same as adding: 3 + 3 + 3 + 3 + 3 + 3 = 18 cm."
+      }
+    ]
+  },
+  {
+    "section_id": "11.2",
+    "chapter_id": 11,
+    "order": 2,
+    "concept": "introduction_to_area",
+    "title": "Area: The Space a Shape Covers",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["perimeter_of_shapes"],
+    "explanation": "The area of a shape is the amount of surface it covers or encloses. To measure area, we fill the region with smaller shapes that fit together with no gaps and no overlaps — this is called tiling. Shapes like squares, rectangles, and triangles tile perfectly, but circles always leave gaps and so cannot be used to measure area. The area of a region is given as a number of tile units, for example '16 triangle units' or '12 square units'.",
+    "examples": [
+      "Preetha covered Table 1 with triangles and Table 3 with squares. The total number of triangles that fit Table 1 with no gaps is the area of Table 1 in triangle units; the squares that fill Table 3 give its area in square units.",
+      "Adrit tried to tile Table 2 with circles. He found gaps between every circle, which means the table was not fully covered. Because circles cannot tile, they cannot be used to measure area.",
+      "Grandmother's rug is made entirely of square patches arranged with no gaps and no overlaps. Counting all the patches gives the area of the rug in square patch units."
+    ],
+    "common_misconceptions": [
+      "Students often think circles can measure area since they are a familiar shape. In fact, circles always leave curved gaps between them and cannot tile any flat region.",
+      "Students may mix up area and perimeter, thinking 'how big a shape is' means its border length. Area measures the space inside, while perimeter measures only the outer boundary.",
+      "When counting tiles, students sometimes skip tiles in the centre of a shape or count tiles that fall outside the boundary, giving an incorrect total."
+    ],
+    "hint_progression": [
+      "Imagine completely covering a tabletop with identical small shapes so that not even a tiny gap is left and no shape overlaps another. How many shapes would you need?",
+      "To measure area, choose a shape that tiles — it must fill the region with no gaps and no overlaps. Then simply count how many of those shapes fit inside.",
+      "Use squares, rectangles, or triangles to tile the region, since these shapes tile perfectly. Count every tile placed inside the outline. That total count is the area in those tile units. Remember: circles leave gaps, so they do not work."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Preetha places triangular tiles on Table 1 and counts 16 triangles fitting perfectly with no gaps. Adrit tries to cover the same table with circles but finds gaps. What is the area of Table 1, and why can Adrit not use circles?",
+        "answer": "The area of Table 1 is 16 triangle units. Adrit cannot use circles because they leave gaps when placed together and do not tile the surface.",
+        "explanation": "Area is measured by counting how many equal tiles fill a region completely. Since 16 triangles covered Table 1 with no gaps or overlaps, the area is 16 triangle units. Circles always leave curved empty spaces between them, so they fail to tile and cannot give a correct area measurement."
+      },
+      {
+        "question": "Grandmother's rug is made of square patches arranged in 5 rows with 6 patches in each row, with no gaps or overlaps. How many square patches make up the rug?",
+        "answer": "30 square patches",
+        "explanation": "There are 5 rows and 6 patches in each row. Multiplying gives 5 × 6 = 30 patches. Since each patch is one square unit, the area of the rug is 30 square units. Counting all patches one by one would give the same answer."
+      }
+    ]
+  },
+  {
+    "section_id": "11.3",
+    "chapter_id": 11,
+    "order": 3,
+    "concept": "comparing_areas_with_different_tile_units",
+    "title": "Comparing Areas Using Different Tile Shapes",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["introduction_to_area"],
+    "explanation": "The same region can be measured using different tile shapes, and the count will differ depending on the size of the tile chosen. A smaller tile requires more tiles to cover the same area than a larger tile. Because of this, you can only fairly compare the areas of two regions when both are measured using tiles of the same size and shape. The 'Comparing Shapes' activity shows that Preetha's desk takes different numbers of green triangles, red triangles, and blue squares — yet the desk itself has not changed.",
+    "examples": [
+      "Preetha's desk can be covered by a large number of small green triangles. Because each green triangle is smaller than a red triangle, more green tiles are needed to fill the same desk.",
+      "The same desk requires fewer red triangles to cover it than green triangles, because each red triangle is larger and takes up more space on the desk.",
+      "Blue square tiles cover Preetha's desk with yet another count, since squares have a different shape and size from either type of triangle. Each count gives the area in a different unit: green triangle units, red triangle units, or blue square units."
+    ],
+    "common_misconceptions": [
+      "Students may think that a higher tile count always means a larger area. In fact, a higher count could simply mean a smaller tile was used — more small tiles can equal the same space as fewer large tiles.",
+      "Students sometimes believe the area of a region changes when measured with a different tile. The actual area of the region stays fixed; only the number changes depending on the tile unit chosen.",
+      "Students may mix tile sizes when comparing two regions, leading to unfair comparisons. Both regions must be measured with exactly the same tile to get a valid comparison."
+    ],
+    "hint_progression": [
+      "If you fill a glass using a teaspoon versus a tablespoon, which one will you need more of? Think about how the size of your measuring unit affects the count you get.",
+      "A smaller tile means you need more of them to fill the same space. A larger tile means fewer are needed. The area of the region has not changed — only your unit of measurement has.",
+      "Count how many green triangles cover the desk, then count the red triangles for the same desk. Compare the two numbers. The desk with the higher count is not necessarily bigger — to compare areas, you must use the same tile for both regions."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Preetha covers her desk with small green triangles and counts 32. She then covers the same desk with red triangles that are each twice the size of a green triangle. How many red triangles does she need, and did the desk's area change?",
+        "answer": "She needs 16 red triangles. The desk's area did not change — it is the same space measured with a different-sized unit.",
+        "explanation": "Each red triangle covers twice the area of a green triangle, so exactly half as many are needed: 32 ÷ 2 = 16. The desk is the same physical object; only the unit of measurement changed from green triangle units to red triangle units."
+      },
+      {
+        "question": "Adrit covers his table with blue square tiles and counts 24. His friend covers the same table with smaller pink squares that are each half the size of a blue square. How many pink squares are needed?",
+        "answer": "48 pink squares",
+        "explanation": "Each pink square covers half the area of a blue square, so twice as many pink squares are needed to fill the same table: 24 × 2 = 48. The table's actual area has not changed — the larger number of pink tiles reflects a smaller unit, not a bigger table."
+      }
+    ]
+  },
+  {
+    "section_id": "11.4",
+    "chapter_id": 11,
+    "order": 4,
+    "concept": "area_using_square_grid",
+    "title": "Measuring Area with a Square Grid",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["introduction_to_area", "comparing_areas_with_different_tile_units"],
+    "explanation": "Using a square grid is the most convenient way to measure area, because every small square on the grid has sides of equal length, making it a consistent and fair unit. A square whose sides are 1 unit long has an area of exactly 1 unit square. To find the area of any shape on the grid, count the number of unit squares the shape covers. For irregular shapes such as a palm print or a leaf outline, count all the squares inside the boundary to get the approximate area.",
+    "examples": [
+      "Three rectangles labelled A, B, and C are placed on a square grid. By counting the coloured squares inside each one, Preetha can directly compare their areas and correctly identify which rectangle is largest.",
+      "Garden A and Garden B are drawn on a 1 cm square grid. Counting the 1 cm squares inside each garden's outline gives the area in cm square, making it easy to compare the two gardens.",
+      "Adrit traces his palm on a 1 cm square grid and counts all the squares covered by the outline. Each complete square counts as 1 cm square, giving a good approximation of the area of his palm."
+    ],
+    "common_misconceptions": [
+      "Students often skip the partial squares near the edges of irregular shapes and only count complete squares, making the area come out smaller than it really is.",
+      "Students sometimes count only the squares along the border of a shape rather than all squares inside it, confusing the boundary (perimeter) with the total interior space (area).",
+      "Students may think that two shapes covering the same number of squares must look the same. In reality, the same area can be arranged into many very different shapes."
+    ],
+    "hint_progression": [
+      "Look at the shape on the grid. Think of each tiny square as one unit of space. How many of those squares are sitting inside the shape's boundary?",
+      "Count all the complete squares inside the shape first. Then look at the partial squares along the edges — if you can estimate that groups of partial squares together make about one full square, add those too. This total is the area.",
+      "Work row by row from top to bottom, marking each square as you count it so you do not miss any. The total number of squares you marked inside the outline is the area in unit squares."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Preetha draws Garden A on a 1 cm grid and counts 12 squares inside it. Garden B beside it covers 15 squares. Which garden has the larger area, and by how many cm square?",
+        "answer": "Garden B has the larger area. It is larger by 3 cm square (15 − 12 = 3).",
+        "explanation": "Each small square on a 1 cm grid equals 1 cm square. Garden A covers 12 cm square and Garden B covers 15 cm square. Since 15 > 12, Garden B is larger. The difference is 15 − 12 = 3 cm square."
+      },
+      {
+        "question": "Adrit collects three leaves and places each on a 1 cm grid. Leaf 1 covers 9 squares, Leaf 2 covers 14 squares, and Leaf 3 covers 7 squares. Which leaf has the largest area and which has the smallest?",
+        "answer": "Leaf 2 has the largest area (14 cm square) and Leaf 3 has the smallest area (7 cm square).",
+        "explanation": "On a 1 cm grid, each square = 1 cm square. Comparing 9, 14, and 7: 14 is the greatest (Leaf 2 is largest) and 7 is the least (Leaf 3 is smallest). Leaf 1 falls in between at 9 cm square."
+      }
+    ]
+  },
+  {
+    "section_id": "11.5",
+    "chapter_id": 11,
+    "order": 5,
+    "concept": "relationship_between_area_and_perimeter",
+    "title": "Same Area, Different Perimeter — and Vice Versa",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["perimeter_of_shapes", "area_using_square_grid"],
+    "explanation": "Area and perimeter are independent measurements — changing one does not automatically change the other in a predictable way. Two shapes can have equal areas but completely different perimeters, and two shapes can have equal perimeters but very different areas. Trisha demonstrated that increasing the area of a rectangle does not always increase its perimeter. The 'Let Us Explore' exercises show many shapes with the same area having different perimeters, and many shapes with the same perimeter enclosing different amounts of space.",
+    "examples": [
+      "Trisha made two rectangles from square tiles. A 2-wide by 3-tall rectangle has an area of 6 square units and a perimeter of 10 units. A wider 3-by-3 arrangement has more area (9 square units) and a larger perimeter (12 units) — but rearranging tiles differently can give a bigger area with a smaller perimeter.",
+      "In 'Let Us Explore' exercise 1, two shapes on a 1 cm grid each cover 12 cm square but have different perimeters. A wide, flat 2-by-6 rectangle has a perimeter of 16 cm, while a square-ish 3-by-4 rectangle has a perimeter of only 14 cm — same area, different perimeters.",
+      "In 'Let Us Explore' exercise 2, several shapes on a 1 cm grid all have a perimeter of 12 cm, but some enclose more squares than others — showing that the same perimeter can surround different areas."
+    ],
+    "common_misconceptions": [
+      "Students commonly believe that if one shape has a larger area it must also have a larger perimeter. Trisha's activity shows this is false — a compact shape can have a large area and a small perimeter.",
+      "Students often think all rectangles with the same perimeter are congruent or have the same area. In fact, many different length-breadth combinations give the same perimeter while enclosing different areas.",
+      "Students may assume that a long, thin shape has a small area because it looks 'small'. A 1 × 12 strip has the same area as a 3 × 4 rectangle, but its perimeter is much larger."
+    ],
+    "hint_progression": [
+      "Take the same number of square tiles and arrange them into two very different shapes. Do the two shapes always have the same outer boundary? Think carefully about what changes and what stays the same.",
+      "Count the squares inside each shape to confirm the area. Then count the exposed outer edges of the squares to find the perimeter. A long thin arrangement has many more exposed edges than a compact square arrangement, even with the same number of tiles.",
+      "For two shapes with the same area: count unit squares inside each — if the counts match, the areas are equal. Then trace the outer boundary and count the edge segments — if those counts differ, the perimeters are different. Area equal does not mean perimeter equal."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Preetha arranges tiles into a 1-by-12 rectangle and Adrit makes a 3-by-4 rectangle. Do they have the same area? Do they have the same perimeter? Give both values for each shape.",
+        "answer": "Both have the same area of 12 square units. Preetha's perimeter is 26 units (1+12+1+12) and Adrit's is 14 units (3+4+3+4). Their perimeters are different.",
+        "explanation": "Area: 1 × 12 = 12 and 3 × 4 = 12 — equal areas. Perimeter of Preetha's rectangle: 2×(1+12) = 26 units. Perimeter of Adrit's rectangle: 2×(3+4) = 14 units. Equal area does not guarantee equal perimeter."
+      },
+      {
+        "question": "Trisha says: 'My shape has a perimeter of 12 cm, so any other shape with a perimeter of 12 cm must have the same area as mine.' Is Trisha correct? Give an example to support your answer.",
+        "answer": "Trisha is not correct. A 1×5 rectangle and a 2×4 rectangle both have a perimeter of 12 cm, but their areas are 5 cm square and 8 cm square respectively.",
+        "explanation": "Perimeter and area are independent. For a 1×5 rectangle: perimeter = 2×(1+5) = 12 cm, area = 5 cm square. For a 2×4 rectangle: perimeter = 2×(2+4) = 12 cm, area = 8 cm square. Same perimeter, but different areas — so Trisha's claim is wrong."
+      }
+    ]
+  },
+  {
+    "section_id": "11.6",
+    "chapter_id": 11,
+    "order": 6,
+    "concept": "area_of_rectangle_formula",
+    "title": "Area of a Rectangle: Length × Breadth",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["area_using_square_grid", "relationship_between_area_and_perimeter"],
+    "explanation": "Instead of counting every square on a grid, we can find the area of a rectangle by multiplying its length by its breadth: Area = Length × Breadth. This works because a rectangle fills with unit squares arranged in equal rows and columns — multiplying rows by columns gives the total. Grandmother's patchwork has 6 rows of 4 patches each, so its area is 6 × 4 = 24 square cm. If we know the area and one side, we can find the missing side by dividing: missing side = Area ÷ known side.",
+    "examples": [
+      "Grandmother arranges her patchwork in 6 rows of 4 patches each. Preetha realises she does not need to count every patch — she multiplies 6 (length) × 4 (breadth) = 24 square cm.",
+      "A rectangular field has a length of 42 m and a breadth of 34 m. Its area is 42 × 34 = 1428 square m, which is far faster than drawing a full grid and counting every square.",
+      "A rectangular garden has an area of 64 square m and a length of 16 m. To find the breadth, Adrit divides: 64 ÷ 16 = 4 m — the breadth of the garden is 4 m."
+    ],
+    "common_misconceptions": [
+      "Students sometimes add length and breadth instead of multiplying, perhaps because the perimeter formula involves addition. Area always uses multiplication: Area = L × B.",
+      "Students often forget to write 'square cm' (or square m) for area and write only 'cm'. When both dimensions are in centimetres, the area unit must be square centimetres.",
+      "When working backwards to find a missing side, students may multiply instead of dividing. If Area = L × B, then the missing side = Area ÷ the known side."
+    ],
+    "hint_progression": [
+      "Instead of counting every single patch in grandmother's patchwork, look at how the patches are arranged. Is there a faster way using the rows and columns you can see?",
+      "A rectangle is made of equal rows of unit squares. The number of squares in each row is the length, and the number of rows is the breadth. Multiply rows by the number in each row to get the total.",
+      "Use the formula: Area = Length × Breadth. Substitute the values given and multiply. If a side is missing but you know the area, divide: missing side = Area ÷ the known side. Check that your area answer is labelled in square units."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Grandmother's new patchwork has 8 rows of 5 patches each. What is the area of the patchwork? Show your working.",
+        "answer": "Area = 8 × 5 = 40 square units",
+        "explanation": "Area of a rectangle = Length × Breadth. The length (number of rows) is 8 and the breadth (patches per row) is 5. So 8 × 5 = 40 square units — the same result you would get by counting all 40 individual patches."
+      },
+      {
+        "question": "A rectangular garden has an area of 64 square m and a length of 16 m. What is the breadth of the garden?",
+        "answer": "Breadth = 4 m",
+        "explanation": "Area = Length × Breadth, so Breadth = Area ÷ Length = 64 ÷ 16 = 4 m. We divide because we already know the area and one side and need to find the other. Check: 16 × 4 = 64 ✓"
+      }
+    ]
+  },
+  {
+    "section_id": "11.7",
+    "chapter_id": 11,
+    "order": 7,
+    "concept": "area_and_perimeter_formulas_square_rectangle",
+    "title": "Formulas for Area and Perimeter of Squares and Rectangles",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["area_of_rectangle_formula", "perimeter_of_shapes"],
+    "explanation": "A square is a special rectangle where all four sides are equal. Its area is Side × Side, and its perimeter is 4 × Side. For a rectangle, the opposite sides are equal (two lengths and two breadths), so the perimeter formula is 2 × Length + 2 × Breadth. These formulas let us quickly find area and perimeter for any square or rectangle once we know the side lengths, without drawing a grid or counting squares.",
+    "examples": [
+      "A square patchwork with sides of 5 cm has an area of 5 × 5 = 25 square cm and a perimeter of 4 × 5 = 20 cm.",
+      "A rectangle with length 6 cm and breadth 4 cm has an area of 6 × 4 = 24 square cm and a perimeter of 2 × 6 + 2 × 4 = 12 + 8 = 20 cm.",
+      "In the 'Let Us Do' activity, Preetha measures her classroom floor with her teacher, finds the length and breadth, then applies Area = Length × Breadth and Perimeter = 2 × Length + 2 × Breadth directly — no counting needed."
+    ],
+    "common_misconceptions": [
+      "Students often apply the area formula (side × side) to find the perimeter of a square, writing perimeter = 5 × 5 = 25 instead of the correct 4 × 5 = 20.",
+      "Students sometimes forget that the perimeter of a rectangle must include both the length and the breadth twice: 2×L + 2×B. A common error is writing only 2×L or adding just L + B once.",
+      "Students may think a square always has a larger area than a rectangle because all its sides are equal. A rectangle can have a much larger area than a square depending on its dimensions."
+    ],
+    "hint_progression": [
+      "A square has four equal sides. What does that tell you about the quick way to find its perimeter — and what operation connects the two equal sides when you find its area?",
+      "For a square with side s: add all four equal sides for perimeter (that is 4 × s), and multiply the two equal dimensions for area (s × s). For a rectangle, remember there are two different side lengths, each appearing twice.",
+      "Square: Area = side × side; Perimeter = 4 × side. Rectangle: Area = length × breadth; Perimeter = 2 × length + 2 × breadth. Plug in the given numbers and calculate step by step. Always write 'square cm' for area and 'cm' for perimeter."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Grandmother sews a square quilt patch with each side measuring 7 cm. What is the area and what is the perimeter of this patch?",
+        "answer": "Area = 7 × 7 = 49 square cm. Perimeter = 4 × 7 = 28 cm.",
+        "explanation": "For a square, Area = side × side = 7 × 7 = 49 square cm. Perimeter = 4 × side = 4 × 7 = 28 cm. Because all four sides are equal, we multiply by 4 rather than adding each side separately."
+      },
+      {
+        "question": "A rectangular mat has a length of 32 cm and a breadth of 6 cm (as shown in the chapter's figure). What are its area and perimeter?",
+        "answer": "Area = 32 × 6 = 192 square cm. Perimeter = 2 × 32 + 2 × 6 = 64 + 12 = 76 cm.",
+        "explanation": "Area = Length × Breadth = 32 × 6 = 192 square cm. Perimeter = 2 × Length + 2 × Breadth = 2 × 32 + 2 × 6 = 64 + 12 = 76 cm. The opposite sides of a rectangle are equal, which is why each dimension is counted twice."
+      }
+    ]
+  }
+]

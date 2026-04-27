@@ -58,7 +58,12 @@ const Dashboard = () => {
     if (!studentId) return;
     getMastery(studentId, token).then((scores) => {
       const map = {};
-      scores.forEach((s) => { map[s.chapter_id] = Math.round(s.completion_percent || 0); });
+      scores.forEach((s) => {
+        map[s.chapter_id] = {
+          percent: Math.round(s.completion_percent || 0),
+          was_completed: s.was_completed || false,
+        };
+      });
       setMasteryMap(map);
     }).catch(() => {});
     getStudentSessions(studentId, token).then((sessions) => {
@@ -73,9 +78,12 @@ const Dashboard = () => {
   const enrichedTopics = useMemo(() => {
     const startedChapters = new Set(allSessions.map(s => s.chapter_id));
     return topics.map((t) => {
-      const m = masteryMap[t.id] ?? 0;
+      const data = masteryMap[t.id];
+      const m = data ? data.percent : 0;
+      const wasCompleted = data ? data.was_completed : false;
       const hasStarted = startedChapters.has(t.id);
-      const status = m >= 100 ? "completed" : (m > 0 || hasStarted) ? "inprogress" : "notstarted";
+      // Issue 8: was_completed keeps "completed" status even if section was reset
+      const status = (m >= 100 || wasCompleted) ? "completed" : (m > 0 || hasStarted) ? "inprogress" : "notstarted";
       return {
         id: t.id,
         name: t.topic,
@@ -83,6 +91,7 @@ const Dashboard = () => {
         difficulty: "Medium",
         status,
         mastery: m,
+        wasCompleted,
         recommended: m > 0 && m < 50,
       };
     });
@@ -115,13 +124,14 @@ const Dashboard = () => {
     return recentSessions.map((s, i) => {
       const started = s.started_at ? new Date(s.started_at) : new Date();
       const days = Math.max(1, Math.round((Date.now() - started.getTime()) / 86400000));
+      const mins = s.duration_seconds ? Math.round(s.duration_seconds / 60) : 0;
       return {
         id: s.id || i,
         topic: chapterNames[s.chapter_id] || "Practice",
         days,
-        mins: 0,
+        mins,
         questions: s.turn_count || 0,
-        status: s.session_summary ? "Completed" : "In Progress",
+        status: s.ended_at ? "Completed" : "In Progress",
       };
     });
   }, [recentSessions, topics]);

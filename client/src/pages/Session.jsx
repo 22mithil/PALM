@@ -12,8 +12,8 @@ import usePerceptionStream from "@/hooks/usePerceptionStream";
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
 import PerceptionHUD from "@/components/PerceptionHUD";
 
-import { getMastery, getStudentSessions, getSessionEvents, endSession, getChatHistory } from "@/lib/api";
-import { History } from "lucide-react";
+import { getMastery, getStudentSessions, getSessionEvents, endSession, getSessionHistory, getSessionMessages, getChapterSections, resetSection } from "@/lib/api";
+import { History, RotateCcw, ChevronDown, ChevronUp, PartyPopper } from "lucide-react";
 
 const VIDEO_CONSTRAINTS = {
   width: { ideal: 640 },
@@ -48,32 +48,57 @@ const StudentAvatar = ({ initial }) => (
 
 const cleanLatex = (text) =>
   text
-    .replace(/\$\$(.*?)\$\$/g, "$1")       // $$...$$ → content
-    .replace(/\$(.*?)\$/g, "$1")           // $...$ → content
-    .replace(/\\text\{(.*?)\}/g, "$1")     // \text{kg} → kg
-    .replace(/\\frac\{(.*?)\}\{(.*?)\}/g, "$1/$2")  // \frac{3}{8} → 3/8
-    .replace(/\\\\/g, "");                 // stray backslashes
+    .replace(/\$\$(.*?)\$\$/g, "$1")
+    .replace(/\$(.*?)\$/g, "$1")
+    .replace(/\\text\{(.*?)\}/g, "$1")
+    .replace(/\\frac\{(.*?)\}\{(.*?)\}/g, "$1/$2")
+    .replace(/\\\\/g, "");
 
-const renderInline = (text) => {
-  const cleaned = cleanLatex(text);
-  const parts = cleaned.split(/(`[^`]+`|\b\d+\/\d+\b)/g);
+const renderInlineSegment = (text, key) => {
+  const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`|\b\d+\/\d+\b)/g);
   return parts.map((p, i) => {
+    if (/^\*\*[^*]+\*\*$/.test(p)) {
+      return <strong key={`${key}-${i}`}>{p.slice(2, -2)}</strong>;
+    }
     if (/^`[^`]+`$/.test(p)) {
       return (
-        <span key={i} className="font-mono bg-muted px-1 rounded text-xs">
+        <span key={`${key}-${i}`} className="font-mono bg-muted px-1 rounded text-xs">
           {p.slice(1, -1)}
         </span>
       );
     }
     if (/^\d+\/\d+$/.test(p)) {
       return (
-        <span key={i} className="font-mono bg-muted px-1 rounded text-xs">
+        <span key={`${key}-${i}`} className="font-mono bg-muted px-1.5 py-0.5 rounded text-sm font-semibold">
           {p}
         </span>
       );
     }
-    return <span key={i}>{p}</span>;
+    return <span key={`${key}-${i}`}>{p}</span>;
   });
+};
+
+const renderMessage = (text) => {
+  const cleaned = cleanLatex(text);
+  const paragraphs = cleaned.split(/\n\n+/);
+  if (paragraphs.length <= 1) {
+    const lines = cleaned.split(/\n/);
+    return lines.map((line, li) => {
+      const numberedMatch = line.match(/^(\d+)\.\s+(.*)/);
+      if (numberedMatch) {
+        return (
+          <div key={li} className="flex gap-2 ml-1 mb-1">
+            <span className="font-semibold text-teal-600 shrink-0">{numberedMatch[1]}.</span>
+            <span>{renderInlineSegment(numberedMatch[2], li)}</span>
+          </div>
+        );
+      }
+      return <p key={li} className={li > 0 ? "mt-1" : ""}>{renderInlineSegment(line, li)}</p>;
+    });
+  }
+  return paragraphs.map((para, pi) => (
+    <p key={pi} className={pi > 0 ? "mt-2.5" : ""}>{renderInlineSegment(para.replace(/\n/g, " "), pi)}</p>
+  ));
 };
 
 const Session = () => {
@@ -112,23 +137,60 @@ const Session = () => {
   // New sessions always start fresh — no loading previous messages into chat
   const hasHistoryRef = useRef(false);
 
-  // ── Chat history panel state ─────────────────────────────────────────
+  // ── Chat history panel state (lazy-loaded per session) ─────────────
   const [showHistory, setShowHistory] = useState(false);
-  const [chatHistory, setChatHistory] = useState([]);
+  const [historySessions, setHistorySessions] = useState([]);
   const [historyLoading, setHistoryLoading] = useState(false);
+  const [expandedHistorySession, setExpandedHistorySession] = useState(null);
+  const [sessionMessages, setSessionMessages] = useState({});
+  const [sessionMsgLoading, setSessionMsgLoading] = useState({});
 
-  const loadChatHistory = async () => {
+  // Chapter complete state (Issue 5)
+  const [chapterComplete, setChapterComplete] = useState(false);
+
+  const loadHistorySessions = async () => {
     if (!studentId || !chapterId) return;
     setHistoryLoading(true);
     try {
-      const history = await getChatHistory(studentId, chapterId, token);
-      // Filter out current session
-      const past = history.filter((h) => h.sessionId !== sessionId);
-      setChatHistory(past);
+      const sessions = await getStudentSessions(studentId, token);
+      const past = sessions.filter((s) => s.chapter_id === chapterId && s.id !== sessionId);
+      setHistorySessions(past);
     } catch (e) {
-      console.error("Failed to load history:", e);
+      console.error("Failed to load history sessions:", e);
     } finally {
       setHistoryLoading(false);
+    }
+  };
+
+  const loadSessionMessages = async (sid, offset = 0) => {
+    setSessionMsgLoading((prev) => ({ ...prev, [sid]: true }));
+    try {
+      const data = await getSessionMessages(sid, offset, 20, token);
+      setSessionMessages((prev) => {
+        const existing = prev[sid] || { messages: [], total: 0 };
+        return {
+          ...prev,
+          [sid]: {
+            messages: offset === 0 ? data.messages : [...data.messages, ...existing.messages],
+            total: data.total,
+          },
+        };
+      });
+    } catch (e) {
+      console.error("Failed to load messages:", e);
+    } finally {
+      setSessionMsgLoading((prev) => ({ ...prev, [sid]: false }));
+    }
+  };
+
+  const toggleHistorySession = (sid) => {
+    if (expandedHistorySession === sid) {
+      setExpandedHistorySession(null);
+    } else {
+      setExpandedHistorySession(sid);
+      if (!sessionMessages[sid]) {
+        loadSessionMessages(sid, 0);
+      }
     }
   };
 
@@ -179,8 +241,11 @@ const Session = () => {
     isSupported: ttsSupported,
   } = useTextToSpeech();
   const [isTtsEnabled, setIsTtsEnabled] = useState(true);
+  const isTtsEnabledRef = useRef(true);
   // Track which message id is currently being spoken
   const ttsSpeakingIdRef = useRef(null);
+  // Track when last bot message was displayed (Issue 4: response time)
+  const lastBotMessageTimestamp = useRef(null);
 
   /* ── grade & topic for RAG queries ───────────────────────── */
   const [grade, setGrade] = useState(storeGrade || 3);
@@ -417,10 +482,14 @@ const Session = () => {
         }
         // Update mastery from completion_percent
         if (completion_percent != null) {
-          setMastery(Math.round(completion_percent));
+          const rounded = Math.round(completion_percent);
+          setMastery(rounded);
+          if (rounded >= 100) setChapterComplete(true);
         }
-        // Speak the response via TTS if enabled
-        if (isTtsEnabled && full_text) {
+        // Record timestamp for response time tracking (Issue 4)
+        lastBotMessageTimestamp.current = Date.now();
+        // Speak the response via TTS if enabled (Issue 1: use ref to avoid stale closure)
+        if (isTtsEnabledRef.current && full_text) {
           try {
             ttsSpeakingIdRef.current = streamingIdRef.current;
             ttsSpeak(full_text);
@@ -516,7 +585,7 @@ const Session = () => {
   /* ── send message via WebSocket ───────────────────────── */
   const sendStudentMessage = (text) => {
     const trimmed = (typeof text === "string" ? text : input).trim();
-    if (!trimmed || ragLoading) return;
+    if (!trimmed || ragLoading || chapterComplete) return;
 
     const ws = wsRef.current;
     if (!ws || ws.readyState !== WebSocket.OPEN) {
@@ -526,6 +595,11 @@ const Session = () => {
       ]);
       return;
     }
+
+    // Compute response time (Issue 4)
+    const response_time_ms = lastBotMessageTimestamp.current
+      ? Date.now() - lastBotMessageTimestamp.current
+      : null;
 
     setMessages((m) => [
       ...m,
@@ -540,6 +614,7 @@ const Session = () => {
       payload: {
         student_id: studentId,
         query: trimmed,
+        response_time_ms,
       },
     }));
   };
@@ -568,7 +643,7 @@ const Session = () => {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => { loadChatHistory(); setShowHistory(true); }}
+            onClick={() => { loadHistorySessions(); setShowHistory(true); }}
           >
             <History className="h-4 w-4 mr-1" /> History
           </Button>
@@ -579,7 +654,7 @@ const Session = () => {
             onClick={async () => {
               ttsStop();
               try {
-                await endSession(sessionId, {}, token);
+                await endSession(sessionId, { durationSeconds: elapsed }, token);
               } catch (err) {
                 console.error("[Session] Failed to end session:", err);
               }
@@ -749,13 +824,13 @@ const Session = () => {
                   )}
                   <div
                     className={cn(
-                      "max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed border",
+                      "max-w-[80%] rounded-2xl px-4 py-3 leading-relaxed border",
                       m.role === "tutor"
-                        ? "bg-card"
-                        : "bg-teal-50 border-teal-200 text-teal-900",
+                        ? "bg-card text-[15px]"
+                        : "bg-teal-50 border-teal-200 text-teal-900 text-sm",
                     )}
                   >
-                    {renderInline(m.text)}
+                    {renderMessage(m.text)}
                   </div>
                 </motion.div>
               ))}
@@ -819,10 +894,10 @@ const Session = () => {
               <button
                 type="button"
                 onClick={() => {
-                  setIsTtsEnabled((prev) => {
-                    if (prev) ttsStop(); // turning off → stop current speech
-                    return !prev;
-                  });
+                  const next = !isTtsEnabledRef.current;
+                  isTtsEnabledRef.current = next;
+                  setIsTtsEnabled(next);
+                  if (!next) ttsStop();
                 }}
                 className={cn(
                   "relative h-10 w-10 rounded-full border grid place-items-center transition-colors shrink-0",
@@ -840,23 +915,77 @@ const Session = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKey}
-              placeholder={sttListening ? "Listening…" : "Type your answer or hold Space to speak…"}
+              placeholder={chapterComplete ? "Chapter complete! 🎉" : sttListening ? "Listening…" : "Type your answer or hold Space to speak…"}
               className="rounded-full"
-              disabled={ragLoading}
+              disabled={ragLoading || chapterComplete}
             />
             <button
               type="button"
               onClick={() => sendStudentMessage(input)}
               className="h-10 w-10 rounded-full bg-teal-600 hover:bg-teal-700 text-white grid place-items-center transition-colors disabled:opacity-50 shrink-0"
-              disabled={!input.trim() || ragLoading}
+              disabled={!input.trim() || ragLoading || chapterComplete}
               aria-label="Send message"
             >
               <Send className="h-4 w-4" />
             </button>
           </div>
+
+          {/* Chapter Complete Banner (Issue 5) */}
+          <AnimatePresence>
+            {chapterComplete && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                className="px-4 py-3 bg-gradient-to-r from-emerald-50 to-teal-50 border-t border-emerald-200 flex-shrink-0"
+              >
+                <div className="flex items-center gap-3 justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">🎉</span>
+                    <div>
+                      <p className="font-semibold text-emerald-800 text-sm">Chapter Complete!</p>
+                      <p className="text-xs text-emerald-600">You've mastered all sections. Amazing work!</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="border-orange-400 text-orange-700 hover:bg-orange-50"
+                      onClick={() => {
+                        setChapterComplete(false);
+                        setMastery(0);
+                        // Re-trigger greeting for fresh start
+                        const ws = wsRef.current;
+                        if (ws && ws.readyState === WebSocket.OPEN) {
+                          setTyping(true);
+                          ws.send(JSON.stringify({
+                            type: "trigger",
+                            payload: {
+                              student_id: studentId,
+                              query: `The student wants to restart this chapter. Greet them and introduce the first topic again.`,
+                            },
+                          }));
+                        }
+                      }}
+                    >
+                      <RotateCcw className="h-3 w-3 mr-1" /> Restart
+                    </Button>
+                    <Button
+                      size="sm"
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                      onClick={() => navigate("/dashboard")}
+                    >
+                      Dashboard →
+                    </Button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </section>
       </div>
-      {/* Chat History Overlay */}
+      {/* Chat History Overlay (Issue 6: Lazy-loaded per-session) */}
       <AnimatePresence>
         {showHistory && (
           <motion.div
@@ -882,53 +1011,95 @@ const Session = () => {
                 <div>
                   <p className="font-medium">Previous Chats</p>
                   <p className="text-xs text-muted-foreground">
-                    {chatHistory.length} past session{chatHistory.length !== 1 ? "s" : ""}
+                    {historySessions.length} past session{historySessions.length !== 1 ? "s" : ""}
                   </p>
                 </div>
                 <Button variant="ghost" size="sm" onClick={() => setShowHistory(false)}>
                   <X className="h-4 w-4" />
                 </Button>
               </div>
-              <div className="flex-1 overflow-y-auto px-4 py-3 space-y-6">
+              <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
                 {historyLoading ? (
                   <div className="text-center text-sm text-muted-foreground py-12">
-                    Loading history...
+                    Loading sessions...
                   </div>
-                ) : chatHistory.length === 0 ? (
+                ) : historySessions.length === 0 ? (
                   <div className="text-center text-sm text-muted-foreground py-12">
                     No previous sessions for this topic yet.
                   </div>
                 ) : (
-                  chatHistory.map((session, idx) => (
-                    <div key={session.sessionId} className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-                          Session {idx + 1}
-                        </span>
-                        {session.startedAt && (
-                          <span className="text-[10px] text-muted-foreground">
-                            {new Date(session.startedAt).toLocaleDateString()} {new Date(session.startedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-                          </span>
+                  historySessions.map((session, idx) => {
+                    const isExpanded = expandedHistorySession === session.id;
+                    const msgData = sessionMessages[session.id];
+                    const isLoadingMsgs = sessionMsgLoading[session.id];
+                    return (
+                      <div key={session.id} className="border rounded-lg overflow-hidden">
+                        <button
+                          type="button"
+                          className="w-full px-3 py-2.5 flex items-center justify-between hover:bg-muted/50 transition-colors text-left"
+                          onClick={() => toggleHistorySession(session.id)}
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                              #{historySessions.length - idx}
+                            </span>
+                            <div>
+                              <p className="text-xs font-medium">
+                                {session.started_at
+                                  ? new Date(session.started_at).toLocaleDateString(undefined, { month: "short", day: "numeric" })
+                                  : "Unknown date"}
+                                {session.started_at && (
+                                  <span className="text-muted-foreground ml-1">
+                                    {new Date(session.started_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                                  </span>
+                                )}
+                              </p>
+                              <p className="text-[10px] text-muted-foreground">
+                                {session.turn_count || 0} messages
+                                {session.duration_seconds ? ` · ${Math.round(session.duration_seconds / 60)} min` : ""}
+                              </p>
+                            </div>
+                          </div>
+                          {isExpanded ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+                        </button>
+                        {isExpanded && (
+                          <div className="border-t px-3 py-2 space-y-1.5 max-h-72 overflow-y-auto">
+                            {isLoadingMsgs ? (
+                              <div className="text-xs text-muted-foreground text-center py-4">Loading messages...</div>
+                            ) : msgData && msgData.messages.length > 0 ? (
+                              <>
+                                {msgData.messages.length < msgData.total && (
+                                  <button
+                                    type="button"
+                                    className="text-xs text-teal-600 hover:underline w-full text-center py-1"
+                                    onClick={() => loadSessionMessages(session.id, msgData.messages.length)}
+                                  >
+                                    ↑ Load older messages
+                                  </button>
+                                )}
+                                {msgData.messages.map((m, mi) => (
+                                  <div
+                                    key={mi}
+                                    className={cn(
+                                      "text-xs px-3 py-2 rounded-lg max-w-[90%]",
+                                      m.role === "student" || m.role === "user"
+                                        ? "bg-teal-50 border border-teal-200 text-teal-900 ml-auto"
+                                        : "bg-card border"
+                                    )}
+                                  >
+                                    {(m.content || m.text || "").slice(0, 300)}
+                                    {(m.content || m.text || "").length > 300 ? "…" : ""}
+                                  </div>
+                                ))}
+                              </>
+                            ) : (
+                              <div className="text-xs text-muted-foreground text-center py-4">No messages found.</div>
+                            )}
+                          </div>
                         )}
                       </div>
-                      <div className="space-y-1.5 pl-2 border-l-2 border-muted">
-                        {session.messages.map((m, mi) => (
-                          <div
-                            key={mi}
-                            className={cn(
-                              "text-xs px-3 py-2 rounded-lg max-w-[90%]",
-                              m.role === "user"
-                                ? "bg-teal-50 border border-teal-200 text-teal-900 ml-auto"
-                                : "bg-card border"
-                            )}
-                          >
-                            {(m.content || m.text || "").slice(0, 300)}
-                            {(m.content || m.text || "").length > 300 ? "…" : ""}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))
+                    );
+                  })
                 )}
               </div>
             </motion.div>

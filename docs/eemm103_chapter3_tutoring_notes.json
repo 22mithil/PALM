@@ -1,0 +1,268 @@
+[
+  {
+    "chapter_id": 3,
+    "chapter_name": "Angles as Turns",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["3.1", "3.2", "3.3", "3.4", "3.5", "3.6", "3.7"]
+  },
+  {
+    "section_id": "3.1",
+    "chapter_id": 3,
+    "order": 1,
+    "concept": "full_half_quarter_turns",
+    "title": "Full Turn, Half Turn, and Quarter Turn",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "A turn describes how far something has rotated from its starting position. A full turn brings you back to exactly where you started, like a minute hand travelling all the way around and returning to 12. A half turn is exactly half of a full turn, and a quarter turn is half of that — meaning 4 quarter turns in the same direction equal one full turn. Everyday objects like taps, scissors, and giant wheels all involve different amounts of turning.",
+    "examples": [
+      "Ashutosh keeps one foot fixed on the ground and spins until he faces exactly the same direction he started — he has made a full turn and traced a complete circle.",
+      "Sahana keeps one foot fixed and rotates only halfway around, stopping when she faces the opposite direction from where she began — she has made a half turn and traced a half-moon shape.",
+      "Reema takes two quarter turns in the same direction one after another — because 2 × (1/4) = 1/2, this is the same as a single half turn."
+    ],
+    "common_misconceptions": [
+      "Students often believe that 2 half turns equal 2 full turns — in fact, 2 half turns in the same direction equal exactly 1 full turn, because each half turn covers only half the circle.",
+      "Students may think a quarter turn is the same size as a half turn just because both sound like 'part of a turn' — a quarter turn is actually half the size of a half turn.",
+      "Students sometimes confuse the number of separate turns taken with the total amount turned — taking 4 separate quarter turns in the same direction is equal to 1 full turn, not 4 full turns."
+    ],
+    "hint_progression": [
+      "Think about what it means to come back to exactly where you started — like the minute hand returning to 12 o'clock. How much of the circle did it cover?",
+      "A full turn means a complete circle back to the start. A half turn covers exactly half that journey. Try counting how many quarter turns fit inside one full turn.",
+      "A full turn = 2 half turns = 4 quarter turns. So if Reema takes 4 quarter turns in the same direction, count 4 × (1/4) and simplify to find the total — you get 1 full turn."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Reema takes 4 quarter turns in the same direction one after another. What kind of turn is this equal to?",
+        "answer": "A full turn",
+        "explanation": "4 quarter turns means 4 × (1/4) = 4/4 = 1 full turn. Just like a giant wheel returning to starting position E, Reema ends up facing exactly the same direction she started."
+      },
+      {
+        "question": "The minute hand of a clock starts at 12 and moves all the way back to 12 again. What kind of turn has it made?",
+        "answer": "A full turn",
+        "explanation": "The minute hand returns to its exact starting position, which means it has completed one full revolution around the clock face — this is a full turn."
+      }
+    ]
+  },
+  {
+    "section_id": "3.2",
+    "chapter_id": 3,
+    "order": 2,
+    "concept": "angles_from_turns",
+    "title": "Types of Angles from Turns",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["full_half_quarter_turns"],
+    "explanation": "Angles arise whenever something makes a turn. A quarter turn (1/4) creates a right angle — the most common angle in everyday shapes. Any turn less than a quarter produces an acute angle, which is small and sharp. A turn between a quarter and a half produces an obtuse angle, which is wide and open. Exactly a half turn (1/2) produces a straight angle, where both sides form a straight line.",
+    "examples": [
+      "Pragya holds the green straw steady and turns the yellow straw by exactly a quarter turn — the two straws now form a right angle between them.",
+      "When Pragya opens the yellow straw just a tiny bit — less than a quarter turn — the straws make a small sharp angle, which is an acute angle.",
+      "When Pragya opens the yellow straw more than a quarter turn but stops before reaching a half turn, the straws form a wide angle — this is an obtuse angle."
+    ],
+    "common_misconceptions": [
+      "Students often think a right angle means the angle is pointing to the right — but a right angle is any angle equal to exactly a quarter turn, no matter which direction it faces.",
+      "Students may label an angle as acute just because it looks small in a drawing — only turns strictly less than 1/4 produce acute angles; a right angle is not acute even if it is drawn small.",
+      "Students sometimes think a straight angle is not a real angle at all, because it looks like a flat line — but a straight angle is a genuine angle equal to exactly a half turn."
+    ],
+    "hint_progression": [
+      "Think about the paper fan. Picture what it looks like when you open it just a crack, then exactly one quarter, then halfway flat. Each position gives a different type of angle.",
+      "Compare the opening of the angle to a quarter turn (right angle). If it is smaller, it is acute. If it is exactly a quarter, it is right. If it is bigger than a quarter but not yet a half turn, it is obtuse.",
+      "Here is the full rule: less than 1/4 turn → acute; exactly 1/4 turn → right; between 1/4 and 1/2 turn → obtuse; exactly 1/2 turn → straight. Place your angle against these benchmarks to name it."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Pragya turns the yellow straw so it makes a turn bigger than a quarter but smaller than a half turn. What type of angle have the two straws formed?",
+        "answer": "Obtuse angle",
+        "explanation": "A turn between 1/4 and 1/2 of a full circle produces an obtuse angle — it is wider than a right angle but has not yet reached a straight line, so it is called obtuse."
+      },
+      {
+        "question": "A paper fan is opened until the two sticks form a perfectly straight line. What type of angle is this, and what turn does it correspond to?",
+        "answer": "Straight angle; it corresponds to a 1/2 turn",
+        "explanation": "When both arms of an angle point in exactly opposite directions they form a straight line. This happens after a half turn, so the angle is called a straight angle."
+      }
+    ]
+  },
+  {
+    "section_id": "3.3",
+    "chapter_id": 3,
+    "order": 3,
+    "concept": "angle_measuring_tool",
+    "title": "Making and Using an Angle Measuring Tool",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["full_half_quarter_turns", "angles_from_turns"],
+    "explanation": "You can make a precise angle measuring tool by cutting a circle from tracing paper, folding it into equal parts, and attaching a straw at the centre with a marked starting point. Folding into 8 equal parts gives eighths, so 2/8 = 1/4 (a right angle) and 4/8 = 1/2 (a straight angle). Folding into 6 equal parts gives sixths; folding one sixth in half gives a 1/12 piece. These cut-out sectors can be combined to measure angles that do not match a single piece exactly.",
+    "examples": [
+      "When the tracing-paper circle is folded into 8 equal parts and the straw is turned by 2 sections, the turn is 2/8 = 1/4 of a full circle — the same as a right angle.",
+      "Using the 6-part circle tool and turning the straw by 1 section gives a 1/6 turn, which is less than a quarter turn (1/6 < 1/4), so the angle formed is acute.",
+      "If you fold one of the 1/6 sections in half, each half equals a 1/12 turn — the smallest unit of measurement available, useful for measuring very narrow angles."
+    ],
+    "common_misconceptions": [
+      "Students may think a larger numerator always means a bigger angle — but 2/8 and 1/4 are the same angle; what matters is the value of the fraction, not the size of the numerator alone.",
+      "Students often forget to align the tool's marked starting point with one arm of the angle before measuring, which gives a completely wrong reading — the starting mark must always line up first.",
+      "Students may believe they must find a single piece that fits the angle exactly — in practice, many angles require combining two pieces (such as 1/4 + 1/8) to get an accurate measurement."
+    ],
+    "hint_progression": [
+      "Think about what fraction of the whole circle your straw has swept through when you count the sections it has passed.",
+      "Write the sections moved as a fraction of the total sections in your circle, then simplify. Check if the simplified fraction matches 1/4, 1/2, or falls between them to name the angle type.",
+      "For an 8-part circle: moving 4 sections out of 8 gives 4/8 = 1/2. Since 1/2 turn is a straight angle, the straw now points in the exact opposite direction. Try the same reasoning for your number of sections."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Using the 8-part tracing-paper circle tool, you turn the straw by 4 sections. What fraction of a full turn have you made, and what type of angle is this?",
+        "answer": "4/8 = 1/2 turn — a straight angle",
+        "explanation": "4 out of 8 equal parts is half the circle. A half turn produces a straight angle, where the straw ends up pointing in the opposite direction from the starting point."
+      },
+      {
+        "question": "On the 6-part circle tool, you turn the straw by exactly 1 section. Is the angle you have made acute, right, or obtuse?",
+        "answer": "Acute",
+        "explanation": "A 1/6 turn is less than a 1/4 turn because 1/6 < 1/4. Since any turn less than a quarter turn produces an acute angle, this angle is acute."
+      }
+    ]
+  },
+  {
+    "section_id": "3.4",
+    "chapter_id": 3,
+    "order": 4,
+    "concept": "measuring_angles_with_tool",
+    "title": "Measuring and Drawing Angles Using the Tool",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["angles_from_turns", "angle_measuring_tool"],
+    "explanation": "The angle measuring tool is used by placing it at the vertex of an angle, aligning one arm with the starting mark, and reading off how many fractions of a turn the other arm reaches. Many angles need two pieces combined — for example, 1/4 + 1/8 = 3/8 of a turn. You can also work in reverse: given a turn fraction, you draw the angle by starting from a fixed line and rotating by that fraction of a circle.",
+    "examples": [
+      "An arrow that turns through 1/4 + 1/8 of a full circle has made a 3/8 turn — this is an obtuse angle because 3/8 sits between 1/4 and 1/2.",
+      "To draw a 1/2 turn starting from a given line, keep one end fixed and draw a second line pointing in the exact opposite direction — the result is a straight angle.",
+      "To measure angle A in a triangle, place the angle measuring tool at vertex A so its starting mark lines up with one side of the triangle, then read off the fraction of a turn until the other side is reached."
+    ],
+    "common_misconceptions": [
+      "Students often try to place the measuring tool anywhere near the angle instead of exactly at the vertex with one arm aligned — always place the tool so the starting mark lines up with one side of the angle.",
+      "Students may try to find a single fractional piece that fits exactly, rather than combining two pieces — angles like 3/8 or 5/8 of a turn require adding two fractional pieces together.",
+      "When drawing angles from a given turn, students sometimes rotate both arms instead of keeping one fixed — only the second arm moves; the first arm stays in its original position."
+    ],
+    "hint_progression": [
+      "First look at the angle by eye and decide: does it look smaller than, equal to, or bigger than a right angle (quarter turn)? This tells you which measuring piece to start with.",
+      "Place the 1/4-turn piece at the vertex, aligning the starting mark with one arm. If the angle is larger than the piece, try adding the 1/8-turn piece alongside it and check whether the combination now matches.",
+      "If the 1/4 piece alone is too small but the 1/4 + 1/8 pieces together fit perfectly, the angle is 3/8 of a turn. Since 3/8 is between 1/4 and 1/2, it is an obtuse angle. Write the answer as a fraction of a full turn and name the type."
+    ],
+    "quiz_questions": [
+      {
+        "question": "You place the 1/4-turn piece at an angle's vertex and it is too small, but when you add the 1/8-turn piece alongside it the two pieces fit exactly. What is the measure of this angle as a fraction of a full turn, and what type of angle is it?",
+        "answer": "3/8 turn — obtuse angle",
+        "explanation": "1/4 + 1/8 = 2/8 + 1/8 = 3/8 of a full turn. Because 3/8 is between 1/4 (right angle) and 1/2 (straight angle), the angle is wider than a right angle but not yet straight — making it obtuse."
+      },
+      {
+        "question": "Starting from a horizontal line, draw the angle for a 1/6 turn. Is this angle acute or obtuse?",
+        "answer": "Acute",
+        "explanation": "A 1/6 turn is less than a 1/4 turn (since 1/6 < 1/4), so the rotating arm has not yet reached the position of a right angle. Any angle smaller than a right angle is acute."
+      }
+    ]
+  },
+  {
+    "section_id": "3.5",
+    "chapter_id": 3,
+    "order": 5,
+    "concept": "turns_and_clock_minutes",
+    "title": "Turns and the Clock — Connecting Fractions to Minutes",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["full_half_quarter_turns", "angle_measuring_tool"],
+    "explanation": "The minute hand of a clock makes exactly one full turn every 60 minutes. This means any fraction of a full turn corresponds to the same fraction of 60 minutes — for example, a 1/4 turn equals 15 minutes, a 1/2 turn equals 30 minutes, and a 1/12 turn equals 5 minutes. You can always find the number of minutes by multiplying the turn fraction by 60.",
+    "examples": [
+      "When the minute hand moves from 12 to 3, it has completed a 1/4 turn and 1/4 × 60 = 15 minutes have passed.",
+      "When the minute hand moves from 12 to 6, it has completed a 1/2 turn and 1/2 × 60 = 30 minutes have passed — the hand is pointing straight down.",
+      "A 4/12 turn equals 1/3 of a full circle; 1/3 × 60 = 20 minutes, so the minute hand has moved 20 minutes from its starting position."
+    ],
+    "common_misconceptions": [
+      "Students often think 45 minutes means a 1/2 turn because 45 is 'close to' 60 — but 45 out of 60 minutes is 45/60 = 3/4 of a full turn, not a half turn.",
+      "Students sometimes confuse the hour hand with the minute hand — only the minute hand completes a full turn every 60 minutes; the hour hand takes 12 hours for a full turn.",
+      "Students may simplify 4/12 to 1/3 correctly but then forget to multiply by 60, leaving the answer as '1/3 minutes' instead of 20 minutes."
+    ],
+    "hint_progression": [
+      "Remember that the minute hand travels around the full clock face in exactly 60 minutes — so a full turn = 60 minutes.",
+      "To find how many minutes a fractional turn takes, multiply: minutes = fraction × 60. For example, a 1/4 turn gives 1/4 × 60. Try this for your fraction.",
+      "For a 1/6 turn: 1/6 × 60 = 10 minutes. For a 3/4 turn: 3/4 × 60 = 45 minutes. Use the same method — write your turn as a fraction, multiply by 60, and simplify."
+    ],
+    "quiz_questions": [
+      {
+        "question": "When the minute hand moves by 45 minutes, what fraction of a full turn has it made?",
+        "answer": "3/4 turn",
+        "explanation": "45 minutes out of 60 minutes = 45/60 = 3/4. The minute hand has covered three-quarters of the clock face, which is a 3/4 turn — more than a straight angle."
+      },
+      {
+        "question": "The minute hand has turned by 1/12 of a full circle. How many minutes have passed?",
+        "answer": "5 minutes",
+        "explanation": "1/12 × 60 = 5. A 1/12 turn is the distance from one number to the next on the clock face (e.g., from 12 to 1), which always represents 5 minutes."
+      }
+    ]
+  },
+  {
+    "section_id": "3.6",
+    "chapter_id": 3,
+    "order": 6,
+    "concept": "clockwise_anticlockwise_direction",
+    "title": "Clockwise and Anti-Clockwise Direction",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["full_half_quarter_turns"],
+    "explanation": "Every turn happens in one of two directions. The direction clock hands move — right at the top, down on the right, left at the bottom — is called clockwise. The opposite direction is called anti-clockwise. Observing real objects like taps, lids, and nuts shows that loosening usually requires anti-clockwise turning while tightening requires clockwise turning.",
+    "examples": [
+      "A ladybug makes a quarter turn and ends up facing the right — because it moved the same way clock hands move (from the top toward the right), this is a clockwise quarter turn.",
+      "A bee makes a quarter turn and ends up facing the left — because it moved in the direction opposite to clock hands, this is an anti-clockwise quarter turn.",
+      "When you unscrew a jar lid you turn it anti-clockwise — the opposite direction from the way clock hands travel."
+    ],
+    "common_misconceptions": [
+      "Students often confuse 'turning right' with clockwise — clockwise describes the circular direction of clock hands, not a straight-line movement to the right.",
+      "Students may believe that a clockwise quarter turn and an anti-clockwise quarter turn end at the same position — they do not; the two turns land in completely different directions.",
+      "Students sometimes assume that 'anti-clockwise' always means going backwards or undoing something — while loosening screws is anti-clockwise, the concept is simply a direction, not an action."
+    ],
+    "hint_progression": [
+      "Picture a clock face. The hands travel from 12, then to 3, then to 6, then to 9, and back to 12. Which direction around the circle are they going?",
+      "Clockwise follows that same path (12 → 3 → 6 → 9 → 12). Anti-clockwise is the reverse (12 → 9 → 6 → 3 → 12). Now look at your creature's starting and ending position and decide which path it took.",
+      "If the creature started facing up (12 o'clock) and now faces right (3 o'clock position), it moved clockwise. If it now faces left (9 o'clock position), it moved anti-clockwise. Match the positions to the clock."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A snail starts facing upward and makes a quarter turn, ending up facing to the right. Did the snail turn clockwise or anti-clockwise?",
+        "answer": "Clockwise",
+        "explanation": "Moving from facing up (12 o'clock) to facing right (3 o'clock) follows the same path as clock hands, which is clockwise."
+      },
+      {
+        "question": "You want to loosen a nut. Should you turn it clockwise or anti-clockwise?",
+        "answer": "Anti-clockwise",
+        "explanation": "Tightening uses a clockwise turn, so loosening — the opposite action — requires turning anti-clockwise, just like unscrewing a lid or opening a tap."
+      }
+    ]
+  },
+  {
+    "section_id": "3.7",
+    "chapter_id": 3,
+    "order": 7,
+    "concept": "turns_with_compass_directions",
+    "title": "Fun with Turns — Combining Turns and Compass Directions",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["full_half_quarter_turns", "clockwise_anticlockwise_direction"],
+    "explanation": "When a person faces a compass direction (North, South, East, or West) and makes turns, we can work out their new facing direction by counting right-angle turns in the correct direction. Going clockwise from North: each quarter turn moves North → East → South → West → North. Going anti-clockwise it reverses: North → West → South → East → North. Because 4 right-angle turns always make a full turn, any extra turns beyond 4 simply continue the same pattern.",
+    "examples": [
+      "Starting from North and taking two right-angle turns clockwise: 1st turn → East, 2nd turn → South — the ending direction is South.",
+      "Starting from East and taking four right-angle turns anti-clockwise: East → North → West → South → East — four quarter turns make a full turn, so the ending direction is East (back to the start).",
+      "Padma is facing the toy shop and takes a half turn clockwise — a half turn always lands you facing the exact opposite direction, so she now faces the ice cream shop directly behind her."
+    ],
+    "common_misconceptions": [
+      "Students may forget that 4 right-angle turns always complete a full circle and return you to the starting direction — so 5 right-angle turns is the same as 1 right-angle turn.",
+      "Students often get the clockwise compass order wrong — starting from North going clockwise, the correct sequence is North → East → South → West → North, not North → West → South → East.",
+      "Students may treat half right-angle turns (1/8 turns) as the same as full right-angle turns when counting — a half right angle only rotates 1/8 of the full circle, so two half right angles equal one full right angle."
+    ],
+    "hint_progression": [
+      "Draw a compass cross with N at top, S at bottom, E at right, and W at left. Mark your starting direction with a dot, then trace each individual turn step by step around the cross.",
+      "Remember: one right angle = one quarter turn. Clockwise means N → E → S → W → N. Count one quarter turn at a time in that order for clockwise turns.",
+      "For '5 right angles clockwise starting from North': 4 right angles bring you back to North (a full turn), then 1 more right angle clockwise takes you to East. So the final answer is East — always reduce by removing complete sets of 4 turns first."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A child starts facing North and takes 3 right-angle turns clockwise. Which direction are they now facing?",
+        "answer": "West",
+        "explanation": "Clockwise from North: 1st quarter turn → East, 2nd quarter turn → South, 3rd quarter turn → West. The child ends up facing West."
+      },
+      {
+        "question": "Padma is facing the toy shop. She takes a half turn clockwise. What is she now facing, and could she have reached the same result with a half turn anti-clockwise?",
+        "answer": "She faces the opposite direction (the ice cream shop), and yes — a half turn anti-clockwise leads to the same ending direction",
+        "explanation": "A half turn covers exactly 180° — the exact opposite direction — regardless of whether it is clockwise or anti-clockwise. Both half turns end at the same place, just travelling different paths to get there."
+      }
+    ]
+  }
+]

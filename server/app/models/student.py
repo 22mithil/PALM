@@ -41,6 +41,10 @@ class Student(Base):
         server_default=text("now()"),
         onupdate=datetime.utcnow,
     )
+    last_login_date: Mapped[Optional[datetime]] = mapped_column(
+        DateTime(timezone=True),
+        nullable=True,
+    )
 
     # ── Constraints ──────────────────────────────────────────────────
     __table_args__ = (
