@@ -374,10 +374,22 @@ const Session = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /* ── cleanup on unmount ───────────────────────────────── */
+  /* ── cleanup on unmount (Issue B: end session + stop media) ── */
   useEffect(() => {
+    const handleBeforeUnload = () => {
+      // Fire-and-forget endSession on tab close
+      if (sessionId && token) {
+        navigator.sendBeacon?.(`/api/v1/sessions/${sessionId}/end`);
+      }
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
     return () => {
-      ttsStop(); // Stop any ongoing TTS on navigation/unmount
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      ttsStop();
+      // End session on unmount
+      if (sessionId && token) {
+        endSession(sessionId, {}, token).catch(() => {});
+      }
       if (videoRef.current && videoRef.current.srcObject) {
         const str = videoRef.current.srcObject;
         str.getTracks().forEach((track) => track.stop());
@@ -386,7 +398,50 @@ const Session = () => {
         stream.getTracks().forEach((track) => track.stop());
       }
     };
-  }, [stream, ttsStop]);
+  }, [stream, ttsStop, sessionId, token]);
+
+  /* ── Section picker state (Issue E) ─────────────────────── */
+  const [showSectionPicker, setShowSectionPicker] = useState(false);
+  const [sectionList, setSectionList] = useState([]);
+  const [sectionPickerMsg, setSectionPickerMsg] = useState('Select a section to review:');
+  const [loadingSections, setLoadingSections] = useState(false);
+
+  const openSectionPicker = async (msg) => {
+    setSectionPickerMsg(msg || 'Select a section to review:');
+    setLoadingSections(true);
+    setShowSectionPicker(true);
+    try {
+      const sections = await getChapterSections(chapterId || 2, token);
+      setSectionList(sections);
+    } catch {
+      setSectionList([]);
+    } finally {
+      setLoadingSections(false);
+    }
+  };
+
+  const handleSectionSelect = async (section) => {
+    setShowSectionPicker(false);
+    setChapterComplete(false);
+    // Reset just this section on the backend — mastery stays at 100%
+    try {
+      await resetSection(studentId, chapterId || 2, section.section_id, token);
+    } catch (e) {
+      console.error('Failed to reset section:', e);
+    }
+    // Send WS trigger to start teaching this section
+    const ws = wsRef.current;
+    if (ws && ws.readyState === WebSocket.OPEN) {
+      setTyping(true);
+      ws.send(JSON.stringify({
+        type: 'trigger',
+        payload: {
+          student_id: studentId,
+          query: `The student wants to review the section: "${section.title}" (concept: ${section.concept}). Start teaching this section from the beginning as a quick review.`,
+        },
+      }));
+    }
+  };
 
   /* ══════════════════════════════════════════════════════════
      Chat state — connected to WebSocket orchestrator pipeline
@@ -952,29 +1007,17 @@ const Session = () => {
                       size="sm"
                       variant="outline"
                       className="border-orange-400 text-orange-700 hover:bg-orange-50"
-                      onClick={() => {
-                        setChapterComplete(false);
-                        setMastery(0);
-                        // Re-trigger greeting for fresh start
-                        const ws = wsRef.current;
-                        if (ws && ws.readyState === WebSocket.OPEN) {
-                          setTyping(true);
-                          ws.send(JSON.stringify({
-                            type: "trigger",
-                            payload: {
-                              student_id: studentId,
-                              query: `The student wants to restart this chapter. Greet them and introduce the first topic again.`,
-                            },
-                          }));
-                        }
-                      }}
+                      onClick={() => openSectionPicker('🎉 Chapter complete! Select a section to review:')}
                     >
                       <RotateCcw className="h-3 w-3 mr-1" /> Restart
                     </Button>
                     <Button
                       size="sm"
                       className="bg-emerald-600 hover:bg-emerald-700 text-white"
-                      onClick={() => navigate("/dashboard")}
+                      onClick={async () => {
+                        try { await endSession(sessionId, {}, token); } catch {}
+                        navigate("/dashboard");
+                      }}
                     >
                       Dashboard →
                     </Button>
@@ -1087,8 +1130,7 @@ const Session = () => {
                                         : "bg-card border"
                                     )}
                                   >
-                                    {(m.content || m.text || "").slice(0, 300)}
-                                    {(m.content || m.text || "").length > 300 ? "…" : ""}
+                                    {renderMessage(m.content || m.text || "")}
                                   </div>
                                 ))}
                               </>
@@ -1101,6 +1143,68 @@ const Session = () => {
                     );
                   })
                 )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Section Picker Modal (Issue E) */}
+      <AnimatePresence>
+        {showSectionPicker && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center"
+          >
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowSectionPicker(false)} />
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative bg-card rounded-2xl shadow-2xl border p-6 w-full max-w-md mx-4 max-h-[70vh] overflow-y-auto"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-semibold text-lg">{sectionPickerMsg}</h3>
+                <button onClick={() => setShowSectionPicker(false)} className="text-muted-foreground hover:text-foreground">
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              {loadingSections ? (
+                <div className="text-center text-muted-foreground py-8">Loading sections...</div>
+              ) : sectionList.length === 0 ? (
+                <div className="text-center text-muted-foreground py-8">No sections found.</div>
+              ) : (
+                <div className="space-y-2">
+                  {sectionList.map((sec, idx) => (
+                    <button
+                      key={sec.section_id}
+                      onClick={() => handleSectionSelect(sec)}
+                      className="w-full text-left px-4 py-3 rounded-xl border hover:border-teal-400 hover:bg-teal-50 transition-all group"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="h-7 w-7 rounded-full bg-teal-100 text-teal-700 text-xs font-bold grid place-items-center shrink-0">
+                          {idx + 1}
+                        </span>
+                        <div className="min-w-0">
+                          <p className="font-medium text-sm truncate group-hover:text-teal-700">{sec.title}</p>
+                          <p className="text-xs text-muted-foreground truncate">{sec.concept}</p>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+              <div className="mt-4 pt-3 border-t">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => { setShowSectionPicker(false); navigate('/dashboard'); }}
+                >
+                  Back to Dashboard
+                </Button>
               </div>
             </motion.div>
           </motion.div>

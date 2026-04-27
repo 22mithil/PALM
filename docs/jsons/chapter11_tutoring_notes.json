@@ -2,12 +2,12 @@
   {
     "chapter_id": 11,
     "chapter_name": "Grandmother's Quilt",
-    "grade": 4,
+    "grade": 5,
     "subject": "Mathematics",
-    "section_ids": ["11.1", "11.2", "11.3", "11.4", "11.5", "11.6", "11.7"]
+    "section_ids": ["11-1", "11-2", "11-3", "11-4", "11-5", "11-6", "11-7"]
   },
   {
-    "section_id": "11.1",
+    "section_id": "11-1",
     "chapter_id": 11,
     "order": 1,
     "concept": "perimeter_of_shapes",
@@ -44,13 +44,15 @@
     ]
   },
   {
-    "section_id": "11.2",
+    "section_id": "11-2",
     "chapter_id": 11,
     "order": 2,
     "concept": "introduction_to_area",
     "title": "Area: The Space a Shape Covers",
     "difficulty": "intro",
-    "prerequisite_concepts": ["perimeter_of_shapes"],
+    "prerequisite_concepts": [
+      "perimeter_of_shapes"
+    ],
     "explanation": "The area of a shape is the amount of surface it covers or encloses. To measure area, we fill the region with smaller shapes that fit together with no gaps and no overlaps — this is called tiling. Shapes like squares, rectangles, and triangles tile perfectly, but circles always leave gaps and so cannot be used to measure area. The area of a region is given as a number of tile units, for example '16 triangle units' or '12 square units'.",
     "examples": [
       "Preetha covered Table 1 with triangles and Table 3 with squares. The total number of triangles that fit Table 1 with no gaps is the area of Table 1 in triangle units; the squares that fill Table 3 give its area in square units.",
@@ -81,13 +83,15 @@
     ]
   },
   {
-    "section_id": "11.3",
+    "section_id": "11-3",
     "chapter_id": 11,
     "order": 3,
     "concept": "comparing_areas_with_different_tile_units",
     "title": "Comparing Areas Using Different Tile Shapes",
     "difficulty": "intro",
-    "prerequisite_concepts": ["introduction_to_area"],
+    "prerequisite_concepts": [
+      "introduction_to_area"
+    ],
     "explanation": "The same region can be measured using different tile shapes, and the count will differ depending on the size of the tile chosen. A smaller tile requires more tiles to cover the same area than a larger tile. Because of this, you can only fairly compare the areas of two regions when both are measured using tiles of the same size and shape. The 'Comparing Shapes' activity shows that Preetha's desk takes different numbers of green triangles, red triangles, and blue squares — yet the desk itself has not changed.",
     "examples": [
       "Preetha's desk can be covered by a large number of small green triangles. Because each green triangle is smaller than a red triangle, more green tiles are needed to fill the same desk.",
@@ -118,13 +122,16 @@
     ]
   },
   {
-    "section_id": "11.4",
+    "section_id": "11-4",
     "chapter_id": 11,
     "order": 4,
     "concept": "area_using_square_grid",
     "title": "Measuring Area with a Square Grid",
     "difficulty": "intro",
-    "prerequisite_concepts": ["introduction_to_area", "comparing_areas_with_different_tile_units"],
+    "prerequisite_concepts": [
+      "introduction_to_area",
+      "comparing_areas_with_different_tile_units"
+    ],
     "explanation": "Using a square grid is the most convenient way to measure area, because every small square on the grid has sides of equal length, making it a consistent and fair unit. A square whose sides are 1 unit long has an area of exactly 1 unit square. To find the area of any shape on the grid, count the number of unit squares the shape covers. For irregular shapes such as a palm print or a leaf outline, count all the squares inside the boundary to get the approximate area.",
     "examples": [
       "Three rectangles labelled A, B, and C are placed on a square grid. By counting the coloured squares inside each one, Preetha can directly compare their areas and correctly identify which rectangle is largest.",
@@ -155,13 +162,16 @@
     ]
   },
   {
-    "section_id": "11.5",
+    "section_id": "11-5",
     "chapter_id": 11,
     "order": 5,
     "concept": "relationship_between_area_and_perimeter",
     "title": "Same Area, Different Perimeter — and Vice Versa",
     "difficulty": "intermediate",
-    "prerequisite_concepts": ["perimeter_of_shapes", "area_using_square_grid"],
+    "prerequisite_concepts": [
+      "perimeter_of_shapes",
+      "area_using_square_grid"
+    ],
     "explanation": "Area and perimeter are independent measurements — changing one does not automatically change the other in a predictable way. Two shapes can have equal areas but completely different perimeters, and two shapes can have equal perimeters but very different areas. Trisha demonstrated that increasing the area of a rectangle does not always increase its perimeter. The 'Let Us Explore' exercises show many shapes with the same area having different perimeters, and many shapes with the same perimeter enclosing different amounts of space.",
     "examples": [
       "Trisha made two rectangles from square tiles. A 2-wide by 3-tall rectangle has an area of 6 square units and a perimeter of 10 units. A wider 3-by-3 arrangement has more area (9 square units) and a larger perimeter (12 units) — but rearranging tiles differently can give a bigger area with a smaller perimeter.",
@@ -192,13 +202,16 @@
     ]
   },
   {
-    "section_id": "11.6",
+    "section_id": "11-6",
     "chapter_id": 11,
     "order": 6,
     "concept": "area_of_rectangle_formula",
     "title": "Area of a Rectangle: Length × Breadth",
     "difficulty": "intermediate",
-    "prerequisite_concepts": ["area_using_square_grid", "relationship_between_area_and_perimeter"],
+    "prerequisite_concepts": [
+      "area_using_square_grid",
+      "relationship_between_area_and_perimeter"
+    ],
     "explanation": "Instead of counting every square on a grid, we can find the area of a rectangle by multiplying its length by its breadth: Area = Length × Breadth. This works because a rectangle fills with unit squares arranged in equal rows and columns — multiplying rows by columns gives the total. Grandmother's patchwork has 6 rows of 4 patches each, so its area is 6 × 4 = 24 square cm. If we know the area and one side, we can find the missing side by dividing: missing side = Area ÷ known side.",
     "examples": [
       "Grandmother arranges her patchwork in 6 rows of 4 patches each. Preetha realises she does not need to count every patch — she multiplies 6 (length) × 4 (breadth) = 24 square cm.",
@@ -229,13 +242,16 @@
     ]
   },
   {
-    "section_id": "11.7",
+    "section_id": "11-7",
     "chapter_id": 11,
     "order": 7,
     "concept": "area_and_perimeter_formulas_square_rectangle",
     "title": "Formulas for Area and Perimeter of Squares and Rectangles",
     "difficulty": "intermediate",
-    "prerequisite_concepts": ["area_of_rectangle_formula", "perimeter_of_shapes"],
+    "prerequisite_concepts": [
+      "area_of_rectangle_formula",
+      "perimeter_of_shapes"
+    ],
     "explanation": "A square is a special rectangle where all four sides are equal. Its area is Side × Side, and its perimeter is 4 × Side. For a rectangle, the opposite sides are equal (two lengths and two breadths), so the perimeter formula is 2 × Length + 2 × Breadth. These formulas let us quickly find area and perimeter for any square or rectangle once we know the side lengths, without drawing a grid or counting squares.",
     "examples": [
       "A square patchwork with sides of 5 cm has an area of 5 × 5 = 25 square cm and a perimeter of 4 × 5 = 20 cm.",

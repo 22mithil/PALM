@@ -45,32 +45,37 @@ const ProgressPage = () => {
       getMastery(studentId, token),
     ]).then(([currTopics, scores]) => {
       const masteryMap = {};
-      scores.forEach((s) => { masteryMap[s.topic] = Math.round(s.score * 100); });
+      scores.forEach((s) => { masteryMap[s.chapter_id] = Math.round(s.completion_percent || 0); });
 
       setTopics(currTopics.map((t) => ({
         id: t.id,
         name: t.topic,
-        mastery: masteryMap[t.topic] ?? 0,
+        mastery: masteryMap[t.id] ?? 0,
       })));
     }).catch(() => {});
 
     // Fetch sessions
-    getStudentSessions(studentId, token).then((sess) => {
-      setSessions(sess.map((s) => {
-        const d = s.started_at ? new Date(s.started_at) : new Date();
-        const mins = s.duration_seconds ? Math.round(s.duration_seconds / 60) : 0;
-        return {
-          id: s.id,
-          topic: s.topic || "Practice",
-          date: d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
-          duration: `${mins > 0 ? mins : 1} min`,
-          result: s.performance_result || "Completed",
-          summary: s.summary || "Session completed.",
-          mastery_score: s.mastery_score || 0,
-          learnings: [],
-          mistakes: [],
-        };
-      }));
+    getTopics(grade).then((currTopics) => {
+      const chapterNames = {};
+      currTopics.forEach((t) => { chapterNames[t.id] = t.topic; });
+
+      getStudentSessions(studentId, token).then((sess) => {
+        setSessions(sess.map((s) => {
+          const d = s.started_at ? new Date(s.started_at) : new Date();
+          const mins = s.duration_seconds ? Math.round(s.duration_seconds / 60) : 0;
+          return {
+            id: s.id,
+            topic: chapterNames[s.chapter_id] || "Practice",
+            date: d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+            duration: `${mins > 0 ? mins : 1} min`,
+            result: s.ended_at ? "Completed" : "In Progress",
+            summary: s.session_summary || "Session completed.",
+            mastery_score: 0,
+            learnings: [],
+            mistakes: [],
+          };
+        }));
+      }).catch(() => {});
     }).catch(() => {});
   }, [studentId, token, grade]);
 
@@ -81,18 +86,23 @@ const ProgressPage = () => {
     if (!hasLoading) return;
 
     const interval = setInterval(() => {
-      getStudentSessions(studentId, token).then((sess) => {
+      Promise.all([
+        getTopics(grade),
+        getStudentSessions(studentId, token),
+      ]).then(([currTopics, sess]) => {
+        const chapterNames = {};
+        currTopics.forEach((t) => { chapterNames[t.id] = t.topic; });
         setSessions(sess.map((s) => {
           const d = s.started_at ? new Date(s.started_at) : new Date();
           const mins = s.duration_seconds ? Math.round(s.duration_seconds / 60) : 0;
           return {
             id: s.id,
-            topic: s.topic || "Practice",
+            topic: chapterNames[s.chapter_id] || "Practice",
             date: d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
             duration: `${mins > 0 ? mins : 1} min`,
-            result: s.performance_result || "Completed",
-            summary: s.summary || "Session completed.",
-            mastery_score: s.mastery_score || 0,
+            result: s.ended_at ? "Completed" : "In Progress",
+            summary: s.session_summary || "Session completed.",
+            mastery_score: 0,
             learnings: [],
             mistakes: [],
           };

@@ -1,0 +1,438 @@
+[
+  {
+    "chapter_id": 4,
+    "chapter_name": "We the Travellers—II",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["4-1", "4-2", "4-3", "4-4", "4-5", "4-6", "4-7", "4-8", "4-9", "4-10", "4-11"]
+  },
+  {
+    "section_id": "4-1",
+    "chapter_id": 4,
+    "order": 1,
+    "concept": "making_sums_equal",
+    "title": "Making Sums Equal",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "Two groups of numbers each have a sum. You can swap (interchange) one number from the first group with one number from the second group to try to make both sums equal. When you swap a number, the first group's sum goes up or down, and the second group's sum changes in the opposite direction by the same amount. The goal is to find the right pair to swap so both groups end up with equal sums, using as few swaps as possible.",
+    "examples": [
+      "Groups {1, 2, 7, 9} sum to 19 and {3, 4, 5, 9} sum to 21. The total is 40, so each group should sum to 20. Swapping 2 from the first group with 3 from the second gives {1, 3, 7, 9} = 20 and {2, 4, 5, 9} = 20 — equal in just one move!",
+      "Groups {5, 7, 12, 15} sum to 39 and {9, 11, 13, 14} sum to 47. The total is 86, so each group needs to sum to 43. Swapping 7 from the first group with 11 from the second gives {5, 11, 12, 15} = 43 and {9, 7, 13, 14} = 43 — done in one move!",
+      "Groups {77, 78, 79, 80} sum to 314 and {81, 82, 83, 84} sum to 330. The total is 644, so each group must reach 322. No single swap creates exactly the right difference, so two swaps are needed — for example, swapping 77 with 81, then 79 with 83, gives each group a sum of 322."
+    ],
+    "common_misconceptions": [
+      "Students swap random pairs instead of first finding the target sum (total divided by 2) and then looking for a pair whose difference equals the amount the first group needs to gain or lose.",
+      "Students try swapping two numbers within the same group, thinking this will help balance the sums — but swapping within one group does not change either group's sum at all.",
+      "Students assume one interchange always solves the problem without checking whether a number in group 2 that is exactly the right amount larger than a number in group 1 actually exists in those groups."
+    ],
+    "hint_progression": [
+      "Start by adding up all the numbers in both groups together. If the two groups were equal, what would each group's sum need to be?",
+      "Now figure out how much the first group's sum needs to change. If you remove a number x from group 1 and replace it with a number y from group 2, the first group's sum changes by (y minus x). What value of (y minus x) do you need?",
+      "Look through the numbers in group 1 and group 2 and find a pair where the group-2 number minus the group-1 number equals exactly the change you need. For example, in groups {1, 2, 7, 9} and {3, 4, 5, 9}: group 1 needs to gain 1, so look for a group-2 number that is exactly 1 more than a group-1 number. The pair 3 and 2 works (3 minus 2 = 1), so swap them."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Group A has the numbers {3, 5, 8, 10} with sum 26, and Group B has {2, 6, 7, 9} with sum 24. What single swap makes both sums equal to 25?",
+        "answer": "Swap 8 from Group A with 7 from Group B. Group A becomes {3, 5, 7, 10} = 25 and Group B becomes {2, 6, 8, 9} = 25.",
+        "explanation": "The total is 50, so the target sum for each group is 25. Group A needs to lose 1 and Group B needs to gain 1. This means we need to exchange a number from Group A for a number in Group B that is exactly 1 less — swapping 8 for 7 does this perfectly. Check: {3, 5, 7, 10} = 25 and {2, 6, 8, 9} = 25."
+      },
+      {
+        "question": "Two groups of numbers have sums of 68 and 76. If you interchange one number from each group, does the combined total of both groups change? What must each group sum to after the interchange?",
+        "answer": "The combined total does not change — it stays at 144. Each group must sum to 72 after the interchange.",
+        "explanation": "Interchanging means moving one number from each group to the other — you are not adding or removing any number from the overall collection. So the total of all numbers stays at 68 + 76 = 144. For both groups to be equal, each must be 144 divided by 2, which is 72."
+      }
+    ]
+  },
+  {
+    "section_id": "4-2",
+    "chapter_id": 4,
+    "order": 2,
+    "concept": "addition_with_regrouping_two_digit",
+    "title": "Fuel Arithmetic: Adding Two-Digit Numbers with Regrouping",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "When adding two numbers, we add the ones digits first, then the tens digits. If the ones digits add up to 10 or more, we regroup — we write only the units digit in the ones column and carry 1 ten to the tens column. This is called regrouping because 10 ones equals 1 ten. We always work column by column from right to left, regrouping whenever a column's sum is 10 or greater.",
+    "examples": [
+      "A lorry has 28 litres of fuel and 75 more litres are filled. To find 28 + 75: ones: 8 + 5 = 13, write 3 and carry 1. Tens: 1 (carried) + 2 + 7 = 10, write 0 and carry 1. Hundreds: 1. Total = 103 litres of fuel in the lorry.",
+      "Find the sum of 49 and 89. Ones: 9 + 9 = 18, write 8 carry 1. Tens: 1 + 4 + 8 = 13, write 3 carry 1. Hundreds: 1. Answer: 138.",
+      "Adding 46 + 99: ones: 6 + 9 = 15, write 5 carry 1. Tens: 1 + 4 + 9 = 14, write 4 carry 1. Hundreds: 1. Answer: 145."
+    ],
+    "common_misconceptions": [
+      "Students forget to add the carried digit to the tens column — they correctly regroup from ones but then add only the original tens digits, missing the extra ten they carried.",
+      "Students write both digits of the ones sum in the ones column — for example, when 8 + 5 = 13, they record 13 in the ones place instead of writing 3 and carrying 1.",
+      "Students misalign the digits when one number has fewer digits than the other (such as 5 + 89), putting the single-digit number in the tens column instead of the ones column."
+    ],
+    "hint_progression": [
+      "Start from the rightmost column — the ones. Look at just those two digits. Is their sum less than 10, or is it 10 or more?",
+      "If the ones sum is 10 or more, write only the last digit of that sum in the ones column, and carry a 1 to the tens column. Then add the tens column including that carried 1.",
+      "For 76 + 28: ones: 6 + 8 = 14 — write 4 in the ones column and carry 1. Tens: 1 (carried) + 7 + 2 = 10 — write 0 in the tens column and carry 1. Hundreds: 1. Final answer: 104."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A motorbike has 9 litres of fuel. The owner fills 15 more litres. Use column addition with regrouping to find the total amount of fuel.",
+        "answer": "24 litres",
+        "explanation": "9 + 15: ones: 9 + 5 = 14 — write 4, carry 1. Tens: 1 (carried) + 1 = 2. Total = 24 litres. Regrouping was necessary because the ones sum (14) was greater than 9."
+      },
+      {
+        "question": "Find 38 + 35. Which digit do you write in the ones place of the answer, and what do you carry to the tens column?",
+        "answer": "The answer is 73. Write 3 in the ones place and carry 1 to the tens column.",
+        "explanation": "Ones: 8 + 5 = 13. Since 13 is 10 or more, write the ones digit 3 in the ones place and carry 1 ten to the tens column. Tens: 1 (carried) + 3 + 3 = 7. Final answer: 73."
+      }
+    ]
+  },
+  {
+    "section_id": "4-3",
+    "chapter_id": 4,
+    "order": 3,
+    "concept": "relationship_addition_subtraction",
+    "title": "Relationship Between Addition and Subtraction",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "addition_with_regrouping_two_digit"
+    ],
+    "explanation": "Addition and subtraction are opposite operations that undo each other. If you know that A + B = C, you can immediately write two subtraction facts: C minus B = A, and C minus A = B. Similarly, if you know C minus B = A, you can write A + B = C. This group of three related number sentences (one addition and two subtractions using the same three numbers) is called a fact family, and you can use any one to check the others.",
+    "examples": [
+      "If 46 + 21 = 67, then 67 minus 21 = 46 and 67 minus 46 = 21. All three sentences use the same three numbers: 46, 21, and 67.",
+      "If 198 minus 98 = 100, then 100 + 98 = 198 and 198 minus 100 = 98. Knowing one fact gives you the other two for free.",
+      "If 78 + 164 = 242, then 242 minus 164 = 78 and 242 minus 78 = 164. You can verify a subtraction answer by checking that adding the result back to the subtracted number gives the original number."
+    ],
+    "common_misconceptions": [
+      "Students write the subtraction fact as the smaller number minus the larger number — for example writing 21 minus 67 instead of 67 minus 21 — which is not possible with the numbers at this level.",
+      "Students can move from addition to subtraction but forget they can move from subtraction back to addition — for example, from 921 minus 137 = 784, they should also write 784 + 137 = 921.",
+      "Students mix up which number plays which role in the two subtraction facts and write something like 67 minus 67 = 21 instead of correctly identifying that the largest number (67) is always the starting point for both subtractions."
+    ],
+    "hint_progression": [
+      "Think of addition and subtraction as opposite journeys on a number line. If adding takes you from A to C, then subtracting takes you from C back to A.",
+      "In any addition A + B = C, the largest number (C) is the one you start from when you subtract. Write C minus one of the smaller numbers to get the other.",
+      "If 189 + 98 = 287, the two subtraction facts are: 287 minus 98 = ? and 287 minus 189 = ?. Subtract each of the two smaller numbers from 287 to complete the fact family."
+    ],
+    "quiz_questions": [
+      {
+        "question": "If 462 + 839 = 1,301, write the two subtraction sentences that belong to the same fact family.",
+        "answer": "1,301 minus 839 = 462 and 1,301 minus 462 = 839.",
+        "explanation": "In any addition A + B = C, the two related subtractions are C minus A = B and C minus B = A. Here C = 1,301, A = 462, and B = 839. Both subtractions start from the total, 1,301, and subtract one of the two parts to get the other part."
+      },
+      {
+        "question": "If 921 minus 137 = 784, write one addition sentence and one more subtraction sentence using the same three numbers.",
+        "answer": "Addition: 784 + 137 = 921. Second subtraction: 921 minus 784 = 137.",
+        "explanation": "When you know C minus B = A, the addition fact is A + B = C (the two parts add up to the whole). The second subtraction swaps the roles of A and B: C minus A = B. Here: 784 + 137 = 921 and 921 minus 784 = 137."
+      }
+    ]
+  },
+  {
+    "section_id": "4-4",
+    "chapter_id": 4,
+    "order": 4,
+    "concept": "subtraction_with_regrouping_two_digit",
+    "title": "More Fuel Arithmetic: Subtracting Two-Digit Numbers with Regrouping",
+    "difficulty": "intro",
+    "prerequisite_concepts": [
+      "addition_with_regrouping_two_digit"
+    ],
+    "explanation": "When subtracting, if the ones digit of the top number is smaller than the ones digit of the bottom number, we cannot subtract directly. We need to regroup — borrow 1 ten from the tens column and convert it into 10 ones, making the ones digit 10 bigger so the subtraction is possible. After regrouping, the tens digit above decreases by 1. Always check your subtraction answer by adding it back to the number you subtracted — the result should equal the top number.",
+    "examples": [
+      "A minibus has 18 litres of fuel. After refuelling, the meter shows 65 litres. Fuel filled = 65 minus 18. Ones: 5 minus 8 is not possible, regroup: 15 minus 8 = 7. Tens: 5 (after borrowing) minus 1 = 4. Answer: 47 litres. Check: 18 + 47 = 65.",
+      "Find 82 minus 37. Ones: 2 minus 7 is not possible, regroup: 12 minus 7 = 5. Tens: 7 (after borrowing) minus 3 = 4. Answer: 45. Check: 37 + 45 = 82.",
+      "Find 70 minus 43. Ones: 0 minus 3 is not possible, regroup: 10 minus 3 = 7. Tens: 6 (after borrowing) minus 4 = 2. Answer: 27. Check: 43 + 27 = 70."
+    ],
+    "common_misconceptions": [
+      "Students subtract the smaller digit from the larger digit regardless of position — for example, computing 82 minus 37 in the ones column as 7 minus 2 = 5 instead of recognising that 2 minus 7 requires regrouping.",
+      "Students regroup correctly by making the ones digit bigger but forget to reduce the tens digit above by 1, leaving the tens column unchanged even though they borrowed from it.",
+      "Students skip the check step and do not add their subtraction answer back to the number subtracted, missing a simple way to catch errors introduced by regrouping."
+    ],
+    "hint_progression": [
+      "Look at just the ones column first. Can the top digit be subtracted from using the bottom digit? If the top digit is smaller, you will need to borrow before you can subtract.",
+      "To borrow, look at the tens column above. Take 1 from the tens digit (reduce it by 1) and add 10 to the ones digit. Now subtract the ones column. Then subtract what remains in the tens column.",
+      "For 65 minus 18: ones: 5 minus 8 is not possible — regroup so ones becomes 15. Then 15 minus 8 = 7. Tens: the top tens digit is now 5 (was 6, borrowed 1), so 5 minus 1 = 4. Answer: 47. Check: 18 + 47 = 65."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A car's fuel tank shows 56 litres. The driver uses 18 litres on a trip. How much fuel is left? Use column subtraction with regrouping.",
+        "answer": "38 litres",
+        "explanation": "56 minus 18: ones: 6 minus 8 is not possible — regroup. 16 minus 8 = 8. Tens: 4 (after borrowing 1 from 5) minus 1 = 3. Answer: 38 litres. Check: 18 + 38 = 56."
+      },
+      {
+        "question": "Find 93 minus 35. After getting your answer, write the addition sentence you can use to check it.",
+        "answer": "93 minus 35 = 58. Check: 35 + 58 = 93.",
+        "explanation": "Ones: 3 minus 5 is not possible — regroup. 13 minus 5 = 8. Tens: 8 (after borrowing) minus 3 = 5. Answer: 58. Add back to check: 35 + 58 = 93, which is correct."
+      }
+    ]
+  },
+  {
+    "section_id": "4-5",
+    "chapter_id": 4,
+    "order": 5,
+    "concept": "sums_of_consecutive_numbers",
+    "title": "Sums of Consecutive Numbers",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "addition_with_regrouping_two_digit"
+    ],
+    "explanation": "Consecutive numbers are numbers that follow one another in order without any gaps, like 5, 6, 7 or 29, 30, 31. When you add consecutive numbers, patterns appear: the sum of 2 consecutive numbers is always odd; the sum of 3 consecutive numbers is always 3 times the middle number; and each time you shift the group up by 1 (for example from 1+2+3 to 2+3+4), the sum increases by a fixed amount equal to the number of terms being added.",
+    "examples": [
+      "Sum of 2 consecutive numbers: 1+2=3, 2+3=5, 3+4=7, 4+5=9. All results are odd, and each successive sum is 2 more than the previous one. So 67 + 68 = 135 without adding digit by digit.",
+      "Sum of 3 consecutive numbers equals 3 times the middle number: 1+2+3=6=3x2, 2+3+4=9=3x3, 3+4+5=12=3x4. So 67+68+69 = 3 x 68 = 204.",
+      "Sum of 4 consecutive numbers: 1+2+3+4=10, 2+3+4+5=14, 3+4+5+6=18. Each successive sum increases by 4 (the number of terms). So 24+25+26+27: pairing the outer numbers gives 24+27=51 and 25+26=51, so the total is 102."
+    ],
+    "common_misconceptions": [
+      "Students think the sum of 2 consecutive numbers can sometimes be even — but one of any two consecutive numbers is always odd and the other always even, so their sum is always odd.",
+      "Students confuse the step size between successive sums: for groups of 3 consecutive numbers the step is 3, for groups of 4 the step is 4, and so on — not always 2.",
+      "Students try to directly add all the digits in large consecutive numbers (like 237+238+239+240+241+242) instead of using the middle-number pattern, making the calculation far harder than necessary."
+    ],
+    "hint_progression": [
+      "Look at the table of sums in the textbook. Focus on one column at a time. Are those sums even or odd? What is the difference between each pair of consecutive sums in that column?",
+      "For 3 consecutive numbers, compare the sum with the middle number. Is there a multiplication shortcut you notice? Try it on 2+3+4 and 10+11+12.",
+      "To find 48+49+50+51+52 (5 consecutive numbers): 50 is the middle number. The sum equals 5 times 50 = 250. Try the same idea for any group of consecutive numbers: multiply the middle term by the count of terms."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Use the consecutive numbers pattern to find 67 + 68 + 69 without adding digit by digit.",
+        "answer": "204",
+        "explanation": "These are 3 consecutive numbers with 68 as the middle number. The sum of 3 consecutive numbers always equals 3 times the middle number: 3 x 68 = 204. Verify: 67 + 68 + 69 = 204."
+      },
+      {
+        "question": "Are the sums of 3 consecutive numbers always even, always odd, or sometimes both? Give two examples from the table to support your answer.",
+        "answer": "Always even (divisible by 3, and the middle number alternates, but each sum of 3 consecutive numbers is a multiple of 3 and can be even or odd). Wait — 1+2+3=6 (even), 2+3+4=9 (odd). They alternate. The sums are sometimes even and sometimes odd.",
+        "explanation": "1+2+3=6 (even), 2+3+4=9 (odd), 3+4+5=12 (even), 4+5+6=15 (odd). The sums alternate between even and odd because each sum equals 3 times the middle number, and the middle number itself alternates between even and odd as you move along consecutive numbers."
+      }
+    ]
+  },
+  {
+    "section_id": "4-6",
+    "chapter_id": 4,
+    "order": 6,
+    "concept": "adding_large_numbers",
+    "title": "The Longest Land Route: Adding Large Numbers",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "addition_with_regrouping_two_digit",
+      "subtraction_with_regrouping_two_digit"
+    ],
+    "explanation": "Adding large numbers — thousands and ten-thousands — works exactly the same way as adding small numbers: column by column from right to left, regrouping whenever a column's sum is 10 or more. The most important rule is to align the digits correctly before adding — ones below ones, tens below tens, hundreds below hundreds, and so on. Once aligned, you can mentally track the column positions without writing labels.",
+    "examples": [
+      "The North-South Corridor was 1,855 km from Srinagar to a midpoint and 1,862 km from that midpoint to Kanniyakumari. Total = 1,855 + 1,862: ones 5+2=7, tens 5+6=11 write 1 carry 1, hundreds 1+8+8=17 write 7 carry 1, thousands 1+1+1=3. Total = 3,717 km.",
+      "Mahesh spends Rs 21,880 on fuel and toll and Rs 38,900 on other expenses. Total = 21,880 + 38,900: ones 0+0=0, tens 8+0=8, hundreds 8+9=17 write 7 carry 1, thousands 1+1+8=10 write 0 carry 1, ten-thousands 1+2+3=6. Total = Rs 60,780.",
+      "Nazrana's road trip from Delhi: Delhi to Mumbai 1,600 km, Mumbai to Goa 590 km, Goa to Hyderabad 670 km, Hyderabad to Puri 1,055 km. Total = 1,600 + 590 + 670 + 1,055 = 3,915 km."
+    ],
+    "common_misconceptions": [
+      "Students misalign the digits when numbers have different numbers of digits — for example, when adding 12 + 123, they line up the leftmost digits instead of the rightmost ones digits, giving a wrong answer.",
+      "Students regroup correctly in the ones column but forget to also regroup when tens, hundreds, or thousands columns also sum to 10 or more.",
+      "Students stop after getting their main answer and do not notice that a final carry from the leftmost column creates an additional digit, making the answer one digit shorter than it should be."
+    ],
+    "hint_progression": [
+      "Before you add anything, write all the numbers one below the other. Check that the rightmost digits — the ones — are exactly lined up in the same column.",
+      "Start from the ones column on the right and move left one column at a time. After each column, ask: is the sum 10 or more? If yes, write only the last digit and carry 1 to the next column.",
+      "For 238 + 367: ones 8+7=15, write 5 carry 1. Tens 1+3+6=10, write 0 carry 1. Hundreds 1+2+3=6. Answer: 605. Estimate to check: 238 is about 240 and 367 is about 370, so the answer should be close to 610 — and 605 is close, which is reassuring."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Nazrana and her friends start from Delhi. They drive 1,600 km to Mumbai, then 590 km to Goa, then 670 km to Hyderabad, and finally 1,055 km to Puri. What is the total distance of their road trip?",
+        "answer": "3,915 km",
+        "explanation": "Add all four distances: 1,600 + 590 + 670 + 1,055. Align ones carefully. Ones: 0+0+0+5=5. Tens: 0+9+7+5=21, write 1 carry 2. Hundreds: 6+5+6+0+2=19, write 9 carry 1. Thousands: 1+0+0+1+1=3. Total = 3,915 km."
+      },
+      {
+        "question": "The school council raised Rs 70,500. They want to buy maths lab games worth Rs 39,785, library books worth Rs 9,545, and sports equipment worth Rs 19,548. What is the total cost of all three purchases?",
+        "answer": "Rs 68,878",
+        "explanation": "39,785 + 9,545 + 19,548: ones 5+5+8=18, write 8 carry 1. Tens 8+4+4+1=17, write 7 carry 1. Hundreds 7+5+5+1=18, write 8 carry 1. Thousands 9+9+9+1=28, write 8 carry 2. Ten-thousands 3+1+2=6, plus carry 2 = 6. Total = Rs 68,878. Since Rs 68,878 is less than Rs 70,500, the council has enough money."
+      }
+    ]
+  },
+  {
+    "section_id": "4-7",
+    "chapter_id": 4,
+    "order": 7,
+    "concept": "subtracting_large_numbers",
+    "title": "Subtracting Large Numbers",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "subtraction_with_regrouping_two_digit",
+      "adding_large_numbers"
+    ],
+    "explanation": "Subtracting large numbers works exactly the same way as subtracting small numbers — column by column from right to left, regrouping whenever the top digit in a column is smaller than the bottom digit. Align the digits carefully before starting. Always check your answer by adding the result to the number subtracted — if you get back the original number, the answer is correct.",
+    "examples": [
+      "A ship travels 2,700 km from Mumbai to Chennai, passing Cochin which is 1,083 km from Mumbai. Remaining distance = 2,700 minus 1,083: ones 0 minus 3 not possible, regroup twice; hundreds borrow to give tens borrow to give ones. After regrouping: answer = 1,617 km. Check: 1,083 + 1,617 = 2,700.",
+      "The longest land route (Talon to Sagres) is 15,150 km. The longest African highway (Cairo to Cape Town) is 10,228 km. Difference = 15,150 minus 10,228 = 4,922 km. The land route connecting Talon and Sagres is 4,922 km longer than the road connecting Cairo and Cape Town.",
+      "Mary starts her train journey from Kolkata with Rs 12,540. She spends Rs 3,275 on food to Varanasi, receives a gift of Rs 4,900 in Varanasi, spends Rs 2,645 on the train to Delhi, and Rs 1,275 on souvenirs in Delhi. Calculating step by step: 12,540 minus 3,275 = 9,265; plus 4,900 = 14,165; minus 2,645 = 11,520; minus 1,275 = Rs 10,245 remaining."
+    ],
+    "common_misconceptions": [
+      "Students subtract the smaller digit from the larger digit regardless of which is on top — for example, computing 2,700 minus 1,083 in the ones column as 3 minus 0 = 3 instead of recognising that 0 minus 3 requires regrouping.",
+      "Students borrow from the wrong direction — they try to borrow from the column to the right instead of borrowing from the column to the left of the column they are working in.",
+      "Students forget to check their answer by adding it back to the subtracted number, which is especially important for large numbers where multiple regrouping steps can introduce errors."
+    ],
+    "hint_progression": [
+      "Start from the ones column. Is the top digit smaller than the bottom digit? If so, you must borrow from the column immediately to its left before you can subtract.",
+      "To borrow: reduce the digit in the column to the left by 1, and add 10 to the column you are working in. If the column to the left has a 0, you may need to borrow from further left first.",
+      "For 4,578 minus 2,222: check each column right to left — 8 minus 2, 7 minus 2, 5 minus 2, 4 minus 2. No regrouping needed here; answer is 2,356. For 15,324 minus 11,780: ones 4 minus 0 = 4, tens 2 minus 8 not possible — regroup and continue."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A truck can carry 8,250 kg. A factory loads 3,675 kg of cement and 2,850 kg of steel onto the truck. How much more weight can the truck still carry?",
+        "answer": "1,725 kg",
+        "explanation": "Total loaded = 3,675 + 2,850 = 6,525 kg. Remaining capacity = 8,250 minus 6,525. Ones: 0 minus 5 not possible, regroup: 10 minus 5 = 5. Tens: 4 minus 2 = 2. Hundreds: 2 minus 5 not possible, regroup: 12 minus 5 = 7. Thousands: 7 minus 6 = 1. Answer = 1,725 kg. Check: 6,525 + 1,725 = 8,250."
+      },
+      {
+        "question": "Virat Kohli has scored 27,599 runs and has 6,758 fewer runs than Sachin Tendulkar. How many runs has Sachin Tendulkar scored?",
+        "answer": "34,357 runs",
+        "explanation": "Tendulkar's runs = Kohli's runs + 6,758 = 27,599 + 6,758. Ones: 9+8=17, write 7 carry 1. Tens: 9+5+1=15, write 5 carry 1. Hundreds: 5+7+1=13, write 3 carry 1. Thousands: 7+6+1=14, write 4 carry 1. Ten-thousands: 2+1=3. Answer: 34,357 runs."
+      }
+    ]
+  },
+  {
+    "section_id": "4-8",
+    "chapter_id": 4,
+    "order": 8,
+    "concept": "quick_sums_and_differences",
+    "title": "Quick Sums and Differences",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "adding_large_numbers",
+      "subtracting_large_numbers"
+    ],
+    "explanation": "There are clever mental shortcuts for adding to or subtracting from round numbers like 100, 1,000, and 10,000. Piku's method: to find what must be added to a number to reach 100, first find what makes all its digits become 9 (reaching 99), then add 1 more. Namita's method: subtracting 9 is the same as subtracting 10 and adding 1 back; subtracting 99 is the same as subtracting 100 and adding 1 back.",
+    "examples": [
+      "Sukanta wants 32 + ___ = 100. Piku's trick: 32 + 67 = 99 (make each digit a 9). Then add 1 more to the second number: 32 + 68 = 100. The missing number is 68.",
+      "Namita wants to subtract 9 quickly. For 83 minus 9: subtract 10 to get 73, then add 1 back to get 74. So 83 minus 9 = 74. For 247 minus 99: subtract 100 to get 147, then add 1 back to get 148. So 247 minus 99 = 148.",
+      "To find what must be added to 4,103 to reach 10,000: first reach 9,999 by adding 5,896 (each digit becomes 9). Then add 1 more: 4,103 + 5,897 = 10,000. Missing number = 5,897."
+    ],
+    "common_misconceptions": [
+      "Students apply Piku's trick to numbers ending in 0 (like 180 + ___ = 1,000) and get confused because making the digit 9 when it is 0 does not follow the straightforward pattern — the method needs adjustment in such cases.",
+      "Students subtract 10 to get close to the answer but forget to add 1 back when subtracting 9, leaving an answer that is 1 too small.",
+      "Students think Piku's method only works for 2-digit numbers, not realising the same idea extends to any number of digits — you always aim for a string of 9s first, then add 1."
+    ],
+    "hint_progression": [
+      "Think about what number is exactly 1 less than 100 (or 1,000 or 10,000). Can you find what you need to add to your given number to reach that number of all 9s?",
+      "Once you know how much to add to reach 99 (or 999 or 9,999), the missing number that reaches the round target is just 1 more than that. The trick works because going from 99 to 100 is always just 1 extra step.",
+      "For 59 + ___ = 100: make each digit 9: 59 + 40 = 99. So the missing number is 40 + 1 = 41. Check: 59 + 41 = 100."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Sukanta wants to find: 877 + ___ = 1,000. Use Piku's method to fill in the blank.",
+        "answer": "123",
+        "explanation": "Step 1: Make all digits 9. 877 + 122 = 999. Step 2: Add 1 to the missing number. 877 + 123 = 1,000. The missing number is 123. Check: 877 + 123 = 1,000."
+      },
+      {
+        "question": "Namita wants to subtract 99 from 763. Use her quick method (subtract 100, then adjust) to find the answer.",
+        "answer": "664",
+        "explanation": "Subtracting 99 is the same as subtracting 100 and then adding 1 back. 763 minus 100 = 663. 663 + 1 = 664. So 763 minus 99 = 664. Check: 664 + 99 = 763."
+      }
+    ]
+  },
+  {
+    "section_id": "4-9",
+    "chapter_id": 4,
+    "order": 9,
+    "concept": "palindrome_numbers",
+    "title": "Palindrome Numbers",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "adding_large_numbers"
+    ],
+    "explanation": "A palindrome number reads the same from left to right as it does from right to left. For example, 22, 363, 404, and 8,558 are palindromes. To check if a number is a palindrome, compare its first digit to its last, then its second to its second-to-last, and so on — every matching pair must be equal. To list palindromes in a range, figure out what fixed digit pattern the number must have and count how many choices exist for the free digit.",
+    "examples": [
+      "All three-digit palindromes between 100 and 200 have the form 1_1, where the first and last digits are both 1 and the middle digit can be 0 through 9. This gives: 101, 111, 121, 131, 141, 151, 161, 171, 181, 191 — exactly 10 palindromes.",
+      "Palindromes between 900 and 1,200 include three-digit palindromes of the form 9_9: 909, 919, 929, 939, 949, 959, 969, 979, 989, 999; and four-digit palindromes starting with 1 and ending with 1 in the range: 1,001 and 1,111.",
+      "To check if 8,558 is a palindrome: first digit is 8, last digit is 8 — match. Second digit is 5, second-to-last is 5 — match. All pairs match, so 8,558 is a palindrome."
+    ],
+    "common_misconceptions": [
+      "Students check only the first and last digits and declare a number a palindrome without verifying that all inner digit pairs also match — for example, accepting 1,231 as a palindrome because it starts and ends differently but failing to check the inner digits.",
+      "Students think no 4-digit number can be a palindrome because an even count of digits cannot be symmetric, not realising that 4-digit palindromes exist whenever the first two digits mirror the last two (such as 1,001 or 1,221).",
+      "Students confuse palindrome numbers with numbers that have repeating digits (like 111 or 222), not realising that any symmetric digit pattern qualifies, even if no digit repeats (such as 1,023,201)."
+    ],
+    "hint_progression": [
+      "Write the digits of the number in a row, then write them again in reverse order below. Look at both rows — do all the digits match up?",
+      "Check the digits in pairs from the outside in: first against last, second against second-to-last. Every pair must be identical for the number to be a palindrome.",
+      "To list all palindromes between 100 and 200, notice they must start with 1 and end with 1. The only thing that can change is the middle digit. How many choices does the middle digit have, and what are they?"
+    ],
+    "quiz_questions": [
+      {
+        "question": "Nitin says 4,554 is a palindrome. Is he correct? Show your checking method.",
+        "answer": "Yes, 4,554 is a palindrome.",
+        "explanation": "Compare digits from the outside in. First digit: 4, last digit: 4 — they match. Second digit: 5, second-to-last digit: 5 — they match. Every pair matches, so 4,554 reads the same from left to right (4,554) as it does from right to left (4,554). Nitin is correct."
+      },
+      {
+        "question": "How many palindrome numbers are there between 100 and 200? List them all.",
+        "answer": "10 palindromes: 101, 111, 121, 131, 141, 151, 161, 171, 181, 191.",
+        "explanation": "Every palindrome between 100 and 200 must start with 1 and end with 1, so it has the form 1_1. The middle digit can be any digit from 0 to 9, giving exactly 10 choices and therefore 10 palindromes."
+      }
+    ]
+  },
+  {
+    "section_id": "4-10",
+    "chapter_id": 4,
+    "order": 10,
+    "concept": "grid_ordering_puzzles",
+    "title": "Grid Ordering Puzzles",
+    "difficulty": "advanced",
+    "prerequisite_concepts": [
+      "sums_of_consecutive_numbers",
+      "palindrome_numbers"
+    ],
+    "explanation": "In a 3x3 grid ordering puzzle, the numbers 1 to 9 are placed one per cell (each used exactly once). Each row and each column has a label — inc (increasing) means the numbers in that row or column must go from smaller to larger, and dec (decreasing) means they must go from larger to smaller. Every row must satisfy its own direction, and every column must satisfy its own direction, all at the same time.",
+    "examples": [
+      "If all three rows and all three columns are labelled inc, a valid arrangement is: Row 1: 1, 2, 3; Row 2: 4, 5, 6; Row 3: 7, 8, 9. Each row increases left to right and each column increases top to bottom.",
+      "If all rows and columns are dec, a valid arrangement is: Row 1: 9, 8, 7; Row 2: 6, 5, 4; Row 3: 3, 2, 1. Each row decreases left to right and each column decreases top to bottom.",
+      "With mixed labels — say rows are dec, dec, dec and columns are inc, inc, inc — you must find placements where each row's numbers decrease left to right AND each column's numbers increase top to bottom. This requires careful trial with all nine numbers: one valid arrangement is Row 1: 7, 8, 9; Row 2: 4, 5, 6; Row 3: 1, 2, 3."
+    ],
+    "common_misconceptions": [
+      "Students focus only on making the rows satisfy their direction and forget to check that every column also independently satisfies its own direction label.",
+      "Students repeat a number or skip a number instead of using each of 1 through 9 exactly once, which makes it impossible to satisfy all row and column conditions simultaneously.",
+      "Students assume an inc column must contain exactly the three consecutive numbers 1, 2, 3 (from top to bottom), not realising that any three distinct numbers in increasing order from the set 1-9 are valid."
+    ],
+    "hint_progression": [
+      "Look at the four corners of the grid first. Each corner belongs to both a row and a column. What can you say about whether a corner number should be large or small based on the row and column labels at that corner?",
+      "The number 9 must go in a cell where both its row direction and column direction point away from it — that is, both the row and the column are dec at that cell's position, since 9 is the largest and nothing can be greater. Similarly, 1 belongs where both directions are inc.",
+      "Once you have placed 1 and 9, try placing 5 in the centre. Then fill the remaining cells using trial and adjustment, always checking after each placement that the row and column still have room to satisfy their direction with the remaining unused numbers."
+    ],
+    "quiz_questions": [
+      {
+        "question": "In a 3x3 grid where all rows and columns are marked inc, Nitin places 5 in the top-left corner. Can all inc conditions still be satisfied? Explain why or why not.",
+        "answer": "No, placing 5 in the top-left corner makes it impossible to satisfy all inc conditions.",
+        "explanation": "If 5 is in the top-left, the first row must increase, so both other cells in row 1 must be greater than 5. The first column must also increase, so both other cells in column 1 must be greater than 5. That means four cells immediately need to be filled with numbers greater than 5 — but there are only four such numbers (6, 7, 8, 9), and other cells further into the grid also need numbers from this range. There will not be enough numbers greater than 5 to fill the rest of the grid correctly."
+      },
+      {
+        "question": "In a 3x3 grid, the first row is labelled dec and the first column is labelled inc. What can you say about the number that belongs in the top-left corner cell?",
+        "answer": "The top-left number must be the largest in its row (because the row is dec) and the smallest in its column (because the column is inc).",
+        "explanation": "A dec row decreases from left to right, so the leftmost cell holds the largest number in that row. An inc column increases from top to bottom, so the topmost cell holds the smallest number in that column. The top-left cell is both the start of row 1 and the top of column 1, so it must simultaneously be the row's largest and the column's smallest."
+      }
+    ]
+  },
+  {
+    "section_id": "4-11",
+    "chapter_id": 4,
+    "order": 11,
+    "concept": "even_and_odd_numbers",
+    "title": "Even and Odd Numbers",
+    "difficulty": "intro",
+    "prerequisite_concepts": [
+      "addition_with_regrouping_two_digit"
+    ],
+    "explanation": "A number is even if it can be grouped into pairs with nothing left over; even numbers always end in 0, 2, 4, 6, or 8. A number is odd if one is left over after pairing; odd numbers always end in 1, 3, 5, 7, or 9. Key rules for sums: even plus even = even, odd plus odd = even, and odd plus even = odd. Adding 2 to any number keeps it even or keeps it odd — it does not change the number's parity.",
+    "examples": [
+      "18 can be arranged into 9 complete pairs with nothing left over, so 18 is even. 23 gives 11 pairs with 1 left over, so 23 is odd. Adding 2 to 18 gives 20 — still even. Adding 2 to 23 gives 25 — still odd.",
+      "Raghu's torch switches on and off with each press: press 1 ON, press 2 OFF, press 3 ON, and so on. The torch is ON for all odd-numbered presses and OFF for all even-numbered presses. After press 23 (which is odd), the torch is ON.",
+      "Jincy has 8 coins of Rs 1, 9 coins of Rs 2, and 5 coins of Rs 5. She needs Rs 38 (even). Since 8 x 1 = Rs 8 (even), she can combine different quantities of her Rs 2 and Rs 5 coins. One way: use all 8 one-rupee coins (Rs 8), all 9 two-rupee coins (Rs 18), and 2 five-rupee coins (Rs 10) — but that is Rs 36, not enough. Trial and error within her available coins finds the right combination."
+    ],
+    "common_misconceptions": [
+      "Students look at the first digit of a large number to decide if it is even or odd — for example, thinking 6,893 is even because it starts with 6, when the only digit that matters is the last one (3), which makes 6,893 odd.",
+      "Students think odd plus odd equals odd — but adding two odd numbers always gives an even result, because the two leftover ones from each odd number pair up to form an extra pair.",
+      "Students confuse adding 1 with adding 2 for parity: adding 1 to an even number makes it odd, but adding 2 keeps it even. Students sometimes apply the rule for adding 1 when they should apply the rule for adding 2."
+    ],
+    "hint_progression": [
+      "You do not need to do any adding to check if a large number is even or odd. Look only at the very last digit — the ones digit. What is it?",
+      "Once you know whether each number is odd or even, use the parity rules before you calculate: even plus even = even, odd plus odd = even, odd plus even = odd. Can you predict whether the answer will be even or odd before you work it out?",
+      "For Raghu's torch: list the first few press numbers and the torch state next to them. Do you see a pattern connecting even/odd press numbers to ON/OFF? Now apply that pattern to press number 23."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Raghu's torch is ON for every odd-numbered press and OFF for every even-numbered press. Will the torch be ON or OFF after the 23rd press? How do you know without counting all 23 presses?",
+        "answer": "ON, because 23 is an odd number.",
+        "explanation": "23 ends in the digit 3, so it is odd. The torch is ON for all odd-numbered presses (1st, 3rd, 5th, ... 23rd). You do not need to count every press — just check whether 23 is odd or even by looking at its last digit."
+      },
+      {
+        "question": "From the list 297, 498, 724, 100, 199, 789, 49, 6,893, 846, 111, 222, 1,023 — which numbers are even?",
+        "answer": "498, 724, 100, 846, and 222 are even.",
+        "explanation": "A number is even if and only if its ones (last) digit is 0, 2, 4, 6, or 8. Checking each: 297 ends in 7 (odd), 498 ends in 8 (even), 724 ends in 4 (even), 100 ends in 0 (even), 199 ends in 9 (odd), 789 ends in 9 (odd), 49 ends in 9 (odd), 6,893 ends in 3 (odd), 846 ends in 6 (even), 111 ends in 1 (odd), 222 ends in 2 (even), 1,023 ends in 3 (odd)."
+      }
+    ]
+  }
+]

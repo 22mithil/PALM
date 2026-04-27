@@ -4,10 +4,10 @@
     "chapter_name": "Symmetrical Designs",
     "grade": 5,
     "subject": "Mathematics",
-    "section_ids": ["10.1", "10.2", "10.3", "10.4"]
+    "section_ids": ["10-1", "10-2", "10-3", "10-4"]
   },
   {
-    "section_id": "10.1",
+    "section_id": "10-1",
     "chapter_id": 10,
     "order": 1,
     "concept": "reflection_symmetry_and_lines_of_symmetry",
@@ -44,13 +44,15 @@
     ]
   },
   {
-    "section_id": "10.2",
+    "section_id": "10-2",
     "chapter_id": 10,
     "order": 2,
     "concept": "rotational_symmetry",
     "title": "Rotational Symmetry",
     "difficulty": "intermediate",
-    "prerequisite_concepts": ["reflection_symmetry_and_lines_of_symmetry"],
+    "prerequisite_concepts": [
+      "reflection_symmetry_and_lines_of_symmetry"
+    ],
     "explanation": "A shape has rotational symmetry if it looks exactly the same after being rotated (turned) by a fraction of a full turn around its centre point. The fractions we check are 1/4 turn, 1/2 turn, and 3/4 turn. A shape that only looks the same after a full turn does not count as having rotational symmetry. You can track this by placing a dot on the shape and observing where the dot ends up after each turn.",
     "examples": [
       "Lali's firki (windmill) has four identical blades equally spaced around the centre — it looks exactly the same after a 1/4 turn, a 1/2 turn, and a 3/4 turn, so it has rotational symmetry.",
@@ -81,13 +83,16 @@
     ]
   },
   {
-    "section_id": "10.3",
+    "section_id": "10-3",
     "chapter_id": 10,
     "order": 3,
     "concept": "making_symmetrical_designs",
     "title": "Making Symmetrical Designs",
     "difficulty": "intermediate",
-    "prerequisite_concepts": ["reflection_symmetry_and_lines_of_symmetry", "rotational_symmetry"],
+    "prerequisite_concepts": [
+      "reflection_symmetry_and_lines_of_symmetry",
+      "rotational_symmetry"
+    ],
     "explanation": "You can deliberately create designs that have rotational symmetry, reflection symmetry, or both by carefully arranging or colouring shapes. A design has rotational symmetry if it looks the same after a fractional turn, and it has reflection symmetry if a mirror line splits it into two matching halves. The same set of shapes — such as squares and equilateral triangles with equal side lengths — can be arranged in different ways to produce designs with different symmetry properties. Designs can be sorted into three groups: only rotational symmetry, only reflection symmetry, or both.",
     "examples": [
       "A 2×2 square grid coloured so that the top-left and bottom-right cells are pink while the top-right and bottom-left cells are green looks the same after a 1/2 turn — it has rotational symmetry — but it does not have a vertical or horizontal line of symmetry.",
@@ -118,13 +123,17 @@
     ]
   },
   {
-    "section_id": "10.4",
+    "section_id": "10-4",
     "chapter_id": 10,
     "order": 4,
     "concept": "symmetry_in_block_printing_patterns",
     "title": "Symmetry in Block Printing Patterns",
     "difficulty": "advanced",
-    "prerequisite_concepts": ["reflection_symmetry_and_lines_of_symmetry", "rotational_symmetry", "making_symmetrical_designs"],
+    "prerequisite_concepts": [
+      "reflection_symmetry_and_lines_of_symmetry",
+      "rotational_symmetry",
+      "making_symmetrical_designs"
+    ],
     "explanation": "Block printing is a traditional craft from Rajasthan where artisans carve a design into a wooden block and press it repeatedly onto fabric to create beautiful repeating patterns. When the same block is stamped multiple times in different orientations, the final printed design can have rotational symmetry, reflection symmetry, or both. Importantly, the print produced by a block is the mirror image of the carved block, because the block is pressed face-down. By analysing how a block is repeated and rotated, you can predict and identify the symmetry of the resulting pattern.",
     "examples": [
       "Design A is made by stamping a leaf-shaped wooden block 4 times, each time rotated by 1/4 turn — the resulting cross-like print looks the same after every 1/4 turn, so it has rotational symmetry at 1/4 turn.",

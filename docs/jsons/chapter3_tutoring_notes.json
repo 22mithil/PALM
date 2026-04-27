@@ -4,10 +4,10 @@
     "chapter_name": "Angles as Turns",
     "grade": 5,
     "subject": "Mathematics",
-    "section_ids": ["3.1", "3.2", "3.3", "3.4", "3.5", "3.6", "3.7"]
+    "section_ids": ["3-1", "3-2", "3-3", "3-4", "3-5", "3-6", "3-7"]
   },
   {
-    "section_id": "3.1",
+    "section_id": "3-1",
     "chapter_id": 3,
     "order": 1,
     "concept": "full_half_quarter_turns",
@@ -44,13 +44,15 @@
     ]
   },
   {
-    "section_id": "3.2",
+    "section_id": "3-2",
     "chapter_id": 3,
     "order": 2,
     "concept": "angles_from_turns",
     "title": "Types of Angles from Turns",
     "difficulty": "intro",
-    "prerequisite_concepts": ["full_half_quarter_turns"],
+    "prerequisite_concepts": [
+      "full_half_quarter_turns"
+    ],
     "explanation": "Angles arise whenever something makes a turn. A quarter turn (1/4) creates a right angle — the most common angle in everyday shapes. Any turn less than a quarter produces an acute angle, which is small and sharp. A turn between a quarter and a half produces an obtuse angle, which is wide and open. Exactly a half turn (1/2) produces a straight angle, where both sides form a straight line.",
     "examples": [
       "Pragya holds the green straw steady and turns the yellow straw by exactly a quarter turn — the two straws now form a right angle between them.",
@@ -81,13 +83,16 @@
     ]
   },
   {
-    "section_id": "3.3",
+    "section_id": "3-3",
     "chapter_id": 3,
     "order": 3,
     "concept": "angle_measuring_tool",
     "title": "Making and Using an Angle Measuring Tool",
     "difficulty": "intermediate",
-    "prerequisite_concepts": ["full_half_quarter_turns", "angles_from_turns"],
+    "prerequisite_concepts": [
+      "full_half_quarter_turns",
+      "angles_from_turns"
+    ],
     "explanation": "You can make a precise angle measuring tool by cutting a circle from tracing paper, folding it into equal parts, and attaching a straw at the centre with a marked starting point. Folding into 8 equal parts gives eighths, so 2/8 = 1/4 (a right angle) and 4/8 = 1/2 (a straight angle). Folding into 6 equal parts gives sixths; folding one sixth in half gives a 1/12 piece. These cut-out sectors can be combined to measure angles that do not match a single piece exactly.",
     "examples": [
       "When the tracing-paper circle is folded into 8 equal parts and the straw is turned by 2 sections, the turn is 2/8 = 1/4 of a full circle — the same as a right angle.",
@@ -118,13 +123,16 @@
     ]
   },
   {
-    "section_id": "3.4",
+    "section_id": "3-4",
     "chapter_id": 3,
     "order": 4,
     "concept": "measuring_angles_with_tool",
     "title": "Measuring and Drawing Angles Using the Tool",
     "difficulty": "intermediate",
-    "prerequisite_concepts": ["angles_from_turns", "angle_measuring_tool"],
+    "prerequisite_concepts": [
+      "angles_from_turns",
+      "angle_measuring_tool"
+    ],
     "explanation": "The angle measuring tool is used by placing it at the vertex of an angle, aligning one arm with the starting mark, and reading off how many fractions of a turn the other arm reaches. Many angles need two pieces combined — for example, 1/4 + 1/8 = 3/8 of a turn. You can also work in reverse: given a turn fraction, you draw the angle by starting from a fixed line and rotating by that fraction of a circle.",
     "examples": [
       "An arrow that turns through 1/4 + 1/8 of a full circle has made a 3/8 turn — this is an obtuse angle because 3/8 sits between 1/4 and 1/2.",
@@ -155,13 +163,16 @@
     ]
   },
   {
-    "section_id": "3.5",
+    "section_id": "3-5",
     "chapter_id": 3,
     "order": 5,
     "concept": "turns_and_clock_minutes",
     "title": "Turns and the Clock — Connecting Fractions to Minutes",
     "difficulty": "intermediate",
-    "prerequisite_concepts": ["full_half_quarter_turns", "angle_measuring_tool"],
+    "prerequisite_concepts": [
+      "full_half_quarter_turns",
+      "angle_measuring_tool"
+    ],
     "explanation": "The minute hand of a clock makes exactly one full turn every 60 minutes. This means any fraction of a full turn corresponds to the same fraction of 60 minutes — for example, a 1/4 turn equals 15 minutes, a 1/2 turn equals 30 minutes, and a 1/12 turn equals 5 minutes. You can always find the number of minutes by multiplying the turn fraction by 60.",
     "examples": [
       "When the minute hand moves from 12 to 3, it has completed a 1/4 turn and 1/4 × 60 = 15 minutes have passed.",
@@ -192,13 +203,15 @@
     ]
   },
   {
-    "section_id": "3.6",
+    "section_id": "3-6",
     "chapter_id": 3,
     "order": 6,
     "concept": "clockwise_anticlockwise_direction",
     "title": "Clockwise and Anti-Clockwise Direction",
     "difficulty": "intro",
-    "prerequisite_concepts": ["full_half_quarter_turns"],
+    "prerequisite_concepts": [
+      "full_half_quarter_turns"
+    ],
     "explanation": "Every turn happens in one of two directions. The direction clock hands move — right at the top, down on the right, left at the bottom — is called clockwise. The opposite direction is called anti-clockwise. Observing real objects like taps, lids, and nuts shows that loosening usually requires anti-clockwise turning while tightening requires clockwise turning.",
     "examples": [
       "A ladybug makes a quarter turn and ends up facing the right — because it moved the same way clock hands move (from the top toward the right), this is a clockwise quarter turn.",
@@ -229,13 +242,16 @@
     ]
   },
   {
-    "section_id": "3.7",
+    "section_id": "3-7",
     "chapter_id": 3,
     "order": 7,
     "concept": "turns_with_compass_directions",
     "title": "Fun with Turns — Combining Turns and Compass Directions",
     "difficulty": "advanced",
-    "prerequisite_concepts": ["full_half_quarter_turns", "clockwise_anticlockwise_direction"],
+    "prerequisite_concepts": [
+      "full_half_quarter_turns",
+      "clockwise_anticlockwise_direction"
+    ],
     "explanation": "When a person faces a compass direction (North, South, East, or West) and makes turns, we can work out their new facing direction by counting right-angle turns in the correct direction. Going clockwise from North: each quarter turn moves North → East → South → West → North. Going anti-clockwise it reverses: North → West → South → East → North. Because 4 right-angle turns always make a full turn, any extra turns beyond 4 simply continue the same pattern.",
     "examples": [
       "Starting from North and taking two right-angle turns clockwise: 1st turn → East, 2nd turn → South — the ending direction is South.",

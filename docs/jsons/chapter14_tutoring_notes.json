@@ -1,0 +1,194 @@
+[
+  {
+    "chapter_id": 14,
+    "chapter_name": "Maps and Locations",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["14-1", "14-2", "14-3", "14-4", "14-5"]
+  },
+  {
+    "section_id": "14-1",
+    "chapter_id": 14,
+    "order": 1,
+    "concept": "four_cardinal_directions",
+    "title": "The Four Cardinal Directions",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "There are four main directions called cardinal directions: North (N), South (S), East (E), and West (W). You can find East by facing the rising Sun — whichever way the Sun rises in the morning is East. When you face East, North is always to your left, South is to your right, and West is directly behind you. These four directions help us describe where things are located relative to a person or object — for example, 'the tent to the west of the road' or 'the window to the north of the girl.'",
+    "examples": [
+      "Manu faces the rising Sun, which means he is facing East; his left hand then points North, his right hand points South, and West is directly behind him — all four directions are locked in place once you know where East is.",
+      "At the bird-watching camp, the tent to the west of the road is coloured blue — on a standard map with North at the top, west means to the left side of the road, so that tent is on the left side of the road on the map.",
+      "In the room map, the girl stands in the centre; the window is to her north (she faces it), the bed is to her east (on her right), and the cupboard is to her west (on her left) — all positions are described using compass directions relative to where she stands."
+    ],
+    "common_misconceptions": [
+      "Students think 'left' always means 'West' and 'right' always means 'East,' but these only match when you are facing North — cardinal directions are fixed points, while left and right change depending on the direction you are facing.",
+      "Students confuse North and South on a map because they forget that North is always at the top of a standard map — if a clue says 'the tent north of the green tent,' you must look upward on the map, not to the left or right.",
+      "Students describe positions using personal body direction ('the window is on my left') instead of compass direction — you must always use the N/S/E/W compass arrow shown on the map, not your own left or right."
+    ],
+    "hint_progression": [
+      "Think about where the Sun rises — that is always East, and all other directions follow from East once you know it.",
+      "Use the direction arrow (compass rose) printed on the map: North is up, South is down, East is right, and West is left — trace an imaginary line from one place to another to name the direction between them.",
+      "Stand (or imagine standing) at the reference point, such as the girl in the room; look toward the object whose direction you want to name, and check which compass arrow — N, S, E, or W — points from you toward that object."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Manu is facing the rising Sun. Which direction is he facing? Which direction does his left hand point, and which direction does his right hand point?",
+        "answer": "Manu is facing East. His left hand points North and his right hand points South.",
+        "explanation": "The Sun always rises in the East, so facing the rising Sun means facing East. When facing East, North is fixed to your left and South is fixed to your right — this relationship between the four directions never changes regardless of where you are standing."
+      },
+      {
+        "question": "At the bird-watching camp, a clue says the purple tent is north of the green tent. On a map with North at the top, is the purple tent drawn above or below the green tent?",
+        "answer": "The purple tent is drawn above the green tent.",
+        "explanation": "On a standard map, North is at the top. So anything that is 'north of' something else appears higher up on the map. If you said below, you would be thinking of South, not North. Checking the compass arrow on the map before answering helps avoid this confusion."
+      }
+    ]
+  },
+  {
+    "section_id": "14-2",
+    "chapter_id": 14,
+    "order": 2,
+    "concept": "reading_a_street_map",
+    "title": "Reading a Street Map",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["four_cardinal_directions"],
+    "explanation": "A street map shows roads, buildings, and landmarks as seen from directly above, like a bird's-eye view. Roads are labelled with names, and places such as houses, parks, and hospitals are marked as symbols. To follow a route on a street map, you combine road names with compass directions — for example, 'drive north along Park Road, then turn right onto Hospital Road.' When someone says 'turn right,' the resulting compass direction depends on which way you are currently facing, so you must keep track of your heading as you move.",
+    "examples": [
+      "The school bus starts from the Parking area and travels north; when it takes a right turn, it is now facing East and drives along Hospital Road — a right turn while facing north always takes you east.",
+      "Golu's house is near Hospital Road; to reach the nearest bus stop (Stop 1), he would move west along Hospital Road, because Stop 1 is to his west on the map.",
+      "Prem's house is to the east of Park Road; to reach Stop 2, which is on the western side of the map, Prem must move west — you find this by locating both points and checking which compass direction the arrow from Prem's house to Stop 2 points."
+    ],
+    "common_misconceptions": [
+      "Students confuse 'turn right' with 'go east' — a right turn only means east if you are currently facing north; if you are facing east, a right turn takes you south, so always identify your current direction before applying a turn.",
+      "Students focus on road names without noting the direction of travel, then get confused about where the route is going — always note both the road name and the compass direction of travel at each step of the route.",
+      "Students assume the shortest path on a map is always a straight line — streets force you to follow roads, so the actual route involves turns, and you need to trace the road network carefully to find the correct path."
+    ],
+    "hint_progression": [
+      "Place your finger on the starting point and look at the compass arrow — decide whether you need to move north, south, east, or west to get closer to your destination.",
+      "As you move along a route, keep track of which direction you are currently facing; when you reach a junction and need to turn, decide what compass direction that turn produces given your current heading.",
+      "For example, if the bus is travelling north and takes a right turn, it is now facing east — look for which road runs east from that junction, write its name, and continue tracing the route from there."
+    ],
+    "quiz_questions": [
+      {
+        "question": "The school bus starts at the Parking area and travels north. It then takes a right turn. In which compass direction is the bus now travelling?",
+        "answer": "East",
+        "explanation": "Turning right when facing north rotates you 90 degrees clockwise, which points you East. This is the consistent relationship between turns and compass directions: facing north, right = east; facing east, right = south; facing south, right = west; facing west, right = north. Knowing your current facing direction before the turn is the key step."
+      },
+      {
+        "question": "Looking at the Zoo Trip street map, Golu is running late and needs to reach the nearest bus stop quickly. His house is on Hospital Road. In which direction does he travel along Hospital Road to reach Stop 1?",
+        "answer": "Golu travels west along Hospital Road to reach Stop 1.",
+        "explanation": "On the street map, Stop 1 (S1) is to the west of Golu's house on Hospital Road. East is to the right on a north-up map, and west is to the left. Since Stop 1 is to the left of Golu's house on Hospital Road, Golu must move west. Always locate both the starting point and the destination on the map before deciding the direction."
+      }
+    ]
+  },
+  {
+    "section_id": "14-3",
+    "chapter_id": 14,
+    "order": 3,
+    "concept": "reading_a_map_with_key",
+    "title": "Reading a Map with a Key (Legend)",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["four_cardinal_directions", "reading_a_street_map"],
+    "explanation": "A map key, also called a legend, is a small box on a map that explains what each symbol and colour means — without reading the key first, symbols on the map are impossible to interpret correctly. On the Delhi Metro map, different coloured lines represent different metro routes (Red Line, Yellow Line, Blue Line, and others), and a special symbol marks interchange stations where passengers can switch from one line to another. To plan a journey, you read the key, find your starting station, identify which line it is on, trace to your destination, and locate interchange stations if you need to switch lines.",
+    "examples": [
+      "On the Delhi Metro map, the key shows that the Yellow Line colour and the Blue Line colour are different — the children's journey begins at Qutb Minar on the Yellow Line and ends at the Supreme Court on the Blue Line, so the key immediately tells them they must change lines somewhere.",
+      "An interchange station is shown in the key as a special double-circle symbol — at stations like Rajiv Chowk or Central Secretariat, two or more coloured lines cross, so passengers can step off one line's train and board another line's train.",
+      "In the 'Let Us Do' school map activity, students make their own key showing symbols for Gate, Road, Building, Tree, and Hidden Objects — this shows that any map maker must define their symbols so other people can read the map correctly."
+    ],
+    "common_misconceptions": [
+      "Students try to read the map before consulting the key, then misidentify what symbols and colours represent — always read the key first before attempting to trace any route or answer any question about the map.",
+      "Students think they can travel directly between any two stations as long as they are 'close on the map,' forgetting that metro trains can only travel along their own coloured line — you must identify the specific line for each station before planning a route.",
+      "Students assume that a route with fewer line changes is always the best, but the number of stations along the route also matters — a direct route with many stops may take longer than a route with one interchange but fewer total stations."
+    ],
+    "hint_progression": [
+      "Before looking at any route, read the key carefully and learn which colour stands for which metro line and what the interchange symbol looks like — this knowledge is your foundation for all the questions.",
+      "Find your starting station and note its line colour; find your destination and note its line colour; if the two colours are different, trace each line on the map until you find a station where both colours cross — that crossing point is where you change trains.",
+      "To confirm your interchange: look for the special interchange symbol (from the key) at the crossing station, then trace the new line from there to your destination — count the number of stations along the way to compare different possible routes."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Lali says the children can take the Yellow Line from Qutb Minar and change at Hauz Khas to the Magenta Line. The children's final destination is the Supreme Court station, which is on the Blue Line. What must the children look for on the metro map to figure out where they need to change again from the Magenta Line to the Blue Line?",
+        "answer": "The children must look for a station on the Magenta Line that has the interchange symbol (shown in the key) where the Blue Line also passes — that is the station where they change from the Magenta Line to the Blue Line.",
+        "explanation": "When you are on one line and your destination is on a different line, you need an interchange station where both lines cross. The key shows the interchange symbol. Tracing the Magenta Line on the map until you find a station where it meets the Blue Line, marked with the interchange symbol, gives you the station where you change trains."
+      },
+      {
+        "question": "Why is a key essential on any map? If a student is making a school map for the 'Let Us Do' activity and uses a small tree drawing for 'Garden' but never puts it in the key, what problem will their friends face?",
+        "answer": "Without a key, friends will not know what the small tree drawing means — they might think it represents an actual tree, not a garden, and will misread the map.",
+        "explanation": "A key is the decoder that tells readers what every symbol means. The same symbol can mean different things on different maps — there is no universal rule. If the key is missing or incomplete, map readers have to guess, which leads to errors. A complete key is what separates a useful map from a confusing drawing."
+      }
+    ]
+  },
+  {
+    "section_id": "14-4",
+    "chapter_id": 14,
+    "order": 4,
+    "concept": "describing_paths_on_a_grid",
+    "title": "Describing Paths on a Grid Using Direction and Distance",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["four_cardinal_directions"],
+    "explanation": "A grid is a network of equally spaced lines where each square measures 1 cm × 1 cm, allowing distances to be counted precisely. To describe how to get from one point to another on a grid, you give both the direction (North, South, East, or West) and the distance (number of centimetres). For paths that cannot be completed in a single straight move, you break the journey into steps — for example, 'crawl 1 cm west, then 1 cm south.' The ant in the zoo anthill can only crawl along the grid lines, not diagonally, so every path must be made up of horizontal and vertical moves.",
+    "examples": [
+      "To get to the laddoos, the ant crawls 2 cm towards the East — this is a single-step path because the laddoos are directly to the east with no north or south movement needed.",
+      "To get to the bread, the ant must first crawl west (moving left on the grid) and then crawl south (moving downward) — this requires two steps because the bread is not directly east, west, north, or south of the ant's starting spot.",
+      "There can be more than one valid path between two points on a grid — the ant could reach the apple by going east first then south, or south first then east; comparing the total distances of all possible paths tells you which route is the shortest."
+    ],
+    "common_misconceptions": [
+      "Students write only the direction without the distance (e.g., 'go east') or only the distance without the direction (e.g., 'go 2 cm') — a complete path description on a grid always requires both the distance in centimetres and the compass direction.",
+      "Students try to describe a diagonal move (e.g., 'go southeast 2 cm') even though the ant can only move along grid lines — every step must be purely horizontal (east or west) or purely vertical (north or south), never a diagonal.",
+      "Students assume there is only one possible path between two grid points, but because the ant must follow grid lines, there are often multiple routes of equal or different lengths; you need to compare all options to find the shortest."
+    ],
+    "hint_progression": [
+      "Look at where the ant starts and where the food is — ask yourself: is the food directly to the left or right (east/west), directly above or below (north/south), or off to a corner requiring two separate moves?",
+      "Count the number of grid squares between the start and the food horizontally (east or west) and then separately count the squares vertically (north or south) — each measurement becomes one step in your path description.",
+      "Write each step as 'crawl ___ cm towards ___' filling in the number of squares and the direction — for example, if the bread is 1 square west and 1 square south of the ant, write 'crawl 1 cm west, then crawl 1 cm south'; the total path length is the sum of all the steps."
+    ],
+    "quiz_questions": [
+      {
+        "question": "The ant at the anthill needs to reach the sugar, which is directly above its starting position. The sugar is 2 grid squares away. Write the complete path the ant must take, including distance and direction.",
+        "answer": "The ant must crawl 2 cm towards the North.",
+        "explanation": "'Directly above' on a grid means North. Since the sugar is directly north with no east or west movement needed, the path is a single step. Each grid square is 1 cm, so 2 squares = 2 cm. A complete path description always needs both the number (2 cm) and the direction (North) — writing only one of them is an incomplete answer."
+      },
+      {
+        "question": "The ant needs to reach an apple that is 2 cm to the east and 2 cm to the south of its starting point. Write two different valid paths the ant could take. Are the paths the same total length?",
+        "answer": "Path 1: crawl 2 cm east, then crawl 2 cm south. Path 2: crawl 2 cm south, then crawl 2 cm east. Both paths are the same total length: 2 + 2 = 4 cm.",
+        "explanation": "On a grid, diagonal movement is not allowed, so both the east-west and north-south distances must be covered in separate steps. Changing the order of the steps (east first or south first) does not change the total distance — 2 + 2 = 4 cm either way. Both paths are equally short; neither is better than the other in terms of distance."
+      }
+    ]
+  },
+  {
+    "section_id": "14-5",
+    "chapter_id": 14,
+    "order": 5,
+    "concept": "grid_coordinates",
+    "title": "Locating Points Using Grid Coordinates",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["four_cardinal_directions", "describing_paths_on_a_grid"],
+    "explanation": "A coordinate is a pair of numbers written as (column, row) that gives the exact location of any point on a numbered grid. To find a location, always start from zero (the bottom-left corner of the grid), move horizontally east by the first number to reach the correct column, and then move vertically north by the second number to reach the correct row. For example, the Panda at (1,1) is found by moving 1 step east and then 1 step north. The critical rule is: the first number is always the column (how far east), and the second number is always the row (how far north).",
+    "examples": [
+      "The Panda is at (1,1) on the zoo grid — starting from zero, move 1 step east to column 1, then 1 step north to row 1; that crossing point is exactly where the Panda is located.",
+      "The Tortoise is at (4,1) — move 4 steps east to column 4, then 1 step north to row 1; this puts the Tortoise at the same height (row 1) as the Panda but further to the right (column 4), confirming the Tortoise is east of the Panda.",
+      "To answer 'What animal is at (1,4)?', move 1 step east to column 1 and then 4 steps north to row 4 — this is the same column as the Panda but four rows higher, so the animal there is directly north of the Panda on the grid."
+    ],
+    "common_misconceptions": [
+      "Students reverse the two numbers and read (column, row) as (row, column) — for example, they locate (4,1) by going 4 steps north and 1 step east instead of 4 steps east and 1 step north; always remember that the first number = east (horizontal) and the second number = north (vertical).",
+      "Students start counting from 1 instead of from 0 at the bottom-left corner — the grid always begins at 0, and you count how many steps away from 0 you move, so column 1 is the first line to the east of 0, not the starting point itself.",
+      "Students move vertically first and then horizontally, which lands them on the wrong point — the rule is always move horizontally (east) first and then vertically (north), just like reading left-to-right before reading upward."
+    ],
+    "hint_progression": [
+      "Think of a coordinate like an address in two parts: the first number tells you how far east to go (like moving along a street), and the second number tells you how far north to go (like going up floors in a building) — always go across first, then up.",
+      "Place your finger at 0 in the bottom-left corner; slide it east (to the right) by exactly the first number to land on the correct column; then slide it north (upward) by exactly the second number to land on the correct row — the animal at that crossing point is your answer.",
+      "For (6,4): slide east 6 steps to column 6, then slide north 4 steps to row 4 — read off whatever is at that exact intersection; if the question gives you an animal and asks for its coordinate, count its column number first (east), then its row number (north), and write them in that order as (column, row)."
+    ],
+    "quiz_questions": [
+      {
+        "question": "On the zoo grid, the Panda is at (1,1) and the Tortoise is at (4,1). How many steps further east is the Tortoise compared to the Panda? Are they at the same height (same row) on the grid?",
+        "answer": "The Tortoise is 3 steps further east than the Panda. Yes, they are at the same height — both are in row 1.",
+        "explanation": "To compare positions, look at each number separately. The first number (column) tells you east-west position: 4 − 1 = 3, so the Tortoise is 3 columns further east. The second number (row) tells you north-south position: both have row 1, so they are at exactly the same height on the grid. This means the Tortoise is directly east of the Panda."
+      },
+      {
+        "question": "A student wants to find the animal at position (6,4) on the zoo grid. She starts at zero, moves 4 steps east, and then 6 steps north. Is her method correct? What mistake did she make, and what should she do instead?",
+        "answer": "Her method is incorrect. She swapped the two numbers. She should move 6 steps east first (to reach column 6), and then 4 steps north (to reach row 4).",
+        "explanation": "In the coordinate pair (column, row), the first number always controls east-west movement and the second number always controls north-south movement. She treated the first number (6) as rows and the second number (4) as columns — a reversal. This mistake leads her to position (4,6) instead of (6,4), which is a completely different spot on the grid with a different animal."
+      }
+    ]
+  }
+]

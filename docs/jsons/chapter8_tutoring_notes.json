@@ -1,0 +1,527 @@
+[
+  {
+    "chapter_id": 8,
+    "chapter_name": "Weight and Capacity",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["8-1", "8-2", "8-3", "8-4", "8-5", "8-6", "8-7", "8-8", "8-9", "8-10", "8-11", "8-12", "8-13", "8-14"]
+  },
+  {
+    "section_id": "8-1",
+    "chapter_id": 8,
+    "order": 1,
+    "concept": "reading_weighing_scales",
+    "title": "Reading Weighing Scales",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "A weighing scale has a pointer that moves to show the weight of an object. The scale is divided into equal parts between marked values, so you must figure out what each small gap stands for. The pointer at '0' means nothing is on the scale. When you read a scale, look at the nearest marked number below the pointer and count the small divisions up to the pointer.",
+    "examples": [
+      "A scale goes from 0 to 4 kg with marks at every 1 kg. If the pointer is halfway between 3 kg and 4 kg, the weight is 3 kg 500 g.",
+      "Anu records an iron almirah as 40 g — this is clearly wrong because a heavy piece of furniture would weigh many kilograms, not grams.",
+      "A scale marked 0 to 1 kg with divisions at 250 g, 500 g, and 750 g — if the pointer is at the first mark after 0, the reading is 250 g."
+    ],
+    "common_misconceptions": [
+      "Students read the nearest printed number on the dial without counting small divisions, giving a rounded answer instead of the precise reading.",
+      "Students confuse what '0' means — they think the scale is broken or full rather than understanding the pointer at 0 simply means nothing is on it yet.",
+      "Students mix up which way the pointer moves on a round dial scale, reading the number on the wrong side of the pointer."
+    ],
+    "hint_progression": [
+      "Look at the scale carefully — are the lines all the same distance apart? What does the distance between each pair of big numbers tell you?",
+      "First find the two big numbers the pointer is between, then count how many equal gaps are between those two numbers to figure out what each small gap is worth.",
+      "For example, if 0 to 1 kg is split into 4 equal parts, each part is 250 g. Count how many parts the pointer has moved past 0, then multiply by 250 g to get the reading."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A scale goes from 0 to 1 kg and has marks at 250 g, 500 g, and 750 g. The pointer is sitting at the third mark from 0. What is the weight shown?",
+        "answer": "750 g",
+        "explanation": "The scale is divided into 4 equal parts between 0 and 1 kg. The first mark is 250 g, second is 500 g, and third is 750 g. Counting three marks from 0 lands exactly on 750 g."
+      },
+      {
+        "question": "Anu says a refrigerator weighs 50 g. Is she correct? Why or why not?",
+        "answer": "No, she is not correct. A refrigerator is a very heavy appliance and should weigh many kilograms, not grams. 50 g is the weight of a small sachet or a coin.",
+        "explanation": "We choose units based on the size of the object. Heavy household objects like refrigerators, almirahs, and sofas are measured in kilograms (kg). Grams (g) are used for very light things like a water bottle or a small food packet. 50 g for a refrigerator makes no real-world sense."
+      }
+    ]
+  },
+  {
+    "section_id": "8-2",
+    "chapter_id": 8,
+    "order": 2,
+    "concept": "kg_to_g_conversion_relationship",
+    "title": "The Relationship Between Kilograms and Grams",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["reading_weighing_scales"],
+    "explanation": "1 kilogram (kg) is equal to 1,000 grams (g). This means that to convert kilograms into grams, you multiply by 1,000. To go the other way — from grams back to kilograms — you divide by 1,000. A double number line is a helpful tool: the top line shows kg values and the bottom line shows the matching g values, so you can see both at once.",
+    "examples": [
+      "A bag on Weighing Balance 1 shows 5 kg. On Weighing Balance 2 that reads in grams, the same bag would show 5,000 g, because 5 × 1,000 = 5,000.",
+      "A bag of rice weighs 30 kg. In grams, this is 30,000 g, because each kilogram is 1,000 g and 30 × 1,000 = 30,000.",
+      "The double number line shows 3 kg on the top and 3,000 g on the bottom — both describe the exact same weight, just in different units."
+    ],
+    "common_misconceptions": [
+      "Students multiply by 100 instead of 1,000 when converting kg to g, confusing the kg–g relationship with other metric conversions like metres to centimetres.",
+      "Students think a weight shown in grams is always heavier than one shown in kilograms just because the number is bigger — not realising 5,000 g and 5 kg are the same weight.",
+      "Students reverse the operation and divide instead of multiply when converting kg to g, giving a much smaller number than the correct answer."
+    ],
+    "hint_progression": [
+      "Think about what 'kilo' means — it's a prefix that always tells you the same thing in the metric system. What does it add to a unit?",
+      "Remember: 1 kg = 1,000 g. To turn any number of kilograms into grams, multiply that number by 1,000.",
+      "For example, 6 kg × 1,000 = 6,000 g. Now try the same method: take the kg number, add three zeros at the end, and you have the grams."
+    ],
+    "quiz_questions": [
+      {
+        "question": "One weighing balance shows a bag weighs 25 kg. A second balance shows the same bag's weight in grams. What number should appear on the second balance?",
+        "answer": "25,000 g",
+        "explanation": "Since 1 kg = 1,000 g, you multiply the kg value by 1,000: 25 × 1,000 = 25,000. The bag weighs 25,000 g, which is exactly the same as 25 kg — just written in a different unit."
+      },
+      {
+        "question": "On the double number line, 8 kg is on the top. What number belongs directly below it on the grams line?",
+        "answer": "8,000 g",
+        "explanation": "Every kg value on the top line matches a g value exactly 1,000 times greater on the bottom line. 8 × 1,000 = 8,000, so 8,000 g goes directly below 8 kg."
+      }
+    ]
+  },
+  {
+    "section_id": "8-3",
+    "chapter_id": 8,
+    "order": 3,
+    "concept": "converting_mixed_kg_g",
+    "title": "Converting Mixed kg and g Weights",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["kg_to_g_conversion_relationship"],
+    "explanation": "A weight like 3 kg 500 g has two parts: a kilogram part and a gram part. To convert it fully into grams, convert only the kg part (multiply by 1,000) and then add the leftover grams. To go the other way, divide the total grams by 1,000 — the whole number answer is kg and the remainder is g. Be careful: 5 kg 50 g is 5,050 g, not 5,500 g, because the 50 g is added directly.",
+    "examples": [
+      "Shrenu needs 3 kg 500 g of flour. Her kitchen scale reads only in grams. She converts: 3 kg = 3,000 g, then 3,000 g + 500 g = 3,500 g. Her scale should show 3,500 g.",
+      "Shamim correctly says 5 kg 50 g = 5,050 g. Rehan incorrectly says 5,500 g — he wrongly treated '50 g' as '500 g'. The correct answer is 5,050 g because only 50 grams are added to 5,000 g.",
+      "To convert 10,760 g back to kg and g: 10,760 ÷ 1,000 = 10 remainder 760, so the answer is 10 kg 760 g."
+    ],
+    "common_misconceptions": [
+      "Students add zeros to the gram part as if converting it too — for example writing 3 kg 500 g as 3,000 g + 5,000 g = 8,000 g instead of the correct 3,500 g.",
+      "Students confuse 5 kg 50 g with 5 kg 500 g, writing 5,500 g instead of 5,050 g because they pad the gram part with an extra zero.",
+      "When converting from grams back to kg and g, students forget that the remainder after dividing by 1,000 is the gram part, and instead write only the quotient."
+    ],
+    "hint_progression": [
+      "A mixed weight has two separate parts — ask yourself: which part needs to be converted, and which part stays the same?",
+      "Convert only the kg part to grams by multiplying by 1,000. Then add the gram part as it is — do not change it.",
+      "For 7 kg 67 g: 7 kg = 7,000 g. Now add the 67 g directly: 7,000 + 67 = 7,067 g. The gram part (67) does not get multiplied by anything."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Shrenu needs 2 kg 250 g of flour. Her scale only reads in grams. What should her scale show?",
+        "answer": "2,250 g",
+        "explanation": "Convert the kg part: 2 kg = 2,000 g. Then add the remaining grams: 2,000 + 250 = 2,250 g. The gram part (250) is added directly without any conversion."
+      },
+      {
+        "question": "A shopkeeper says 12,042 g of grain. Write this in kg and g.",
+        "answer": "12 kg 42 g",
+        "explanation": "Divide 12,042 by 1,000: 12,042 ÷ 1,000 = 12 with a remainder of 42. So the weight is 12 kg 42 g. The remainder (42) becomes the gram part directly — it is not multiplied or changed."
+      }
+    ]
+  },
+  {
+    "section_id": "8-4",
+    "chapter_id": 8,
+    "order": 4,
+    "concept": "comparing_weights",
+    "title": "Comparing Weights Using <, =, >",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["converting_mixed_kg_g"],
+    "explanation": "To compare two weights, they must be in the same unit. Convert one or both weights into grams, then compare the numbers directly. Use < (less than), = (equal to), or > (greater than). If the kg parts are different, the weight with more kg is heavier and no further calculation is needed. If the kg parts are the same, then compare the gram parts.",
+    "examples": [
+      "Harpreet's family carried watermelon (3 kg), pineapple (1 kg 750 g), apples (1 kg 250 g), and mangoes (2 kg) to the picnic. The heaviest fruit is watermelon at 3 kg and the lightest is apples at 1 kg 250 g.",
+      "Comparing 1 kg 600 g and 1,700 g: convert 1 kg 600 g = 1,600 g. Since 1,600 < 1,700, we write 1 kg 600 g < 1,700 g.",
+      "Comparing 5 kg 50 g and 4 kg 500 g: 5 kg 50 g = 5,050 g and 4 kg 500 g = 4,500 g. Since 5,050 > 4,500, we write 5 kg 50 g > 4 kg 500 g."
+    ],
+    "common_misconceptions": [
+      "Students compare numbers without converting to the same unit first — for example, they see '600' and '1,700' and wrongly think 1,700 is far bigger without realising 1 kg 600 g = 1,600 g.",
+      "Students arrange fruits in descending order by the size of the gram number only, ignoring the kg part — for example, ranking 1 kg 750 g above 2 kg because 750 > 0.",
+      "Students interpret 10 kg 35 g as 10,350 g instead of 10,035 g when comparing, adding an extra zero to the gram part."
+    ],
+    "hint_progression": [
+      "Before comparing, ask yourself: are these two weights already in the same unit? If not, you need to do something first.",
+      "Convert both weights into grams so you are comparing two plain numbers. Use the rule: multiply kg by 1,000, then add the gram part.",
+      "Once both are in grams, just compare the numbers. If the first number is bigger, write >; if smaller, write <; if equal, write =."
+    ],
+    "quiz_questions": [
+      {
+        "question": "At Harpreet's picnic, arrange the fruits in descending order of weight: Watermelon (3 kg), Pineapple (1 kg 750 g), Apples (1 kg 250 g), Mangoes (2 kg).",
+        "answer": "Watermelon (3 kg) > Mangoes (2 kg) > Pineapple (1 kg 750 g) > Apples (1 kg 250 g)",
+        "explanation": "Convert all to grams: Watermelon = 3,000 g, Mangoes = 2,000 g, Pineapple = 1,750 g, Apples = 1,250 g. Arranging from highest to lowest: 3,000 > 2,000 > 1,750 > 1,250."
+      },
+      {
+        "question": "Compare using <, =, or >: 900 g + 7,000 g ___ 7 kg + 900 g",
+        "answer": "=",
+        "explanation": "Left side: 900 g + 7,000 g = 7,900 g. Right side: 7 kg + 900 g = 7,000 g + 900 g = 7,900 g. Both sides equal 7,900 g, so the answer is =."
+      }
+    ]
+  },
+  {
+    "section_id": "8-5",
+    "chapter_id": 8,
+    "order": 5,
+    "concept": "milligram_unit_and_g_to_mg_conversion",
+    "title": "Milligram: A Tiny Unit of Weight",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["kg_to_g_conversion_relationship", "converting_mixed_kg_g"],
+    "explanation": "A milligram (mg) is an even smaller unit of weight than a gram. Just as 1 kg equals 1,000 g, 1 g equals 1,000 mg. To convert grams to milligrams, multiply by 1,000. For a mixed quantity like 4 g 100 mg, convert the gram part (4 g = 4,000 mg) and add the mg part directly to get 4,100 mg. Milligrams are used for very light things like medicine ingredients and gold ornaments.",
+    "examples": [
+      "An ant weighs between 1 mg and 5 mg — this shows just how tiny a milligram is, since ants are almost weightless in everyday terms.",
+      "A sugar sachet weighs 5 g. In milligrams: 5 × 1,000 = 5,000 mg.",
+      "A goldsmith's ornament weighs 4 g 100 mg. Converting: 4 g = 4,000 mg, then 4,000 + 100 = 4,100 mg total."
+    ],
+    "common_misconceptions": [
+      "Students multiply by 100 instead of 1,000 when converting g to mg, confusing this with other metric conversions.",
+      "Students convert the mg part as well as the g part in a mixed quantity — for example, writing 4 g 100 mg as 4,000 mg + 100,000 mg instead of simply 4,000 + 100 = 4,100 mg.",
+      "Students think milligrams are larger than grams because 'milli' sounds more than 'kilo', not realising 'milli' means one-thousandth."
+    ],
+    "hint_progression": [
+      "Think about the prefix 'milli' — you've seen it before in millilitres. What does it always mean in the metric system?",
+      "The rule is exactly the same as converting kg to g: 1 g = 1,000 mg, so multiply the gram number by 1,000, then add any leftover milligrams.",
+      "For 10 g 500 mg: 10 g = 10 × 1,000 = 10,000 mg. Now add the 500 mg directly: 10,000 + 500 = 10,500 mg. That is the final answer."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A goldsmith makes an ornament weighing 10 g 500 mg. What is its weight in milligrams?",
+        "answer": "10,500 mg",
+        "explanation": "Convert the gram part: 10 g × 1,000 = 10,000 mg. Then add the milligram part directly: 10,000 + 500 = 10,500 mg. The mg part is never multiplied — it is just added."
+      },
+      {
+        "question": "Compare using <, =, or >: 9,000 mg ___ 90 g",
+        "answer": "<",
+        "explanation": "Convert 90 g to mg: 90 × 1,000 = 90,000 mg. Now compare: 9,000 mg vs 90,000 mg. Since 9,000 is less than 90,000, the answer is 9,000 mg < 90 g."
+      }
+    ]
+  },
+  {
+    "section_id": "8-6",
+    "chapter_id": 8,
+    "order": 6,
+    "concept": "quintal_and_tonne_large_weight_units",
+    "title": "Quintal and Tonne: Units for Very Heavy Weights",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["kg_to_g_conversion_relationship"],
+    "explanation": "For very heavy objects like crops, trucks, or large animals, we use quintal and tonne. 100 kg equals 1 quintal, and 10 quintals (or 1,000 kg) equals 1 tonne. A blue whale, for example, can weigh up to 40 times the weight of an elephant — showing just how large these units become. These relationships work the same way as the kg–g relationship: multiply or divide by the correct factor.",
+    "examples": [
+      "An elephant weighs 5,000 kg. A blue whale weighs 40 times more: 5,000 × 40 = 200,000 kg.",
+      "5,000 kg = 50 quintals (because 5,000 ÷ 100 = 50), and 50 quintals = 5 tonnes (because 50 ÷ 10 = 5).",
+      "In the king's birthday story: if the king donates 800 kg of wheat and that equals 10 times his weight, his weight is 800 ÷ 10 = 80 kg."
+    ],
+    "common_misconceptions": [
+      "Students confuse 1 quintal with 1,000 kg, not realising that 1,000 kg is 1 tonne and 1 quintal is only 100 kg.",
+      "Students divide by 10 to convert kg to quintals instead of dividing by 100, giving answers 10 times too large.",
+      "Students think 10 quintals and 1 tonne are different amounts of weight, not recognising they are equal (both = 1,000 kg)."
+    ],
+    "hint_progression": [
+      "When dealing with very large weights, think about the steps — you cannot go straight from kg to tonne without passing through quintals first, or you need to know how many kg make 1 tonne.",
+      "Remember: 100 kg = 1 quintal and 10 quintals = 1 tonne. That means 1,000 kg = 1 tonne. Use these facts as stepping stones.",
+      "For 9,000 kg to quintals: 9,000 ÷ 100 = 90 quintals. For 8 tonnes to kg: 8 × 1,000 = 8,000 kg. Use multiplication to go up and division to come back down."
+    ],
+    "quiz_questions": [
+      {
+        "question": "In the king's story, last year he donated 780 kg of wheat grain on his birthday, which was 10 times his weight then. How much did the king weigh last year?",
+        "answer": "78 kg",
+        "explanation": "The wheat donated equals 10 times the king's weight. So the king's weight = 780 ÷ 10 = 78 kg. Dividing the donation amount by 10 gives the king's actual body weight."
+      },
+      {
+        "question": "Fill in the blank: 5,000 kg = _____ quintals = _____ tonne",
+        "answer": "50 quintals = 5 tonnes",
+        "explanation": "First convert to quintals: 5,000 ÷ 100 = 50 quintals. Then convert quintals to tonnes: 50 ÷ 10 = 5 tonnes. You can also check directly: 5,000 ÷ 1,000 = 5 tonnes."
+      }
+    ]
+  },
+  {
+    "section_id": "8-7",
+    "chapter_id": 8,
+    "order": 7,
+    "concept": "adding_and_subtracting_weights",
+    "title": "Adding and Subtracting Weights in kg and g",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["converting_mixed_kg_g", "comparing_weights"],
+    "explanation": "You can add or subtract weights by working with kg and g separately, just like adding or subtracting two-digit numbers with tens and ones. When the grams add up to 1,000 or more, regroup 1,000 g as 1 kg and carry it over. When subtracting, if the gram part of the smaller number is bigger than the gram part of the larger number, borrow 1 kg (= 1,000 g) from the kg column. You can also convert everything to grams first and then add or subtract as regular numbers.",
+    "examples": [
+      "Rathna buys 2 kg 500 g rice for daily use and 1 kg 750 g for the Pongal festival. Total: 500 g + 750 g = 1,250 g = 1 kg 250 g, so total = (2+1+1) kg 250 g = 4 kg 250 g.",
+      "To find how much extra rice Rathna bought for daily use: 2 kg 500 g − 1 kg 750 g. Borrow 1 kg: 1,500 g − 750 g = 750 g. Remaining kg: 1 kg. Answer: 0 kg 750 g = 750 g.",
+      "A restaurant owner uses 5 kg 200 g, 8 kg 900 g, and 12 kg 600 g of onions over 3 days. Total grams: 5,200 + 8,900 + 12,600 = 26,700 g = 26 kg 700 g."
+    ],
+    "common_misconceptions": [
+      "Students add kg and g parts separately but forget to regroup when the gram total reaches or exceeds 1,000 — leaving the answer as something like '3 kg 1250 g' instead of '4 kg 250 g'.",
+      "Students subtract the gram part by taking the smaller from the larger regardless of order — writing 750 g − 500 g = 250 g when the problem is 500 g − 750 g, which requires borrowing.",
+      "Students borrow 100 g from the kg column instead of 1,000 g, forgetting that 1 kg = 1,000 g."
+    ],
+    "hint_progression": [
+      "Think about how you add and subtract regular two-digit numbers with tens and ones — working with kg and g follows the exact same idea.",
+      "Add or subtract the g column first. If the g total is 1,000 or more, carry 1 to the kg column. If you cannot subtract the g parts, borrow 1 from the kg column and add 1,000 to the g column.",
+      "For 2 kg 500 g − 1 kg 750 g: you cannot do 500 − 750, so borrow 1 kg. Now you have 1 kg 1,500 g. Subtract: 1,500 − 750 = 750 g. Then 1 − 1 = 0 kg. Final answer: 750 g."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Aarav lifts two baskets of apples at his grandfather's fruit stall, weighing 2 kg 100 g and 3 kg 950 g. What is the total weight of apples he lifted?",
+        "answer": "6 kg 50 g",
+        "explanation": "Add g parts: 100 + 950 = 1,050 g. Since 1,050 ≥ 1,000, regroup: 1,050 g = 1 kg 50 g. Add kg parts: 2 + 3 + 1 (carried) = 6 kg. Total = 6 kg 50 g."
+      },
+      {
+        "question": "A rice sack weighs 9 kg 750 g. After some rice is used, it weighs 3 kg 700 g. How much rice was used?",
+        "answer": "6 kg 50 g",
+        "explanation": "Subtract: 9 kg 750 g − 3 kg 700 g. g part: 750 − 700 = 50 g. kg part: 9 − 3 = 6 kg. Answer: 6 kg 50 g. No borrowing needed here since 750 ≥ 700."
+      }
+    ]
+  },
+  {
+    "section_id": "8-8",
+    "chapter_id": 8,
+    "order": 8,
+    "concept": "multiplying_and_dividing_weights",
+    "title": "Multiplying and Dividing Weights",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["adding_and_subtracting_weights"],
+    "explanation": "To multiply a weight like 10 kg 500 g by a number, multiply the kg part and the g part separately, then add the results together — regrouping grams into kg if needed. To divide a weight, divide the kg part and the g part separately, or convert the entire weight to grams first and then divide. Double number lines are very useful for problems where one quantity scales up or down proportionally.",
+    "examples": [
+      "A farmer has 4 potato sacks, each weighing 10 kg 500 g. Total: 4 × 10 kg = 40 kg and 4 × 500 g = 2,000 g = 2 kg. Total weight = 40 + 2 = 42 kg.",
+      "A box of nuts (4 kg 800 g) is split equally into 4 smaller boxes. 4 kg ÷ 4 = 1 kg and 800 g ÷ 4 = 200 g. Each box weighs 1 kg 200 g.",
+      "4 people need 500 g of rice. For 8 people (double the number), you need double the rice: 500 g × 2 = 1,000 g = 1 kg."
+    ],
+    "common_misconceptions": [
+      "Students multiply only the kg part and forget to multiply the gram part, giving an answer that is too small.",
+      "Students add the results of multiplying kg and g without checking if the gram total needs to be regrouped into kg — leaving the answer with more than 999 g.",
+      "When using a double number line for proportional problems, students multiply the bottom value by the wrong factor because they do not check what factor connects the two top values first."
+    ],
+    "hint_progression": [
+      "Think of the weight as two separate numbers — the kg part and the g part. Can you work with each one by itself first?",
+      "Multiply (or divide) the kg part and the g part separately. Then combine: if your grams total 1,000 or more, trade 1,000 g for 1 kg and add it to the kg total.",
+      "For 4 × 10 kg 500 g: 4 × 10 = 40 kg and 4 × 500 = 2,000 g. Now 2,000 g = 2 kg 0 g. Add: 40 kg + 2 kg = 42 kg total."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Nitesh the scrap dealer buys 16 kg of old newspaper at ₹8 for every 1 kg. How much does he pay in total?",
+        "answer": "₹128",
+        "explanation": "Multiply the number of kg by the price per kg: 16 × ₹8 = ₹128. This is a straight multiplication because the weight is already in whole kg and the rate is per 1 kg."
+      },
+      {
+        "question": "A box of nuts weighing 4 kg 800 g is equally distributed into 4 smaller boxes. What is the weight of each small box?",
+        "answer": "1 kg 200 g",
+        "explanation": "Divide kg and g separately: 4 kg ÷ 4 = 1 kg and 800 g ÷ 4 = 200 g. Each small box holds 1 kg 200 g. You can check: 4 × 1 kg 200 g = 4 kg 800 g. ✓"
+      }
+    ]
+  },
+  {
+    "section_id": "8-9",
+    "chapter_id": 8,
+    "order": 9,
+    "concept": "measuring_capacity_units_l_and_ml",
+    "title": "Measuring Capacity: Litres and Millilitres",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "Capacity is the amount of liquid a container can hold. The main units are litre (l) and millilitre (ml). Litres are used for larger amounts like buckets and water tanks, while millilitres are used for smaller amounts like medicine, tea, or a cup of water. A bucket holds many litres — not millilitres — so always choose the unit that makes sense for the size of the container.",
+    "examples": [
+      "Making 2 cups of tea needs about 500 ml of water — saying you need 1 full litre would be too much for just 2 cups.",
+      "A bucket can hold about 20 litres of water, not 20 ml — 20 ml is barely enough to fill a small medicine cup.",
+      "Ramiz brings a 500 ml water bottle to school. He drinks two full bottles, so he drinks 500 ml + 500 ml = 1,000 ml = 1 l of water at school."
+    ],
+    "common_misconceptions": [
+      "Students confuse l and ml and say a bucket holds 20 ml, not realising that 20 ml is a tiny amount — about 4 teaspoons.",
+      "Students think that because milk or water looks like 'a lot', it must always be in litres — but a teaspoon of medicine (5 ml) is also a liquid measured in ml.",
+      "Students think 1 l and 1,000 ml are different amounts rather than exactly the same quantity expressed in different units."
+    ],
+    "hint_progression": [
+      "Think about the containers you use at home — a water bottle, a bucket, a spoon. Which ones hold a lot and which hold just a little?",
+      "Use the size of the container as a guide: ml is for small amounts (a spoon, a cup, a medicine dose), l is for larger amounts (a bucket, a pot, a water tank).",
+      "Remember: 1 l = 1,000 ml. A bucket that holds 20 l holds 20,000 ml — does saying '20 ml for a bucket' still make sense?"
+    ],
+    "quiz_questions": [
+      {
+        "question": "Muskaan drinks 3 l of water in a day. She refills a 500 ml bottle each time. How many times does she need to refill it?",
+        "answer": "6 times",
+        "explanation": "Convert 3 l to ml: 3 × 1,000 = 3,000 ml. Each bottle holds 500 ml. Number of refills = 3,000 ÷ 500 = 6. So Muskaan refills her bottle 6 times."
+      },
+      {
+        "question": "A friend says a bucket holds a maximum of 20 ml of water. Is this correct? What unit should really be used?",
+        "answer": "No, this is incorrect. A bucket holds about 20 litres (l), not millilitres (ml). Millilitres are for very small amounts like medicine or a teaspoon.",
+        "explanation": "20 ml is only about 4 teaspoons of liquid — nowhere near enough to fill a bucket. Litres are the correct unit for containers like buckets, pots, and large vessels."
+      }
+    ]
+  },
+  {
+    "section_id": "8-10",
+    "chapter_id": 8,
+    "order": 10,
+    "concept": "l_to_ml_conversion_relationship",
+    "title": "The Relationship Between Litres and Millilitres",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["measuring_capacity_units_l_and_ml"],
+    "explanation": "1 litre (l) equals 1,000 millilitres (ml). To convert litres to millilitres, multiply by 1,000. To convert millilitres to litres, divide by 1,000. This is exactly the same relationship as between kg and g. A double number line with litres on top and millilitres on the bottom helps you see both units side by side.",
+    "examples": [
+      "Khayal chacha delivers 8 l of milk to Arora's family each week. In ml, that is 8 × 1,000 = 8,000 ml.",
+      "Shrivastava's family receives 12,000 ml of milk. In litres: 12,000 ÷ 1,000 = 12 l.",
+      "Bhalerao's family orders 2 l of milk. Their vessel only shows ml, so the mark they see is 2,000 ml, because 2 × 1,000 = 2,000."
+    ],
+    "common_misconceptions": [
+      "Students multiply by 100 instead of 1,000 when converting l to ml, giving answers that are ten times too small.",
+      "Students read a double number line incorrectly and pair a litre value with the wrong ml value from a different position on the line.",
+      "Students think 14,000 ml is 140 l instead of 14 l because they divide by 100 instead of 1,000."
+    ],
+    "hint_progression": [
+      "Think back to how you converted kg to g — the rule for l to ml works exactly the same way. What did you multiply by there?",
+      "1 l = 1,000 ml. To go from l to ml, multiply by 1,000. To go from ml back to l, divide by 1,000.",
+      "For Nair's family who receives 14 l: 14 × 1,000 = 14,000 ml. For Das's family who receives 20,000 ml: 20,000 ÷ 1,000 = 20 l."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Khayal chacha delivers 14 l of milk to Nair's family each week. How much is this in millilitres?",
+        "answer": "14,000 ml",
+        "explanation": "Multiply by 1,000: 14 × 1,000 = 14,000 ml. Every litre is 1,000 ml, so 14 litres contain 14 × 1,000 = 14,000 millilitres."
+      },
+      {
+        "question": "Rao's family receives 25,000 ml of milk each week from Khayal chacha. How many litres is this?",
+        "answer": "25 l",
+        "explanation": "Divide by 1,000: 25,000 ÷ 1,000 = 25. So Rao's family receives 25 litres of milk each week."
+      }
+    ]
+  },
+  {
+    "section_id": "8-11",
+    "chapter_id": 8,
+    "order": 11,
+    "concept": "converting_mixed_l_ml",
+    "title": "Converting Mixed Litres and Millilitres",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["l_to_ml_conversion_relationship"],
+    "explanation": "A quantity like 3 l 8 ml has two parts. To convert to ml, multiply only the litre part by 1,000 and then add the ml part directly. For example, 3 l 8 ml = 3,000 ml + 8 ml = 3,008 ml — not 3,800 ml. This is the same logic as converting kg and g. To reverse, divide the total ml by 1,000; the quotient is l and the remainder is ml.",
+    "examples": [
+      "Mary fills a bottle with 1 l 400 ml of water. In ml: 1 × 1,000 = 1,000 ml, plus 400 ml = 1,400 ml. Mary is correct; Daisy's answer of 1,040 ml is wrong.",
+      "Dev's family needs 1 l + 500 ml of milk on Sunday: 1,000 ml + 500 ml = 1,500 ml.",
+      "To convert 14,075 ml to l and ml: 14,075 ÷ 1,000 = 14 remainder 75, so the answer is 14 l 75 ml."
+    ],
+    "common_misconceptions": [
+      "Students treat 1 l 400 ml as 1,040 ml by not converting the litre part — they write '1' in the thousands place and '040' for the ml, mixing digits instead of multiplying.",
+      "Students convert the ml part too: for 3 l 8 ml, they write 3,000 + 8,000 = 11,000 ml instead of 3,000 + 8 = 3,008 ml.",
+      "When converting back from ml, students write the remainder as hundreds — for example, treating 14,075 ml as 14 l 750 ml instead of 14 l 75 ml."
+    ],
+    "hint_progression": [
+      "Remember: in a mixed quantity, one part is already in ml and one part needs to be converted. Which part needs changing?",
+      "Convert only the litre part to ml by multiplying by 1,000. Then add the ml part as it is — do not change it at all.",
+      "For 9 l 90 ml: 9 × 1,000 = 9,000 ml. Add the 90 ml directly: 9,000 + 90 = 9,090 ml. The ml number (90) is never multiplied — it is added as is."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Mary and Daisy fill a bottle with 1 l 400 ml of water. Mary says the bottle holds 1,400 ml and Daisy says it holds 1,040 ml. Who is correct and what is the mistake in the wrong answer?",
+        "answer": "Mary is correct: 1 l 400 ml = 1,400 ml. Daisy made the mistake of not converting the litre part — she wrote 1,040 instead of 1,000 + 400.",
+        "explanation": "Convert the litre: 1 l = 1,000 ml. Add the ml part: 1,000 + 400 = 1,400 ml. Daisy's error was writing the litre as just '1' and placing '040' next to it, which gives 1,040 — a common mistake when students don't convert the litre to 1,000 first."
+      },
+      {
+        "question": "Convert 18,350 ml to litres and millilitres.",
+        "answer": "18 l 350 ml",
+        "explanation": "Divide 18,350 by 1,000: 18,350 ÷ 1,000 = 18 with remainder 350. The quotient (18) gives the litres and the remainder (350) gives the millilitres. Answer: 18 l 350 ml."
+      }
+    ]
+  },
+  {
+    "section_id": "8-12",
+    "chapter_id": 8,
+    "order": 12,
+    "concept": "comparing_capacities",
+    "title": "Comparing Capacities Using <, =, >",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["converting_mixed_l_ml"],
+    "explanation": "To compare two liquid quantities, convert both to the same unit (usually ml) and then compare the numbers. Use < (less than), = (equal to), or > (greater than). Kiran the petrol pump owner uses this skill to track how much fuel different vehicles use. If the litre parts are different, the quantity with more litres is greater; if they are the same, compare the ml parts.",
+    "examples": [
+      "Comparing 5 l 600 ml and 5,400 ml: 5 l 600 ml = 5,600 ml. Since 5,600 > 5,400, we write 5 l 600 ml > 5,400 ml.",
+      "Kiran records that 3 trucks each took 500 l and 6 buses each took 300 l of fuel. Total for trucks: 1,500 l; total for buses: 1,800 l. Buses used more fuel.",
+      "Comparing 4 l 50 ml and 4 l 500 ml: both have 4 l, so compare the ml parts: 50 < 500, so 4 l 50 ml < 4 l 500 ml."
+    ],
+    "common_misconceptions": [
+      "Students see a larger number in grams/ml and immediately conclude it is bigger without checking the unit — for example, thinking 109 ml is more than 190 ml because they notice '9' in 109 is larger than '9' in 190.",
+      "Students compare 10 l 100 ml and 1 l 600 ml by looking only at the ml part, concluding 1 l 600 ml is greater because 600 > 100.",
+      "Students think 3 l 600 ml equals 3,060 ml instead of 3,600 ml when converting, then use the wrong value to compare."
+    ],
+    "hint_progression": [
+      "Just like comparing weights, ask yourself first: are both amounts in the same unit? If not, what do you need to do?",
+      "Convert both quantities to millilitres. For any mixed quantity like 'a l b ml', the total ml = (a × 1,000) + b.",
+      "Once both are in ml, compare the two numbers directly: 190 + 800 = 990 ml on the left; 800 + 109 = 909 ml on the right. Since 990 > 909, the left side is greater."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Kiran records that 3 trucks each received 500 l of fuel and 6 buses each received 300 l of fuel. Compare the total fuel for trucks versus buses using <, =, or >.",
+        "answer": "Total for trucks (1,500 l) < Total for buses (1,800 l)",
+        "explanation": "Trucks: 3 × 500 = 1,500 l. Buses: 6 × 300 = 1,800 l. Since 1,500 < 1,800, the buses received more fuel in total."
+      },
+      {
+        "question": "Compare using <, =, or >: 4 l 50 ml ___ 4 l 500 ml",
+        "answer": "<",
+        "explanation": "Both have the same litre part (4 l), so compare the ml parts: 50 ml < 500 ml. Therefore 4 l 50 ml < 4 l 500 ml. Converting confirms this: 4,050 ml < 4,500 ml."
+      }
+    ]
+  },
+  {
+    "section_id": "8-13",
+    "chapter_id": 8,
+    "order": 13,
+    "concept": "adding_and_subtracting_capacities",
+    "title": "Adding and Subtracting Capacities in l and ml",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["comparing_capacities", "adding_and_subtracting_weights"],
+    "explanation": "Adding and subtracting liquid quantities in l and ml works exactly like adding and subtracting weights in kg and g. Add or subtract the ml column first; if the sum reaches 1,000 or more, regroup 1,000 ml as 1 l and carry it over. When subtracting, if the ml on top is smaller than the ml being taken away, borrow 1 l (= 1,000 ml) from the l column. You can also convert both quantities fully to ml and then do the arithmetic.",
+    "examples": [
+      "Sam buys 2 l 500 ml of petrol and needs 2 l 800 ml more. Total: 500 + 800 = 1,300 ml = 1 l 300 ml extra. Add litres: 2 + 2 + 1 = 5 l. Sam buys 5 l 300 ml total.",
+      "After refuelling, Sam's bike gauge shows 9 l. He added 5 l 300 ml. Before refuelling: 9 l − 5 l 300 ml = 3 l 700 ml (borrow 1 l, making 1,000 − 300 = 700 ml; 8 − 5 = 3 l).",
+      "Riya fills one 2 l bottle and four 500 ml bottles: 2,000 + 4 × 500 = 2,000 + 2,000 = 4,000 ml = 4 l. Aarav fills three 750 ml bottles: 3 × 750 = 2,250 ml = 2 l 250 ml. Riya filled more water."
+    ],
+    "common_misconceptions": [
+      "Students add ml totals exceeding 1,000 without regrouping — writing '5 l 1,300 ml' instead of regrouping to '6 l 300 ml'.",
+      "Students subtract the smaller ml from the larger ml regardless of which is on top — instead of borrowing 1 l when needed.",
+      "Students borrow 100 ml instead of 1,000 ml when regrouping, forgetting that 1 l = 1,000 ml."
+    ],
+    "hint_progression": [
+      "Think about how you added and subtracted weights in kg and g — the process for l and ml is identical. Start with the smaller unit column.",
+      "Work the ml column first. If the total is 1,000 or more, carry 1 to the l column. If you can't subtract the ml part, borrow 1 from the l column and add 1,000 to the ml side.",
+      "For 9 l 000 ml − 5 l 300 ml: you can't do 0 − 300, so borrow 1 l. Now you have 8 l and 1,000 ml. Subtract: 1,000 − 300 = 700 ml. Then 8 − 5 = 3 l. Answer: 3 l 700 ml."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Tina bought 2 l 500 ml of petrol. Sam bought 2 l 800 ml more than Tina. How much petrol did Sam buy?",
+        "answer": "5 l 300 ml",
+        "explanation": "Add 2 l 500 ml + 2 l 800 ml. ml part: 500 + 800 = 1,300 ml. Regroup: 1,300 ml = 1 l 300 ml. Carry 1 l: l part = 2 + 2 + 1 = 5 l. Total = 5 l 300 ml."
+      },
+      {
+        "question": "After refuelling with 5 l 300 ml, Sam's bike gauge shows 9 l. How much fuel did his bike have before refuelling?",
+        "answer": "3 l 700 ml",
+        "explanation": "Subtract: 9 l − 5 l 300 ml. ml part: 0 − 300 needs borrowing. Borrow 1 l → 8 l and 1,000 ml. Then 1,000 − 300 = 700 ml. l part: 8 − 5 = 3 l. Answer: 3 l 700 ml."
+      }
+    ]
+  },
+  {
+    "section_id": "8-14",
+    "chapter_id": 8,
+    "order": 14,
+    "concept": "multiplying_and_dividing_capacities",
+    "title": "Multiplying and Dividing Capacities",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["adding_and_subtracting_capacities", "multiplying_and_dividing_weights"],
+    "explanation": "To multiply or divide liquid quantities, use the same method as with weights: work with the l and ml parts separately, then combine. For proportional problems, double number lines help you scale quantities up or down. For division, convert the total to ml first if the ml part does not divide evenly, then divide the whole number and convert back. Real-world problems like sharing oil equally or filling juice glasses use these skills.",
+    "examples": [
+      "If one container holds 1 l 75 ml of buttermilk, 8 containers hold 8 × 1 l 75 ml = 8 l 600 ml (since 8 × 75 = 600 ml).",
+      "A juice vendor has 5 l of juice. Each glass holds 250 ml. Number of glasses = 5,000 ÷ 250 = 20 full glasses.",
+      "8 l 400 ml of oil divided equally into 7 containers: convert to ml = 8,400 ml. 8,400 ÷ 7 = 1,200 ml = 1 l 200 ml per container."
+    ],
+    "common_misconceptions": [
+      "Students multiply only the litre part and ignore the ml part, giving an answer that is too small.",
+      "Students leave a division answer in ml and do not convert back to l and ml, missing the final step.",
+      "Students forget to count the leftover milk still in the bottle when solving multi-part problems — for example, only counting what filled the glasses and ignoring the 120 ml remaining."
+    ],
+    "hint_progression": [
+      "Think about whether you need to multiply or divide — re-read the question and ask: are you making the quantity bigger or splitting it into equal parts?",
+      "For multiplication, multiply l and ml separately, then combine — regrouping if the ml result is 1,000 or more. For division, it's often easiest to convert to ml first, divide, then convert the answer back.",
+      "For the juice vendor: 5 l = 5,000 ml. Each glass is 250 ml. 5,000 ÷ 250 = 20 glasses. Now for the remaining juice after 10 glasses: 10 × 250 = 2,500 ml used. 5,000 − 2,500 = 2,500 ml = 2 l 500 ml left."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Riya fills one 2 l bottle and four 500 ml bottles for a picnic. Her friend Aarav fills three 750 ml bottles. Who filled more water, and by how much?",
+        "answer": "Riya filled more water by 1 l 750 ml.",
+        "explanation": "Riya: 2,000 + 4 × 500 = 2,000 + 2,000 = 4,000 ml = 4 l. Aarav: 3 × 750 = 2,250 ml = 2 l 250 ml. Difference: 4,000 − 2,250 = 1,750 ml = 1 l 750 ml. Riya filled 1 l 750 ml more."
+      },
+      {
+        "question": "A factory has 8 l 400 ml of oil to pour equally into 7 containers. How much oil does each container hold?",
+        "answer": "1 l 200 ml",
+        "explanation": "Convert to ml: 8 l 400 ml = 8,400 ml. Divide equally: 8,400 ÷ 7 = 1,200 ml. Convert back: 1,200 ml = 1 l 200 ml. Each container holds 1 l 200 ml of oil."
+      }
+    ]
+  }
+]

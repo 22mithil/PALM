@@ -1,0 +1,231 @@
+[
+  {
+    "chapter_id": 13,
+    "chapter_name": "Animal Jumps",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["13-1", "13-2", "13-3", "13-4", "13-5", "13-6"]
+  },
+  {
+    "section_id": "13-1",
+    "chapter_id": 13,
+    "order": 1,
+    "concept": "factors_and_multiples",
+    "title": "Factors and Multiples",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "A factor is a number that divides another number completely without leaving a remainder. When two or more factors are multiplied together, the result is called a multiple. For example, 3 and 4 are factors of 12 because 3 × 4 = 12, making 12 a multiple of both 3 and 4. You can find all the factors of a number by making arrays — arranging objects in rows and columns so every row has the same number.",
+    "examples": [
+      "The numbers 28, 36, 48, and 72 all came out of a mystery box. Since 4 × 7 = 28, 4 × 9 = 36, 4 × 12 = 48, and 4 × 18 = 72, the number 4 is a factor of all four numbers — and 1, 2, and 4 are common factors of all four.",
+      "For the number 12, you can make three different arrays: 3 × 4 = 12, 2 × 6 = 12, and 1 × 12 = 12. This tells us the factors of 12 are 1, 2, 3, 4, 6, and 12.",
+      "For the number 15, a 3 × 5 array works perfectly. So 3 and 5 are factors of 15, and 15 is a multiple of both 3 and 5."
+    ],
+    "common_misconceptions": [
+      "Students often think factors must be smaller than the number, forgetting that the number itself and 1 are always factors of any number.",
+      "Students confuse factors and multiples — they may say '12 is a factor of 3' instead of '12 is a multiple of 3, and 3 is a factor of 12.'",
+      "Students may think a number can only be arranged in one array, missing that multiple arrays (e.g., 3×4, 2×6, 1×12 for 12) reveal all its factors."
+    ],
+    "hint_progression": [
+      "Think about how you would arrange 12 objects into equal rows. How many different ways can you do it?",
+      "Try making arrays by testing: does 2 go into 12 evenly? Does 3? Does 4? Each pair that works gives you two factors.",
+      "For 12: 1 × 12 = 12, 2 × 6 = 12, 3 × 4 = 12. Each multiplication gives you two factors. So the factors of 12 are 1, 2, 3, 4, 6, and ___."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Numbers 28, 36, 48, and 72 came out of a mystery multiplier box. Can 4 be the hidden multiplier? What numbers inside the box would produce these outputs?",
+        "answer": "Yes, 4 can be the multiplier. The inputs would be 7, 9, 12, and 18 (since 4×7=28, 4×9=36, 4×12=48, 4×18=72).",
+        "explanation": "If 4 is the multiplier, then dividing each output by 4 gives a whole number with no remainder, confirming 4 is a factor of all four numbers."
+      },
+      {
+        "question": "List all the factors of 20 by drawing different arrays.",
+        "answer": "The factors of 20 are 1, 2, 4, 5, 10, and 20 (from arrays: 1×20, 2×10, 4×5).",
+        "explanation": "Each valid array (where rows are equal and there is no remainder) reveals a pair of factors. Testing every number from 1 up to 20 and checking if it divides 20 evenly gives the complete list."
+      }
+    ]
+  },
+  {
+    "section_id": "13-2",
+    "chapter_id": 13,
+    "order": 2,
+    "concept": "prime_numbers",
+    "title": "Prime Numbers",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["factors_and_multiples"],
+    "explanation": "A prime number is a number that can only be arranged in exactly one array: a single row of all the objects (1 × the number itself). This means a prime number has exactly two factors — 1 and itself. Numbers like 13 and 37 are prime because no other arrays are possible for them. Numbers that have more than two factors (like 10, 12, or 20) are called composite numbers.",
+    "examples": [
+      "13 can only be arranged as 1 × 13 — there is no 2-row or 3-row array that works for 13. So 13 is a prime number with only two factors: 1 and 13.",
+      "37 has no arrays other than 1 × 37, so it is also a prime number. You can verify by checking that 2, 3, 4, 5, and 6 do not divide 37 evenly.",
+      "10 is NOT prime because you can make a 2 × 5 array, giving it factors 1, 2, 5, and 10 — more than two factors, so 10 is composite."
+    ],
+    "common_misconceptions": [
+      "Students sometimes think 1 is a prime number, but 1 is neither prime nor composite — it has only one factor (itself), not two.",
+      "Students may think all odd numbers are prime, but odd numbers like 9 (= 3 × 3) and 15 (= 3 × 5) are composite because they have more than two factors.",
+      "Students may assume large numbers can't be prime, but this is false — primality depends on factors, not the size of the number."
+    ],
+    "hint_progression": [
+      "Think about how many different arrays you can make for the number. What does it mean if only one array is possible?",
+      "Try to build an array with 2 rows, then 3 rows, for the number 13. If none of them work without leftovers, that tells you something important about 13's factors.",
+      "For 13: 13 ÷ 2 = 6 remainder 1, 13 ÷ 3 = 4 remainder 1, and so on — none divide evenly. So the only factors are 1 and 13 itself, which means 13 is ___."
+    ],
+    "quiz_questions": [
+      {
+        "question": "From this list — 13, 14, 25, 32, 37, 46 — which numbers are prime? How do you know?",
+        "answer": "13 and 37 are prime. The others (14, 25, 32, 46) are composite because they have factors other than 1 and themselves.",
+        "explanation": "14 = 2×7, 25 = 5×5, 32 = 2×16, and 46 = 2×23, so each has more than two factors. 13 and 37 can only be written as 1 × themselves, confirming they are prime."
+      },
+      {
+        "question": "True or False: A prime number can be arranged into more than one rectangular array. Explain your answer.",
+        "answer": "False. A prime number can only be arranged in exactly one array (1 × itself), which is why it has exactly two factors.",
+        "explanation": "If a number could be arranged in more than one array, it would have factors other than 1 and itself, making it composite rather than prime."
+      }
+    ]
+  },
+  {
+    "section_id": "13-3",
+    "chapter_id": 13,
+    "order": 3,
+    "concept": "common_multiples",
+    "title": "Common Multiples",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["factors_and_multiples"],
+    "explanation": "A common multiple is a number that appears in the multiples list of two or more numbers — it is reachable by both animals jumping at the same time. If a rabbit jumps 4 steps and a frog jumps 3 steps, the numbers they both land on are the common multiples of 3 and 4. You can find common multiples using a number line or by listing each number's times table and finding where the lists match.",
+    "examples": [
+      "A rabbit jumps 4 steps and a frog jumps 3 steps, both starting from 0. The first number they both land on is 12 (since 3×4=12 and 4×3=12). The next common multiples are 24, 36, and so on.",
+      "A spider jumps 3 steps and a grasshopper jumps 6 steps. On the number line, they both land on 6 and 12. The common multiples of 3 and 6 are 6, 12, 18, 24 — notice all multiples of 6 are also multiples of 3.",
+      "Multiples of 4 are 4, 8, 12, 16, 20, 24 ... and multiples of 6 are 6, 12, 18, 24 ... So the common multiples of 4 and 6 include 12, 24, 36, and so on."
+    ],
+    "common_misconceptions": [
+      "Students often think the only common multiple is the first (smallest) one, but in fact there are infinitely many common multiples — you can always multiply the first one by 2, 3, etc. to find more.",
+      "Students may list multiples of just one number and claim they are common multiples, forgetting to check whether the other number also divides the result evenly.",
+      "When one number divides the other (like 3 and 6), students may not realize that all multiples of the larger number are automatically common multiples of both."
+    ],
+    "hint_progression": [
+      "Imagine two animals jumping along a number line at the same time. Which spots will both animals land on?",
+      "Write out the multiples of each number in two separate rows. Then look for numbers that appear in both rows.",
+      "Multiples of 3: 3, 6, 9, 12, 15, 18 ... and multiples of 4: 4, 8, 12, 16 ... Circle any number that appears in both lists. The first circled number is ___."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Robby the rabbit jumps 4 steps and Deeku the deer jumps 6 steps. They both start at 0 on a cobbled road where food is at spot 24. Will both Robby and Deeku reach spot 24? Who gets there first?",
+        "answer": "Yes, both reach 24 (since 24 is a multiple of both 4 and 6). Robby the rabbit gets there first because the first common multiple of 4 and 6 is 12, then 24 — but Deeku reaches 24 in 4 jumps while Robby reaches it in 6 jumps, so Deeku arrives first.",
+        "explanation": "24 ÷ 4 = 6 jumps for Robby, and 24 ÷ 6 = 4 jumps for Deeku. Fewer jumps means Deeku arrives first, even though they both eventually reach the food."
+      },
+      {
+        "question": "Find 3 common multiples of 5 and 8.",
+        "answer": "40, 80, and 120.",
+        "explanation": "Multiples of 5: 5, 10, 15, 20, 25, 30, 35, 40... and multiples of 8: 8, 16, 24, 32, 40... The first match is 40. Since all common multiples are multiples of 40, the next ones are 80 and 120."
+      }
+    ]
+  },
+  {
+    "section_id": "13-4",
+    "chapter_id": 13,
+    "order": 4,
+    "concept": "common_factors",
+    "title": "Common Factors",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["factors_and_multiples", "common_multiples"],
+    "explanation": "A common factor of two or more numbers is a number that divides each of them exactly (with no remainder). On a number line, if you jump by a certain step size and land on two different numbers, that step size is a common factor of both. For example, jumping by 2 steps from 0 reaches both 4 and 12, so 2 is a common factor of 4 and 12. The number 1 and the number itself are always factors of any number.",
+    "examples": [
+      "Mowgli jumps 2 steps at a time from 0 along the trail and lands on 4, 12, 14, and 50 where his friends the ant, frog, bird, and rabbit live. So 2 is a common factor of 4, 12, 14, and 50.",
+      "Jumping by 3 steps, Mowgli lands on 9, 21, 39, and 57 — the homes of friends at those positions. So 3 is a common factor of 9, 21, 39, and 57.",
+      "To find the common factors of 24 and 36: jumping by 2 reaches both (2 is a common factor), jumping by 3 reaches both (3 is a common factor), jumping by 4 reaches both (4 is a common factor), and jumping by 6 also reaches both (6 is a common factor)."
+    ],
+    "common_misconceptions": [
+      "Students often forget that 1 is always a common factor of any two numbers, since 1 divides every whole number exactly.",
+      "Students may confuse the direction — they try to check if a large number (like 24) is a factor of a smaller number (like 6), instead of checking if the smaller divides the larger.",
+      "Students sometimes list all factors of one number and assume they are all common factors, without checking whether each one also divides the second number."
+    ],
+    "hint_progression": [
+      "Imagine jumping along the number line from 0. What step size would land you exactly on both numbers, with no overshooting?",
+      "Check each small number (2, 3, 4...) by dividing it into both numbers. If both divisions leave no remainder, you have found a common factor.",
+      "For 24 and 36: 24 ÷ 4 = 6 (no remainder) and 36 ÷ 4 = 9 (no remainder), so 4 is a common factor. Now check if 5 divides both: 24 ÷ 5 = 4 remainder ___. Does 5 work?"
+    ],
+    "quiz_questions": [
+      {
+        "question": "In the Mowgli trail, Sher Khan's house is at number 25 and Baloo the bear's house is at number 30. Mowgli wants to visit Baloo but avoid Sher Khan. What step sizes could Mowgli jump to reach 30 but NOT land on 25?",
+        "answer": "Step sizes of 2, 6, 10, 15, or 30 reach 30 but not 25. Step size 5 would land on both 25 and 30, so it must be avoided.",
+        "explanation": "Factors of 30 are 1, 2, 3, 5, 6, 10, 15, 30. Factors of 25 are 1, 5, 25. The common factors of 25 and 30 are 1 and 5. So Mowgli must avoid step sizes 1 and 5, and can safely use 2, 3, 6, 10, 15, or 30."
+      },
+      {
+        "question": "Find all the common factors of 12 and 16.",
+        "answer": "The common factors of 12 and 16 are 1, 2, and 4.",
+        "explanation": "Factors of 12: 1, 2, 3, 4, 6, 12. Factors of 16: 1, 2, 4, 8, 16. Numbers appearing in both lists are 1, 2, and 4. Note that 3 and 6 are factors of 12 but not of 16, so they are not common factors."
+      }
+    ]
+  },
+  {
+    "section_id": "13-5",
+    "chapter_id": 13,
+    "order": 5,
+    "concept": "divisibility_rules_2_5_10",
+    "title": "Divisibility Rules for 2, 5, and 10",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["factors_and_multiples", "common_factors"],
+    "explanation": "Divisibility rules let you quickly tell whether a number is a factor of another without doing full division. A number is divisible by 2 if it is even (ends in 0, 2, 4, 6, or 8). A number is divisible by 5 if it ends in 0 or 5. A number is divisible by 10 if it ends in 0. Because every multiple of 10 is also a multiple of both 2 and 5, numbers divisible by 10 are also divisible by 2 and 5.",
+    "examples": [
+      "90 ends in 0, so it is divisible by 2, 5, and 10. It belongs in the group of numbers divisible by all three.",
+      "45 ends in 5, so it is divisible by 5 but not by 2 (it is odd) and not by 10. It belongs only in the 'divisible by 5' group.",
+      "84 ends in 4 (an even number), so it is divisible by 2 only — not by 5 (doesn't end in 0 or 5) and not by 10."
+    ],
+    "common_misconceptions": [
+      "Students sometimes think that if a number is divisible by both 2 and 5, it is automatically divisible by 10 — this is actually true, but students often struggle to explain why (because 2 × 5 = 10 and 2 and 5 share no common factors).",
+      "Students may place numbers like 30, 40, and 90 in the 'divisible by 2 only' or 'divisible by 5 only' buckets, forgetting they must check all three divisors before categorising.",
+      "Students may confuse 'divisible by 10' with 'divisible by 10 only', missing that numbers divisible by 10 are automatically also divisible by 2 and 5."
+    ],
+    "hint_progression": [
+      "Look at just the last digit of each number. What does the last digit tell you about whether the number can be divided by 2, 5, or 10?",
+      "Remember: even last digits (0, 2, 4, 6, 8) mean divisible by 2; last digit 0 or 5 means divisible by 5; last digit 0 means divisible by 10.",
+      "For the number 30: last digit is 0, so it is divisible by 2 (yes — 0 is even), by 5 (yes — ends in 0), and by 10 (yes — ends in 0). So 30 belongs in the group divisible by ___."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Sort these numbers into the correct group: 22, 25, 30, 55, 84. Which are divisible by 2 only, 5 only, or by 2, 5, and 10?",
+        "answer": "Divisible by 2 only: 22, 84. Divisible by 5 only: 25, 55. Divisible by 2, 5, and 10: 30.",
+        "explanation": "22 and 84 are even but don't end in 0 or 5. 25 and 55 end in 5 (divisible by 5) but are odd (not divisible by 2). 30 ends in 0, making it divisible by 2, 5, and 10 simultaneously."
+      },
+      {
+        "question": "True or False: A number that is divisible by 10 must also be divisible by both 2 and 5. Explain why.",
+        "answer": "True. Every number divisible by 10 ends in 0, which means it is even (divisible by 2) and ends in 0 or 5 (divisible by 5).",
+        "explanation": "10 = 2 × 5, so any multiple of 10 contains both 2 and 5 as factors. This is why in the Venn diagram, numbers divisible by 10 are always inside both the '÷2' and '÷5' circles."
+      }
+    ]
+  },
+  {
+    "section_id": "13-6",
+    "chapter_id": 13,
+    "order": 6,
+    "concept": "applying_common_factors_and_multiples",
+    "title": "Applying Common Factors and Multiples in Problems",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["factors_and_multiples", "common_multiples", "common_factors", "prime_numbers"],
+    "explanation": "Common factors and common multiples help solve real problems about events that repeat, paths that must be shared, or schedules that must align. When two things happen on different cycles and you want to know when they happen together, you look for common multiples. When you want to find a step size that reaches two different targets, you look for common factors of those two targets.",
+    "examples": [
+      "Sher Khan the tiger hunts every 3rd day and Bagheera the panther hunts every 5th day. To find the days they hunt together, you look for common multiples of 3 and 5: 15, 30, 45 ... So they hunt together every 15th day.",
+      "Mowgli wants to visit both Kaa the snake at position 21 and Akela the wolf at position 35. He needs a jump size that is a common factor of 21 and 35. Factors of 21: 1, 3, 7, 21. Factors of 35: 1, 5, 7, 35. Common factors: 1 and 7. So he can jump 7 steps at a time.",
+      "The common factors of two consecutive numbers (like 12 and 13) are only 1, because consecutive numbers share no other common factor. This is why the product of two consecutive numbers is always a common multiple of both."
+    ],
+    "common_misconceptions": [
+      "Students often confuse when to use common factors versus common multiples — they should use common multiples when looking for when two cycles meet, and common factors when looking for a step size that reaches two fixed positions.",
+      "Students may test only a few numbers and conclude they have found all common factors, missing that a systematic check (dividing by 1, 2, 3... up to the smaller number) is needed to be sure.",
+      "Students sometimes state that two numbers with no obvious shared factor must have no common factor, forgetting that 1 is always a common factor of any two numbers."
+    ],
+    "hint_progression": [
+      "Ask yourself: are you looking for a number the two values have in common (a shared landing spot), or a step size that reaches both values? That tells you whether to use multiples or factors.",
+      "For a 'when do they meet again' question, list the multiples of both cycle lengths and look for the first match. For a 'what jump size reaches both spots' question, list the factors of both target numbers and find which ones appear in both lists.",
+      "Sher Khan hunts every 3 days: day 3, 6, 9, 12, 15... Bagheera hunts every 5 days: day 5, 10, 15... The first day both numbers appear in both lists is day ___."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Sher Khan goes hunting every 3rd day and Bagheera goes hunting every 5th day. Both start on Day 1. On which days in the first 30 days will they go hunting together?",
+        "answer": "Day 15 and Day 30.",
+        "explanation": "Common multiples of 3 and 5 up to 30 are 15 and 30 (since 3×5=15 is the smallest, and 15×2=30 is the next). These are the only days within the first 30 where both Sher Khan and Bagheera are both hunting."
+      },
+      {
+        "question": "Mowgli wants to jump an equal number of steps to visit both Kaa the snake at position 21 and Akela the wolf at position 35, starting from 0. What step sizes can he choose? Which is the largest possible step?",
+        "answer": "He can choose step sizes of 1 or 7. The largest step is 7.",
+        "explanation": "Common factors of 21 and 35: factors of 21 are 1, 3, 7, 21 and factors of 35 are 1, 5, 7, 35. The numbers in both lists are 1 and 7. Jumping 7 steps, Mowgli lands on 7, 14, 21, 28, 35 — reaching both friends."
+      }
+    ]
+  }
+]

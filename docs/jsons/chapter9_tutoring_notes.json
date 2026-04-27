@@ -1,0 +1,342 @@
+[
+  {
+    "chapter_id": 9,
+    "chapter_name": "Coconut Farm",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["9-1", "9-2", "9-3", "9-4", "9-5", "9-6", "9-7", "9-8", "9-9"]
+  },
+  {
+    "section_id": "9-1",
+    "chapter_id": 9,
+    "order": 1,
+    "concept": "division_facts_from_multiplication",
+    "title": "Division Facts from Multiplication",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "Every multiplication fact can give us two related division facts. If we know that 5 × 7 = 35, then we also know 35 ÷ 5 = 7 and 35 ÷ 7 = 5. The number being divided is called the Dividend (N), the number we divide by is the Divisor (D), and the result is the Quotient (Q). The key relationship is: Dividend = Divisor × Quotient.",
+    "examples": [
+      "An array of 35 coconuts arranged in 5 rows of 7 shows the multiplication 5 × 7 = 35. From this we can write: 35 ÷ 7 = 5 (35 split into 7 groups has 5 in each group) and 35 ÷ 5 = 7 (35 split into 5 groups has 7 in each group).",
+      "If 4 × 9 = 36, then we can write two division facts: 36 ÷ 4 = 9 and 36 ÷ 9 = 4. In each case, the dividend is 36, and the divisor and quotient swap roles.",
+      "Think about 35 ÷ 1: using the rule N = D × Q, we get 35 = 1 × 35, so 35 ÷ 1 = 35. Dividing any number by 1 always gives the number itself."
+    ],
+    "common_misconceptions": [
+      "Students often think division facts are separate from multiplication facts, not realising that every multiplication fact automatically generates two division facts — they are the same family of numbers.",
+      "Students confuse which number is the dividend and which is the divisor, writing 7 ÷ 35 = 5 instead of 35 ÷ 7 = 5. The dividend (the larger number being shared) always comes first.",
+      "Students forget that dividing a number by itself always gives 1, and dividing any number by 1 always gives the same number — these special cases follow directly from the N = D × Q rule."
+    ],
+    "hint_progression": [
+      "Look at the array of coconuts. Can you see how they are grouped? Think about how the rows and columns connect to a multiplication sentence you already know.",
+      "Start by writing the multiplication fact from the array (for example, 5 × 7 = 35). Remember that in a division fact, the total (35) is always the number being divided — it's called the dividend.",
+      "Once you have 5 × 7 = 35, swap the roles: in the first division fact, use 7 as the divisor (35 ÷ 7 = ___). In the second, use 5 as the divisor (35 ÷ 5 = ___). Fill in the quotients using what the multiplication tells you."
+    ],
+    "quiz_questions": [
+      {
+        "question": "An array shows 4 rows of 8 coconuts. Write the multiplication fact and the two division facts it gives you.",
+        "answer": "4 × 8 = 32; 32 ÷ 4 = 8; 32 ÷ 8 = 4",
+        "explanation": "The array has 4 rows and 8 columns, giving the total 4 × 8 = 32. Because N = D × Q, we can rearrange: 32 ÷ 4 = 8 (32 split into 4 groups has 8 in each) and 32 ÷ 8 = 4 (32 split into 8 groups has 4 in each)."
+      },
+      {
+        "question": "True or False: If 6 × 9 = 54, then 54 ÷ 9 = 6 and 9 ÷ 54 = 6 are both correct division facts.",
+        "answer": "False. Only 54 ÷ 9 = 6 (and 54 ÷ 6 = 9) are correct.",
+        "explanation": "The dividend must always be the product (54), not one of the factors. Writing 9 ÷ 54 reverses the dividend and divisor, giving a fraction less than 1, which is not what the multiplication fact produces. The correct pair is 54 ÷ 9 = 6 and 54 ÷ 6 = 9."
+      }
+    ]
+  },
+  {
+    "section_id": "9-2",
+    "chapter_id": 9,
+    "order": 2,
+    "concept": "division_patterns_and_place_value",
+    "title": "Patterns in Division and Place Value",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["division_facts_from_multiplication"],
+    "explanation": "When you divide a number by 10, 100, or a multiple of 10, the quotient shifts place values — the digits move right. For example, 400 ÷ 10 = 40 and 4000 ÷ 10 = 400. When the divisor and dividend share the same non-zero digits (like 440 ÷ 44 or 3700 ÷ 37), the quotient is always 10, because the extra zero in the dividend accounts for one place-value shift.",
+    "examples": [
+      "150 ÷ 3 = 50 because __× 3 = 150 means 50 × 3 = 150. The zero in 150 tells us the quotient has a zero in the ones place: 50.",
+      "500 ÷ 50 = 10 because 50 × 10 = 500. Whenever the divisor and dividend both end in the same number of zeros, those zeros cancel out: 500 ÷ 50 is like 5 ÷ 5 = 1, then add one zero to get 10.",
+      "4000 ÷ 10 = 400. Dividing by 10 removes one zero from the dividend: 4000 becomes 400. In the place-value chart, the digit 4 moves from the thousands column to the hundreds column."
+    ],
+    "common_misconceptions": [
+      "Students think that 200 ÷ 20 = 100 because they see two zeros in 200 and one zero in 20 and try to subtract zeros. The correct reasoning is 20 × 10 = 200, so the answer is 10.",
+      "Students confuse 3300 ÷ 3 (= 1100) with 3300 ÷ 300 (= 11), not realising that dividing by a larger divisor gives a smaller quotient — adding a zero to the divisor divides the quotient by 10.",
+      "When filling the place-value chart, students sometimes omit the zeros in the quotient (writing 4 instead of 400 for 4000 ÷ 10), forgetting that each place-value column must be filled."
+    ],
+    "hint_progression": [
+      "Look at the relationship between the divisor and the dividend. Do they share the same basic digits? What is different about their sizes?",
+      "Try to find a simple multiplication fact hiding inside the problem. For 440 ÷ 44, ask: what times 44 gives 440? Think about what the extra zero in 440 means.",
+      "Once you find the basic fact (44 × 10 = 440), the quotient is 10. Use the place-value chart to double-check: write the quotient's digits in the Hundreds, Tens, and Ones columns to make sure all zeros are in the right place."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Fill in the blank: 3700 ÷ 37 = ___. Now use the same pattern to find 370 ÷ 37.",
+        "answer": "3700 ÷ 37 = 100; 370 ÷ 37 = 10",
+        "explanation": "37 × 100 = 3700, so 3700 ÷ 37 = 100. For 370 ÷ 37, the dividend is ten times smaller than 3700, so the quotient is ten times smaller too: 37 × 10 = 370, giving 10. Each time the dividend loses a zero while the divisor stays the same, the quotient also loses a zero."
+      },
+      {
+        "question": "Sabina cycles 160 km in 20 days, covering the same distance each day. How many kilometres does she cycle each day?",
+        "answer": "8 km per day",
+        "explanation": "We need 160 ÷ 20. Think: 20 × ___ = 160. Since 2 × 8 = 16, we know 20 × 8 = 160. So Sabina cycles 8 km each day. The zero in the divisor and dividend both 'cancel', leaving the basic fact 16 ÷ 2 = 8."
+      }
+    ]
+  },
+  {
+    "section_id": "9-3",
+    "chapter_id": 9,
+    "order": 3,
+    "concept": "mental_division_splitting_into_parts",
+    "title": "Mental Strategies: Splitting the Dividend",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["division_facts_from_multiplication", "division_patterns_and_place_value"],
+    "explanation": "To divide mentally, you can split the dividend into two convenient parts, divide each part separately by the divisor, and then add or subtract the results. For example, 1248 ÷ 6 can be split as (1200 + 48) ÷ 6 = 200 + 8 = 208. If the number is just below a round number, you can also subtract: 1992 ÷ 4 = (2000 – 8) ÷ 4 = 500 – 2 = 498.",
+    "examples": [
+      "To solve 1248 ÷ 6, split 1248 into 1200 + 48. Divide each part: 1200 ÷ 6 = 200 and 48 ÷ 6 = 8. Add the results: 200 + 8 = 208.",
+      "To solve 1992 ÷ 4, notice that 1992 is close to 2000. Write 1992 = 2000 – 8. Then 2000 ÷ 4 = 500 and 8 ÷ 4 = 2. Subtract: 500 – 2 = 498.",
+      "To solve 265 ÷ 5, split 265 into 250 + 15. Divide: 250 ÷ 5 = 50 and 15 ÷ 5 = 3. Add: 50 + 3 = 53."
+    ],
+    "common_misconceptions": [
+      "Students try to split the dividend into parts that are not both divisible by the divisor (e.g., splitting 1248 into 1000 + 248 for division by 6, where 1000 is not divisible by 6), making the mental calculation harder instead of easier.",
+      "When using the subtraction method (e.g., 2000 – 8 for 1992), students add the partial quotients instead of subtracting: they write 500 + 2 = 502 instead of 500 – 2 = 498.",
+      "Students forget that the strategy only works when both parts of the split are divisible by the divisor — they must choose 'convenient' parts, not arbitrary ones."
+    ],
+    "hint_progression": [
+      "Look at the dividend and the divisor. Can you find a round number close to the dividend that you know is easy to divide by the divisor?",
+      "Try splitting the dividend into two parts — a big round part and a smaller leftover — so that both parts divide evenly by the divisor. For dividing by 6, good round numbers are multiples of 600 or 60.",
+      "Once you have the two parts (e.g., 1200 and 48 for dividing by 6), divide each part by 6 separately to get two small quotients (200 and 8), then add them together to get the final answer."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Use the splitting strategy to solve 1560 ÷ 8. Show your split.",
+        "answer": "1560 = 1600 – 40; 1600 ÷ 8 = 200 and 40 ÷ 8 = 5; 200 – 5 = 195",
+        "explanation": "1560 is close to 1600 (a multiple of 8 × 200). Writing 1560 = 1600 – 40 allows us to use 1600 ÷ 8 = 200 and 40 ÷ 8 = 5. Because we subtracted 40 to make 1600, we must subtract the quotient 5 from 200 to get 195."
+      },
+      {
+        "question": "Sunitha wants to divide 4824 by 24 mentally. She splits it as 4800 + 24. What is the answer?",
+        "answer": "4824 ÷ 24 = 201",
+        "explanation": "4800 ÷ 24 = 200 (because 24 × 200 = 4800) and 24 ÷ 24 = 1. Adding the two quotients: 200 + 1 = 201. Sunitha's split is perfect because both 4800 and 24 are exactly divisible by 24."
+      }
+    ]
+  },
+  {
+    "section_id": "9-4",
+    "chapter_id": 9,
+    "order": 4,
+    "concept": "mental_division_repeated_halving",
+    "title": "Mental Strategies: Repeated Halving",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["mental_division_splitting_into_parts"],
+    "explanation": "Dividing by 4 is the same as halving twice, and dividing by 8 is the same as halving three times. For example, to find 128 ÷ 4: half of 128 is 64, and half of 64 is 32, so 128 ÷ 4 = 32. This strategy works whenever the divisor is a power of 2 (2, 4, 8, 16…).",
+    "examples": [
+      "64 ÷ 4: halve 64 to get 32, then halve 32 to get 16. So 64 ÷ 4 = 16.",
+      "168 ÷ 8: halve 168 → 84, halve 84 → 42, halve 42 → 21. So 168 ÷ 8 = 21.",
+      "144 ÷ 4: halve 144 → 72, halve 72 → 36. So 144 ÷ 4 = 36."
+    ],
+    "common_misconceptions": [
+      "Students apply repeated halving to divisors that are not powers of 2 (e.g., trying to halve for division by 6), where the strategy doesn't work directly.",
+      "Students halve one extra time or one too few times — for dividing by 4 they must halve exactly twice; for dividing by 8, exactly three times.",
+      "Students who get a non-whole number at an intermediate step (e.g., halving an odd number) think the strategy has failed, when in fact they may have chosen the wrong starting approach or should use a different mental strategy."
+    ],
+    "hint_progression": [
+      "Think about how 4 and 8 are related to the number 2. Is there a way to break dividing by 4 into two simpler steps using the number 2?",
+      "Dividing by 4 is the same as halving twice. Start by finding half of the dividend. Then find half of that result.",
+      "For 168 ÷ 8: first halve 168 to get 84 (that's dividing by 2). Halve 84 to get 42 (dividing by 4). Halve 42 one more time to get the final answer (dividing by 8)."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Use repeated halving to solve 128 ÷ 4. Write out each halving step.",
+        "answer": "Half of 128 = 64; half of 64 = 32. So 128 ÷ 4 = 32.",
+        "explanation": "Dividing by 4 equals halving twice. First halve 128 to get 64 (÷2), then halve 64 to get 32 (÷2 again). Two halvings together equal ÷4, giving 32."
+      },
+      {
+        "question": "Susie has 256 coconuts to pack into bags of 4. Using repeated halving, how many bags does she need?",
+        "answer": "64 bags",
+        "explanation": "256 ÷ 4 by repeated halving: half of 256 = 128, half of 128 = 64. So 256 ÷ 4 = 64. Susie needs 64 bags. This works because dividing by 4 is the same as halving twice."
+      }
+    ]
+  },
+  {
+    "section_id": "9-5",
+    "chapter_id": 9,
+    "order": 5,
+    "concept": "division_by_partial_quotients",
+    "title": "Division Using Partial Quotients",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["division_facts_from_multiplication", "division_patterns_and_place_value"],
+    "explanation": "In the partial quotients method, you repeatedly subtract convenient multiples of the divisor from the dividend, keeping track of how many groups you have taken away each time. You add all the partial quotients at the end. For example, to divide 582 by 6, Susie subtracts groups of 120 (= 6 × 20) several times, while Sunitha takes a larger chunk of 540 (= 6 × 90) first — both reach the quotient 97.",
+    "examples": [
+      "Susie divides 582 ÷ 6 by subtracting 120 (6×20) four times (leaving 102), then 60 (6×10), then 42 (6×7). Partial quotients: 20+20+20+20+10+7 = 97.",
+      "Sunitha divides 582 ÷ 6 more efficiently: she subtracts 540 (6×90) first, leaving 42, then subtracts 42 (6×7). Partial quotients: 90+7 = 97.",
+      "For 4376 ÷ 8, Sunitha subtracts 4000 (8×500), leaving 376; then 320 (8×40), leaving 56; then 56 (8×7). Partial quotients: 500+40+7 = 547. Susie and Sunitha extracted 547 litres of coconut oil from 4376 coconuts."
+    ],
+    "common_misconceptions": [
+      "Students choose partial quotients (like 6×30 = 180) that are larger than the remaining dividend, causing them to subtract too much and get a negative intermediate result.",
+      "Students forget to add up all the partial quotients at the end, stopping after the last subtraction instead of summing 20+20+20+20+10+7 to get 97.",
+      "Students think Susie's method (many small steps) gives a different answer than Sunitha's method (fewer big steps), not realising both are the same algorithm and must always produce the same quotient."
+    ],
+    "hint_progression": [
+      "Think about how many groups of the divisor you can take away from the dividend in one go. Start with a big round number — how many hundreds or tens fit?",
+      "Estimate first. For 582 ÷ 6, think: 6 × 100 = 600, which is too big, so the answer is less than 100. Try 6 × 90 = 540. Subtract 540 from 582 and see what is left.",
+      "After subtracting 540 from 582 you have 42 left. Ask: how many 6s fit into 42? (6 × 7 = 42.) Add your partial quotients: 90 + 7 = 97. That is your answer."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Susie and Sunitha harvested 1117 coconuts and sold 582. They pack the rest (535 coconuts) into bags of 25 each. Using partial quotients, how many full bags do they fill, and how many coconuts are left over?",
+        "answer": "21 full bags with 10 coconuts left over (they need 22 bags in total).",
+        "explanation": "535 ÷ 25: take away 500 (25×20), leaving 35; take away 25 (25×1), leaving 10. Partial quotients: 20+1 = 21 with remainder 10. So 21 full bags are packed and the 10 leftover coconuts need one more bag, making 22 bags total."
+      },
+      {
+        "question": "Susie and Sunitha used 4376 coconuts to extract oil. Each litre requires 8 coconuts. Using partial quotients, how many litres did they extract?",
+        "answer": "547 litres",
+        "explanation": "4376 ÷ 8: subtract 4000 (8×500) → 376 left; subtract 320 (8×40) → 56 left; subtract 56 (8×7) → 0 left. Partial quotients: 500+40+7 = 547. They extracted 547 litres of coconut oil."
+      }
+    ]
+  },
+  {
+    "section_id": "9-6",
+    "chapter_id": 9,
+    "order": 6,
+    "concept": "remainder_in_division",
+    "title": "Understanding the Remainder: N = D × Q + R",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["division_by_partial_quotients"],
+    "explanation": "Sometimes the divisor does not divide the dividend evenly, and a small amount is left over — this is called the remainder (R). The full relationship is: Dividend (N) = Divisor (D) × Quotient (Q) + Remainder (R). The remainder is always smaller than the divisor. You can check any division by verifying this formula.",
+    "examples": [
+      "726 ÷ 4: 4 × 181 = 724, so 726 = 4 × 181 + 2. The quotient is 181 and the remainder is 2.",
+      "902 ÷ 16: 16 × 56 = 896, so 902 = 16 × 56 + 6. The quotient is 56 and the remainder is 6.",
+      "535 ÷ 25 = 21 remainder 10 (since 25 × 21 = 525, and 535 – 525 = 10). Susie and Sunitha need 22 bags to pack 535 coconuts — 21 full bags and one bag with only 10 coconuts inside."
+    ],
+    "common_misconceptions": [
+      "Students think the remainder can be equal to or larger than the divisor. For example, writing 726 ÷ 4 = 180 remainder 6 is wrong because 6 > 4; they should divide one more time to get 181 remainder 2.",
+      "Students skip the verification step N = D × Q + R and do not catch errors. Checking 726 = 4 × 181 + 2 = 724 + 2 = 726 confirms the answer is right.",
+      "In word problems involving remainders (like packing bags), students report the quotient as the final answer and forget to add 1 extra bag for the leftover items."
+    ],
+    "hint_progression": [
+      "After you divide, look at what is left over after your last subtraction. Is it less than the divisor? That leftover amount is the remainder.",
+      "Use the formula N = D × Q + R to check your work. Multiply your quotient by the divisor, add the remainder, and see if you get back the original dividend.",
+      "For 726 ÷ 4: divide using partial quotients to get quotient 181 remainder 2. Check: 4 × 181 = 724, and 724 + 2 = 726. Since 726 = 726, your answer is correct."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Divide 887 ÷ 3. Write the quotient and remainder, then verify using N = D × Q + R.",
+        "answer": "Quotient = 295, Remainder = 2. Check: 3 × 295 + 2 = 885 + 2 = 887. ✓",
+        "explanation": "3 goes into 887 a total of 295 times with 2 left over (3 × 295 = 885; 887 − 885 = 2). The remainder (2) is less than the divisor (3), confirming the division is complete. The check 3 × 295 + 2 = 887 proves the answer."
+      },
+      {
+        "question": "A theatre seats 45 people per show. If 475 people bought tickets, how many shows are needed so everyone gets a seat?",
+        "answer": "11 shows",
+        "explanation": "475 ÷ 45 = 10 remainder 25 (since 45 × 10 = 450 and 475 – 450 = 25). The quotient 10 means 10 full shows seat 450 people, but 25 people remain. They need 1 more show, so 10 + 1 = 11 shows in total."
+      }
+    ]
+  },
+  {
+    "section_id": "9-7",
+    "chapter_id": 9,
+    "order": 7,
+    "concept": "division_using_place_value",
+    "title": "Division Using Place Value (Standard Algorithm)",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["division_by_partial_quotients", "remainder_in_division"],
+    "explanation": "In place-value division, you divide the dividend digit by digit from left to right, starting with the highest place value. When a digit cannot be divided by the divisor, you write 0 in that place of the quotient and regroup (carry over) the value to the next place. For example, in 324 ÷ 3: divide hundreds (3 ÷ 3 = 1), the 2 tens cannot be divided by 3 so regroup into ones (20 + 4 = 24 ones), then 24 ÷ 3 = 8. Answer: 108.",
+    "examples": [
+      "62 ÷ 5: The 6 tens give 1 ten each to 5 groups (quotient digit: 1 ten), with 1 ten left over. Regroup 1 ten into 10 ones; together with the 2 ones already there: 12 ones ÷ 5 = 2 ones remainder 2. Quotient: 12 remainder 2.",
+      "324 ÷ 3: 3 hundreds ÷ 3 = 1 hundred. 2 tens ÷ 3 is not possible without regrouping → write 0 in the tens place and regroup to get 24 ones. 24 ÷ 3 = 8. Quotient: 108.",
+      "136 ÷ 6: 1 hundred ÷ 6 is not possible, so regroup 1 hundred into 10 tens to get 13 tens total. 13 tens ÷ 6 = 2 tens remainder 1 ten. Regroup 1 ten into 10 ones + 6 ones = 16 ones. 16 ÷ 6 = 2 remainder 4. Quotient: 022 = 22 remainder 4."
+    ],
+    "common_misconceptions": [
+      "Students skip writing the 0 in the quotient when a digit of the dividend cannot be divided by the divisor (e.g., writing 18 instead of 108 for 324 ÷ 3), shifting all subsequent quotient digits one position to the left.",
+      "Students regroup before they need to — they try to split the hundreds into tens before checking whether the hundreds digit is divisible, creating unnecessary complexity.",
+      "Students forget to bring down the next digit of the dividend after each subtraction, leaving them dividing a smaller number than intended."
+    ],
+    "hint_progression": [
+      "Start at the leftmost digit of the dividend. Ask yourself: can the divisor fit into just that digit? If yes, write the quotient digit above it. If no, you will need to combine it with the next digit.",
+      "If a place value cannot be divided (like 2 tens ÷ 3), remember to write 0 in that position of the quotient, then regroup: convert those tens into ones and add them to the ones digit already waiting.",
+      "For 324 ÷ 3: write 1 above the hundreds (3÷3=1), then look at 2 tens — can't divide, so write 0 in tens place of quotient and regroup: 2 tens = 20 ones, plus the 4 ones = 24 ones. Then divide 24 ÷ 3 = 8. Your quotient is 1, 0, 8 = 108."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Sunitha's mother has 62 candies to distribute equally among 5 children. Using place-value division, how many candies does each child get, and how many are left over?",
+        "answer": "Each child gets 12 candies with 2 left over.",
+        "explanation": "62 ÷ 5: divide 6 tens by 5 → 1 ten each, with 1 ten remaining. Regroup: 10 ones + 2 ones = 12 ones. 12 ÷ 5 = 2 ones remainder 2. Quotient: 12, Remainder: 2. Each child gets 12 candies and 2 remain undistributed."
+      },
+      {
+        "question": "Use place-value division to solve 7032 ÷ 6. Show which place values you divided at each step.",
+        "answer": "7032 ÷ 6 = 1172",
+        "explanation": "7 thousands ÷ 6 = 1 thousand remainder 1 thousand. Regroup: 1 thousand = 10 hundreds + 0 hundreds already = 10 hundreds. 10 hundreds ÷ 6 = 1 hundred remainder 4 hundreds. Regroup: 40 tens + 3 tens = 43 tens. 43 tens ÷ 6 = 7 tens remainder 1 ten. Regroup: 10 ones + 2 ones = 12 ones. 12 ÷ 6 = 2. Quotient: 1, 1, 7, 2 = 1172."
+      }
+    ]
+  },
+  {
+    "section_id": "9-8",
+    "chapter_id": 9,
+    "order": 8,
+    "concept": "division_word_problems_in_context",
+    "title": "Division Word Problems: Real-Life Contexts",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["remainder_in_division", "division_using_place_value", "division_by_partial_quotients"],
+    "explanation": "Real-life division problems require you to interpret the quotient and remainder carefully. Sometimes the remainder means you need one extra group (packing into bags, booking extra buses). Sometimes only the quotient matters (equal shares of money). And sometimes you must perform multiple operations — addition, then division — to find the answer. Always read the question carefully to decide what to do with the remainder.",
+    "examples": [
+      "Susie and Sunitha's farm sold coconut husk at ₹23 per kg and earned ₹9913. To find the kg sold: 9913 ÷ 23 = 431. They sold 431 kg (no remainder, so exact).",
+      "Ibrahim sells tender coconuts at ₹35 each and earns ₹8890 in a week. To find how many he sold: 8890 ÷ 35 = 254 (quotient to be found). He bought them at ₹20 each, so his extra earnings = ₹8890 – (254 × ₹20).",
+      "Three friends split a picnic bill of ₹157 + ₹124 + ₹136 = ₹417. Each person pays ₹417 ÷ 3 = ₹139."
+    ],
+    "common_misconceptions": [
+      "Students solve only the division step but forget to interpret the remainder: if 342 students need buses that hold 41 each, 342 ÷ 41 = 8 remainder 14, so 9 buses are needed — not 8.",
+      "Students do not perform the preliminary addition before dividing in multi-step problems (e.g., they divide ₹157 by 3 instead of adding all three amounts first).",
+      "Students confuse 'how many notes of ₹100 to make ₹4200' (which is 42, no remainder) with a situation where rounding up is needed — they must re-read the question to decide."
+    ],
+    "hint_progression": [
+      "Before you divide, identify what the dividend and divisor represent in the problem. What are you splitting, and into how many groups? What will the quotient tell you?",
+      "Carry out the division carefully. Once you have the quotient and remainder, re-read the question. Does a leftover amount mean you need one more group (like an extra bag or bus)?",
+      "For multi-step problems, list all the operations needed in order: for the picnic problem, first add all expenses to get the total (₹417), then divide by the number of friends (3) to get each person's share (₹139)."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Susie and Sunitha's farm sells coconut husk at ₹23 per kg. They earned ₹9913 in May. How many kg of husk did they sell?",
+        "answer": "431 kg",
+        "explanation": "We need 9913 ÷ 23. Using partial quotients: 23 × 400 = 9200, leaving 713; 23 × 30 = 690, leaving 23; 23 × 1 = 23, leaving 0. Quotient: 400 + 30 + 1 = 431 kg, with no remainder."
+      },
+      {
+        "question": "342 students are going on a trip. Each bus holds at most 41 students. How many buses must the school arrange?",
+        "answer": "9 buses",
+        "explanation": "342 ÷ 41 = 8 remainder 14 (since 41 × 8 = 328 and 342 – 328 = 14). Eight buses carry 328 students, but 14 students are still left over. Because you cannot have a fraction of a bus, the school needs one more bus: 8 + 1 = 9 buses total."
+      }
+    ]
+  },
+  {
+    "section_id": "9-9",
+    "chapter_id": 9,
+    "order": 9,
+    "concept": "mathematical_statements_true_false",
+    "title": "Mathematical Statements: Always, Sometimes, or Never True",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["division_facts_from_multiplication", "remainder_in_division"],
+    "explanation": "A mathematical equation is a statement that the value on the left side of the '=' sign equals the value on the right side. Some statements are always true (they work for every number), sometimes true (they work for some numbers but not others), or never true (they can never work for any number). Testing statements with examples — and trying to find counter-examples — is how we know which category a statement falls into.",
+    "examples": [
+      "Is 8 × 9 = 70 + 2 true or false? Left side: 8 × 9 = 72. Right side: 70 + 2 = 72. Both sides are equal, so this is TRUE.",
+      "The statement 'Multiplying a number by 2 gives an odd number' is NEVER TRUE, because multiplying any whole number by 2 always gives an even number.",
+      "The statement 'Halving a number always leads to an even number' is SOMETIMES TRUE: halving 8 gives 4 (even), but halving 6 gives 3 (odd). It is not always true."
+    ],
+    "common_misconceptions": [
+      "Students evaluate only one side of the equation instead of computing both sides and comparing them, so they may think 48 ÷ 3 = 4 × 4 is false without working out that both equal 16.",
+      "Students confuse 'always true' with 'true for the one example I tried' — a statement is only always true if no counter-example can ever be found.",
+      "Students think 'sometimes true' is the same as 'mostly true', leading them to classify a statement that works for many numbers but fails for one as 'always true'."
+    ],
+    "hint_progression": [
+      "For a true/false equation, calculate the value on each side of the equals sign separately. If they match, the statement is true; if they don't, it is false.",
+      "For an 'always/sometimes/never' statement, test it with at least 3 or 4 different numbers. If it works for all of them, look harder for a number that breaks the pattern — that is a counter-example.",
+      "To prove a statement is 'never true', explain why it logically cannot work (e.g., any even × odd must be even, so multiplying by 2 can never give an odd number). To show 'sometimes true', give one example where it works and one where it doesn't."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Is the equation 48 ÷ 3 = 4 × 4 true or false? Show your working for both sides.",
+        "answer": "TRUE. Left: 48 ÷ 3 = 16. Right: 4 × 4 = 16.",
+        "explanation": "Computing each side separately: 48 ÷ 3 = 16, and 4 × 4 = 16. Since both sides equal 16, the equation is a true mathematical statement."
+      },
+      {
+        "question": "Is the statement 'Multiplying a number by 5 always gives a number with 0 in the ones place' always true, sometimes true, or never true? Give examples to support your answer.",
+        "answer": "Sometimes true: 4 × 5 = 20 (ones digit 0 ✓), but 3 × 5 = 15 (ones digit 5 ✗).",
+        "explanation": "Multiplying by 5 gives a ones digit of 0 only when the number being multiplied is even (because even × 5 = a multiple of 10). When the number is odd, the result ends in 5. So the statement is sometimes true, not always true."
+      }
+    ]
+  }
+]

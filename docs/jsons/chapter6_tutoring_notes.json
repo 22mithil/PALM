@@ -1,0 +1,446 @@
+[
+  {
+    "chapter_id": 6,
+    "chapter_name": "The Dairy Farm",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["6-1", "6-2", "6-3", "6-4", "6-5", "6-6", "6-7", "6-8", "6-9", "6-10", "6-11"]
+  },
+  {
+    "section_id": "6-1",
+    "chapter_id": 6,
+    "order": 1,
+    "concept": "multiplication_facts_multiples_factors",
+    "title": "Multiplication Facts, Multiples, and Factor Thinking",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "Multiplication facts are relationships we already know, such as 6 × 10 = 60 or 3 × 20 = 60. Any number can be expressed as a product in many different ways — for example, 60 can be arranged as 30 groups of 2, or 6 groups of 10, or 12 groups of 5. A multiple of a number is what you get when you multiply it by a whole number; for example, 9, 18, 27, 36 are all multiples of 9. Knowing multiplication facts and recognising multiples helps solve puzzles, find factors, and estimate products.",
+    "examples": [
+      "Daljeet Kaur packed 60 butter milk pouches. She could arrange them as 30 × 2 (30 groups of 2), or 20 × 3 (20 groups of 3), or 12 × 5 (12 groups of 5), or 6 × 10 — all giving 60 pouches in total.",
+      "In the 'Which number am I?' puzzle, the mystery number is a multiple of 9 that is odd, less than 50, greater than 8, not a multiple of 4 or 11, with an even ones digit and an odd tens digit. The multiples of 9 less than 50 are 9, 18, 27, 36, 45. Only 27 is odd, has a tens digit of 2 (even — so this fails clue h) — actually checking: 27 has tens digit 2 (even) and ones digit 7 (odd) — also fails. Checking all: the answer is 27 is eliminated by clue g (ones digit must be even). No multiple of 9 less than 50 satisfies all clues simultaneously — this is the intended discovery that some clues may be redundant or contradictory.",
+      "Using digits 2, 5, and 3 to get a product close to 100: placing them as 25 × 3 = 75, or 52 × 3 = 156, or 35 × 2 = 70, or 53 × 2 = 106. The arrangement 53 × 2 = 106 is closest to 100."
+    ],
+    "common_misconceptions": [
+      "Students think there is only one way to arrange a set of objects into equal groups — missing that 60 pouches can be arranged as 30×2, 20×3, 15×4, 12×5, 10×6, and more.",
+      "When given clues to find a mystery number, students apply only the first clue that eliminates most numbers and stop, not checking whether remaining numbers satisfy every clue.",
+      "Students confuse 'multiple of 9' with 'contains the digit 9' — for example, thinking 90 is a multiple of 9 only because it has a 9, rather than because 9 × 10 = 90."
+    ],
+    "hint_progression": [
+      "Think about all the different ways the same total number of pouches could be split into equal groups — there is more than one way.",
+      "For the mystery number puzzle, start by listing all multiples of 9 that are less than 50, then cross off any that fail each clue one at a time.",
+      "For getting a product close to 100 with digits 2, 5, 3: try placing the two larger digits together to form a 2-digit number, then multiply by the smallest digit — for example, 53 × 2 = 106 is very close to 100."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Daljeet Kaur has 60 butter milk pouches. She wants to arrange them in equal groups. Write three different ways she could arrange them (as multiplication sentences).",
+        "answer": "Any three of: 1×60, 2×30, 3×20, 4×15, 5×12, 6×10, 10×6, 12×5, 15×4, 20×3, 30×2, 60×1",
+        "explanation": "60 has many factor pairs because it is divisible by 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, and 60. Each factor pair gives a valid equal-groups arrangement. The textbook highlights 30×2 and one other arrangement of 60 as the key examples."
+      },
+      {
+        "question": "Using the digits 2, 5, and 3 exactly once to form a 2-digit number times a 1-digit number, which arrangement gives a product closest to 100?",
+        "answer": "53 × 2 = 106",
+        "explanation": "The possible arrangements are: 25×3=75, 52×3=156, 23×5=115, 32×5=160, 35×2=70, 53×2=106. The distances from 100 are: 25, 56, 15, 60, 30, 6. So 53×2=106 is closest, only 6 away from 100."
+      }
+    ]
+  },
+  {
+    "section_id": "6-2",
+    "chapter_id": 6,
+    "order": 2,
+    "concept": "commutativity_of_multiplication",
+    "title": "Order of Numbers in Multiplication (Commutativity)",
+    "difficulty": "intro",
+    "prerequisite_concepts": [
+      "multiplication_facts_multiples_factors"
+    ],
+    "explanation": "The order in which two numbers are multiplied does not change the product. This property is called commutativity. For example, 2 × 3 = 6 and 3 × 2 = 6 — whether Daljeet arranges butter packets in 2 rows of 3 or 3 rows of 2, the total is always 6. Multiplying any number by 0 always gives 0: 9 × 0 = 0 × 9 = 0. This holds for all numbers.",
+    "examples": [
+      "Daljeet arranged butter packets as 2 groups of 3 (2×3=6) and then as 3 groups of 2 (3×2=6). Both give the same total of 6 packets, just arranged differently.",
+      "8 × 5 = 40 and 5 × 8 = 40. Daljeet can arrange 40 packets in 8 rows of 5 or in 5 rows of 8 — the factory needs the same number of packets either way.",
+      "6 × 13 = 78 and 13 × 6 = 78. Whether there are 6 groups of 13 butter packets or 13 groups of 6, the dairy has 78 packets in total."
+    ],
+    "common_misconceptions": [
+      "Students think commutativity means both numbers must be the same — for example, they accept 5×5 = 5×5 but doubt that 8×5 equals 5×8 when the numbers are different.",
+      "Students apply commutativity to subtraction or division — for example, thinking 8−3 = 3−8 or 12÷4 = 4÷12, which is false.",
+      "Students think multiplying by 0 gives the other number — for example, writing 9×0 = 9 instead of 0."
+    ],
+    "hint_progression": [
+      "Imagine drawing the butter packets as a rectangle — does rotating the rectangle change how many packets there are?",
+      "If you have 6 groups of 13, try counting the same packets in a different direction: how many groups of 6 are there now?",
+      "Count the rows and columns in Daljeet's arrangement: if 6 rows of 13 gives 78, then 13 rows of 6 must also give 78 because you are counting the same total packets just in a different direction."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Daljeet arranged butter packets in 12 rows of 9. Her assistant rearranged them into 9 rows of 12. Who has more packets — Daljeet or her assistant?",
+        "answer": "They have the same number: 12×9 = 9×12 = 108 packets.",
+        "explanation": "Multiplication is commutative: the order of numbers does not change the product. Both 12×9 and 9×12 equal 108. Only the arrangement changes — the total stays the same."
+      },
+      {
+        "question": "What is 20 × 8? What is 8 × 20? What is 20 × 0?",
+        "answer": "20×8 = 160; 8×20 = 160; 20×0 = 0.",
+        "explanation": "20×8 = 8×20 = 160 because of commutativity. 20×0 = 0 because multiplying any number by 0 always gives 0 — there are 0 groups of 20, which is nothing."
+      }
+    ]
+  },
+  {
+    "section_id": "6-3",
+    "chapter_id": 6,
+    "order": 3,
+    "concept": "multiplication_by_powers_of_10",
+    "title": "Patterns in Multiplication by 10s, 100s, and 1,000s",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "commutativity_of_multiplication"
+    ],
+    "explanation": "When a number is multiplied by 10, each digit shifts one place to the left in the place value chart (a zero is appended at the end). Multiplying by 100 shifts digits two places left (two zeros appended), and multiplying by 1,000 shifts digits three places left (three zeros appended). To multiply two multiples of 10 or 100, multiply the non-zero digits first and then attach the combined zeros: for example, 30×20 = 3×10×2×10 = 6×100 = 600.",
+    "examples": [
+      "4×10 = 40 (digit 4 moves one place left). 4×100 = 400 (digit 4 moves two places left). 4×1,000 = 4,000 (digit 4 moves three places left). In each case, zeros fill the places vacated.",
+      "30×20: rewrite as 3×10×2×10 = 6×100 = 600. The product of the non-zero digits is 6, and combining two factors of 10 gives 100, so the answer is 600.",
+      "5×7,000: rewrite as 5×7×1,000 = 35×1,000 = 35,000. In the TTh-Th-H-T-O chart: TTh=3, Th=5, H=0, T=0, O=0."
+    ],
+    "common_misconceptions": [
+      "Students add zeros to the wrong end of the number — for example, writing 4×100 = 004 instead of 400.",
+      "When multiplying two multiples of 10 such as 20×50, students count only one zero in the answer (writing 100) instead of counting both trailing zeros from both factors to get 1,000.",
+      "Students think multiplying by 10 always adds exactly one zero to any number, failing on numbers like 10×45=450 where the existing digit structure must be preserved — 450 in the place value table has 4 in H, 5 in T, 0 in O."
+    ],
+    "hint_progression": [
+      "Look at where the non-zero digits end up in the place value chart after you multiply — each factor of 10 pushes every digit one step to the left.",
+      "To multiply 30×20, first multiply the non-zero parts: 3×2 = 6. Then count how many zeros appear in both numbers together: two zeros. Attach them to get 600.",
+      "For 20×50: non-zero digits give 2×5=10. Count zeros in the factors: two (one from 20, one from 50). Now attach: 10 followed by two zeros = 1,000. But 10 already ends in a zero, so the result is 10×100 = 1,000."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Fill in: 80×90 = ___. Show your working using the non-zero digits method.",
+        "answer": "7,200",
+        "explanation": "Non-zero digits: 8×9 = 72. Number of zeros: one from 80, one from 90 = two zeros total. Attach: 72 followed by two zeros = 7,200."
+      },
+      {
+        "question": "The place value table shows 100×90 = 9,000. Explain why there are three zeros in the answer.",
+        "answer": "100 contributes two zeros and 90 contributes one zero, giving three zeros total. 1×9 = 9, and attaching three zeros gives 9,000.",
+        "explanation": "100 = 1×10×10 (two factors of 10) and 90 = 9×10 (one factor of 10). Together they contribute three factors of 10, meaning the product has three trailing zeros: 9×1,000 = 9,000."
+      }
+    ]
+  },
+  {
+    "section_id": "6-4",
+    "chapter_id": 6,
+    "order": 4,
+    "concept": "flexible_mental_multiplication_strategies",
+    "title": "Many Ways to Multiply: Flexible Mental Strategies",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "commutativity_of_multiplication",
+      "multiplication_by_powers_of_10"
+    ],
+    "explanation": "Any multiplication can be solved in several correct ways by rewriting one or both numbers. The chapter shows five strategies for 18×5: (1) splitting 18 into 10 and 8; (2) rounding up to 20×5 and subtracting 2×5; (3) halving 18 to 9 and doubling 5 to 10, giving 9×10; (4) doubling 18 repeatedly and adding; (5) noting 18×5 = 9×10. All five methods give 90. Choosing the most convenient strategy for a given problem is a key mathematical skill.",
+    "examples": [
+      "18×5 by splitting: separate 18 into 10 and 8. Then 10×5=50 and 8×5=40. Add: 50+40=90.",
+      "18×5 by rounding up: 20×5=100, then subtract the extra 2×5=10. So 100−10=90.",
+      "18×5 by rewriting: 18×5 = 9×2×5 = 9×10 = 90. This works because 2×5=10 is a friendly number."
+    ],
+    "common_misconceptions": [
+      "Students think there is only one correct method and become confused when classmates use a different approach — they do not realise that all valid strategies give the same answer.",
+      "When rounding up and subtracting, students forget to subtract the extra amount — for example, they calculate 20×5=100 and stop, forgetting to subtract 2×5=10.",
+      "When splitting a number, students multiply only the larger part by the multiplier and forget the smaller part — for example, computing 10×5=50 but forgetting to add 8×5=40."
+    ],
+    "hint_progression": [
+      "Ask yourself: is one of these numbers close to a round number like 10 or 20? Or can one of them be split into two friendly parts?",
+      "Try rewriting the harder number as a sum or a product of two easier numbers — for example, 18 = 10+8 or 18 = 2×9.",
+      "If you rewrite 18 as 10+8, then 18×5 = (10+8)×5 = 10×5 + 8×5 = 50+40 = 90. Now try a similar split for your own problem."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Gollappa has 29 cows. Each cow gives 5 litres of milk a day. Use the 'nearest multiple' or 'splitting' strategy to find the total litres of milk per day.",
+        "answer": "145 litres",
+        "explanation": "Using nearest multiple: 30×5=150, subtract 1×5=5, giving 150−5=145. Or by splitting: 20×5=100 and 9×5=45, giving 100+45=145. Both strategies correctly give 145 litres."
+      },
+      {
+        "question": "A student wants to find 16×5. She says: 'Half of 16 is 8. So 16×5 = 8×10 = 80.' Is she correct? Explain why her method works.",
+        "answer": "Yes, she is correct. 16×5 = 80.",
+        "explanation": "She halved the 16 to get 8, and doubled the 5 to get 10. Since halving one factor and doubling the other keeps the product the same (8×10 = 80 = 16×5), this is a valid application of the doubling-and-halving strategy."
+      }
+    ]
+  },
+  {
+    "section_id": "6-5",
+    "chapter_id": 6,
+    "order": 5,
+    "concept": "doubling_and_halving_strategy",
+    "title": "Doubling and Halving Strategy for Multiplication",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "flexible_mental_multiplication_strategies"
+    ],
+    "explanation": "In the doubling and halving strategy, you halve one factor and double the other — the product stays the same. For example, 3×18: halve 3 to get 1.5 — but instead we can double 3 to get 6 and halve 18 to get 9, giving 6×9=54. This works because multiplying one factor by 2 and dividing the other by 2 cancels out. The strategy is especially useful when one factor is 5 or 25, because doubling 5 gives 10 and doubling 25 gives 50 — both easy to multiply with.",
+    "examples": [
+      "3×18: double the 3 to get 6, halve the 18 to get 9. Now compute 6×9=54. The butter packet diagram confirms: one long row of 18 is the same total as two shorter rows of 9.",
+      "22×5: halve the 22 to get 11, double the 5 to get 10. Now compute 11×10=110. The diagram shows 1 tall column of 22 becoming 2 columns of 11.",
+      "25×12: halve the 25... 25 is odd, so instead double the 25 to get 50 and halve the 12 to get 6. Now compute 50×6=300."
+    ],
+    "common_misconceptions": [
+      "Students halve both factors instead of just one — for example, computing 3×18 as (3÷2)×(18÷2) = 1.5×9 = 13.5, which is wrong.",
+      "Students apply halving to the wrong factor and end up with fractions when the number is odd — for example, trying to halve 35 to get 17.5 in 35×14. Instead, they should double 35 to get 70 and halve 14 to get 7: 70×7=490.",
+      "Students think the strategy only works when one of the numbers is even, not realising they can choose which factor to halve or double to avoid fractions."
+    ],
+    "hint_progression": [
+      "Look at which of the two numbers is even — halve that one, and double the other.",
+      "If you double one factor and halve the other, the product stays the same because multiplying by 2 and dividing by 2 cancel each other out.",
+      "For 38×5: double the 5 to get 10, halve the 38 to get 19. Now 19×10=190. This is easy because multiplying by 10 just shifts the digit one place to the left."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Use the doubling and halving strategy to find 50×28.",
+        "answer": "1,400",
+        "explanation": "Halve 50 to get 25, double 28 to get 56: 25×56. Halve again: halve 56 to get 28, double 25 to get 50 — we're going in circles. Better: halve 28 to get 14, double 50 to get 100: 100×14=1,400. This is easy because multiplying by 100 just attaches two zeros."
+      },
+      {
+        "question": "Use doubling and halving to find 16×45.",
+        "answer": "720",
+        "explanation": "Double 45 to get 90, halve 16 to get 8: 8×90. Double 90 to get 180, halve 8 to get 4: 4×180. Double 180 to get 360, halve 4 to get 2: 2×360 = 720. Or more directly: halve 16 to 8, double 45 to 90: 8×90 = 720."
+      }
+    ]
+  },
+  {
+    "section_id": "6-6",
+    "chapter_id": 6,
+    "order": 6,
+    "concept": "nearest_multiple_strategy",
+    "title": "Nearest Multiple Strategy for Multiplication",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "flexible_mental_multiplication_strategies",
+      "multiplication_by_powers_of_10"
+    ],
+    "explanation": "In the nearest multiple strategy, you round one factor to the nearest friendly number (usually a multiple of 10), multiply, and then adjust by adding or subtracting the extra amount. If the original number was rounded up, subtract the extra; if rounded down, add the missing amount. For example, 4×19 = 4×20 − 4×1 = 80−4 = 76, because 19 is one less than 20. Similarly, 14×21 = 14×20 + 14×1 = 280+14 = 294, because 21 is one more than 20.",
+    "examples": [
+      "4×19: round 19 up to 20. 4×20=80. But we multiplied 4 one extra time, so subtract 4×1=4. Answer: 80−4=76. The diagram shows 4 rows of 20 with the last column removed.",
+      "14×21: round 21 down to 20. 14×20=280. But 21 is one more than 20, so add 14×1=14. Answer: 280+14=294. The diagram shows 14 rows of 20 with one extra column of 14 added.",
+      "7×52: round 52 up to... actually round down to 50. 7×50=350. Add the missing 7×2=14. Answer: 350+14=364."
+    ],
+    "common_misconceptions": [
+      "Students subtract when they should add, and vice versa — for example, in 14×21, they compute 14×20=280 and then subtract 14 to get 266, not realising 21 is larger than 20 (so they should add).",
+      "When adjusting after rounding, students multiply the adjustment by 1 instead of by the unchanged factor — for example, in 4×19, they subtract 1 instead of 4×1=4.",
+      "Students round both numbers simultaneously, then forget to account for both adjustments, leading to double errors."
+    ],
+    "hint_progression": [
+      "Ask yourself: is your number just above or just below a multiple of 10? Round it to that multiple of 10.",
+      "If you rounded up (added some extra), you multiplied too many times — so subtract that extra at the end. If you rounded down (dropped some), you multiplied too few times — so add that amount back.",
+      "For 99×15: round 99 up to 100. 100×15=1,500. You used 100 instead of 99, so you multiplied 15 one extra time. Subtract 1×15=15. Answer: 1,500−15=1,485."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Use the nearest multiple strategy to find 12×28.",
+        "answer": "336",
+        "explanation": "Round 28 up to 30. 12×30=360. We added 2 extra columns of 12 (since 30 is 2 more than 28), so subtract 12×2=24. Answer: 360−24=336."
+      },
+      {
+        "question": "Priya jogs 4 km every day. Use the nearest multiple strategy to find how many km she jogs in 31 days.",
+        "answer": "124 km",
+        "explanation": "Round 31 down to 30. 4×30=120. But 31 is one more than 30, so add 4×1=4. Answer: 120+4=124 km."
+      }
+    ]
+  },
+  {
+    "section_id": "6-7",
+    "chapter_id": 6,
+    "order": 7,
+    "concept": "distributive_grid_multiplication_method",
+    "title": "Multiplying by Splitting Numbers: Grid and Expanded Methods",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "multiplication_by_powers_of_10",
+      "flexible_mental_multiplication_strategies"
+    ],
+    "explanation": "To multiply larger numbers, we split (decompose) each factor into tens and ones (or hundreds, tens, and ones) and multiply each part separately, then add the results. This is shown as a grid (area model) where each cell holds one partial product. For example, 32×8: split 32 into 30+2, then 8×30=240 and 8×2=16, giving 240+16=256. For two 2-digit numbers like 69×45, we split both: 45×9+45×60 or equivalently multiply 5×69 and 40×69 and add. Nida's method writes each partial product on its own line; John's method groups partial products by which part of the multiplier they come from.",
+    "examples": [
+      "32×8 using the grid: split 32 into 30 and 2. Grid cell (8,30)=240 and cell (8,2)=16. Total: 240+16=256. Nida writes: 8×2=16, 8×30=240, sum=256.",
+      "69×45: split 69 into 60+9 and 45 into 40+5. Grid cells: 5×9=45, 5×60=300, 40×9=360, 40×60=2,400. Total: 45+300+360+2,400=3,105. John groups by row: 5×69=345 (written as 300+45) and 40×69=2,760 (written as 2,400+360), then adds.",
+      "12×35 (Kanti's solution for the composting problem): split 35 into 30+5 and 12 into 10+2. Partial products: 2×5=10, 2×30=60, 10×5=50, 10×30=300. Total: 10+60+50+300=420 kg of waste per year."
+    ],
+    "common_misconceptions": [
+      "Students fill the grid correctly but then add only some cells, missing a partial product — for example, computing 3 of the 4 cells for a 2-digit × 2-digit multiplication and getting a wrong total.",
+      "When multiplying the tens part (e.g., 40×9), students forget the zero and write 4×9=36 instead of 40×9=360, losing the place value.",
+      "Students mix up Nida's method (one partial product per digit of each factor) with John's method (one line per digit of the multiplier) and write an inconsistent hybrid that double-counts some products."
+    ],
+    "hint_progression": [
+      "Draw the grid first: write the parts of one number across the top and the parts of the other number down the side, then fill each cell by multiplying its row heading by its column heading.",
+      "Remember that 40×9 is not the same as 4×9 — the zero from the tens place must be included, giving 360, not 36.",
+      "For 69×45 using John's method: first find 5×69 (multiply 69 by the ones digit of 45) = 345, then find 40×69 (multiply 69 by the tens digit with its zero) = 2,760, then add: 345+2,760 = 3,105."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A school received 36 boxes of books with 48 books in each box. Use the grid (area) method to find the total number of books. Show the four partial products.",
+        "answer": "1,728 books",
+        "explanation": "Split 36 into 30+6 and 48 into 40+8. The four cells: 6×8=48; 6×40=240; 30×8=240; 30×40=1,200. Total: 48+240+240+1,200 = 1,728 books."
+      },
+      {
+        "question": "The family produced 35 kg of kitchen waste per month for 12 months. Use John's method (one line per digit of the multiplier) to find the total waste in a year.",
+        "answer": "420 kg",
+        "explanation": "12 = 10+2. First line: 2×35 = 70. Second line: 10×35 = 350. Add: 70+350 = 420 kg. John's method keeps the two lines separate by multiplier digit, making it easy to see the contribution of each part."
+      }
+    ]
+  },
+  {
+    "section_id": "6-8",
+    "chapter_id": 6,
+    "order": 8,
+    "concept": "standard_multiplication_algorithm",
+    "title": "Mili's Father's Method: The Standard Multiplication Algorithm",
+    "difficulty": "advanced",
+    "prerequisite_concepts": [
+      "distributive_grid_multiplication_method",
+      "multiplication_by_powers_of_10"
+    ],
+    "explanation": "In the standard algorithm (Mili's father's method), we multiply digit by digit from right to left, carrying any regrouped value to the next place. For example, in 268×4: 4×8=32, write 2 carry 3; 4×6tens=24tens, plus carried 3tens=27tens, write 7 carry 2; 4×2hundreds=8hundreds, plus carried 2hundreds=10hundreds, write 1,072. Each carry represents tens or hundreds being passed to the next higher place. For two-digit multipliers, we write two separate rows — one for multiplying by the ones digit and one for multiplying by the tens digit, with that second row shifted left by one place.",
+    "examples": [
+      "268×4 (dairy cooperative minimum cows): 4×8=32 (write 2, carry 3tens); 4×60=240, plus carried 30=270 (write 7 in tens, carry 2hundreds); 4×200=800, plus carried 200=1,000 (write 1,0). Answer: 1,072. The 100 from 270 is added to 4×200=800, not to 200 itself.",
+      "453×13 (Gir cow milk): multiply by 3 first: 3×3=9, 3×5tens=15tens (write 5 carry 1), 3×4hundreds=12hundreds+1hundred=13hundreds — so first partial product is 1,359. Then multiply by 1ten=10: 10×453=4,530. Add: 1,359+4,530=5,889 litres per day.",
+      "574×125 (ghee earnings): three partial rows — 5×574=2,870; 20×574=11,480; 100×574=57,400. Sum: 2,870+11,480+57,400=71,750."
+    ],
+    "common_misconceptions": [
+      "Students add the carried digit to the wrong column — for example, in 268×4, the 3 carried from 4×8=32 must be added to 4×60=240 to make 270, but students sometimes add it to 60 first (getting 63) before multiplying.",
+      "When using a two-digit multiplier, students forget to shift the second partial product one place to the left (to account for multiplying by tens), writing both rows aligned at the ones column.",
+      "Students write the carried digit as part of the answer digit instead of above the next column — for example, writing the product of 268×4 as 10,072 because they include the carry as an extra digit."
+    ],
+    "hint_progression": [
+      "Start from the ones digit of the multiplier and work right to left, writing down only the ones of each product and carrying the rest to the next column.",
+      "When you carry a number, write it as a small digit above the next column — it will be added to the product of that column, not multiplied.",
+      "For 453×13: first do 453×3 = 1,359 (one partial product). Then do 453×10 = 4,530 (shift left by one place, i.e., write it one column to the left). Finally add: 1,359 + 4,530 = 5,889."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A dairy cooperative has 268 villagers, each with at least 4 cows. Use Mili's father's method to find the minimum number of cows.",
+        "answer": "1,072 cows",
+        "explanation": "268×4: 4×8=32 (write 2, carry 3); 4×6=24+3carried=27 (write 7, carry 2); 4×2=8+2carried=10 (write 10). Answer: 1,072. The cooperative gets milk from at least 1,072 cows."
+      },
+      {
+        "question": "453 Gir cows each produce 13 litres of milk per day. Use Mili's father's method to find the total litres. Show both partial products.",
+        "answer": "5,889 litres",
+        "explanation": "First partial product (×3): 3×3=9; 3×5=15, write 5 carry 1; 3×4=12+1=13, write 1,359. Second partial product (×10): 453×10=4,530 (written one place left). Add: 1,359+4,530=5,889 litres per day."
+      }
+    ]
+  },
+  {
+    "section_id": "6-9",
+    "chapter_id": 6,
+    "order": 9,
+    "concept": "multiplication_word_problems",
+    "title": "Solving Multi-Step Multiplication Word Problems",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "distributive_grid_multiplication_method",
+      "standard_multiplication_algorithm",
+      "flexible_mental_multiplication_strategies"
+    ],
+    "explanation": "Word problems require identifying what is being multiplied, setting up the multiplication sentence, and then choosing the most efficient strategy. Some problems have more than one step — for example, finding a total cost requires multiplying quantity by unit price, and a question may ask for the cost of two different items separately before combining. Reading carefully to identify what each number represents is essential before calculating.",
+    "examples": [
+      "Anjali buys 15 bulbs at ₹25 each and 12 tube lights at ₹34 each. Total = (15×25) + (12×34) = 375 + 408 = ₹783. Two separate multiplications are needed before adding.",
+      "Mala bought 18 books at 3 books for ₹150. Cost of 18 books: 18÷3=6 groups, 6×₹150=₹900. She had ₹20 left, so she started with ₹900+₹20=₹920.",
+      "A school auditorium has 35 rows with 42 seats each. Total seats = 35×42 = 1,470. Using John's method: 5×42=210 and 30×42=1,260, total=1,470."
+    ],
+    "common_misconceptions": [
+      "Students add all numbers in the problem before multiplying, ignoring the structure — for example, adding 15+25+12+34=86 rather than computing (15×25)+(12×34).",
+      "Students solve only the first part of a multi-step problem and stop — for example, finding the cost of the books but forgetting to add the ₹20 remaining to find the original amount.",
+      "Students confuse 'how many in total' with 'how many in each group,' reversing the multiplier and multiplicand, though for multiplication this does not affect the product — it does matter in division problems that follow."
+    ],
+    "hint_progression": [
+      "Read the problem and identify: what is the number of groups? What is the size of each group? Write the multiplication sentence before calculating.",
+      "If the problem has two different items or two different prices, set up a separate multiplication for each and then add (or subtract) the results.",
+      "For the book exhibition problem: find the cost of 18 books first (18÷3=6 groups, 6×₹150=₹900), then use the leftover ₹20 to work backwards to the starting amount."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A shopkeeper sold 28 bags of rice. Each bag costs ₹350. How much money did he earn?",
+        "answer": "₹9,800",
+        "explanation": "28×350: split as 28×300=8,400 and 28×50=1,400. Total: 8,400+1,400=₹9,800. Or using the standard algorithm: 28×350 = 28×35×10 = 980×10 = ₹9,800."
+      },
+      {
+        "question": "Ananya is watching Republic Day celebrations. There are 12 rows in front of her, 17 rows behind her, and she is in 1 row herself. Each row has 18 students to her right, 22 to her left, and herself. How many students are in Ananya's row, and what is the total number of students on the ground?",
+        "answer": "Ananya's row: 18+1+22=41 students. Total rows: 12+1+17=30. Total students: 30×41=1,230.",
+        "explanation": "Ananya's row includes 18 to her right, herself, and 22 to her left: 18+1+22=41. Total rows = 12+1+17 = 30. Total students = 30×41. Using John's method: 30×40=1,200 and 30×1=30, total=1,230."
+      }
+    ]
+  },
+  {
+    "section_id": "6-10",
+    "chapter_id": 6,
+    "order": 10,
+    "concept": "checking_estimating_equivalent_products",
+    "title": "Checking, Estimating, and Finding Equivalent Multiplication Expressions",
+    "difficulty": "advanced",
+    "prerequisite_concepts": [
+      "distributive_grid_multiplication_method",
+      "nearest_multiple_strategy",
+      "doubling_and_halving_strategy"
+    ],
+    "explanation": "An expression is equivalent to a given multiplication if it produces the same product, even if it looks different. For example, 26×11 = (26×10)+(26×1) = 260+26 = 286, so both '26×10 and 26×1' and '20×11 and 6×11' are equivalent. Estimating a product means rounding both factors to nearby friendly numbers and multiplying — this gives a quick approximate answer without exact calculation. Checking a peer's solution means reproducing the multiplication yourself and comparing, or reasoning about whether each step preserves the correct value.",
+    "examples": [
+      "101×42: since 101=100+1, we get 101×42 = 100×42 + 1×42 = 4,200+42 = 4,242. The expression '100×42 and 42' is equivalent; '100×42 and 100' is NOT equivalent (it adds 100 instead of 42).",
+      "Estimating 132×19: round 132≈130 and 19≈20, so estimate ≈130×20=2,600. The correct answer is 2,508, and 2,600 is a reasonable estimate.",
+      "Asma's solution for 46×59: she wrote partial products 2,000 + 300 + 360 + 54 = 2,714. Checking: 40×50=2,000 ✓; 40×9=360 ✓; 6×50=300 ✓; 6×9=54 ✓. Total: 2,714. Asma is correct."
+    ],
+    "common_misconceptions": [
+      "When checking for equivalent expressions, students test only one of the two listed expressions and not both — for example, for '100×42 and 100,' they compute 100×42=4,200 and see it is a partial result of 101×42, without checking whether adding 100 (rather than 42) completes the answer correctly.",
+      "Students think Pankaj's incorrect solution for 203×54 (answer: 135) could be right because the working looks similar to a legitimate method — they do not notice that Pankaj treated 54 as (5+4) rather than (50+4), losing the place value of the tens digit.",
+      "When estimating, students round both numbers in the same direction (both up or both down), producing an estimate that is too high or too low rather than a balanced approximation."
+    ],
+    "hint_progression": [
+      "For equivalent expressions: compute the given multiplication exactly, then compute the proposed equivalent expression and compare — if the totals match, they are equivalent.",
+      "For estimating: round each factor to the nearest ten or hundred, multiply those rounded values, and remember that the true answer could be a little higher or lower.",
+      "To spot the error in Pankaj's solution for 203×54: check what 4×203 gives (not 4×3=12 and 4×0=0, but 4×200+4×0+4×3=812) and what 50×203 gives. Pankaj incorrectly added the tens and ones digits of 54 rather than treating 5 as 5 tens."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Without calculating, identify which of these equals 1001×5: (a) 1,000×6, or (b) 1,000×5 and 5. Explain your reasoning.",
+        "answer": "Option (b): 1,000×5 and 5.",
+        "explanation": "1001 = 1,000+1. So 1001×5 = 1,000×5 + 1×5 = 5,000+5 = 5,005. Option (b) computes 1,000×5=5,000 and adds 5, giving 5,005. Option (a) computes 1,000×6=6,000, which is wrong."
+      },
+      {
+        "question": "Estimate the product 248×49 by rounding each number to the nearest ten or hundred. Which of these is the best match: 300, 750, 1,000, 2,600, or 12,500?",
+        "answer": "12,500",
+        "explanation": "Round 248≈250 and 49≈50. Estimate: 250×50=12,500. The true answer is 248×49=12,152, which is close to 12,500. So 12,500 is the best match from the list."
+      }
+    ]
+  },
+  {
+    "section_id": "6-11",
+    "chapter_id": 6,
+    "order": 11,
+    "concept": "multiplication_patterns_and_relationships",
+    "title": "Multiplication Patterns: Scaling, Repunits, and Derived Products",
+    "difficulty": "advanced",
+    "prerequisite_concepts": [
+      "commutativity_of_multiplication",
+      "doubling_and_halving_strategy",
+      "checking_estimating_equivalent_products"
+    ],
+    "explanation": "When one factor in a multiplication doubles, the product doubles; when one factor halves, the product halves. So if 16×44=704, then 8×44=352 (half) and 32×44=1,408 (double). Patterns in multiplication also appear in special number sequences: multiplying repunit numbers (1, 11, 111...) gives palindrome products; squaring numbers ending in 5 follows a predictable digit pattern; multiplying any two-digit number by 11 places the sum of its digits between the original digits. These patterns help predict products without computing. The King's Reward puzzle illustrates how repeated multiplication (exponential growth) produces surprisingly large numbers.",
+    "examples": [
+      "16×44=704. Halving 16 gives 8×44=352 (half of 704). Doubling 16 gives 32×44=1,408 (double 704). Halving 44 gives 16×22=352. The relationship: if both factors are halved, the product is one quarter.",
+      "The King's Reward: Minister 1 starts with 5 coins, doubling daily for 7 days: 5→10→20→40→80→160→320→640. Minister 3 starts with 1 coin, multiplying by 5 daily: 1→5→25→125→625→3,125→15,625→78,125. Minister 3 receives the most despite starting with just 1 coin.",
+      "Multiplication pattern for numbers ending in 5: 5×5=25, 15×15=225, 25×25=625, 35×35=1,225, 45×45=2,025. The ones and tens digits are always 25; the hundreds and above come from multiplying the tens digit by (tens digit+1)."
+    ],
+    "common_misconceptions": [
+      "Students think if both factors change, you can just add both changes — for example, believing 32×88 (doubling both 16 and 44) gives 704×2=1,408, when actually doubling both factors gives 704×4=2,816.",
+      "In the King's Reward, students assume the minister who starts with the most coins (Minister 1, with 5) will end with the most, not anticipating that a larger multiplier (×5) applied to a smaller starting amount eventually overtakes a smaller multiplier (×2) applied to a larger starting amount.",
+      "When predicting pattern outputs like 1111×1111, students try to compute by column and lose track of carries, rather than extending the palindrome pattern observed in 1×1=1, 11×11=121, 111×111=12,321."
+    ],
+    "hint_progression": [
+      "If you know one product, check: did the factor double, halve, or stay the same? The product changes by exactly the same factor.",
+      "For the King's Reward, make a table: write Day 0, Day 1, Day 2,... and compute each minister's coins day by day — the surprise comes around Day 5 or 6.",
+      "For the palindrome pattern 1×1=1, 11×11=121, 111×111=12,321: look at the digits of each product — they count up to the middle and then count back down. Use this pattern to write the next term without multiplying."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Given that 16×44=704, find 16×22 and 32×44 without multiplying from scratch.",
+        "answer": "16×22=352; 32×44=1,408.",
+        "explanation": "16×22: 22 is half of 44, so the product is half of 704: 704÷2=352. 32×44: 32 is double 16, so the product is double 704: 704×2=1,408. Scaling one factor scales the product by the same amount."
+      },
+      {
+        "question": "If 67×67=4,489, find 67×68 without multiplying. Explain your reasoning.",
+        "answer": "67×68=4,556.",
+        "explanation": "67×68 = 67×67 + 67×1 = 4,489+67 = 4,556. Increasing one factor by 1 adds one more group of the other factor to the product. This is the same idea used to derive 17×24 from 17×23: add 17 to get 17×24."
+      }
+    ]
+  }
+]

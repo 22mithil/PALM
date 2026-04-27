@@ -1,0 +1,444 @@
+[
+  {
+    "chapter_id": 1,
+    "chapter_name": "We the Travellers — I",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["1-1", "1-2", "1-3", "1-4", "1-5", "1-6", "1-7", "1-8", "1-9", "1-10", "1-11"]
+  },
+  {
+    "section_id": "1-1",
+    "chapter_id": 1,
+    "order": 1,
+    "concept": "ten_thousand_place_value",
+    "title": "Reading and Writing Numbers Up to Ten Thousand",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "The Indian place value system uses the places Ones (O), Tens (T), Hundreds (H), Thousands (Th), and Ten Thousands (TTh). Each place is ten times the place to its right: 10 Ones = 1 Ten, 10 Tens = 1 Hundred, 10 Hundreds = 1 Thousand, and 10 Thousands = 1 Ten Thousand = 10,000. We use a comma to separate thousands from hundreds so large numbers are easier to read. Any number up to 10,000 can be written by placing the correct digit in each column of the place value chart.",
+    "examples": [
+      "1,380 = 1 Thousand + 3 Hundreds + 8 Tens + 0 Ones. In the place value chart: Th=1, H=3, T=8, O=0.",
+      "9,123 = 9 Thousands + 1 Hundred + 2 Tens + 3 Ones. In the place value chart: Th=9, H=1, T=2, O=3.",
+      "10,000 is written by placing a 1 in the TTh column and 0 in all other columns: TTh=1, Th=0, H=0, T=0, O=0. This is what we get when we add 1,000 nine times and then once more to 9,000."
+    ],
+    "common_misconceptions": [
+      "Students write 10,000 as '1,0000' with four zeros after the comma, confusing comma placement with the number of digits.",
+      "Students forget to write a zero as a placeholder — for example, writing 9,123 as '9,123' correctly but writing 9,003 as '9,3' by skipping the hundreds place.",
+      "Students think the comma changes the value of a number, when it is only a reading aid used after the thousands digit."
+    ],
+    "hint_progression": [
+      "Think about what happens each time you multiply by 10 as you move one place to the left on the chart.",
+      "Try filling in the TTh, Th, H, T, O columns one by one — how many of each kind of block make up your number?",
+      "Count the thousands in your number and place that digit in the Th column, then place the hundreds digit in H, tens in T, and ones in O. If any place has nothing, write 0 there as a placeholder."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A spacecraft travels a minimum of 28,000 km in an hour. Write 28,000 in the place value chart by filling in the TTh, Th, H, T, and O columns.",
+        "answer": "TTh=2, Th=8, H=0, T=0, O=0",
+        "explanation": "28,000 has 2 ten-thousands and 8 thousands, with nothing in the hundreds, tens, or ones places. Zeros must be written in H, T, and O as placeholders so the 2 and 8 stay in the correct columns."
+      },
+      {
+        "question": "What is the value of the digit 4 in the number 14,037?",
+        "answer": "4,000 (Four thousands)",
+        "explanation": "In 14,037, the digit 4 sits in the Thousands (Th) column. Its value is 4 × 1,000 = 4,000, not just 4. The place a digit sits in determines its value."
+      }
+    ]
+  },
+  {
+    "section_id": "1-2",
+    "chapter_id": 1,
+    "order": 2,
+    "concept": "reading_writing_numbers_beyond_10000",
+    "title": "Reading and Writing Numbers Beyond 10,000",
+    "difficulty": "intro",
+    "prerequisite_concepts": [
+      "ten_thousand_place_value"
+    ],
+    "explanation": "Numbers beyond 10,000 are written using the same TTh, Th, H, T, O place value chart, just with a digit greater than 1 in the TTh column. For example, 45,867 has 4 in the TTh place and 5 in the Th place, meaning forty-five thousands. We read such numbers by saying the ten-thousands and thousands together first, then hundreds, tens, and ones. A comma is placed after the ten-thousands and thousands digits to aid reading.",
+    "examples": [
+      "13,520 = 1 Ten Thousand + 3 Thousands + 5 Hundreds + 2 Tens + 0 Ones. We read this as 'Thirteen thousand five hundred twenty.'",
+      "20,000 = 2 Ten Thousands + 0 in all other places. We read this as 'Twenty thousand.' The token table shows two 10,000-blocks making this number.",
+      "45,867 = 4 Ten Thousands + 5 Thousands + 8 Hundreds + 6 Tens + 7 Ones. We read this as 'Forty-five thousand eight hundred sixty-seven.'"
+    ],
+    "common_misconceptions": [
+      "Students read 45,867 as 'four-five thousand eight hundred sixty-seven' instead of 'forty-five thousand,' treating each digit separately instead of combining the TTh and Th digits.",
+      "Students omit zeros in the middle of a number — for example, writing 'Ten thousand ten' as 10,10 instead of 10,010, forgetting the hundreds placeholder.",
+      "Students confuse the comma position, placing it after two digits (e.g., 1,3520) instead of after the full thousands group (13,520)."
+    ],
+    "hint_progression": [
+      "Look at how many ten-thousand blocks and thousand blocks are in your number — say those together first, like you would say 'forty-five' for 4 tens and 5 ones.",
+      "Write the TTh digit first, then the Th digit, then fill H, T, O — use 0 wherever a place is empty.",
+      "For 'Fifty-six thousand four hundred ninety-one': TTh=5, Th=6 (fifty-six thousands), H=4, T=9, O=1 — so the number is 56,491."
+    ],
+    "quiz_questions": [
+      {
+        "question": "The table in the chapter shows the number 11,214 in the place value chart (TTh=1, Th=1, H=2, T=1, O=4). Write its number name.",
+        "answer": "Eleven thousand two hundred fourteen",
+        "explanation": "TTh=1 and Th=1 together make eleven thousands. H=2 is two hundreds, T=1 is one ten, O=4 is four ones. Reading from left to right: eleven thousand two hundred fourteen."
+      },
+      {
+        "question": "Write the number for 'Fifty-six thousand four hundred ninety-one' using digits and a comma.",
+        "answer": "56,491",
+        "explanation": "Fifty-six thousand means TTh=5, Th=6. Four hundred means H=4. Ninety-one means T=9, O=1. Combining: 56,491. The comma separates the thousands group from the hundreds group."
+      }
+    ]
+  },
+  {
+    "section_id": "1-3",
+    "chapter_id": 1,
+    "order": 3,
+    "concept": "number_sequences_and_patterns",
+    "title": "Number Sequences and Patterns",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "ten_thousand_place_value",
+      "reading_writing_numbers_beyond_10000"
+    ],
+    "explanation": "A number sequence follows a rule — each number is obtained from the previous one by adding or subtracting a fixed amount. To find the rule, look at two consecutive numbers and calculate the difference. Once you know the rule, you can fill in missing terms by repeatedly applying it. Sequences can count up by ones, tens, hundreds, thousands, or even by mixed amounts like 1,050.",
+    "examples": [
+      "In the sequence 10,100 → 10,200 → 10,300 → ?, the rule is 'add 100.' The next term is 10,400, and continuing gives 10,500, 10,600, 10,700, 10,800, 10,900.",
+      "In the sequence 10,794 → 10,796 → 10,798 → ?, the rule is 'add 2.' The next term is 10,800, then 10,802, 10,804, and so on.",
+      "In the sequence 73,005 → 72,004 → ?, the rule is 'subtract 1,001' (both the thousands digit and the ones digit decrease by 1). The next term is 71,003."
+    ],
+    "common_misconceptions": [
+      "Students look only at the ones digit to find the rule, missing that the rule may affect multiple places at once — for example, in 5,501 → 6,401 → 7,301, the hundreds decrease by 1 while the ten-thousands increase by 1.",
+      "Students assume all sequences go upward and do not consider that a sequence may count down, as in 73,005 → 72,004.",
+      "Students calculate the rule once but then apply it incorrectly after crossing a place value boundary — for example, after 10,998 → 10,999, they write 10,1000 instead of 11,000."
+    ],
+    "hint_progression": [
+      "Look carefully at what changes between the first and second number — which digits change and by how much?",
+      "Subtract the smaller number from the larger one (or vice versa if counting down) to find the exact rule, then apply that same rule to each term.",
+      "For 10,105 → 10,125 → ?, the difference is 10,125 − 10,105 = 20. So the rule is 'add 20.' The next term is 10,125 + 20 = 10,145."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Fill in the next two terms of this sequence: 82,350 → 83,350 → ___ → ___",
+        "answer": "84,350 → 85,350",
+        "explanation": "83,350 − 82,350 = 1,000, so the rule is 'add 1,000.' Adding 1,000 to 83,350 gives 84,350, and adding 1,000 again gives 85,350."
+      },
+      {
+        "question": "Sanju sees a sequence on a train window: 1,050 → ___ → 3,150 → 4,200. What is the missing number?",
+        "answer": "2,100",
+        "explanation": "4,200 − 3,150 = 1,050, so the rule is 'add 1,050.' Starting from 1,050 and adding 1,050 gives 2,100. Checking: 2,100 + 1,050 = 3,150. Correct."
+      }
+    ]
+  },
+  {
+    "section_id": "1-4",
+    "chapter_id": 1,
+    "order": 4,
+    "concept": "comparing_and_ordering_large_numbers",
+    "title": "Comparing and Ordering Large Numbers",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "ten_thousand_place_value",
+      "reading_writing_numbers_beyond_10000"
+    ],
+    "explanation": "To compare two large numbers, first compare the number of digits — a number with more digits is always greater. If both have the same number of digits, compare place by place from left to right: the number with the larger digit in the leftmost differing place is greater. A number line can also help visualise the order of numbers. Numbers can be arranged in increasing order (smallest to largest) or decreasing order (largest to smallest).",
+    "examples": [
+      "9,990 vs 49,014: 9,990 has 4 digits and 49,014 has 5 digits. The 5-digit number is always greater, so 49,014 > 9,990 — the student who said otherwise was wrong.",
+      "Comparing 34,407 and 34,740: both have 5 digits. TTh=3, Th=4 are the same in both. At H: 4 vs 7 — since 7 > 4, we get 34,740 > 34,407.",
+      "Arranging 40,347 | 34,407 | 40,473 | 34,740 | 73,404 | 74,430 | 47,340 | 18,926 in increasing order: 18,926 < 34,407 < 34,740 < 40,347 < 40,473 < 47,340 < 73,404 < 74,430."
+    ],
+    "common_misconceptions": [
+      "Students compare individual digits without regard to place value — a student in the chapter claimed 9,990 > 49,014 because '9 > 4,' ignoring that 49,014 has a ten-thousands digit while 9,990 does not.",
+      "Students compare right-to-left (starting from ones) instead of left-to-right, which gives wrong results when the numbers differ in a high place.",
+      "When ordering a list, students swap only adjacent pairs and stop early, not completing the full sort to get all numbers in the correct sequence."
+    ],
+    "hint_progression": [
+      "Before looking at any individual digit, count how many digits each number has — fewer digits always means a smaller number.",
+      "If both numbers have the same count of digits, line them up in a place value chart and compare column by column from left to right until you find a column where the digits differ.",
+      "For Ravi's car (56,987 km) vs Sheetal's car (67,543 km): both have 5 digits. TTh: 5 vs 6 — since 6 > 5, Sheetal's car has been driven more (67,543 > 56,987)."
+    ],
+    "quiz_questions": [
+      {
+        "question": "The prices of electric bikes are: ₹90,000 | ₹89,999 | ₹94,983 | ₹49,900 | ₹93,743 | ₹39,999. Arrange them in ascending (increasing) order.",
+        "answer": "₹39,999 < ₹49,900 < ₹89,999 < ₹90,000 < ₹93,743 < ₹94,983",
+        "explanation": "All have 5 digits. Compare TTh first: 3 < 4 < 8 = 8 = 9 = 9. For the four numbers starting with 8 or 9, compare further place by place. ₹89,999 (TTh=8) < ₹90,000 (TTh=9). Among the three with TTh=9: compare Th: 0 < 3 < 4, giving ₹90,000 < ₹93,743 < ₹94,983."
+      },
+      {
+        "question": "Town 6 has a population of 66,540 and Town 1 has 65,232. Which town has the larger population? Show your comparison step by step.",
+        "answer": "Town 6 (66,540 > 65,232)",
+        "explanation": "Both numbers have 5 digits. TTh: 6 = 6. Th: 6 vs 5 — since 6 > 5, Town 6's population (66,540) is greater than Town 1's (65,232). We do not need to compare further."
+      }
+    ]
+  },
+  {
+    "section_id": "1-5",
+    "chapter_id": 1,
+    "order": 5,
+    "concept": "digit_swap_place_value_reasoning",
+    "title": "Digit Swap: Changing a Number by Interchanging Digits",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "ten_thousand_place_value",
+      "comparing_and_ordering_large_numbers"
+    ],
+    "explanation": "Swapping two digits in a number moves their values to each other's place, which can make the number much larger or much smaller depending on which digits you swap and which places they occupy. To make a number as large as possible, move the largest digit to the highest place. To make it as small as possible, move the smallest digit to the highest place. This exercise builds deep understanding of how place value controls the size of a number.",
+    "examples": [
+      "In 1,478, swapping the digits 7 and 4 gives 1,748. The 7 moves from the tens place to the hundreds place, increasing the value by 300 (700 − 400 = 300), which makes 1,748 > 1,478.",
+      "In 10,593, to get a number between 11,000 and 15,000, swap the 0 in the thousands place with the 1 in the ten-thousands place to get 11,093 — wait, we need to swap digits within the number. Swapping the 0 (Th) and 5 (H) gives 15,093, which is between 11,000 and 15,000? No — swapping 0 (Th) and 1 (TTh) gives 01,593 = 1,593 which is too small. Swap the 5 (H) and the 0 (Th) to get 10,593 → 15,093. 15,093 falls just at the boundary; swapping 1 (TTh) and 5 (H) gives 50,193, which is more than 35,000.",
+      "In 48,247, to make the number as large as possible, move the largest digit (8) to the highest place (TTh): swap 4 (TTh) and 8 (Th) to get 84,247. To make it as small as possible, swap 4 (TTh) with the smallest digit available in another place, which is 2 (H), giving 28,447."
+    ],
+    "common_misconceptions": [
+      "Students think swapping any two digits always increases the number — in fact, moving a smaller digit to a higher place decreases the number.",
+      "Students swap more than two digits at once, not noticing that the task asks to interchange exactly two digits.",
+      "Students pick the digit to swap based only on its face value (e.g., always picking the largest digit) without checking which place it currently occupies and which place it will move to."
+    ],
+    "hint_progression": [
+      "Think about which place has the most power — the ten-thousands place makes a number much bigger or smaller than the ones place.",
+      "To make a number larger, find a big digit sitting in a low-value place and swap it with a small digit in a high-value place.",
+      "For 48,247 to be as big as possible: the TTh place holds 4 and the Th place holds 8. Swapping them gives 84,247. Since 8 > 4, putting 8 in the ten-thousands place gives a larger result."
+    ],
+    "quiz_questions": [
+      {
+        "question": "In the number 10,593, interchange two digits to make a number more than 35,000. Write the new number and state which digits you swapped.",
+        "answer": "Swap 1 (TTh) and 5 (H) to get 50,193 (or swap 1 and 9 to get 90,513 — any valid answer where the result exceeds 35,000).",
+        "explanation": "To get a number greater than 35,000, a digit of 4 or more must be placed in the TTh position. In 10,593, the digits available are 1, 0, 5, 9, 3. Swapping 1 (TTh) with 5 (H) puts a 5 in the TTh place, giving 50,193 > 35,000. Swapping 1 (TTh) with 9 (T) gives 90,513 > 35,000."
+      },
+      {
+        "question": "In 1,478, which single digit swap gives the largest possible number? What is that number?",
+        "answer": "Swap 1 (Th) and 8 (O) to get 8,471.",
+        "explanation": "Moving the largest digit (8) from the ones place to the thousands place gives 8,471. Alternatively, swapping 1 and 7 gives 7,418, and swapping 4 and 8 gives 1,748. Since 8,471 > 7,418 > 1,748, the swap of 1 and 8 produces the largest result."
+      }
+    ]
+  },
+  {
+    "section_id": "1-6",
+    "chapter_id": 1,
+    "order": 6,
+    "concept": "rounding_to_nearest_ten_hundred_thousand",
+    "title": "Nearest Tens, Hundreds, and Thousands (Rounding)",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "ten_thousand_place_value",
+      "comparing_and_ordering_large_numbers"
+    ],
+    "explanation": "Rounding a number means finding the nearest ten, hundred, or thousand to that number. To round to the nearest ten, look at which multiple of ten the number is closest to on the number line. If the number is exactly halfway between two multiples (e.g., ends in 5), we round up. The same logic applies to rounding to the nearest hundred (look at the nearest hundreds) and the nearest thousand (look at the nearest thousands).",
+    "examples": [
+      "The rabbit is at 2,346. Its food is at the neighbouring tens: 2,340 and 2,350. Since 2,350 − 2,346 = 4 and 2,346 − 2,340 = 6, the rabbit needs only 4 jumps to reach 2,350. So 2,350 is the nearest ten of 2,346.",
+      "The rabbit is at 2,346. Its food is at the neighbouring hundreds: 2,300 and 2,400. Since 2,346 − 2,300 = 46 and 2,400 − 2,346 = 54, the nearest hundred is 2,300 (it takes only 46 jumps, which is fewer than 54).",
+      "The rabbit is at 2,346. Its food is at the neighbouring thousands: 2,000 and 3,000. Since 2,346 − 2,000 = 346 and 3,000 − 2,346 = 654, the nearest thousand is 2,000."
+    ],
+    "common_misconceptions": [
+      "Students round to the nearest ten by looking at the ones digit alone and forgetting to check which multiple of ten the number is actually closest to on the number line.",
+      "Students always round down when the digit is less than 5, not realising they must compare actual distances — for example, 2,346 rounded to the nearest hundred is 2,300, not 2,400, because 46 < 54.",
+      "Students confuse the level of rounding: they round 3,176 to the nearest thousand and get 3,000, but then also say the nearest hundred is 3,000 — failing to see that rounding to the nearest hundred gives 3,200."
+    ],
+    "hint_progression": [
+      "Place the number on a number line between its two neighbours (the tens on either side, or hundreds, or thousands) and see which neighbour the number is closer to.",
+      "Calculate the distance from your number to the lower neighbour and to the upper neighbour separately, then pick the smaller distance.",
+      "For 5,789 rounded to the nearest hundred: the neighbours are 5,700 and 5,800. Distance to 5,700 is 89; distance to 5,800 is 11. Since 11 < 89, the nearest hundred is 5,800."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Fill in the table: What is the nearest ten, nearest hundred, and nearest thousand of 4,017?",
+        "answer": "Nearest ten: 4,020 | Nearest hundred: 4,000 | Nearest thousand: 4,000",
+        "explanation": "For the nearest ten: 4,017 is between 4,010 and 4,020. Distance to 4,010 is 7; distance to 4,020 is 3. So nearest ten is 4,020. For the nearest hundred: 4,017 is between 4,000 and 4,100. Distance to 4,000 is 17; distance to 4,100 is 83. So nearest hundred is 4,000. For the nearest thousand: 4,017 is between 4,000 and 5,000. Distance to 4,000 is 17; distance to 5,000 is 983. So nearest thousand is 4,000."
+      },
+      {
+        "question": "Vijay rounded a number to the nearest hundred and got 7,000. Suma rounded the same number to the nearest thousand and also got 7,000. Which of these could be the number: 7,126 | 7,835 | 7,030 | 6,999?",
+        "answer": "7,030 and 6,999",
+        "explanation": "For a number to round to 7,000 to the nearest hundred, it must be between 6,950 and 7,049. For it to also round to 7,000 to the nearest thousand, it must be between 6,500 and 7,499. 7,030 satisfies both (nearest hundred: 7,000; nearest thousand: 7,000). 6,999 satisfies both (nearest hundred: 7,000; nearest thousand: 7,000). 7,126 rounds to 7,100 (nearest hundred) — does not qualify. 7,835 rounds to 7,800 (nearest hundred) — does not qualify."
+      }
+    ]
+  },
+  {
+    "section_id": "1-7",
+    "chapter_id": 1,
+    "order": 7,
+    "concept": "expanded_form_of_numbers",
+    "title": "Expanded Form of Numbers",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "ten_thousand_place_value",
+      "reading_writing_numbers_beyond_10000"
+    ],
+    "explanation": "The expanded form of a number breaks it into the sum of the values of its individual digits. Each digit is multiplied by the value of its place: ones stay as they are, tens are multiplied by 10, hundreds by 100, thousands by 1,000, and ten-thousands by 10,000. Writing numbers in expanded form makes place value explicit and visible. For example, 783 = 700 + 80 + 3.",
+    "examples": [
+      "783 = 700 + 80 + 3. The 7 is in the hundreds place (7 × 100 = 700), the 8 is in the tens place (8 × 10 = 80), and 3 is in the ones place.",
+      "10,304 = 10,000 + 300 + 4. The 1 is in the TTh place (10,000), the 0 in Th contributes nothing, the 3 is in H (300), 0 in T contributes nothing, and 4 is in O.",
+      "70,405 = 70,000 + 400 + 5. The 7 is in TTh (70,000), 0 in Th, 4 in H (400), 0 in T, and 5 in O."
+    ],
+    "common_misconceptions": [
+      "Students include zero-value terms in the expanded form — for example, writing 10,304 = 10,000 + 0 + 300 + 0 + 4, which is not wrong but clutters the form with unnecessary zeros.",
+      "Students write the digit value instead of the place value — for example, writing 783 = 7 + 8 + 3 instead of 700 + 80 + 3.",
+      "Students forget that 0 in the middle of a number (e.g., 8,062) means that place contributes 0 to the sum, so 8,062 = 8,000 + 60 + 2 (not 8,000 + 600 + 2)."
+    ],
+    "hint_progression": [
+      "Look at each digit and ask: which place is it sitting in? That place tells you how many zeros to add after the digit.",
+      "Write the value contributed by each digit separately — thousands digit × 1,000, hundreds digit × 100, and so on — then add a '+' between them.",
+      "For 23,004: the 2 is in TTh (2 × 10,000 = 20,000), 3 is in Th (3 × 1,000 = 3,000), 0 and 0 contribute nothing, and 4 is in O (4). So 23,004 = 20,000 + 3,000 + 4."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Write 9,980 in expanded form.",
+        "answer": "9,000 + 900 + 80",
+        "explanation": "9 is in the Th place (9 × 1,000 = 9,000), 9 is in the H place (9 × 100 = 900), 8 is in the T place (8 × 10 = 80), and 0 is in the O place (contributes nothing). So 9,980 = 9,000 + 900 + 80."
+      },
+      {
+        "question": "Mira wrote the expanded form of 8,062 as '8,000 + 600 + 2.' Is she correct? If not, write the correct expanded form.",
+        "answer": "No. The correct expanded form is 8,000 + 60 + 2.",
+        "explanation": "In 8,062, the digit 6 is in the tens place, not the hundreds place. The hundreds place has a 0, contributing nothing. So 6 × 10 = 60, not 600. The correct expanded form is 8,000 + 60 + 2."
+      }
+    ]
+  },
+  {
+    "section_id": "1-8",
+    "chapter_id": 1,
+    "order": 8,
+    "concept": "flexible_regrouping_of_place_values",
+    "title": "Flexible Regrouping: Writing Numbers in Alternative Place Value Groupings",
+    "difficulty": "advanced",
+    "prerequisite_concepts": [
+      "ten_thousand_place_value",
+      "expanded_form_of_numbers"
+    ],
+    "explanation": "A number can be expressed in more than one way by regrouping its place values. For example, 100 tens is the same as 1,000, so 983 can be written as '90 Tens + 83 Ones' because 90 tens = 900, and 900 + 83 = 983. Similarly, if you use more hundreds than usual, you compensate with fewer thousands. This flexible thinking about groupings deepens understanding of place value and is useful in mental arithmetic.",
+    "examples": [
+      "983 = 90 Tens + 83 Ones. Explanation: 90 Tens = 900, and 900 + 83 = 983. The note in the textbook points out that '90 Tens is 900, so remaining 83 will be Ones.'",
+      "607 = 4 Hundreds + 207 Ones. Because 4 × 100 = 400, and 607 − 400 = 207 ones remaining.",
+      "5,621 = 4 Thousands + 16 Hundreds + 2 Tens + 1 One. Because 4,000 + 1,600 + 20 + 1 = 5,621; here we used 16 hundreds instead of the usual 6, because 1,600 = 1 extra thousand + 6 hundreds."
+    ],
+    "common_misconceptions": [
+      "Students treat each regrouped unit independently and lose track of the total — for example, they write '4 Thousands + 16 Hundreds' and then add tens and ones from the original without checking that the total still equals the original number.",
+      "Students confuse 'how many Tens are in 983' (which is 98 tens with 3 ones left over) with 'write 983 using 90 Tens,' which requires a specific non-standard grouping that leaves more ones.",
+      "Students think only one expanded or regrouped form is correct and reject alternative valid groupings."
+    ],
+    "hint_progression": [
+      "Remember that 10 ones = 1 ten, 10 tens = 1 hundred, and 10 hundreds = 1 thousand — you can 'trade' between groups in any direction.",
+      "Start from the grouping you are given (e.g., '4 Thousands') and calculate its value, then subtract from the original number to find what the remaining groups must total.",
+      "For '68 = __ Tens + 18 Ones': 18 Ones = 18. So 68 − 18 = 50 is left, and 50 = 5 Tens. Answer: 5 Tens + 18 Ones."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Fill in the blank: 37,608 = ___ Ten Thousands + 17 Thousands + ___ Hundreds + 8 Ones.",
+        "answer": "2 Ten Thousands + 17 Thousands + 6 Hundreds + 8 Ones",
+        "explanation": "17 Thousands = 17,000. 37,608 − 17,000 = 20,608. 20,608 = 2 Ten Thousands + 608. 608 = 6 Hundreds + 0 Tens + 8 Ones. So the answer is 2 Ten Thousands + 17 Thousands + 6 Hundreds + 8 Ones. Verify: 20,000 + 17,000 + 600 + 8 = 37,608. ✓"
+      },
+      {
+        "question": "Fill in the blank: 7,069 = ___ Thousand + 20 Hundreds + ___ Ones.",
+        "answer": "5 Thousand + 20 Hundreds + 69 Ones",
+        "explanation": "20 Hundreds = 2,000. So we need: ? Thousand + 2,000 + ? Ones = 7,069. Remaining after 2,000: 5,069. 5,069 = 5 Thousands + 69 ones. So: 5 Thousand + 20 Hundreds + 69 Ones. Verify: 5,000 + 2,000 + 69 = 7,069. ✓"
+      }
+    ]
+  },
+  {
+    "section_id": "1-9",
+    "chapter_id": 1,
+    "order": 9,
+    "concept": "counting_units_within_large_amounts",
+    "title": "How Many Tens, Hundreds, or Thousands Are in a Large Number?",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": [
+      "ten_thousand_place_value",
+      "expanded_form_of_numbers",
+      "flexible_regrouping_of_place_values"
+    ],
+    "explanation": "Given a large number, you can find how many tens, hundreds, or thousands fit into it by dividing. For example, to find how many ₹10 notes make up ₹7,934, you calculate 7,934 ÷ 10 = 793 notes (with ₹4 left over). Similarly, how many ₹100 notes: 7,934 ÷ 100 = 79 notes (with ₹34 left over). This concept directly links to place value — the number of tens in a number is everything except the ones digit.",
+    "examples": [
+      "How many ₹10 notes are there in ₹7,934? 7,934 ÷ 10 = 793 notes (remainder ₹4). This means 793 ten-rupee notes and 4 rupees leftover.",
+      "How many ₹100 notes are there in ₹7,934? 7,934 ÷ 100 = 79 notes (remainder ₹34). The textbook notes that '3 Tens is 30, 90 Tens is 900, and 700 Tens is 7,000' to illustrate how groupings work.",
+      "How many ₹10 notes are there in ₹65,342? 65,342 ÷ 10 = 6,534 notes (remainder ₹2). You can verify: 6,534 × 10 = 65,340, and 65,340 + 2 = 65,342."
+    ],
+    "common_misconceptions": [
+      "Students confuse 'how many hundreds are in 7,934' (answer: 79) with 'what is the hundreds digit of 7,934' (answer: 9) — these are different questions.",
+      "Students ignore remainders — they say there are 79 ₹100 notes in ₹7,934 but forget that ₹34 remains, meaning you cannot make a whole additional note.",
+      "Students do not notice the hint connection: the number of ₹500 notes in ₹7,934 is found by halving the number of thousands (7.934 ÷ 500), not a simple digit-reading task."
+    ],
+    "hint_progression": [
+      "Think about what you are grouping by — if grouping by ₹10, ask how many groups of 10 fit into the total.",
+      "Drop (or ignore) the rightmost digit(s) to find how many of the larger unit fit — for ₹100 notes, drop the last two digits of the total amount.",
+      "For ₹65,342 and ₹100 notes: drop the last two digits (42), leaving 653. So there are 653 notes of ₹100 in ₹65,342 (with ₹42 remaining). Check: 653 × 100 = 65,300, and 65,300 + 42 = 65,342. ✓"
+    ],
+    "quiz_questions": [
+      {
+        "question": "How many notes of ₹100 are there in ₹65,342?",
+        "answer": "653 notes (with ₹42 remaining)",
+        "explanation": "65,342 ÷ 100 = 653 with a remainder of 42. This means 653 hundred-rupee notes account for ₹65,300, and ₹42 are left over — not enough to make another ₹100 note."
+      },
+      {
+        "question": "How many thousands are in 7,934? Use your answer to figure out how many ₹500 notes are in ₹7,934.",
+        "answer": "7 thousands in 7,934. There are 15 notes of ₹500 (with ₹434 remaining).",
+        "explanation": "7,934 has 7 full thousands (7 × 1,000 = 7,000). For ₹500 notes: 7,934 ÷ 500 = 15 (with remainder 7,934 − 7,500 = 434). So 15 notes of ₹500 and ₹434 left over."
+      }
+    ]
+  },
+  {
+    "section_id": "1-10",
+    "chapter_id": 1,
+    "order": 10,
+    "concept": "large_numbers_in_real_world_contexts",
+    "title": "Finding Large Numbers Around Us",
+    "difficulty": "intro",
+    "prerequisite_concepts": [
+      "reading_writing_numbers_beyond_10000"
+    ],
+    "explanation": "Large numbers — from 4-digit to 5-digit — appear all around us in real life. Distances covered by different vehicles, prices of vehicles, populations of towns, and even word counts in books are all examples of real-world large numbers. Recognising the range of a number (whether it is in the thousands or ten-thousands) helps us make sense of the world. For example, a book with 200 pages and 50 words per page has about 10,000 words.",
+    "examples": [
+      "In one hour, a cyclist can cover 12–20 km, a train can travel 40–160 km, an aircraft can cover 750–920 km, and a spacecraft travels a minimum of 28,000 km — illustrating how distances range from 2-digit to 5-digit numbers.",
+      "A school has 461 girls and 439 boys — a total of 900 students. Fitting 900 people into vehicles that hold 10 each (tempo traveller) requires 90 vehicles, while vehicles that hold 180 each (aeroplane) would need only 5.",
+      "A book with 200 pages and 50 words per page has about 200 × 50 = 10,000 words — a 5-digit number found in an everyday object."
+    ],
+    "common_misconceptions": [
+      "Students think 5-digit numbers only appear in extraordinary situations like space travel, missing that everyday things like town populations and vehicle prices are also commonly 5-digit numbers.",
+      "When calculating the number of vehicles needed, students divide and round down, forgetting that if there are any remaining passengers, one more vehicle is needed (you must round up).",
+      "Students confuse distance units and assume all travel distances are in the same range, not realising that spacecraft distances are tens of thousands of kilometres while walking covers single kilometres."
+    ],
+    "hint_progression": [
+      "Look around your classroom or school — count tiles, pages of books, or students — and estimate whether the count would be a 3-digit, 4-digit, or 5-digit number.",
+      "For vehicle problems, divide the total number of students by the vehicle capacity, then check if there is any remainder — if so, add one more vehicle.",
+      "For the cyclist question: if she covers 15 km in 1 hour, in 4 hours she covers 15 × 4 = 60 km. Think of it as repeated addition: 15 + 15 + 15 + 15."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A school has 461 girls and 439 boys. How many tempo travellers (capacity: 10 people each) are needed to take all of them on a trip?",
+        "answer": "90 tempo travellers",
+        "explanation": "Total students = 461 + 439 = 900. Number of tempo travellers = 900 ÷ 10 = 90 exactly. Since 90 × 10 = 900 with no remainder, exactly 90 vehicles are needed."
+      },
+      {
+        "question": "A cyclist covers 15 km in one hour. How much distance will she cover in 4 hours at the same speed?",
+        "answer": "60 km",
+        "explanation": "In 4 hours she covers 15 × 4 = 60 km. This is like adding 15 four times: 15 + 15 + 15 + 15 = 60 km."
+      }
+    ]
+  },
+  {
+    "section_id": "1-11",
+    "chapter_id": 1,
+    "order": 11,
+    "concept": "logical_reasoning_puzzles",
+    "title": "Pastime Mathematics: Logical Reasoning with Puzzles",
+    "difficulty": "advanced",
+    "prerequisite_concepts": [
+      "comparing_and_ordering_large_numbers"
+    ],
+    "explanation": "Mathematical reasoning involves thinking logically and strategically, not just calculating. Puzzles like the river crossing puzzle (boatman with a lion, sheep, and grass) require careful planning to avoid dangerous combinations. The pile of pebbles game requires finding a winning strategy by exploring small cases first. Mira's digit puzzle reveals that subtracting a 2-digit number from its reverse always gives a multiple of 9, and that the difference equals 9 times the difference between the two digits.",
+    "examples": [
+      "River crossing puzzle: The boatman must first take the sheep across (leaving lion and grass, which are safe together). He returns, takes the lion across, brings the sheep back, leaves the sheep, takes the grass across, returns, and finally takes the sheep. This takes 7 trips minimum.",
+      "Mira's digit puzzle with digits 3 and 7: Form 73 and 37, subtract: 73 − 37 = 36. Use digits 3 and 6: form 63 and 36, subtract: 63 − 36 = 27. Continue: 72 − 27 = 45, then 54 − 45 = 9. The answer is always 9.",
+      "In Mira's table: digits 3 and 7 have a digit difference of 4, and the number difference is 36 = 9 × 4. Digits 1 and 9 have a digit difference of 8, and the number difference is 72 = 9 × 8. The number difference is always 9 times the digit difference."
+    ],
+    "common_misconceptions": [
+      "In the river crossing puzzle, students leave the sheep and lion together (or sheep and grass together) at some step, not realising these combinations are dangerous and must never occur unattended.",
+      "In the digit puzzle, students think the final answer depends on which digits they chose, not realising the result is always 9 regardless of the starting digits.",
+      "Students confuse 'difference between digits' with 'difference between numbers formed by the digits' — Mira's table shows these are related by a factor of 9, which students miss without carefully examining the pattern."
+    ],
+    "hint_progression": [
+      "For the river puzzle, focus on what dangerous pairs must never be left alone — then plan your moves to avoid those combinations at every step.",
+      "For Mira's digit puzzle, try the steps with a completely different pair of digits (say 2 and 5) and see if you always end up with 9.",
+      "In Mira's table, look at the digit differences (column 2) and the number differences (column 3) together — try dividing the number difference by the digit difference each time. What do you always get?"
+    ],
+    "quiz_questions": [
+      {
+        "question": "Sanju and Mira play Mira's digit puzzle with digits 2 and 8. What is the first difference they calculate, and what will the final single-digit result be?",
+        "answer": "First difference: 82 − 28 = 54. Final result: 9.",
+        "explanation": "Form 82 and 28 (larger minus smaller): 82 − 28 = 54. Next: digits are 5 and 4; form 54 and 45: 54 − 45 = 9. Since 9 is already a single digit, we stop. The digit difference is 8 − 2 = 6, and the number difference is 54 = 9 × 6, confirming Mira's pattern. The final answer is always 9."
+      },
+      {
+        "question": "In the King's Horses puzzle, the king's caretaker arranged 19 horses in a square stable so each side showed 5 horses. What was the trick, and why was the king's count of '5 × 4 = 20' wrong?",
+        "answer": "The corner horses are shared between two sides, so they are counted twice. The actual count is 4 × 5 − 4 corners = 16 (not 20), or the arrangement uses 19 horses not 20.",
+        "explanation": "In a square arrangement, the 4 corner positions are each counted by two sides. If each side has 5 horses and the corners are shared, the total is 4 × 5 − 4 = 16. But the caretaker's arrangement can fit 19 horses with 5 on each side by placing more horses at corners — the king's error was multiplying 5 × 4 directly, which double-counts the corners. The caretaker exploited this counting error."
+      }
+    ]
+  }
+]

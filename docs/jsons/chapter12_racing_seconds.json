@@ -1,0 +1,231 @@
+[
+  {
+    "chapter_id": 12,
+    "chapter_name": "Racing Seconds",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["12-1", "12-2", "12-3", "12-4", "12-5", "12-6"]
+  },
+  {
+    "section_id": "12-1",
+    "chapter_id": 12,
+    "order": 1,
+    "concept": "reading_elapsed_time",
+    "title": "Reading Time and Finding Elapsed Time",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "Elapsed time is how much time passes between a start time and an end time. To find elapsed time, look at the start clock and the end clock and count how many hours and minutes have passed. For example, if Raghav started yoga at one time and finished at another, the difference between those two times is the elapsed time. You can count on from the start time to reach the end time to find how long something took.",
+    "examples": [
+      "Raghav started practising yoga in the morning and finished some time later — by reading the two clocks showing the start and end positions of the hands, you can count how many minutes passed between them.",
+      "From 01:15 p.m. to 01:42 p.m., you count on 27 minutes because 15 + 27 = 42, so the elapsed time is 27 minutes.",
+      "From 09:15 a.m. to 11:30 a.m., you first count 45 minutes to reach 10:00 a.m., then 1 more hour to reach 11:00 a.m., then 30 more minutes — giving a total elapsed time of 2 hours 15 minutes."
+    ],
+    "common_misconceptions": [
+      "Students subtract the digits of the start time from the end time directly (e.g., 11:30 minus 09:15 as plain subtraction) without accounting for the fact that there are 60 minutes in an hour, not 100.",
+      "Students confuse the start time and end time, subtracting the larger number from the smaller and getting a negative or wrong result instead of counting forward from start to end.",
+      "When the minutes of the end time are smaller than the start time's minutes (e.g., 03:18 to 08:18), students may try to borrow incorrectly instead of noticing the minutes are the same and only the hours differ."
+    ],
+    "hint_progression": [
+      "Think about where the clock hands were at the beginning and where they ended up — what journey did they take?",
+      "Try counting forward from the start time in steps: first jump to the next full hour, then count the remaining hours, then add any extra minutes at the end.",
+      "For 01:15 p.m. to 01:42 p.m.: both times are within the same hour, so you only need to find the difference in minutes: 42 − 15 = ___."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Raghav, Rani, and Ritu each painted a picture. Raghav took 1 hour 20 minutes, Rani took 2 hours 10 minutes, and Ritu took 1 hour 35 minutes. Who took the longest time and who took the least time?",
+        "answer": "Rani took the longest time (2 hours 10 minutes) and Raghav took the least time (1 hour 20 minutes).",
+        "explanation": "Comparing mixed units: 2 hours 10 minutes is the largest because 2 hours is already more than 1 hour. Between Raghav's 1 hour 20 minutes and Ritu's 1 hour 35 minutes, both have 1 hour, so compare the minutes: 20 < 35, making Raghav's the smallest."
+      },
+      {
+        "question": "How much time has elapsed from 03:18 p.m. to 08:18 p.m.? Write your answer in hours.",
+        "answer": "5 hours",
+        "explanation": "The minutes are exactly the same (18 minutes) in both times, so only the hours change. Counting from 3 to 8 gives exactly 5 hours. No extra minutes need to be added or subtracted."
+      }
+    ]
+  },
+  {
+    "section_id": "12-2",
+    "chapter_id": 12,
+    "order": 2,
+    "concept": "12_hour_and_24_hour_clock",
+    "title": "12-Hour and 24-Hour Clock Formats",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["reading_elapsed_time"],
+    "explanation": "Time can be written in two formats: the 12-hour format uses a.m. (before noon) and p.m. (after noon), while the 24-hour format runs from 00:00 to 23:59 without using a.m. or p.m. For a.m. times, the 24-hour number is the same as the 12-hour number. For p.m. times, add 12 to the hour to get the 24-hour format (for example, 02:30 p.m. becomes 14:30 hours).",
+    "examples": [
+      "05:30 a.m. in 12-hour format is the same as 05:30 hours in 24-hour format, because it is in the morning and no adjustment is needed.",
+      "02:30 p.m. becomes 14:30 hours in 24-hour format because 2 + 12 = 14, and the minutes stay the same.",
+      "09:35 p.m. becomes 21:35 hours in 24-hour format because 9 + 12 = 21."
+    ],
+    "common_misconceptions": [
+      "Students add 12 to a.m. times as well, so they incorrectly convert 05:30 a.m. to 17:30 hours instead of keeping it as 05:30 hours.",
+      "Students forget to add 12 to p.m. hours and write 05:30 p.m. as 05:30 hours instead of 17:30 hours.",
+      "Students confuse 12:00 p.m. (noon) — which stays as 12:00 hours — and 12:00 a.m. (midnight), which becomes 00:00 hours in 24-hour format, and mix them up."
+    ],
+    "hint_progression": [
+      "Think about whether the time is before noon (morning) or after noon (afternoon/evening) — that tells you which rule to use.",
+      "For p.m. times, there is a simple rule: add 12 to the hour number and keep the minutes exactly the same.",
+      "For 05:30 p.m.: take the hour 5, add 12 to get 17, keep the minutes as 30 — so the answer is 17:30 hours. Now try 09:35 p.m. the same way."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Fill in the blank: 08:35 hours in 24-hour format is __________ in 12-hour format.",
+        "answer": "08:35 a.m.",
+        "explanation": "08:35 hours is less than 12:00, so it falls in the morning. Morning times in 24-hour format are the same as a.m. times in 12-hour format, so 08:35 hours = 08:35 a.m. No subtraction is needed."
+      },
+      {
+        "question": "Convert 07:30 p.m. to 24-hour format.",
+        "answer": "19:30 hours",
+        "explanation": "For any p.m. time, add 12 to the hour: 7 + 12 = 19. The minutes remain 30. So 07:30 p.m. = 19:30 hours. This format is used on digital clocks, railway timetables, and hospital schedules so there is no confusion between a.m. and p.m."
+      }
+    ]
+  },
+  {
+    "section_id": "12-3",
+    "chapter_id": 12,
+    "order": 3,
+    "concept": "seconds_as_unit_of_time",
+    "title": "Seconds: A Precise Unit for Short Durations",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["reading_elapsed_time"],
+    "explanation": "A second is a very small unit of time. There are 60 seconds in 1 minute, and the seconds hand on a clock completes one full round in exactly 1 minute. Seconds are used when we need to measure very short events precisely — like in a race where Akira, Sunita, and Mary each finished in about 1 minute but with tiny differences shown in seconds. Activities like blinking eyes or snapping fingers take only seconds, while activities like making a phone call or melting an ice cube take minutes.",
+    "examples": [
+      "In the school walking race, Akira finished in 1 minute 55 seconds, Sunita in 1 minute 56 seconds, and Mary in 1 minute 57 seconds — without seconds, we could not tell who won because all three took about 1 minute.",
+      "Raghu took 20 seconds to read a sentence in his book — the seconds hand on the clock moved from the 12 to the 4 (20 small marks), which is less than one full round.",
+      "Raghav took 60 seconds to walk from his home to the garden — this is exactly 1 full round of the seconds hand, which equals 1 minute."
+    ],
+    "common_misconceptions": [
+      "Students think seconds and minutes are interchangeable for short tasks — for example, they may say washing hands takes seconds when it actually takes closer to a minute, or vice versa.",
+      "Students believe the seconds hand and the minute hand move at the same speed; in reality, the seconds hand completes 60 full rounds for every single move of the minute hand.",
+      "Students read the seconds hand as if it points to the same numbers as the hours (1–12) rather than counting the small tick marks around the clock face that represent seconds."
+    ],
+    "hint_progression": [
+      "Think about how quickly the activity happens — could you blink and miss it, or does it last long enough to notice?",
+      "Remember that 1 minute = 60 seconds. If an activity is clearly done well before the seconds hand completes even half a round, it takes seconds; if it takes more than one full round, it takes minutes.",
+      "For Raghu reading a sentence in 20 seconds: the seconds hand starts at 12 and stops at the 4 (since each number on the clock face represents 5 seconds, and 4 × 5 = 20). Count the tick marks to check."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Rani took some seconds to get out of her bed. If the seconds hand started at the 9 (pointing left) and ended at the 7 (pointing lower-left), how many seconds did she take? (Each number on the clock face = 5 seconds.)",
+        "answer": "50 seconds",
+        "explanation": "The seconds hand moved from the 9 to the 12 (15 seconds) and then continued past 12 all the way around to the 7 — wait, more simply: from 9 going forward (clockwise) to 7 means it passed 10 number-positions × 5 = 50 seconds. Counting the number-positions clockwise from 9 → 10 → 11 → 12 → 1 → 2 → 3 → 4 → 5 → 6 → 7 gives 10 steps × 5 = 50 seconds."
+      },
+      {
+        "question": "Which of these activities would most likely take seconds rather than minutes? (a) Melting an ice cube, (b) Snapping your fingers, (c) Making a phone call.",
+        "answer": "(b) Snapping your fingers",
+        "explanation": "Snapping fingers happens almost instantly — well under 1 second to a few seconds. Melting an ice cube takes many minutes depending on temperature, and making a phone call typically lasts several minutes. Seconds are the right unit only for very brief, almost instant actions."
+      }
+    ]
+  },
+  {
+    "section_id": "12-4",
+    "chapter_id": 12,
+    "order": 4,
+    "concept": "conversion_hours_to_minutes",
+    "title": "Converting Between Hours and Minutes",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["seconds_as_unit_of_time", "reading_elapsed_time"],
+    "explanation": "Since 1 hour equals 60 minutes, you can convert hours to minutes by multiplying the number of hours by 60. To convert minutes back to hours, divide by 60 — the quotient is the hours and the remainder is the leftover minutes. For mixed times like 2 hours 45 minutes, convert the hours to minutes (2 × 60 = 120) and then add the extra minutes (120 + 45 = 165 minutes).",
+    "examples": [
+      "Zainab knows that 2 hours = 2 × 60 = 120 minutes, so if Raghav studies each of his 4 subjects for 50 minutes, the total is 200 minutes, which equals 3 hours 20 minutes (since 3 × 60 = 180 and 200 − 180 = 20).",
+      "Remo converts 180 minutes back to hours: 180 ÷ 60 = 3 exactly, so 180 minutes = 3 hours with no remainder.",
+      "For 2 hours 45 minutes: multiply 2 × 60 = 120 minutes, then add 45, giving 165 minutes total."
+    ],
+    "common_misconceptions": [
+      "Students multiply hours by 100 instead of 60 when converting, thinking of time like decimal numbers (e.g., writing 2 hours = 200 minutes instead of 120 minutes).",
+      "When converting mixed times like 1 hour 10 minutes to minutes, students only convert the hours part and forget to add the remaining minutes, writing 60 instead of 70.",
+      "When converting back from minutes to hours, students divide by 10 or 12 instead of 60, because they confuse the 12-hour clock face with the conversion factor."
+    ],
+    "hint_progression": [
+      "Think about how many minutes are in one hour — that number is the key to unlocking all of these conversions.",
+      "To go from hours to minutes, you multiply by 60. To go from minutes to hours, you divide by 60 and check if there is a remainder.",
+      "For 2 hours 45 minutes: first convert just the 2 hours → 2 × 60 = 120 minutes. Then simply add the 45 extra minutes: 120 + 45 = ___ minutes."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Raghav studies Mathematics, English, Hindi, and The World Around Us — 4 subjects — spending 50 minutes on each. What is the total study time in hours and minutes?",
+        "answer": "3 hours 20 minutes",
+        "explanation": "Total minutes = 4 × 50 = 200 minutes. Divide by 60: 200 ÷ 60 = 3 remainder 20. So the total is 3 hours and 20 minutes. This means Raghav studied for more than 3 hours in one sitting!"
+      },
+      {
+        "question": "Convert 220 minutes into hours and minutes.",
+        "answer": "3 hours 40 minutes",
+        "explanation": "Divide 220 by 60: 60 × 3 = 180, and 220 − 180 = 40. So 220 minutes = 3 hours and 40 minutes. The quotient (3) gives the hours and the remainder (40) gives the leftover minutes."
+      }
+    ]
+  },
+  {
+    "section_id": "12-5",
+    "chapter_id": 12,
+    "order": 5,
+    "concept": "conversion_minutes_to_seconds",
+    "title": "Converting Between Minutes and Seconds",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["seconds_as_unit_of_time", "conversion_hours_to_minutes"],
+    "explanation": "Just as 1 hour = 60 minutes, 1 minute = 60 seconds. To convert minutes to seconds, multiply by 60. To convert seconds to minutes, divide by 60 — the quotient is the minutes and the remainder is the extra seconds. For a mixed time like 10 minutes 13 seconds, convert the minutes (10 × 60 = 600) and add the extra seconds (600 + 13 = 613 seconds).",
+    "examples": [
+      "5 minutes = 5 × 60 = 300 seconds; using the double number line, 5 sits above 300, confirming the pattern of multiplying by 60.",
+      "320 seconds ÷ 60 = 5 remainder 20, so 320 seconds = 5 minutes 20 seconds.",
+      "4 minutes 8 seconds = (4 × 60) + 8 = 240 + 8 = 248 seconds."
+    ],
+    "common_misconceptions": [
+      "Students confuse the conversion factor and divide by 100 instead of 60 when converting seconds to minutes, because they are used to the metric system for other units.",
+      "When converting a mixed time like 15 minutes 40 seconds to seconds, students multiply only the minutes and forget to add the remaining seconds, writing 900 instead of 940.",
+      "Students mix up the direction of conversion — they multiply when they should divide (or vice versa) — for example, writing 700 seconds = 700 × 60 = 42,000 minutes instead of dividing."
+    ],
+    "hint_progression": [
+      "Remember the same relationship you used for hours and minutes — the magic number between minutes and seconds is the same: 60.",
+      "To turn seconds into minutes, divide by 60. If there is a remainder, that leftover number is the extra seconds that could not make a full minute.",
+      "For 225 seconds: 60 × 3 = 180 and 60 × 4 = 240, so 225 is between 3 and 4 minutes. 225 − 180 = ___ seconds left over, giving you 3 minutes and ___ seconds."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Ritu took 40 seconds to wash a plate. How many seconds would she take to wash 3 plates at the same speed?",
+        "answer": "120 seconds, which equals 2 minutes",
+        "explanation": "3 × 40 = 120 seconds. Since 1 minute = 60 seconds and 120 ÷ 60 = 2 exactly, 120 seconds = 2 minutes. This shows how seconds and minutes are connected through the factor of 60."
+      },
+      {
+        "question": "Convert 10 minutes 13 seconds into seconds only.",
+        "answer": "613 seconds",
+        "explanation": "Multiply the minutes by 60: 10 × 60 = 600 seconds. Then add the extra 13 seconds: 600 + 13 = 613 seconds. Always remember to add the leftover seconds after converting the minutes."
+      }
+    ]
+  },
+  {
+    "section_id": "12-6",
+    "chapter_id": 12,
+    "order": 6,
+    "concept": "adding_time_finding_start_end",
+    "title": "Adding Time Durations to Find Start or End Time",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["reading_elapsed_time", "conversion_hours_to_minutes", "12_hour_and_24_hour_clock"],
+    "explanation": "To find an end time, start with the given time and add the duration — first add the hours, then add the minutes, and adjust if the minutes exceed 60. To find a start time, work backwards from the end time by subtracting the duration. For example, if Raghu left at 08:00 hours and arrived at 09:05 hours, you count from 08:00 to 09:00 (1 hour) and then add 5 more minutes to get 1 hour 5 minutes total.",
+    "examples": [
+      "Raghu left at 08:00 hours and arrived at his Nana ji's house at 09:05 hours: counting from 08:00 to 09:00 is 1 hour, then 5 more minutes to reach 09:05, so the journey took 1 hour 5 minutes.",
+      "Jyoti went to play at 06:15 PM and came back after 1 hour 45 minutes: adding 1 hour gives 07:15 PM, then adding 45 minutes gives 08:00 PM, so she reached home at 08:00 PM.",
+      "Ragini finished her homework at 09:40 PM after taking 1 hour 10 minutes: subtracting 10 minutes gives 09:30 PM, then subtracting 1 hour gives 08:30 PM, so she started at 08:30 PM."
+    ],
+    "common_misconceptions": [
+      "Students add hours and minutes separately but forget to carry over when the minutes exceed 60 — for example, adding 45 minutes to 06:15 and writing 06:60 instead of correctly getting 07:00.",
+      "When finding the start time, students add the duration instead of subtracting it, getting an even later time instead of going backwards.",
+      "Students ignore the a.m./p.m. boundary — for example, when adding 8 hours 25 minutes to 08:35 PM, they forget that the result crosses midnight and lands in the next day's a.m., writing 16:60 or similar instead of 05:00 AM."
+    ],
+    "hint_progression": [
+      "Picture a clock in your mind — which direction does time move when you add a duration, and which direction when you go backwards to find the start?",
+      "Try a two-step approach: first add (or subtract) just the hours to get a middle time, then handle the minutes separately to reach the final answer.",
+      "For Jyoti who went out at 06:15 PM and was out for 1 hour 45 minutes: step 1 — add 1 hour → 07:15 PM. Step 2 — add 45 minutes to 07:15 PM: 15 + 45 = 60, so the minutes become 0 and the hour increases by 1, giving ___:___ PM."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A group of children left for a picnic at 08:30 AM and returned after 4 hours and 10 minutes. At what time did they return?",
+        "answer": "12:40 PM",
+        "explanation": "Add 4 hours to 08:30 AM → 12:30 PM. Then add 10 more minutes → 12:40 PM. The children returned at 12:40 PM, which is just after noon. Be careful to notice that adding 4 hours to 8 takes you past the 12 o'clock mark, switching from AM to PM."
+      },
+      {
+        "question": "It is 08:35 PM right now. What time will it be after 8 hours and 25 minutes?",
+        "answer": "05:00 AM (next day)",
+        "explanation": "Add 8 hours to 08:35 PM → 04:35 AM (crossing midnight into the next day). Then add 25 minutes to 04:35 AM: 35 + 25 = 60, so the minutes become 0 and the hour becomes 05. The answer is 05:00 AM. This problem requires careful handling of the midnight boundary."
+      }
+    ]
+  }
+]

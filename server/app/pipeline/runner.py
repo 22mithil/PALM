@@ -123,18 +123,17 @@ async def run_turn_pipeline(
                 await db.refresh(progress)
                 logger.info("Auto-created progress for student=%s chapter=%d", student_id, chapter_id)
 
-    # ── Issue 5: Early return if chapter already 100% on first pass ─────
-    if progress and progress.completion_percent and progress.completion_percent >= 100 and not progress.was_completed:
-        # Mark as completed on first hit
-        progress.was_completed = True
-        await db.flush()
-    if progress and progress.completion_percent and progress.completion_percent >= 100 and student_message.strip():
-        # If already completed AND was_completed was already True, skip pipeline
-        if progress.was_completed:
+    # ── Issue 5: Early return if chapter already 100% and fully mastered ────
+    if progress and progress.completion_percent and progress.completion_percent >= 100:
+        if not progress.was_completed:
+            # Mark as completed on first hit
+            progress.was_completed = True
+            await db.flush()
+        if student_message.strip():
             # Check if a section was specifically reset for review
             raw_statuses = progress.section_statuses or {}
             has_not_started = any(
-                isinstance(v, dict) and v.get('status') == 'not_started'
+                isinstance(v, dict) and v.get('status') in ('not_started', 'introduced', 'in_progress')
                 for v in raw_statuses.values()
             )
             if not has_not_started:
@@ -317,10 +316,29 @@ async def run_turn_pipeline(
     await run_mastery(state, db)
 
     # ═══════════════════════════════════════════════════════════════════
-    # STEP 9: Run dialogue agent (unconditional, sole output generator)
+    # STEP 8.5: Issue D — If chapter just hit 100%, send celebration
     # ═══════════════════════════════════════════════════════════════════
-    from app.agents.dialogue_agent import run_dialogue
-    await run_dialogue(state)
+    chapter_just_completed = (
+        state.chapter_progress
+        and state.chapter_progress.completion_percent >= 100
+    )
+
+    if chapter_just_completed:
+        # Skip dialogue agent — send celebration message directly
+        state.final_message = (
+            "🎉 Amazing work! You've mastered every section in this chapter! "
+            "You should be incredibly proud — you answered questions, worked through "
+            "tricky concepts, and showed real understanding. "
+            "Head back to the dashboard to explore more topics, "
+            "or click Restart to practice any section again. You're a math superstar! 🌟"
+        )
+        logger.info("Chapter complete! Skipping dialogue agent, sending celebration.")
+    else:
+        # ═══════════════════════════════════════════════════════════════════
+        # STEP 9: Run dialogue agent (unconditional, sole output generator)
+        # ═══════════════════════════════════════════════════════════════════
+        from app.agents.dialogue_agent import run_dialogue
+        await run_dialogue(state)
 
     # ═══════════════════════════════════════════════════════════════════
     # STEP 10: Append tutor message to last_10_messages

@@ -1,0 +1,453 @@
+[
+  {
+    "chapter_id": 7,
+    "chapter_name": "Shapes and Patterns",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["7-1", "7-2", "7-3", "7-4", "7-5", "7-6", "7-7", "7-8", "7-9", "7-10", "7-11", "7-12"]
+  },
+  {
+    "section_id": "7-1",
+    "chapter_id": 7,
+    "order": 1,
+    "concept": "weaving_patterns_with_rules",
+    "title": "Weaving Mats: Describing Patterns with Rules",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "A weaving pattern is made by passing strips of paper (or thread) over and under other strips in a repeating rule. Each row follows a rule that describes how many strips to go over and under before repeating. Alternate rows often use the opposite rule so the strips lock together. We can write these rules in words, for example: Row 1 — 1 under, 1 over (repeat); Row 2 — 1 over, 1 under (repeat).",
+    "examples": [
+      "In the basic mat (Activity 1), Row 1 follows the rule '1 under, 1 over' repeated all the way across, and Row 2 flips it to '1 over, 1 under' repeated — the two rows lock together like a checkerboard.",
+      "In the second mat (Activity 2), the rule changes to '2 over, 1 under' for Row 1 and '2 under, 1 over' for Row 2, creating wider blocks of colour in the finished pattern.",
+      "In Activity 3, the pattern uses four different row rules in order — Row 1: '2 over, 1 under'; Row 2: '1 under (once), then 3 over, 3 under'; Row 3: '2 under, 1 over'; Row 4: '1 over (once), then 3 under, 3 over' — giving a brick-like diagonal design."
+    ],
+    "common_misconceptions": [
+      "Students often think Row 2 should be exactly the same as Row 1 — but the rule must be the opposite (swap over/under) so the strips interlock and the mat holds together.",
+      "When a rule says '1 under (do not repeat)' at the start, students skip that step thinking it is not important — this starting offset is what shifts the pattern sideways and creates the diagonal or brick effect.",
+      "Students confuse 'repeat' with doing the action only twice — 'repeat' means to keep doing the same sequence all the way to the end of the row, not just once more."
+    ],
+    "hint_progression": [
+      "Think about what happens when you weave — what must the strip do each time it meets a vertical strip? Is there a rhythm to it?",
+      "Write the rule for Row 1 first as a short sequence of 'over' and 'under' steps, then ask yourself: if Row 1 goes under first, what should Row 2 do first so they lock?",
+      "For Row 1 of the basic mat the rule is: under, over, under, over … Keep going to the end of the row. For Row 2, simply swap every step: over, under, over, under … Now write out what Row 3 would be for a pattern that keeps alternating."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A student is weaving a mat. Row 1 follows the rule '2 over, 1 under' (repeat). What rule should Row 2 follow so the strips lock together?",
+        "answer": "2 under, 1 over (repeat)",
+        "explanation": "Each row must use the opposite rule — wherever Row 1 goes over, Row 2 goes under, and vice versa. This is what makes the strips hold each other in place."
+      },
+      {
+        "question": "Write the first six steps of Row 1 for the basic mat from Activity 1.",
+        "answer": "under, over, under, over, under, over",
+        "explanation": "The rule for Row 1 of the basic mat is '1 under, 1 over' repeated. Applying it six times gives: under, over, under, over, under, over."
+      }
+    ]
+  },
+  {
+    "section_id": "7-2",
+    "chapter_id": 7,
+    "order": 2,
+    "concept": "tessellation_and_regular_shapes",
+    "title": "Tiling and Tessellation: Which Shapes Fit Without Gaps?",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["weaving_patterns_with_rules"],
+    "explanation": "Tessellation means covering a flat surface completely with copies of one or more shapes, leaving no gaps and no overlaps. A shape tessellates if identical copies can fit snugly around every point. Regular shapes have all sides equal; some regular shapes tessellate (equilateral triangles, squares, regular hexagons) and some do not (regular pentagons, regular octagons).",
+    "examples": [
+      "Regular pentagons do NOT tessellate — when you place three pentagons around a point, a gap remains that is too small for a fourth pentagon to fill perfectly.",
+      "Six equilateral triangles fit exactly around a single point with no gap and no overlap, so equilateral triangles tessellate and can tile a floor perfectly.",
+      "Four squares meet perfectly at every corner point with no gap, so squares tessellate — this is exactly the pattern of ordinary floor tiles or graph paper."
+    ],
+    "common_misconceptions": [
+      "Students think that if a shape 'almost' fills the space around a point, it tessellates — but even a tiny gap or overlap means the shape does NOT tessellate.",
+      "Students assume all regular shapes tessellate because they are 'perfect' — but regular pentagons and regular octagons do not tessellate on their own.",
+      "Students count the number of shapes that fit around one point but forget to check whether the pattern continues without gaps across a larger region — a shape must work everywhere, not just at one spot."
+    ],
+    "hint_progression": [
+      "Try placing cutouts of the shape around a single point — look carefully at whether a gap or overlap appears.",
+      "Count how many copies of the shape meet at the point. If they fit perfectly with no space left over, test whether the same thing happens at the next point along the tiling.",
+      "For equilateral triangles, 6 fit around a point (6 × 60° = 360°). For squares, 4 fit (4 × 90° = 360°). For regular hexagons, 3 fit (3 × 120° = 360°). The angles must add up to exactly 360° at every point for tessellation to work."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Do regular hexagons tessellate? How many regular hexagons meet at each point in the tiling?",
+        "answer": "Yes, regular hexagons tessellate. Three hexagons meet at each point.",
+        "explanation": "Each interior angle of a regular hexagon is 120°. Three hexagons share each point, and 3 × 120° = 360°, which fills the space around the point exactly — so no gap or overlap occurs."
+      },
+      {
+        "question": "True or false: Regular pentagons can tile a floor without any gaps.",
+        "answer": "False",
+        "explanation": "When you try to fit regular pentagons around a point, a gap always remains that cannot be filled by another pentagon. Because they cannot cover a region without gaps, regular pentagons do not tessellate."
+      }
+    ]
+  },
+  {
+    "section_id": "7-3",
+    "chapter_id": 7,
+    "order": 3,
+    "concept": "tessellation_with_multiple_shapes",
+    "title": "Tessellating Patterns Using More Than One Shape",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["tessellation_and_regular_shapes"],
+    "explanation": "When a single regular shape cannot tessellate on its own, it is sometimes possible to combine two different shapes to cover a surface with no gaps or overlaps. In such mixed tessellations, the same set of shapes must meet at every point throughout the pattern. For example, regular octagons and squares can tile together even though octagons alone cannot tessellate.",
+    "examples": [
+      "The pattern on page 95 uses triangles and hexagons together — neither might fill the plane alone in that arrangement, but together they tile perfectly with no gaps.",
+      "Regular octagons cannot tessellate alone, but when small squares are placed in the gaps between octagons, the combination covers the surface completely.",
+      "The pattern on page 96 uses regular octagons and small squares meeting at marked points — the same two shapes come together at every point in the pattern."
+    ],
+    "common_misconceptions": [
+      "Students think that if one shape in a pair cannot tessellate, the pair cannot tessellate either — but the second shape can fill the exact gaps left by the first.",
+      "When continuing a mixed tessellation, students sometimes change which shapes meet at different points — in a true tessellation, the same combination of shapes must appear at every point.",
+      "Students confuse the pattern continuing 'the same way' with just copying one row — they must also check that the shapes align correctly in all directions, not just horizontally."
+    ],
+    "hint_progression": [
+      "Look at one point where shapes meet in the example — write down the names of the shapes in order around that point.",
+      "Now look at another point in the pattern. Are the same shapes in the same arrangement? If yes, use that arrangement as your rule for continuing the pattern.",
+      "Extend the pattern by first placing all the larger shapes (octagons or hexagons) in the next empty row, then fill each gap that is left between them with the smaller shape (square or triangle)."
+    ],
+    "quiz_questions": [
+      {
+        "question": "In the tessellating pattern on page 95 made of two shapes, name the two shapes that are used together.",
+        "answer": "Triangles and hexagons",
+        "explanation": "The pattern uses equilateral triangles (pointing up and down) and regular hexagons arranged so that triangles fill the gaps between hexagons, creating a complete tiling with no gaps or overlaps."
+      },
+      {
+        "question": "A student wants to make a tessellation using regular octagons. She notices gaps appear between them. What one other shape should she place in each gap?",
+        "answer": "A square",
+        "explanation": "The gap left between regular octagons is exactly square-shaped. Placing a square in each gap fills the surface completely, giving a classic octagon-and-square tessellation."
+      }
+    ]
+  },
+  {
+    "section_id": "7-4",
+    "chapter_id": 7,
+    "order": 4,
+    "concept": "types_of_triangles_by_sides",
+    "title": "Types of Triangles: Equilateral, Isosceles, and Scalene",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["tessellation_and_regular_shapes"],
+    "explanation": "Triangles are classified by how many of their sides are equal. An equilateral triangle has all three sides equal (and all three angles equal). An isosceles triangle has exactly two equal sides (and two equal angles). A scalene triangle has no equal sides (and no equal angles). When you cut a rhombus into four triangles, the pieces you get are isosceles triangles, each with two equal sides.",
+    "examples": [
+      "When you cut the rhombus from the end of the textbook into four triangles and measure the sides of each piece, you find that every triangle has exactly two equal sides — making them all isosceles triangles.",
+      "Folding an isosceles triangle exactly in half along the line of symmetry shows that the two base angles are equal — you can check this by folding the triangle so one angle lands exactly on the other.",
+      "If you cut an equilateral triangle in half (from a vertex to the midpoint of the opposite side), each new smaller triangle has no equal sides — making those smaller triangles scalene."
+    ],
+    "common_misconceptions": [
+      "Students think an equilateral triangle is also isosceles because it has two equal sides — while some definitions include it, the textbook treats them as distinct types based on the activity context.",
+      "Students believe equal sides must be the two longer sides or the two shorter sides — in an isosceles triangle, any two sides can be the equal pair, including the two sides that meet at the top.",
+      "Students confuse 'equal sides' with 'equal angles' — while equal sides do lead to equal angles, students must measure or fold to check, not just assume from appearance."
+    ],
+    "hint_progression": [
+      "Pick up the triangular piece from the rhombus and look at its three sides — run your finger along each one. Do any feel the same length?",
+      "Use a ruler to measure all three sides of your triangle and write the lengths down. Count how many of the three numbers match.",
+      "If exactly two lengths match, the triangle is isosceles. If all three match, it is equilateral. If none match, it is scalene. Now sort your triangles from the rhombus into these groups."
+    ],
+    "quiz_questions": [
+      {
+        "question": "You cut the rhombus from your textbook into 4 triangles. What type of triangles are they? How many equal sides does each one have?",
+        "answer": "They are isosceles triangles, each with 2 equal sides.",
+        "explanation": "When the rhombus is cut along both diagonals, each of the four pieces has two sides that came from the equal sides of the rhombus and one side that is a half-diagonal — so exactly two sides of each triangle are equal, making them isosceles."
+      },
+      {
+        "question": "An equilateral triangle is cut in half from one vertex to the middle of the opposite side. What type of triangle is each new piece?",
+        "answer": "Scalene triangle",
+        "explanation": "Cutting the equilateral triangle in half creates two smaller triangles. The cut creates a new shorter side, so the three sides of each new triangle are all different lengths — no two sides are equal, making each piece a scalene triangle."
+      }
+    ]
+  },
+  {
+    "section_id": "7-5",
+    "chapter_id": 7,
+    "order": 5,
+    "concept": "quadrilaterals_kite_and_properties",
+    "title": "Quadrilaterals: Kites and Their Properties",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["types_of_triangles_by_sides"],
+    "explanation": "A quadrilateral is any four-sided shape. A kite is a special quadrilateral where two pairs of adjacent (next-to-each-other) sides are equal: Side 1 = Side 2 and Side 3 = Side 4. Adjacent sides share a corner, unlike opposite sides which face each other across the shape. You can make a kite by folding a square piece of paper along its diagonal and folding two corners inward.",
+    "examples": [
+      "In the kite shown in the textbook, sides labelled 1 and 2 (the two upper sides) are equal to each other, and sides labelled 3 and 4 (the two lower sides) are equal to each other — the equal pairs are adjacent, sharing a corner.",
+      "You can build a kite from the four rhombus triangles: fitting two short triangles at the top and two long triangles at the bottom produces a kite shape where the two upper sides are equal and the two lower sides are equal.",
+      "When you fold a square sheet diagonally and then fold corner A and corner B inward to meet the centre crease, the resulting shape is a kite — the paper folds show exactly where the two pairs of equal adjacent sides are."
+    ],
+    "common_misconceptions": [
+      "Students confuse adjacent sides with opposite sides — in a kite the equal pairs share a corner (adjacent), unlike a parallelogram where opposite sides are equal.",
+      "Students think a kite must look like a flying kite with a long tail — but the geometric kite is simply any quadrilateral with two pairs of adjacent equal sides, and it can be wide or narrow.",
+      "Students assume a rhombus is a kite because both have equal sides — a rhombus has all four sides equal, so it actually satisfies the kite condition, but a typical kite has two different side lengths."
+    ],
+    "hint_progression": [
+      "Look at the four sides of the shape and label them 1, 2, 3, 4 going around. Think about which sides touch each other at a corner.",
+      "Measure sides 1 and 2 — are they equal? Then measure sides 3 and 4 — are they equal? If yes to both, you have a kite.",
+      "Remember: in a kite, the equal sides must be adjacent (sharing a corner). Check that sides 1 and 2 share a corner, and that sides 3 and 4 share a different corner — then confirm the measurements match."
+    ],
+    "quiz_questions": [
+      {
+        "question": "In a kite, which sides are equal — adjacent sides or opposite sides?",
+        "answer": "Adjacent sides (sides that share a corner)",
+        "explanation": "A kite is defined by having two pairs of equal adjacent sides. Adjacent means the sides meet at a corner. This is different from a parallelogram, where opposite (non-touching) sides are equal."
+      },
+      {
+        "question": "Priya draws a quadrilateral where she measures: Side 1 = 5 cm, Side 2 = 5 cm, Side 3 = 8 cm, Side 4 = 8 cm. Sides 1 and 2 share a corner, and sides 3 and 4 share a different corner. What shape has Priya drawn?",
+        "answer": "A kite",
+        "explanation": "Priya's shape has two pairs of equal sides that are adjacent (share a corner): sides 1 and 2 are equal, and sides 3 and 4 are equal. This matches the definition of a kite exactly."
+      }
+    ]
+  },
+  {
+    "section_id": "7-6",
+    "chapter_id": 7,
+    "order": 6,
+    "concept": "parallelograms_and_rectangles",
+    "title": "Parallelograms and Rectangles: Opposite Sides and Angles",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["quadrilaterals_kite_and_properties"],
+    "explanation": "A parallelogram is a quadrilateral whose opposite sides are equal (opposite sides face each other across the shape). In a parallelogram, opposite angles are also equal. A rectangle is a special parallelogram where all four angles are right angles (90°), and opposite sides are equal. Because a rectangle meets all the conditions of a parallelogram and adds the right-angle condition, every rectangle is a parallelogram but not every parallelogram is a rectangle.",
+    "examples": [
+      "Quadrilateral A from the textbook is a slanted parallelogram — measuring its sides shows the two pairs of opposite sides are equal, and checking its angles shows the two pairs of opposite angles are equal, but the angles are not 90°.",
+      "Quadrilateral B from the textbook is a rectangle — its opposite sides are equal AND all four angles are right angles, so it is a special parallelogram.",
+      "A door frame is a real-life rectangle: the two vertical sides are equal, the two horizontal sides are equal, and every corner is a right angle — satisfying all conditions of both a parallelogram and a rectangle."
+    ],
+    "common_misconceptions": [
+      "Students think a parallelogram must be slanted and cannot be a rectangle — but a rectangle is simply a parallelogram with the extra condition that all angles are 90°.",
+      "Students confuse 'opposite sides equal' with 'all sides equal' — a parallelogram only needs opposite pairs to match, not all four sides to be the same length.",
+      "Students measure only one pair of opposite sides and conclude the shape is a parallelogram without checking the second pair — both pairs of opposite sides must be equal."
+    ],
+    "hint_progression": [
+      "Opposite sides are the ones that face each other — they do not share a corner. Look at your quadrilateral and identify which sides are opposite.",
+      "Measure both pairs of opposite sides. If both pairs are equal, you have a parallelogram. Then check the angles — are any of them right angles?",
+      "If all four angles are right angles (you can check with the corner of a sheet of paper), the parallelogram is also a rectangle. If the angles are not right angles but opposite sides are still equal, it is a parallelogram but not a rectangle."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Ravi draws a quadrilateral. He measures its sides: top = 6 cm, bottom = 6 cm, left = 4 cm, right = 4 cm. Its angles are 70°, 110°, 70°, 110°. Is it a parallelogram? Is it a rectangle?",
+        "answer": "It is a parallelogram but NOT a rectangle.",
+        "explanation": "The opposite sides are equal (6 cm and 6 cm; 4 cm and 4 cm), so it is a parallelogram. But its angles are not all 90° — a rectangle requires all four right angles. Since the angles are 70° and 110°, it is not a rectangle."
+      },
+      {
+        "question": "Every rectangle is a parallelogram — true or false? Explain why.",
+        "answer": "True",
+        "explanation": "A parallelogram is any quadrilateral with equal opposite sides. A rectangle has equal opposite sides AND all right angles. Since a rectangle satisfies the parallelogram condition (equal opposite sides), every rectangle is a parallelogram — it just has the extra property of right angles."
+      }
+    ]
+  },
+  {
+    "section_id": "7-7",
+    "chapter_id": 7,
+    "order": 7,
+    "concept": "rhombus_and_shape_properties_comparison",
+    "title": "Which Shape Am I? Comparing Properties of Quadrilaterals",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["parallelograms_and_rectangles", "quadrilaterals_kite_and_properties"],
+    "explanation": "Different quadrilaterals — squares, rectangles, rhombuses, parallelograms, and kites — can be sorted by their side and angle properties. A rhombus has all four sides equal but angles that are not right angles. A square has all four sides equal AND all right angles. Two shapes may share some properties, so one description can match more than one shape. Comparing these properties carefully is how we tell shapes apart.",
+    "examples": [
+      "Statement: 'All my sides are equal, but all my angles are not' — this describes a rhombus. A square also has equal sides but its angles ARE all right angles, so the statement fits only the rhombus.",
+      "Statement: 'All my angles are right angles, but all my sides are not equal' — this describes a rectangle. A square has right angles too, but its sides ARE all equal, so the statement fits only the rectangle.",
+      "Statement: 'My opposite angles are equal and so are my sides' — this fits a parallelogram (and also a rhombus and rectangle, since they are special parallelograms), so the same statement can describe more than one shape."
+    ],
+    "common_misconceptions": [
+      "Students think a square and a rhombus are the same because both have all equal sides — the key difference is that a square has right angles and a rhombus does not.",
+      "Students assume every statement matches exactly one shape — some property statements are broad enough to match two or more shapes, such as 'opposite angles are equal' being true for all parallelograms.",
+      "Students overlook the word 'opposite' when it appears in angle descriptions — 'opposite angles equal' is true for parallelograms, but 'all angles equal' is the stronger condition that gives rectangles and squares."
+    ],
+    "hint_progression": [
+      "Read the statement slowly and pick out the key words: are we talking about sides or angles? Are all sides involved or just opposite ones?",
+      "Go through each shape one by one — square, rectangle, rhombus, parallelogram, kite — and check whether that shape satisfies every condition in the statement.",
+      "If a statement says 'but not' (like 'all sides equal, but not all angles'), that extra 'but not' part rules out shapes that have both properties. Use it to eliminate shapes until only one remains."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Match this statement to the correct shape: 'All my sides make right angles with each other and are equal.'",
+        "answer": "Square",
+        "explanation": "This statement requires all four angles to be right angles (90°) AND all four sides to be equal. Only a square satisfies both conditions simultaneously. A rectangle has right angles but not all equal sides; a rhombus has equal sides but not right angles."
+      },
+      {
+        "question": "A shape has all four sides equal. Its angles are 60°, 120°, 60°, 120°. What shape is it?",
+        "answer": "Rhombus",
+        "explanation": "All four sides are equal — like a rhombus. But the angles are not all 90°, so it is not a square. A rhombus is defined as a quadrilateral with all equal sides and opposite angles equal (60° = 60°, 120° = 120°), which matches perfectly."
+      }
+    ]
+  },
+  {
+    "section_id": "7-8",
+    "chapter_id": 7,
+    "order": 8,
+    "concept": "tangram_shapes_and_composition",
+    "title": "Tangram: Building Shapes from Pieces",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["types_of_triangles_by_sides", "parallelograms_and_rectangles"],
+    "explanation": "A tangram is a set of seven flat shapes (five triangles of different sizes, one square, and one parallelogram) that all fit together to form a large square. By rearranging some or all of these pieces you can create many different shapes — parallelograms, triangles, rectangles, and more. Tangram puzzles build understanding of how complex shapes are made from simpler ones.",
+    "examples": [
+      "Using all seven tangram pieces together forms one large square — every piece fits with no gaps and no overlaps, which is itself a kind of tessellation within a fixed boundary.",
+      "Two of the small tangram triangles can be placed together to form a square, a larger triangle, or a parallelogram — the same two pieces make three different shapes depending on how you rotate and position them.",
+      "The tangram pieces can be arranged to form a parallelogram (shown in the textbook), a triangle, and a trapezoid — each target shape outline on page 99 can be filled in at least one way, and sometimes more."
+    ],
+    "common_misconceptions": [
+      "Students think pieces must always be placed flat without rotating — tangram pieces can be flipped and rotated freely, and finding the right rotation is often the key to solving a puzzle.",
+      "Students assume they must use all seven pieces for every tangram shape — the instructions say 'some or all', so some target shapes use only a subset of the pieces.",
+      "Students try random arrangements instead of starting with the largest piece and fitting smaller pieces around it — beginning with the biggest triangle and working outward is a more reliable strategy."
+    ],
+    "hint_progression": [
+      "Look at the target shape outline — is it long and thin, or wide and blocky? This tells you roughly which large pieces should go in the centre.",
+      "Start by placing the two largest triangles first, since they take up the most space. See if they can form the main body of the target shape, then fill gaps with smaller pieces.",
+      "If the large triangles fill most of the outline, try the medium triangle next to fill the remaining corner. Then use the small square and parallelogram to close any last gaps — remember you can rotate any piece."
+    ],
+    "quiz_questions": [
+      {
+        "question": "How many pieces are in a tangram set, and what is the large shape they all form together?",
+        "answer": "7 pieces; they all fit together to form a large square.",
+        "explanation": "A standard tangram has 7 pieces: 5 right-angled triangles (2 large, 1 medium, 2 small), 1 small square, and 1 parallelogram. When all 7 are arranged correctly with no gaps or overlaps, they form one large square."
+      },
+      {
+        "question": "Using only 2 of the small tangram triangles, name two different shapes you can make.",
+        "answer": "A square and a larger triangle (also a parallelogram is possible).",
+        "explanation": "Two small congruent right-angled triangles can be joined along their hypotenuse (long side) to make a square, or joined along one of their shorter sides to make a larger triangle. They can also form a parallelogram depending on the orientation, showing how the same pieces produce different shapes."
+      }
+    ]
+  },
+  {
+    "section_id": "7-9",
+    "chapter_id": 7,
+    "order": 9,
+    "concept": "circles_diameter_and_inscribed_shapes",
+    "title": "Play with Circles: Diameters and the Shapes They Make",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["parallelograms_and_rectangles"],
+    "explanation": "A circle's diameter is a straight line that passes through the centre and touches the circle at two points. When you draw two diameters of a circle and join their four endpoints, the four points always lie on the circle, and the quadrilateral formed is always a rectangle. This is because any angle drawn from a diameter to a point on the circle is a right angle — a key property of circles.",
+    "examples": [
+      "Draw a circle, mark its centre, draw one diameter and label its endpoints A and C. Draw a second diameter and label its endpoints B and D. Joining A-B-C-D always gives a rectangle, regardless of the angle between the two diameters.",
+      "If the two diameters are drawn at right angles to each other (perpendicular), the four endpoints are equally spaced on the circle and joining them gives a square — which is a special rectangle.",
+      "No matter how you tilt the second diameter, the shape formed by the four endpoints on the circle is always a rectangle — you cannot get a non-rectangular shape this way, because circle geometry forces all four angles to be right angles."
+    ],
+    "common_misconceptions": [
+      "Students think changing the angle between the two diameters will produce different quadrilaterals (like a rhombus or a kite) — but the four endpoints on the circle always form a rectangle.",
+      "Students confuse the diameter with a chord — a diameter must pass through the centre, while a chord can connect any two points on the circle without passing through the centre.",
+      "Students think a longer diameter makes a bigger rectangle just by itself — both diameters together determine the rectangle's shape, not just one."
+    ],
+    "hint_progression": [
+      "Remember that a diameter always passes through the exact centre of the circle — make sure your line goes through the dot you marked as the centre.",
+      "After drawing two diameters, you have four points on the circle's edge. Join them in order (going around the circle) to form a quadrilateral, then check the angles at each corner.",
+      "Use the corner of a sheet of paper to test each angle of the quadrilateral. You should find all four are right angles — confirming the shape is a rectangle regardless of how you drew the second diameter."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Meera draws a circle, marks its centre, and draws two diameters. She joins the four endpoints on the circle's edge. What shape does she always get?",
+        "answer": "A rectangle",
+        "explanation": "The four endpoints of two diameters always form a rectangle. This is because any angle formed at the circle's edge by a diameter is a right angle, so all four corners of the quadrilateral are 90°, making it a rectangle every time."
+      },
+      {
+        "question": "Meera draws two diameters that are exactly perpendicular (at 90° to each other). What special rectangle do the four endpoints form?",
+        "answer": "A square",
+        "explanation": "When the two diameters are perpendicular, they divide the circle into four equal arcs, so all four endpoints are equally spaced. The resulting quadrilateral has all equal sides AND all right angles, making it a square — a special type of rectangle."
+      }
+    ]
+  },
+  {
+    "section_id": "7-10",
+    "chapter_id": 7,
+    "order": 10,
+    "concept": "circle_string_designs",
+    "title": "Circle Designs: Making Patterns by Joining Points on a Circle",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["circles_diameter_and_inscribed_shapes", "weaving_patterns_with_rules"],
+    "explanation": "Beautiful curved-looking designs can be made by joining points on a circle using straight lines that follow a fixed rule. For example, with 24 equally spaced points, the rule 'join point 1 to point 11, then 11 to 2, then 2 to 12, and so on' creates an overlapping pattern of straight lines that appears to form curves. This technique is called string art or circle design.",
+    "examples": [
+      "In Step 1 of the textbook activity, you join point 1 to point 11 with a straight line — this is the first chord. In Step 2, you join 11 to 2, then in Step 3 you join 2 to 12, continuing the rule until you return to point 1.",
+      "If you use different coloured threads for each step, the overlapping chords in different colours create a rich multi-coloured design that looks like overlapping arcs even though every individual line is perfectly straight.",
+      "The flower-like design with overlapping circles at the bottom of page 101 can be created by drawing multiple overlapping circles, each centred on a point that lies on the original circle — the overlapping regions produce a petal pattern."
+    ],
+    "common_misconceptions": [
+      "Students think the curved appearance in the finished design means they drew curves — every line in the design is a straight chord, and the 'curves' are an optical illusion created by many overlapping straight lines.",
+      "Students skip back to point 1 too early and do not complete the full cycle — the rule must be followed all the way until you naturally arrive back at the starting point, which may take many steps.",
+      "Students place points unevenly around the circle — for the design to be symmetrical, the 24 points must be equally spaced, so measuring or folding the circle into equal parts first is important."
+    ],
+    "hint_progression": [
+      "Read the joining rule carefully and write it as a pattern: 1→11, 11→2, 2→12, 2→12 … What number is added or subtracted each time?",
+      "Notice that each new point is found by adding 10 to the starting point, then subtracting 9, then adding 10 again — or you can think of it as always jumping 10 positions ahead on the circle. Use this to predict the next few points.",
+      "Number all 24 points clearly before drawing any lines. Then follow the rule step by step: draw 1→11, then 11→2, then 2→12, then 12→3, then 3→13 … Continue until you are back at 1. Count your lines — you should have 24 chords total."
+    ],
+    "quiz_questions": [
+      {
+        "question": "In the circle design activity, the rule is: join 1 to 11, 11 to 2, 2 to 12. Following the same rule, what are the next two points to be joined after point 12?",
+        "answer": "12 to 3, then 3 to 13",
+        "explanation": "The pattern alternates: from an odd-position point, jump forward 10 to get the next point (1→11, 2→12, 3→13). From that point, step back 9 to get the next (11→2, 12→3, 13→4). So after 12, the sequence is 12→3, then 3→13."
+      },
+      {
+        "question": "The finished circle design looks like it contains curves, but every line drawn is straight. True or false?",
+        "answer": "True",
+        "explanation": "Every line drawn in the design is a straight chord connecting two points on the circle. The illusion of curves is created by many straight lines placed close together at slightly different angles — this is the same principle used in string art."
+      }
+    ]
+  },
+  {
+    "section_id": "7-11",
+    "chapter_id": 7,
+    "order": 11,
+    "concept": "cube_nets_and_painted_cube_problem",
+    "title": "Cube Connections: Nets, Views, and Painted Cubes",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["tessellation_and_regular_shapes"],
+    "explanation": "A cube has 6 square faces, 12 edges, and 8 corners (vertices). A net is a flat shape that can be folded up to make a cube — it shows all 6 faces unfolded. When a large cube made of small cubes is painted on the outside, the number of faces painted on each small cube depends on its position: corner cubes get 3 painted faces, edge cubes get 2, face-centre cubes get 1, and the inner cube gets 0.",
+    "examples": [
+      "Nisha glues 27 small cubes (3×3×3) into a large cube and paints it red. The 8 corner small cubes each have 3 faces painted (they sit at a corner of the large cube where 3 outside faces meet).",
+      "In a 3×3×3 cube, the 12 edge small cubes (one on each of the 12 edges, not at corners) each have exactly 2 faces touching the outside — so 2 faces are painted red.",
+      "The 6 face-centre small cubes (one in the middle of each of the 6 faces) have only 1 face on the outside of the large cube — so only 1 face is painted. The 1 small cube in the very centre has no outside faces at all — 0 faces painted."
+    ],
+    "common_misconceptions": [
+      "Students count corner cubes as having only 2 painted faces because they only 'see' two sides of the corner in a drawing — but a cube corner touches three outer faces, so corner cubes always have 3 painted faces.",
+      "Students forget to account for the hidden inner cube — in a 3×3×3 large cube there is always exactly 1 small cube completely surrounded by others with 0 painted faces.",
+      "Students add up the wrong total — the total of all painted faces must be 6 × 9 = 54 (six faces of the large cube, each with 9 small squares). They can use this check: 8×3 + 12×2 + 6×1 + 1×0 = 24+24+6+0 = 54 ✓"
+    ],
+    "hint_progression": [
+      "Think about where a small cube can sit in the big cube — is it at a corner, along an edge, in the middle of a face, or buried inside? Each position is different.",
+      "A corner of the large cube is where three faces meet, so a corner small cube has 3 outside faces painted. An edge (not a corner) is where two faces meet, so an edge cube has 2 painted faces. A face centre touches only 1 outer face.",
+      "For a 3×3×3 cube: count 8 corners, 12 edges (each with 1 non-corner cube), 6 face centres, and 1 inner cube. Multiply each by its painted-face count and check that the total painted faces equals 54."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Nisha painted her 3×3×3 large cube red. How many small cubes have exactly 2 faces painted red?",
+        "answer": "12 small cubes",
+        "explanation": "The small cubes with exactly 2 painted faces are those sitting on the edges of the large cube but not at its corners. A cube has 12 edges, and on a 3×3×3 cube each edge has 1 non-corner small cube. So 12 × 1 = 12 small cubes have exactly 2 faces painted."
+      },
+      {
+        "question": "How many small cubes in Nisha's 3×3×3 painted cube have NO faces painted at all?",
+        "answer": "1 small cube",
+        "explanation": "The only small cube with no painted faces is the one in the very centre of the large cube, completely surrounded by other small cubes on all six sides. It has no contact with the outside surface, so none of its faces got painted."
+      }
+    ]
+  },
+  {
+    "section_id": "7-12",
+    "chapter_id": 7,
+    "order": 12,
+    "concept": "icosahedron_dodecahedron_3d_shapes",
+    "title": "Icosahedron and Dodecahedron: Exploring 3D Shapes with Equal Faces",
+    "difficulty": "advanced",
+    "prerequisite_concepts": ["cube_nets_and_painted_cube_problem", "tessellation_and_regular_shapes"],
+    "explanation": "An icosahedron is a 3D solid with 20 triangular faces, and a dodecahedron is a 3D solid with 12 pentagonal faces. In both solids, all faces are identical regular shapes, and the same number of faces meet at every vertex. Solids where all faces are the same regular polygon and the same number meet at each vertex are called Platonic solids. You can explore their properties by building models from the nets at the back of the textbook.",
+    "examples": [
+      "An icosahedron has 20 faces — each face is an equilateral triangle, and 5 triangles meet at every vertex. The prefix 'icosa' means 20 in Greek, which is how you remember its face count.",
+      "A dodecahedron has 12 faces — each face is a regular pentagon, and 3 pentagons meet at every vertex. The prefix 'dodeca' means 12, so the name itself tells you how many faces it has.",
+      "A cube is another Platonic solid: it has 6 square faces, all faces are identical squares, and 3 squares meet at every vertex — the same properties that make icosahedra and dodecahedra special also describe the familiar cube."
+    ],
+    "common_misconceptions": [
+      "Students confuse the icosahedron and dodecahedron by their appearance — a quick memory trick is that 'icosa' = 20 (triangles) and 'dodeca' = 12 (pentagons), so counting syllables in the prefix gives a clue to the face count.",
+      "Students think a Platonic solid just means all faces are the same shape — the stricter requirement is that the same number of faces must also meet at every vertex, not just that all faces look alike.",
+      "Students try to count edges one by one and lose track — a reliable method is to count faces × edges-per-face, then divide by 2 (because each edge is shared between two faces): icosahedron has 20×3÷2 = 30 edges."
+    ],
+    "hint_progression": [
+      "Pick up your model and count the faces by touching each one — keep track with a tally. Then check whether all faces look the same (same shape and size).",
+      "Now pick one vertex (corner point) and count how many faces meet there. Move to a different vertex and count again. If the number is the same everywhere, the solid has the special Platonic property.",
+      "For the icosahedron: it has 20 faces (triangles), 12 vertices, and 30 edges. For the dodecahedron: 12 faces (pentagons), 20 vertices, and 30 edges. Notice that the face count and vertex count swap between the two solids!"
+    ],
+    "quiz_questions": [
+      {
+        "question": "An icosahedron has 20 faces and each face is a triangle. Using the formula faces × edges-per-face ÷ 2, how many edges does an icosahedron have?",
+        "answer": "30 edges",
+        "explanation": "Each of the 20 triangular faces has 3 edges. Total edge-face connections = 20 × 3 = 60. Since each edge is shared between 2 faces, the number of edges = 60 ÷ 2 = 30."
+      },
+      {
+        "question": "A dodecahedron has 12 faces and 3 pentagons meet at every vertex. How many faces does an icosahedron have, and what shape are they?",
+        "answer": "An icosahedron has 20 faces; each face is an equilateral triangle.",
+        "explanation": "The name 'icosa' comes from the Greek word for 20, so an icosahedron has 20 faces. Each face is an equilateral triangle (a regular 3-sided shape), and 5 triangles meet at every vertex of the icosahedron."
+      }
+    ]
+  }
+]

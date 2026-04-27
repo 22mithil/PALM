@@ -1,0 +1,194 @@
+[
+  {
+    "chapter_id": 15,
+    "chapter_name": "Data Through Pictures",
+    "grade": 5,
+    "subject": "Mathematics",
+    "section_ids": ["15-1", "15-2", "15-3", "15-4", "15-5"]
+  },
+  {
+    "section_id": "15-1",
+    "chapter_id": 15,
+    "order": 1,
+    "concept": "data_collection_and_frequency_table",
+    "title": "Collecting Data and Reading a Frequency Table",
+    "difficulty": "intro",
+    "prerequisite_concepts": [],
+    "explanation": "When we want to find out something about a group of people, we ask them questions and record their answers — this is called collecting data. Samaira and Kabir collected data from 35 friends by asking how many hours each friend watches TV every day, and then recorded all the answers in a notebook. To make the data easier to understand, the answers are organized into a frequency table, which groups similar responses together and shows how many people gave each answer. You can read the table to answer questions like 'how many children watch TV for less than 2 hours?' by identifying and adding the counts for all the matching rows.",
+    "examples": [
+      "Samaira and Kabir asked 35 friends 'How many hours a day do you spend watching TV?' and recorded every answer in their notebook before organizing it — collecting data means gathering real responses from real people before any counting or organizing happens.",
+      "After organizing the data, the frequency table had rows for ½ hour, 1 hour, 1½ hours, 2 hours, and more than 2 hours, each with the count of children who gave that answer — this layout lets you see at a glance which amount of TV time was most common among the 35 friends.",
+      "To answer 'How many children watch TV for more than half an hour?', you add the children from every row where the time is greater than ½ hour (1 hr + 1½ hrs + 2 hrs + more than 2 hrs), because all those groups qualify as 'more than half an hour'."
+    ],
+    "common_misconceptions": [
+      "When a question asks 'how many children watch TV for more than half an hour?', students often only look at the row labelled 'more than 2 hours' and miss the other rows — 'more than half an hour' includes the 1 hour, 1½ hours, and 2 hours rows as well.",
+      "Students may think 'more than 2 hours' and '2 hours or more' mean the same thing, but 'more than' is strictly greater — the row for exactly 2 hours should NOT be counted when the question asks for 'more than 2 hours'.",
+      "Students sometimes think the row counts in a frequency table can add up to any total, but they must always sum to the number of people surveyed — for Samaira and Kabir's table, all row counts must add up to exactly 35."
+    ],
+    "hint_progression": [
+      "Before you start adding anything, re-read the question carefully and think about which rows of the table the question is actually asking about.",
+      "Identify every row whose label matches the condition in the question — for 'less than 2 hours', find all rows where the time shown is less than 2 hours, and write down each of those row counts.",
+      "For 'less than 2 hours', the matching rows are ½ hour, 1 hour, and 1½ hours — add the three counts from those rows together to get the total number of children."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Samaira and Kabir surveyed 35 friends. Their frequency table shows: ½ hr → 7 children, 1 hr → 12 children, 1½ hrs → 8 children, 2 hrs → 5 children, more than 2 hrs → 3 children. How many children watch TV for less than 2 hours?",
+        "answer": "27 children",
+        "explanation": "'Less than 2 hours' includes the rows for ½ hr (7), 1 hr (12), and 1½ hrs (8). Adding them: 7 + 12 + 8 = 27. The rows for exactly 2 hours and more than 2 hours are NOT included because neither of those is less than 2 hours — reading the question word carefully changes which rows you include."
+      },
+      {
+        "question": "Kabir looks at the completed frequency table and says, 'Only 3 children watch TV for more than half an hour — I can see it right there in the last row!' Is Kabir correct? Explain the mistake he is making.",
+        "answer": "No, Kabir is not correct. He only read the 'more than 2 hours' row (3 children) instead of adding every row where the time is greater than ½ hour.",
+        "explanation": "'More than half an hour' includes all children who watch 1 hr, 1½ hrs, 2 hrs, and more than 2 hrs. Kabir must add 12 + 8 + 5 + 3 = 28 children. The mistake is treating the phrase 'more than half an hour' as if it only refers to the very last row of the table, when it actually covers four rows."
+      }
+    ]
+  },
+  {
+    "section_id": "15-2",
+    "chapter_id": 15,
+    "order": 2,
+    "concept": "pictograph_with_scale",
+    "title": "Reading a Pictograph with a Scale",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["data_collection_and_frequency_table"],
+    "explanation": "A pictograph uses small pictures (icons) to represent data, but when the numbers are large, drawing one picture for every single item is impractical — just like Joseph Uncle could not draw hundreds of individual toys. To solve this, Dipesh suggested using a scale, where one icon stands for a fixed number of items (for example, one train icon = 5 toys). To find the actual count, you multiply the number of icons in a row by the scale value. Deepti used the same idea when recording two-wheelers passing her house: one scooter icon = 3 two-wheelers, so 6 scooter icons means 6 × 3 = 18 two-wheelers.",
+    "examples": [
+      "In Joseph Uncle's shop, the Toys row shows 8 train icons and the scale says 1 icon = 5 toys, so the actual number of toys is 8 × 5 = 40 toys — you must always multiply the icon count by the scale value, not just record the icon count.",
+      "Deepti recorded two-wheelers with a scale of 1 scooter icon = 3 two-wheelers; on Wednesday she drew 6 icons, which means 6 × 3 = 18 two-wheelers passed her house that day.",
+      "On Friday, Deepti's row has more scooter icons than on Wednesday, so Friday had more two-wheelers even before calculating — comparing the number of icons lets you quickly judge which day had more or fewer vehicles, as long as both rows use the same scale."
+    ],
+    "common_misconceptions": [
+      "Students often count the icons and write that number as the final answer, completely forgetting to multiply by the scale — 8 icons with a scale of 1 icon = 5 means 40 items, not 8.",
+      "Students think the scale must always be 1 icon = 1 item; in reality, the person making the pictograph chooses a convenient scale based on how large the data is — Dipesh chose 1 icon = 5 because Joseph Uncle had far too many items to draw one icon each.",
+      "When comparing two rows, students sometimes subtract icon counts directly without converting to real quantities first — always multiply both rows by the scale before subtracting or comparing, or you get the wrong difference."
+    ],
+    "hint_progression": [
+      "Before doing any calculation, find the scale key — it is shown near the pictograph in a small box and tells you exactly how many real items one icon stands for.",
+      "Count the number of icons in the row you are asked about, then multiply that count by the number shown in the scale key to get the actual total.",
+      "For example, if you count 9 board game icons and the scale says 1 icon = 5 board games, then 9 × 5 = 45 board games — that multiplication step is what converts icon counts into real item counts, and leaving it out is the most common error."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Joseph Uncle's pictograph shows the Sports items row has 11 racket icons. The scale shows 1 icon = 5 sports items. How many sports items does he have in his shop?",
+        "answer": "55 sports items",
+        "explanation": "Multiply the number of icons (11) by the scale value (5): 11 × 5 = 55. Writing just 11 as the answer is the classic scale-forgetting mistake — each icon represents 5 real items, not 1, so the multiplication step is essential."
+      },
+      {
+        "question": "Deepti's pictograph shows Monday had 13 scooter icons and Wednesday had 6 scooter icons, with a scale of 1 icon = 3 two-wheelers. How many fewer two-wheelers were seen on Wednesday than on Monday?",
+        "answer": "21 fewer two-wheelers",
+        "explanation": "First convert each day using the scale — Monday: 13 × 3 = 39 two-wheelers; Wednesday: 6 × 3 = 18 two-wheelers. Then subtract: 39 − 18 = 21. Subtracting icon counts directly (13 − 6 = 7) would give the wrong answer because it skips the scale conversion."
+      }
+    ]
+  },
+  {
+    "section_id": "15-3",
+    "chapter_id": 15,
+    "order": 3,
+    "concept": "introduction_to_bar_graphs",
+    "title": "Introduction to Bar Graphs",
+    "difficulty": "intro",
+    "prerequisite_concepts": ["data_collection_and_frequency_table", "pictograph_with_scale"],
+    "explanation": "A bar graph shows data using vertical rectangular bars drawn on a grid — Sheela used one to record how she spends her 24-hour day, with each activity getting its own bar. The horizontal axis (the bottom line) lists the categories such as Sleeping, School, and Studying, while the vertical axis (the numbered line on the left) shows the quantity, such as number of hours. The height of each bar tells you the value: to read it, find where the top of the bar lines up with the numbered vertical axis. Unlike Raman's pictograph table where you count individual icons, Sheela's bar graph lets you compare all activities instantly just by looking at which bars are taller.",
+    "examples": [
+      "In Sheela's bar graph, the 'Sleeping' bar reaches the number 8 on the vertical axis, meaning she sleeps for 8 hours — you read the value directly from where the top of the bar meets the numbered line on the left.",
+      "Raman recorded his day with icons (1 icon = 1 hour) showing 9 icons for sleeping, while Sheela's bar graph shows the same kind of information as a bar whose height reaches 8 — the bar graph makes comparing the two routines much quicker because you compare heights rather than counting individual pictures.",
+      "In the 'Whose Index Finger is Longer?' activity, each student's paper strip is pasted as a bar along a base line — the student with the tallest strip has the longest index finger, and you can identify them instantly without measuring any numbers at all."
+    ],
+    "common_misconceptions": [
+      "Students confuse which axis does what — the horizontal axis at the bottom shows the categories (activities or names of people), and the vertical axis on the left shows the numerical values such as hours or centimetres.",
+      "Students think the width of a bar carries meaning — in a standard bar graph, only the HEIGHT of the bar matters; all bars should be drawn with the same width so that height alone communicates the data.",
+      "Students assume they can read a bar's value from its middle or bottom — every bar starts at zero on the vertical axis, so the very top of the bar is the only point you use to read the bar's value."
+    ],
+    "hint_progression": [
+      "Look at where the very top of the bar ends — that point, not the bottom or sides, is what you use to read the value from the graph.",
+      "Draw (or imagine) a horizontal line from the top of the bar across to the vertical axis on the left, and read the number at the exact point where your line meets that axis.",
+      "For example, if the top of Sheela's 'Studying' bar lines up with the number 3 on the vertical axis, then she studies for 3 hours — that number from the vertical axis is your complete answer, no further calculation needed."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Sheela's bar graph shows her 'Studying' bar reaches 3 on the vertical axis. Raman's table shows 2 icons for studying, and each icon equals 1 hour. How many more hours does Sheela spend studying compared to Raman?",
+        "answer": "1 more hour",
+        "explanation": "Sheela studies 3 hours (read from the top of her bar on the vertical axis). Raman studies 2 hours (2 icons × 1 hour each). The difference is 3 − 2 = 1 hour more for Sheela. Both the bar graph and the icon table express hours, so you can compare them directly once you know each person's value."
+      },
+      {
+        "question": "In the 'Whose Index Finger is Longer?' bar graph, Meena's paper strip bar reaches 7 cm and Rohan's strip bar reaches 5 cm. Whose index finger is longer, and by how many centimetres?",
+        "answer": "Meena's index finger is longer by 2 cm.",
+        "explanation": "In a bar graph, the taller bar always represents the larger measurement. Meena's bar at 7 cm is taller than Rohan's at 5 cm, so Meena's finger is longer. The difference in heights — 7 − 5 = 2 cm — tells you by exactly how much. The bar graph makes this comparison immediate without needing a ruler."
+      }
+    ]
+  },
+  {
+    "section_id": "15-4",
+    "chapter_id": 15,
+    "order": 4,
+    "concept": "reading_and_interpreting_bar_graphs",
+    "title": "Reading and Interpreting Bar Graphs",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["introduction_to_bar_graphs"],
+    "explanation": "Reading a bar graph means not just identifying one bar's value but using all the bar values together to answer deeper questions — finding totals, making comparisons, and drawing conclusions. In Rani's school canteen bar graph, each bar shows how many kilograms of food were wasted for a different dish across the school week, with bars for Sandwich (Monday), Paratha (Tuesday), Khichdi (Wednesday), Puri-Sabzi (Thursday), and Idli-Sambar (Friday). To find the total food wasted, you read every bar and add all five values; to compare two days, you read both bars and subtract; and to predict which dish will be wasted most next week, you identify the tallest bar this week. These skills together turn a simple bar graph into a tool for real-world thinking.",
+    "examples": [
+      "The 'Food Wastage' bar graph shows the Khichdi/Wednesday bar at 8 kg — the tallest bar — so Khichdi was wasted the most this week and is the dish most likely to be wasted again if served next week.",
+      "To find the total food wasted during the week, Rani adds all five bar values: 5 (Sandwich) + 6 (Paratha) + 8 (Khichdi) + 7 (Puri-Sabzi) + 4 (Idli-Sambar) = 30 kg — finding a total always requires reading and adding every bar, not just the highest one.",
+      "If 1 kg of food waste can feed 3 children, then the 30 kg total waste could have fed 30 × 3 = 90 children — reading a bar graph can lead directly into a calculation that reveals a powerful real-world meaning."
+    ],
+    "common_misconceptions": [
+      "Students answer 'how much total food was wasted?' by writing only the tallest bar's value — finding a total always means reading and adding every single bar in the graph, not picking the largest one.",
+      "Students confuse 'which day had less wastage than one specific other day' with 'which day had the least wastage overall' — Idli-Sambar Friday (4 kg) had less wastage than Sandwich Monday (5 kg) and also happened to be the least overall, but these are two different comparisons; always re-read the exact question.",
+      "Students believe bar graphs can only describe what has already happened and cannot support predictions, but identifying the consistently highest bar is a sound basis for predicting which item is most likely to be wasted again in a future week."
+    ],
+    "hint_progression": [
+      "First decide what kind of question you are answering — do you need one bar's value, the difference between two bars, the sum of all bars, or a prediction based on the tallest bar? Each task needs a different approach.",
+      "For a total, carefully read every bar using the vertical axis and write each value down before adding them all together; for a comparison, read just the two bars involved and subtract the smaller from the larger; for a prediction, identify the tallest bar.",
+      "The five bar values in Rani's canteen graph are 5, 6, 8, 7, and 4 kg — adding them gives 5 + 6 + 8 + 7 + 4 = 30 kg total. To find how many children that 30 kg could have fed at 3 children per kg, multiply: 30 × 3 = 90 children."
+    ],
+    "quiz_questions": [
+      {
+        "question": "Rani's canteen bar graph shows: Sandwich (Monday) = 5 kg, Paratha (Tuesday) = 6 kg, Khichdi (Wednesday) = 8 kg, Puri-Sabzi (Thursday) = 7 kg, Idli-Sambar (Friday) = 4 kg. Which food was wasted the least, and how many more kilograms of Khichdi were wasted compared to that food?",
+        "answer": "Idli-Sambar was wasted the least (4 kg). Khichdi wasted 4 kg more than Idli-Sambar.",
+        "explanation": "The shortest bar belongs to Idli-Sambar at 4 kg — that is the least wastage. The tallest bar belongs to Khichdi at 8 kg. The difference is 8 − 4 = 4 kg more Khichdi wasted. Subtracting the shortest bar value from the tallest bar value gives the difference between the most-wasted and least-wasted items."
+      },
+      {
+        "question": "Rani was shocked by the food going to waste at her school. If 1 kg of food waste can feed 3 children, how many children could have been fed with all the food wasted in her school canteen that week?",
+        "answer": "90 children",
+        "explanation": "Step 1 — find total wastage by adding all bar values: 5 + 6 + 8 + 7 + 4 = 30 kg. Step 2 — multiply the total by 3 children per kg: 30 × 3 = 90 children. This two-step process — use the graph to get a total, then apply real-world arithmetic — shows why interpreting bar graphs is a powerful skill, not just a reading exercise."
+      }
+    ]
+  },
+  {
+    "section_id": "15-5",
+    "chapter_id": 15,
+    "order": 5,
+    "concept": "data_observation_from_pictures",
+    "title": "Extracting Data from a Picture to Verify Statements",
+    "difficulty": "intermediate",
+    "prerequisite_concepts": ["data_collection_and_frequency_table"],
+    "explanation": "Sometimes data is not in a table or graph but hidden inside a picture — like a drawing of many schoolchildren, some wearing caps, some wearing glasses, some holding books, and some carrying backpacks. To decide whether a statement about the picture is TRUE or FALSE, you must carefully count and categorise exactly what you see. Statements with the word 'all' require every single person to match; 'more than half' requires finding the total first and comparing; and statements about overlapping groups (like wearing both glasses and caps) require finding children who satisfy both conditions at the same time.",
+    "examples": [
+      "To check 'All girls are wearing glasses', you look at every girl in the picture and confirm she has glasses — if even one girl appears without glasses, the statement is FALSE regardless of how many other girls do wear them.",
+      "To check '10 children are wearing caps', you count only the children who have a cap on their head and compare that number to 10 — if the count is exactly 10 the statement is TRUE, and if it is more or fewer it is FALSE.",
+      "To check 'Some children are wearing both glasses and caps', you scan the picture for any child who simultaneously has glasses on their face AND a cap on their head — finding even one such child makes the statement TRUE."
+    ],
+    "common_misconceptions": [
+      "For statements about a specific sub-group (like 'boys wearing glasses'), students accidentally count the whole larger group (all children wearing glasses) rather than restricting the count to boys — always apply every condition mentioned in the statement before counting.",
+      "For 'more than half' statements, students skip calculating the total and just guess whether the count looks big — you must first count every child in the picture, calculate what half of that total is, and then compare your sub-group count to that halfway value.",
+      "For 'all' statements, students see that most members of a group satisfy the condition and mark it TRUE without checking the remaining members — one single exception is enough to make any 'all' statement FALSE."
+    ],
+    "hint_progression": [
+      "Before looking at the picture, underline the key words in the statement — words like 'all', 'more than half', 'some', and 'no child' each tell you a different kind of check you need to perform.",
+      "Count the total number of children in the picture first; then count only the children who match the specific condition in the statement; finally compare those two numbers to decide TRUE or FALSE.",
+      "For example, for 'More than half of the children are wearing glasses': count all children (say 16), find half of that total (16 ÷ 2 = 8), then count how many wear glasses — if glasses-wearers are more than 8 the statement is TRUE; if 8 or fewer, it is FALSE."
+    ],
+    "quiz_questions": [
+      {
+        "question": "A picture shows 16 schoolchildren in uniform. You count carefully and find 9 of them are wearing glasses. Is the statement 'More than half of the children are wearing glasses' TRUE or FALSE? Show your reasoning step by step.",
+        "answer": "TRUE",
+        "explanation": "Half of 16 children is 8. Since 9 is greater than 8, more than half the children are wearing glasses, so the statement is TRUE. If exactly 8 children wore glasses the statement would be FALSE because 'more than half' means strictly greater than half — this is why finding the exact halfway number matters before deciding."
+      },
+      {
+        "question": "The statement says 'There is no child who has all three items — a cap, a book, and a backpack.' How would you go about checking this, and what single observation would immediately make it FALSE?",
+        "answer": "You check each child in the picture to see whether any one child has all three at once: a cap on their head, a book in hand, AND a backpack on their back. If not even one child has all three, the statement is TRUE. Finding even one child with all three makes it FALSE.",
+        "explanation": "A 'no child' statement is disproved the moment you find a single counter-example — you only need one child carrying all three to make it FALSE. This is different from an 'all' statement (disproved by one exception who lacks something) or a 'some' statement (confirmed by one matching example). Careful, systematic observation of each child one by one is the only reliable method."
+      }
+    ]
+  }
+]
