@@ -556,12 +556,14 @@ const Session = () => {
         streamingIdRef.current = null;
         streamingTextRef.current = "";
         setRagLoading(false);
+        isSendingRef.current = false;
         pendingGreeting.current = false;
       }
 
       if (msg.type === "error") {
         setTyping(false);
         setRagLoading(false);
+        isSendingRef.current = false;
         setMessages((prev) => [
           ...prev,
           { id: `e-${Date.now()}`, role: "tutor", text: `⚠️ ${msg.payload?.message || "Error"}` },
@@ -637,10 +639,12 @@ const Session = () => {
     }
   }, [sttListening]);
 
+  const isSendingRef = useRef(false);
+
   /* ── send message via WebSocket ───────────────────────── */
   const sendStudentMessage = (text) => {
     const trimmed = (typeof text === "string" ? text : input).trim();
-    if (!trimmed || ragLoading || chapterComplete) return;
+    if (!trimmed || ragLoading || isSendingRef.current || chapterComplete) return;
 
     const ws = wsRef.current;
     if (!ws || ws.readyState !== WebSocket.OPEN) {
@@ -648,8 +652,11 @@ const Session = () => {
         ...m,
         { id: `e-${Date.now()}`, role: "tutor", text: "⚠️ Connection lost — please refresh the page." },
       ]);
+      isSendingRef.current = false;
       return;
     }
+
+    isSendingRef.current = true;
 
     // Compute response time (Issue 4)
     const response_time_ms = lastBotMessageTimestamp.current
@@ -910,20 +917,22 @@ const Session = () => {
           </div>
 
           {/* Mastery bar */}
-          <div className="border-t px-4 pt-2 pb-0 bg-background flex-shrink-0">
-            <div className="flex items-center justify-between text-xs">
-              <span className="text-muted-foreground">{sessionTopic || "Topic"} Mastery</span>
-              <span className="font-mono text-teal-600">{mastery}%</span>
+          {!chapterComplete && mastery < 100 && (
+            <div className="border-t px-4 pt-2 pb-0 bg-background flex-shrink-0">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-muted-foreground">{sessionTopic || "Topic"} Mastery</span>
+                <span className="font-mono text-teal-600">{mastery}%</span>
+              </div>
+              <div className="mt-1 h-1 w-full bg-muted rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-green-500"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${mastery}%` }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                />
+              </div>
             </div>
-            <div className="mt-1 h-1 w-full bg-muted rounded-full overflow-hidden">
-              <motion.div
-                className="h-full bg-green-500"
-                initial={{ width: 0 }}
-                animate={{ width: `${mastery}%` }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-              />
-            </div>
-          </div>
+          )}
 
           {/* Input */}
           <div className="flex items-center gap-2 px-4 py-3 bg-background flex-shrink-0">

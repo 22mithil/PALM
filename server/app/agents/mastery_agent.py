@@ -202,6 +202,11 @@ def _recompute_completion(state: TurnState) -> None:
     if not statuses:
         return
 
+    # If chapter was already completed, mastery score is locked at 100%
+    if state.chapter_progress.was_completed:
+        state.chapter_progress.completion_percent = 100.0
+        return
+
     total = len(statuses)
     mastered = sum(
         1 for ss in statuses.values() if ss.status == "mastered"
@@ -209,3 +214,6 @@ def _recompute_completion(state: TurnState) -> None:
     state.chapter_progress.completion_percent = round(
         (mastered / total) * 100, 1
     ) if total > 0 else 0.0
+
+    if state.chapter_progress.completion_percent >= 100.0:
+        state.chapter_progress.was_completed = True
