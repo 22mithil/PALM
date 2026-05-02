@@ -183,6 +183,7 @@ async def run_turn_pipeline(
             current_section_id=progress.current_section_id,
             section_statuses=section_statuses_parsed,
             completion_percent=progress.completion_percent or 0.0,
+            was_completed=progress.was_completed,
         )
 
     # Assemble TurnState

@@ -75,9 +75,12 @@ async def reset_section(
     progress.current_section_id = payload.section_id
 
     # Recompute completion
-    total = len(statuses)
-    mastered = sum(1 for s in statuses.values() if isinstance(s, dict) and s.get("status") == "mastered")
-    progress.completion_percent = round((mastered / total) * 100, 1) if total > 0 else 0.0
+    if progress.was_completed:
+        progress.completion_percent = 100.0
+    else:
+        total = len(statuses)
+        mastered = sum(1 for s in statuses.values() if isinstance(s, dict) and s.get("status") == "mastered")
+        progress.completion_percent = round((mastered / total) * 100, 1) if total > 0 else 0.0
 
     # was_completed stays True — never reset
 

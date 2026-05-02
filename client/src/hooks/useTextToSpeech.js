@@ -6,13 +6,14 @@ import { useState, useEffect, useRef, useCallback } from 'react';
  */
 function cleanForTTS(text) {
   return text
-    .replace(/\$\$[\s\S]*?\$\$/g, 'math expression')   // block LaTeX
-    .replace(/\$[^$]*?\$/g, 'math expression')           // inline LaTeX
+    .replace(/\$\$([\s\S]*?)\$\$/g, ' $1 ')              // extract block LaTeX inner text
+    .replace(/\$([^$]*?)\$/g, ' $1 ')                    // extract inline LaTeX inner text
     .replace(/```[\s\S]*?```/g, '')                      // code blocks
     .replace(/`[^`]*`/g, '')                             // inline code
     .replace(/[*_~#>|\\]/g, '')                          // markdown symbols
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')             // links → label only
     .replace(/^\d+\.\s+/gm, '')                          // strip "1. ", "2. " list prefixes
+    .replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '') // strip emojis
     .replace(/\n{2,}/g, '. ')                            // paragraph breaks → pause
     .replace(/\n/g, ' ')
     .trim();

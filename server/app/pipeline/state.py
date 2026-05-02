@@ -34,6 +34,7 @@ class ChapterProgress(BaseModel):
     current_section_id: str
     section_statuses: dict[str, SectionStatus] = Field(default_factory=dict)
     completion_percent: float = 0.0
+    was_completed: bool = False
 
 
 class CurrentSection(BaseModel):
