@@ -7,6 +7,7 @@ via the OpenAI-compatible FastRouter API.
 
 import logging
 from collections.abc import AsyncIterator
+from contextvars import ContextVar
 from typing import Any, Optional
 
 from openai import AsyncOpenAI, APIConnectionError, RateLimitError, APIStatusError
@@ -14,6 +15,22 @@ from openai import AsyncOpenAI, APIConnectionError, RateLimitError, APIStatusErr
 from app.core.config import settings
 
 logger = logging.getLogger(__name__)
+
+# ── Token-usage tracking (per async task / turn) ────────────────────────
+_token_usage: ContextVar[dict] = ContextVar(
+    "llm_token_usage",
+    default={"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0},
+)
+
+
+def reset_token_counter() -> None:
+    """Reset the per-turn token counter. Call at pipeline turn start."""
+    _token_usage.set({"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0})
+
+
+def get_token_usage() -> dict:
+    """Return accumulated token counts for the current turn."""
+    return dict(_token_usage.get())
 
 # ── Client (lazy singleton) ─────────────────────────────────────────────
 _client: AsyncOpenAI | None = None
@@ -85,6 +102,17 @@ async def generate_response(
             **kwargs,
         )
         content = response.choices[0].message.content or ""
+
+        # ── Accumulate token usage ───────────────────────────────
+        if response.usage:
+            usage = _token_usage.get()
+            usage = {
+                "prompt_tokens": usage["prompt_tokens"] + (response.usage.prompt_tokens or 0),
+                "completion_tokens": usage["completion_tokens"] + (response.usage.completion_tokens or 0),
+                "total_tokens": usage["total_tokens"] + (response.usage.total_tokens or 0),
+            }
+            _token_usage.set(usage)
+
         logger.debug(
             "LLM response [%s]: %d tokens → %d chars",
             resolved_model,

@@ -8,6 +8,7 @@ GET    /api/v1/sessions/{id}/events           — Get chat history (paginated fr
 PATCH  /api/v1/sessions/{id}/end              — End a session and record duration
 """
 
+import logging
 import uuid
 from datetime import datetime, timezone
 from typing import Optional
@@ -22,6 +23,7 @@ from app.schemas.session import SessionCreate, SessionResponse
 from app.services import session_service
 
 router = APIRouter()
+logger = logging.getLogger(__name__)
 
 
 @router.post(
@@ -126,6 +128,14 @@ async def end_session(
 
     await db.commit()
     await db.refresh(session)
+
+    # ── Trigger evaluation analysis ──────────────────────────────
+    try:
+        from app.evaluation.session_analyzer import analyze_session
+        eval_metrics = analyze_session(session_id, session_type="live")
+        logger.info("Session evaluation complete: %s", eval_metrics.get("report_path", "N/A"))
+    except Exception:
+        logger.debug("Session evaluation failed (non-critical)", exc_info=True)
 
     return {
         "id": str(session.id),

@@ -32,6 +32,8 @@ from app.pipeline.state import (
 )
 from app.pipeline.summary import maybe_regenerate_summary
 from app.services.session_context import session_context_manager
+from app.evaluation.turn_logger import turn_logger
+from app.integrations.fastrouter.llm import reset_token_counter, get_token_usage
 
 logger = logging.getLogger(__name__)
 
@@ -62,6 +64,9 @@ async def run_turn_pipeline(
         The final tutor message to send to the student.
     """
     t_start = time.perf_counter()
+
+    # Reset per-turn token counter
+    reset_token_counter()
 
     # ═══════════════════════════════════════════════════════════════════
     # STEP 1: Load student, session, progress from DB → assemble TurnState
@@ -262,22 +267,30 @@ async def run_turn_pipeline(
     # ═══════════════════════════════════════════════════════════════════
     # STEP 3: Load current section content
     # ═══════════════════════════════════════════════════════════════════
+    _t3 = time.perf_counter()
     await load_section(state, db)
+    _lat_section_loader = (time.perf_counter() - _t3) * 1000
 
     # ═══════════════════════════════════════════════════════════════════
     # STEP 4: Check summary regeneration
     # ═══════════════════════════════════════════════════════════════════
+    _t4 = time.perf_counter()
     await maybe_regenerate_summary(state)
+    _lat_summary = (time.perf_counter() - _t4) * 1000
 
     # ═══════════════════════════════════════════════════════════════════
     # STEP 4.5: Answer checking (before orchestrator)
     # ═══════════════════════════════════════════════════════════════════
+    _t45 = time.perf_counter()
     await check_answer(state)
+    _lat_answer_check = (time.perf_counter() - _t45) * 1000
 
     # ═══════════════════════════════════════════════════════════════════
     # STEP 5: Run LLM orchestrator
     # ═══════════════════════════════════════════════════════════════════
+    _t5 = time.perf_counter()
     await run_orchestrator(state)
+    _lat_orchestrator = (time.perf_counter() - _t5) * 1000
 
     # ═══════════════════════════════════════════════════════════════════
     # STEP 6: Apply guardrails
@@ -313,8 +326,10 @@ async def run_turn_pipeline(
     # ═══════════════════════════════════════════════════════════════════
     # STEP 8: Run mastery agent (unconditional side-effect)
     # ═══════════════════════════════════════════════════════════════════
+    _t8 = time.perf_counter()
     from app.agents.mastery_agent import run_mastery
     await run_mastery(state, db)
+    _lat_mastery = (time.perf_counter() - _t8) * 1000
 
     # ═══════════════════════════════════════════════════════════════════
     # STEP 8.5: Issue D — If chapter just hit 100%, send celebration
@@ -338,8 +353,10 @@ async def run_turn_pipeline(
         # ═══════════════════════════════════════════════════════════════════
         # STEP 9: Run dialogue agent (unconditional, sole output generator)
         # ═══════════════════════════════════════════════════════════════════
+        _t9 = time.perf_counter()
         from app.agents.dialogue_agent import run_dialogue
         await run_dialogue(state)
+        _lat_dialogue = (time.perf_counter() - _t9) * 1000
 
     # ═══════════════════════════════════════════════════════════════════
     # STEP 10: Append tutor message to last_10_messages
@@ -382,6 +399,7 @@ async def run_turn_pipeline(
     # ═══════════════════════════════════════════════════════════════════
     # STEP 12: Clear agent_outputs (for next turn)
     # ═══════════════════════════════════════════════════════════════════
+    agents_fired = [intent.primary_agent] + intent.supporting_agents
     state.agent_outputs = AgentOutputs()
 
     elapsed = (time.perf_counter() - t_start) * 1000
@@ -392,6 +410,28 @@ async def run_turn_pipeline(
         elapsed,
         len(state.final_message),
     )
+
+    # ═══════════════════════════════════════════════════════════════════
+    # STEP 12.5: Log turn snapshot for evaluation
+    # ═══════════════════════════════════════════════════════════════════
+    try:
+        step_latencies = {
+            "section_loader_ms": round(_lat_section_loader, 1),
+            "summary_regen_ms": round(_lat_summary, 1),
+            "answer_checker_ms": round(_lat_answer_check, 1),
+            "orchestrator_ms": round(_lat_orchestrator, 1),
+            "mastery_agent_ms": round(_lat_mastery, 1),
+            "dialogue_agent_ms": round(locals().get('_lat_dialogue', 0), 1),
+        }
+        turn_logger.log_turn(
+            state,
+            pipeline_latency_ms=elapsed,
+            step_latencies=step_latencies,
+            agents_fired=agents_fired,
+            token_usage=get_token_usage(),
+        )
+    except Exception:
+        logger.debug("Evaluation logger failed (non-critical)", exc_info=True)
 
     # ═══════════════════════════════════════════════════════════════════
     # STEP 13: Return final_message
