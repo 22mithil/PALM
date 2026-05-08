@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-03T12:30:06.473315+00:00",
+  "session_id": "19116fd5-ed13-4ad1-972a-45bcae8cdd40",
+  "student_id": "faab8348-7888-4031-bc91-a421725a52fc",
+  "student_name": "[EVAL] Kabir",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 13,
+  "student_message": "Really? I was so scared. Are we doing another letter next? Sorry, did I mess up?",
+  "final_message": "Math can be hard sometimes, Kabir, so it is completely okay to feel a little scared! Please don't apologize, because making mistakes is just a normal part of learning, and you didn't mess up at all. You did a great job being brave and guessing that it folds straight down the middle. You are doing wonderful! 💛 \n\nSince you are doing so well, let's look at another letter together. Let's try the letter $$A$$. If you wanted to fold the letter $$A$$ so that both halves match perfectly as mirror images, which way do you think you would draw the fold line? 😊",
+  "emotion": "fearful",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "encouragement"
+    ],
+    "goal": "Reassure Kabir he did not mess up and introduce the next letter.",
+    "reasoning": "The student is fearful and repeatedly apologizing. Encouragement is needed to build confidence before continuing the lesson via dialogue."
+  },
+  "agents_fired": [
+    "dialogue",
+    "encouragement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "The session covered lines of symmetry in shapes and letters. The student successfully identified vertical symmetry in the letter \"A\" and horizontal symmetry in the letter \"H\". However, he continues to struggle significantly with math anxiety, frequent self-doubt, and a fear of making mistakes. Currently, the student accurately grasps the foundational concepts of symmetry but severely lacks confidence, requiring continuous emotional support and reassurance to progress.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 38387.8,
+  "step_latencies": {
+    "section_loader_ms": 69.3,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 9394.7,
+    "mastery_agent_ms": 7963.8,
+    "dialogue_agent_ms": 12350.7
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2434,
+    "completion_tokens": 3870,
+    "total_tokens": 6304
+  },
+  "student_word_count": 16,
+  "tutor_word_count": 103,
+  "has_katex": true,
+  "has_broken_katex": false
+}

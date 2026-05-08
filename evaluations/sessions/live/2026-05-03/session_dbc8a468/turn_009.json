@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-03T11:17:41.994475+00:00",
+  "session_id": "dbc8a468-82b3-4581-b03b-1b9beac2df6c",
+  "student_id": "4638e931-cfe3-4c60-9990-f4a592299666",
+  "student_name": "[EVAL] Riya",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 9,
+  "student_message": "Is it twins? I don't remember. This is too hard.",
+  "final_message": "I hear you, Riya. Math can definitely feel hard sometimes! 💛 I loved how you remembered the details about the twins and the aliens earlier. Please don't feel sad. Making mistakes is just a normal part of how our brains learn, and I believe in you! \n\nLet's take a deep breath and try a fun riddle together. I am an invisible magic line. If you fold a shape right on top of me, both halves will match perfectly like a mirror reflection! I work on a shape like a heart, but not on the letter 'J'. Do you know my special math name? 🤔",
+  "emotion": "sad",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 4,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "encouragement",
+      "engagement"
+    ],
+    "goal": "Comfort student, regain attention, and simplify the concept of reflection symmetry.",
+    "reasoning": "The student is sad, overwhelmed, and looking away. They need emotional support, re-engagement, and a completely simplified explanation to reduce cognitive load."
+  },
+  "agents_fired": [
+    "dialogue",
+    "encouragement",
+    "engagement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "struggling",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "The session covered the concept of symmetry. The student successfully identified visual symmetry by recognizing that a figure's wings match. However, they struggled to remember the actual definition of the word \"symmetry.\" The student's current learning state is frustrated and overwhelmed, expressing that the material feels \"too hard.\" While they grasp the visual concept of matching parts, they lack confidence and need help connecting their correct observations to the formal mathematical vocabulary.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 47585.3,
+  "step_latencies": {
+    "section_loader_ms": 84.6,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 12067.0,
+    "mastery_agent_ms": 7325.5,
+    "dialogue_agent_ms": 9552.3
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2515,
+    "completion_tokens": 4877,
+    "total_tokens": 7392
+  },
+  "student_word_count": 10,
+  "tutor_word_count": 104,
+  "has_katex": false,
+  "has_broken_katex": false
+}

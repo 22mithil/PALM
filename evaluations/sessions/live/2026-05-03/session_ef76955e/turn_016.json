@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-03T12:01:50.774919+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 16,
+  "student_message": "That makes so much sense! The oval acts just like the stretched envelope so diagonal folds don't work. What if we fold a five-pointed star sticker, how many fold lines does it have?",
+  "final_message": "You are on a roll with these awesome questions, Zara! ⭐ Imagine taking that five-pointed star sticker and folding it right down the middle, starting from the very top point. The left and right sides would match perfectly, making a mirror image. \n\nBut wait, what if you turn the star so a different point is at the top? You can fold it straight down from that point, too! Since a perfect star sticker has five points, you can turn and fold it from every single one of those points. That means a five-pointed star has exactly five lines of symmetry. Can you picture folding the star from each of its five points?",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Explain the lines of symmetry for a five-pointed star.",
+    "reasoning": "The student is happy, focused, and asked a specific conceptual question about the symmetry of a star."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "Zara covered rotational and reflectional symmetry, exploring fold lines in letters, triangles, circles, and ovals. She understands these concepts exceptionally well, accurately deducing symmetry for various triangles and grasping infinite symmetry in circles. Zara exhibited no struggles. Her learning state is highly engaged and progressive; having mastered basic 2D symmetry, she readily applies concepts to real-world objects and proactively asks advanced questions about stretched shapes and 3D objects.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 32610.8,
+  "step_latencies": {
+    "section_loader_ms": 518.3,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 8589.2,
+    "mastery_agent_ms": 10987.0,
+    "dialogue_agent_ms": 10971.4
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2262,
+    "completion_tokens": 3087,
+    "total_tokens": 5349
+  },
+  "student_word_count": 33,
+  "tutor_word_count": 112,
+  "has_katex": false,
+  "has_broken_katex": false
+}

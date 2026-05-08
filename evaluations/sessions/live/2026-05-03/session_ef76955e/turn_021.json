@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-03T12:05:28.827570+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 21,
+  "student_message": "Oh cool! Since the pinwheel has four matching blades, it will look exactly the same at 1/4, 1/2, and 3/4 turns! What if one of the blades breaks off in the wind, does it lose all its spinning symmetry?",
+  "final_message": "That is such a smart thought, Zara! You are exactly right. If a pinwheel loses a blade, the empty spot will move around when you spin it. It won't look exactly the same until it makes one full turn back to the start. Since it needs a whole turn to look the same again, it loses its spinning symmetry! 🌪️ \n\nYou are doing so wonderfully with this, so let's try a fun number puzzle next. Think about all the digits from $$0$$ to $$9$$. Which of those digits have rotational symmetry, and at which turn? Also, what happens if we put two eights together? Do you think the big number $$88$$ has rotational symmetry? I can't wait to hear your brilliant ideas!",
+  "emotion": "confident",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "quiz"
+    ],
+    "goal": "Answer her question about the broken pinwheel, then present a quiz question.",
+    "reasoning": "Zara is confident and demonstrating strong understanding. Dialogue will address her hypothetical question, and quiz will formally test her knowledge."
+  },
+  "agents_fired": [
+    "dialogue",
+    "quiz"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-2",
+  "completion_percent": 25.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "in_progress",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "rotational_symmetry",
+  "current_section_title": "Rotational Symmetry",
+  "current_section_content": "A shape has rotational symmetry if it looks exactly the same after being rotated (turned) by a fraction of a full turn around its centre point. The fractions we check are 1/4 turn, 1/2 turn, and 3/4 turn. A shape that only looks the same after a full turn does not count as having rotational symmetry. You can track this by placing a dot on the shape and observing where the dot ends up after each turn.",
+  "session_summary": "Zara covered reflectional and rotational symmetry in shapes, letters ('N', 'S'), and digital numbers. She understands these concepts exceptionally well, accurately differentiating between folding and spinning symmetry. Zara exhibited no struggles. Her learning state remains highly engaged and progressive; having mastered basic 2D symmetry, she readily applies concepts to new contexts and proactively asks advanced edge-case questions, such as whether a 6 rotating into a 9 counts as rotational symmetry.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 37914.6,
+  "step_latencies": {
+    "section_loader_ms": 65.0,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 9336.6,
+    "mastery_agent_ms": 15182.3,
+    "dialogue_agent_ms": 12554.6
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2358,
+    "completion_tokens": 3701,
+    "total_tokens": 6059
+  },
+  "student_word_count": 39,
+  "tutor_word_count": 122,
+  "has_katex": true,
+  "has_broken_katex": false
+}

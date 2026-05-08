@@ -1,8 +1,8 @@
 # Keep directory structure but ignore generated session data
-sessions/synthetic/
-sessions/live/
-reports/
-analysis/
+# sessions/synthetic/
+# sessions/live/
+# reports/
+# analysis/
 
 # Keep this file
 !.gitignore

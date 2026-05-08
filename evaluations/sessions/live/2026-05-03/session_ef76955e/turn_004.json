@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-03T11:53:06.490184+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 4,
+  "student_message": "That makes so much sense! So is that how a recycling symbol works with the arrows spinning around? What if a shape has both fold lines and rotational symmetry, like a square window?",
+  "final_message": "You are so clever! Yes, the recycling symbol is a perfect example of just spinning. Your square window is a brilliant idea because it is super special and has both! If you draw a line straight down the middle of a square window and fold it, the two halves are perfect mirror images. That means it has reflection symmetry, just like the letter H! But if you leave it flat and spin it around, it still looks exactly like a square window. When a shape can do both, it has both reflection and rotational symmetry. It is like having two math superpowers at once! Can you think of any other shapes that can both fold into perfect halves and spin around to look the exact same? 🪟✨",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Explain shapes with both rotational and reflection symmetry using her square window example.",
+    "reasoning": "The student is happy, focused, and asking an advanced conceptual question. The dialogue agent should explain this concept."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 9,
+  "pipeline_latency_ms": 26937.2,
+  "step_latencies": {
+    "section_loader_ms": 63.8,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 7922.2,
+    "mastery_agent_ms": 7032.0,
+    "dialogue_agent_ms": 11143.8
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2239,
+    "completion_tokens": 2636,
+    "total_tokens": 4875
+  },
+  "student_word_count": 33,
+  "tutor_word_count": 127,
+  "has_katex": false,
+  "has_broken_katex": false
+}

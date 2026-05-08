@@ -1,0 +1,64 @@
+[
+  {
+    "timestamp": "2026-05-03T11:49:34.792875+00:00",
+    "session_id": "748674f8-9dc3-4680-91fe-44fea42a636f",
+    "student_id": "90815454-4e87-49bd-bdf4-c0b8c891c588",
+    "student_name": "[EVAL] Arjun",
+    "grade": 4,
+    "session_type": "live",
+    "test_id": null,
+    "turn_count": 0,
+    "student_message": "",
+    "final_message": "🎉 Amazing work! You've mastered every section in this chapter! You should be incredibly proud — you answered questions, worked through tricky concepts, and showed real understanding. Head back to the dashboard to explore more topics, or click Restart to practice any section again. You're a math superstar! 🌟",
+    "emotion": "neutral",
+    "emotion_confidence": 0.0,
+    "gaze": "unknown",
+    "consecutive_gaze_away": 0,
+    "orchestrator_intent": {
+      "primary_agent": "dialogue",
+      "supporting_agents": [],
+      "goal": "Greet Arjun and review symmetry in block printing.",
+      "reasoning": "The session is just starting and the student has already mastered the section, so we should greet them and initiate a review."
+    },
+    "agents_fired": [
+      "dialogue"
+    ],
+    "last_answer_correct": null,
+    "attempt_count": 0,
+    "hint_count": 0,
+    "chapter_id": 10,
+    "current_section_id": "10-4",
+    "completion_percent": 100.0,
+    "section_statuses": {
+      "10-1": "mastered",
+      "10-2": "mastered",
+      "10-3": "mastered",
+      "10-4": "mastered"
+    },
+    "was_completed": true,
+    "current_section_concept": "symmetry_in_block_printing_patterns",
+    "current_section_title": "Symmetry in Block Printing Patterns",
+    "current_section_content": "Block printing is a traditional craft from Rajasthan where artisans carve a design into a wooden block and press it repeatedly onto fabric to create beautiful repeating patterns. When the same block is stamped multiple times in different orientations, the final printed design can have rotational symmetry, reflection symmetry, or both. Importantly, the print produced by a block is the mirror image of the carved block, because the block is pressed face-down. By analysing how a block is repeated and rotated, you can predict and identify the symmetry of the resulting pattern.",
+    "session_summary": "",
+    "message_history_length": 1,
+    "pipeline_latency_ms": 18762.6,
+    "step_latencies": {
+      "section_loader_ms": 64.1,
+      "summary_regen_ms": 0.0,
+      "answer_checker_ms": 0.0,
+      "orchestrator_ms": 11794.7,
+      "mastery_agent_ms": 6369.5,
+      "dialogue_agent_ms": 0
+    },
+    "response_time_ms": null,
+    "token_usage": {
+      "prompt_tokens": 875,
+      "completion_tokens": 1701,
+      "total_tokens": 2576
+    },
+    "student_word_count": 0,
+    "tutor_word_count": 49,
+    "has_katex": false,
+    "has_broken_katex": false
+  }
+]

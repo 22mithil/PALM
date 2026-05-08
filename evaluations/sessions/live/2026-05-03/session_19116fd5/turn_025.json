@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-03T12:40:08.920320+00:00",
+  "session_id": "19116fd5-ed13-4ad1-972a-45bcae8cdd40",
+  "student_id": "faab8348-7888-4031-bc91-a421725a52fc",
+  "student_name": "[EVAL] Kabir",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 25,
+  "student_message": "Oh thank god. I was so scared. Are there more questions to do? Sorry, did I mess up?",
+  "final_message": "Math can be hard sometimes, Kabir, so it is completely okay to feel a little scared. Take a big, deep breath, because you are doing absolutely wonderful! You did a fantastic job noticing that straight up-and-down line earlier, and you didn't mess up at all. Please remember that making mistakes is just a normal part of learning, and I am always right here to help you. You are doing so great! 🌟 \n\nWhenever you feel ready, we can look at another fun shape together, or we can just take a little break. What would you like to do next? 💙",
+  "emotion": "fearful",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "encouragement"
+    ],
+    "goal": "Reassure Kabir he didn't mess up, validate his feelings, and gently see if he's ready.",
+    "reasoning": "Kabir is expressing high fear and anxiety about making mistakes. He needs encouragement to build confidence and dialogue to reassure him before proceeding."
+  },
+  "agents_fired": [
+    "dialogue",
+    "encouragement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "The session covered vertical and horizontal lines of symmetry. Kabir successfully identifies these symmetries but continues to struggle with severe math anxiety, extreme self-doubt, and a fear of making mistakes. He repeatedly apologizes despite providing correct answers. Currently, Kabir accurately grasps foundational symmetry concepts but severely lacks confidence. His learning state remains heavily dominated by anxiety, requiring continuous emotional support and reassurance to participate and progress.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 43666.4,
+  "step_latencies": {
+    "section_loader_ms": 476.3,
+    "summary_regen_ms": 8059.4,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 8520.3,
+    "mastery_agent_ms": 8019.4,
+    "dialogue_agent_ms": 10183.8
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2825,
+    "completion_tokens": 4616,
+    "total_tokens": 7441
+  },
+  "student_word_count": 18,
+  "tutor_word_count": 100,
+  "has_katex": false,
+  "has_broken_katex": false
+}

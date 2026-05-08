@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-03T12:11:49.960045+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 30,
+  "student_message": "Oh cool! The mirror line cuts right across the toppings so both halves get equal slices of each flavor. How does rotational symmetry work for a half-and-half pizza, does it only match at a full turn now?",
+  "final_message": "You are exactly right again! 🌟 Imagine spinning your delicious half-and-half pizza. If you turn it halfway around, the pepperoni moves to the bottom and the mushrooms move to the top. It looks upside down! To get the pepperoni back to its original spot, you have to spin it all the way around in one giant circle. So, just like you guessed, it only matches after a full turn. By carefully arranging our toppings in different ways, we completely change the pizza's spinning superpowers! 🍕",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Explain rotational symmetry for a half-and-half pizza.",
+    "reasoning": "The student is happy, focused, and asked a direct conceptual question requiring a clear explanation."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-3",
+  "completion_percent": 50.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "in_progress",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "making_symmetrical_designs",
+  "current_section_title": "Making Symmetrical Designs",
+  "current_section_content": "You can deliberately create designs that have rotational symmetry, reflection symmetry, or both by carefully arranging or colouring shapes. A design has rotational symmetry if it looks the same after a fractional turn, and it has reflection symmetry if a mirror line splits it into two matching halves. The same set of shapes — such as squares and equilateral triangles with equal side lengths — can be arranged in different ways to produce designs with different symmetry properties. Designs can be sorted into three groups: only rotational symmetry, only reflection symmetry, or both.",
+  "session_summary": "Zara covered reflectional and rotational symmetry in 2D shapes, composite figures, and real-world analogies like pizza toppings. She understands these concepts exceptionally well, accurately identifying fractional turns and mirror lines in complex, multi-patterned designs. Zara exhibited no struggles. Her learning state remains highly engaged and progressive. Having mastered basic symmetry, she readily applies concepts to new contexts and proactively asks advanced questions about how colors and patterns impact rotational and mirror symmetry.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 39940.5,
+  "step_latencies": {
+    "section_loader_ms": 72.6,
+    "summary_regen_ms": 10432.3,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 7688.3,
+    "mastery_agent_ms": 8970.1,
+    "dialogue_agent_ms": 11935.9
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2610,
+    "completion_tokens": 3837,
+    "total_tokens": 6447
+  },
+  "student_word_count": 37,
+  "tutor_word_count": 85,
+  "has_katex": false,
+  "has_broken_katex": false
+}

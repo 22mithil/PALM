@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-03T11:51:06.256573+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 1,
+  "student_message": "Oh cool! I am so ready! I make paper snowflakes by folding, so that must be symmetry too. What if a shape is a perfect circle, how many fold lines would it have since it has no straight edges?",
+  "final_message": "You are exactly right! Making paper snowflakes is a beautiful example of using lines of symmetry, so you already know so much about this! ❄️ \n\nNow, let us think about your perfect circle. Because it is perfectly round with no straight edges, you can fold it exactly in half straight down the middle, across, or diagonally. In fact, you can fold it in half in any direction at all, as long as your fold goes straight through the very center! That means a circle has an infinite, or never-ending, number of fold lines. Isn't that amazing? \n\nSince a circle has so many lines of symmetry, can you think of a shape or a letter that might only have one fold line?",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Validate snowflake connection and explain circle symmetry.",
+    "reasoning": "The student is highly engaged and asked a conceptual question about circles. The dialogue agent should answer her question."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 3,
+  "pipeline_latency_ms": 27259.2,
+  "step_latencies": {
+    "section_loader_ms": 525.5,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 7419.5,
+    "mastery_agent_ms": 8385.4,
+    "dialogue_agent_ms": 9386.3
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1705,
+    "completion_tokens": 2689,
+    "total_tokens": 4394
+  },
+  "student_word_count": 39,
+  "tutor_word_count": 121,
+  "has_katex": false,
+  "has_broken_katex": false
+}

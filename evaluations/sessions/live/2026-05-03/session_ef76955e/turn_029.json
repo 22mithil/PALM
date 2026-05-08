@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-03T12:11:01.350058+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 29,
+  "student_message": "That makes so much sense! I would put identical pepperoni on every single slice so they match perfectly. What if we just do half pepperoni and half mushroom, does it still have a mirror line down the middle?",
+  "final_message": "I love how you are designing these delicious pizzas! 🍕 If you make your pizza half pepperoni and half mushroom, it actually does still have a mirror line, but you have to be super careful where you slice it. \n\nIf you draw the mirror line exactly on the border between the two flavors, it won't work because the pepperoni side won't match the mushroom side. But if you turn your mirror line so it cuts directly across both flavors, then the top half and the bottom half will match perfectly! Both the top and the bottom will have the exact same amount of pepperoni and mushroom. \n\nIsn't it neat how changing the way we arrange our toppings completely changes where the mirror lines can go? ✨",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Explain the line of symmetry in a half-and-half design.",
+    "reasoning": "The student is engaged, happy, and asked a conceptual question about symmetry. The dialogue agent should explain the answer."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-3",
+  "completion_percent": 50.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "in_progress",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "making_symmetrical_designs",
+  "current_section_title": "Making Symmetrical Designs",
+  "current_section_content": "You can deliberately create designs that have rotational symmetry, reflection symmetry, or both by carefully arranging or colouring shapes. A design has rotational symmetry if it looks the same after a fractional turn, and it has reflection symmetry if a mirror line splits it into two matching halves. The same set of shapes — such as squares and equilateral triangles with equal side lengths — can be arranged in different ways to produce designs with different symmetry properties. Designs can be sorted into three groups: only rotational symmetry, only reflection symmetry, or both.",
+  "session_summary": "Zara covered reflectional and rotational symmetry in shapes, letters, numbers, and composite shapes. She understands these concepts exceptionally well, accurately identifying fractional turns for squares and rectangles. Zara exhibited no struggles. Her learning state remains highly engaged and progressive. Having mastered basic 2D symmetry, she readily applies concepts to new contexts and proactively asks advanced questions about edge cases, composite shapes, and how color patterns affect mirror symmetry.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 32742.0,
+  "step_latencies": {
+    "section_loader_ms": 70.3,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 9289.3,
+    "mastery_agent_ms": 8416.0,
+    "dialogue_agent_ms": 14110.7
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2218,
+    "completion_tokens": 3032,
+    "total_tokens": 5250
+  },
+  "student_word_count": 38,
+  "tutor_word_count": 126,
+  "has_katex": false,
+  "has_broken_katex": false
+}

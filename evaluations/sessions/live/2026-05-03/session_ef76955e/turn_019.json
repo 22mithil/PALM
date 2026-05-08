@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-03T12:03:56.847997+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 19,
+  "student_message": "Oh cool! The letter 'S' works because its top and bottom curves trade places perfectly when it spins! What if we flip the number 8 on a digital clock, does it have rotational symmetry too?",
+  "final_message": "You are spot on about the letter 'S', and your question about the digital number 8 is brilliant! \n\nRotational symmetry means a shape looks exactly the same after being turned just a part of a full circle around its center point. We check if it matches after a $$1/4$$ turn, a $$1/2$$ turn, or a $$3/4$$ turn. It only counts if it matches before spinning all the way around! \n\nTo check your digital 8, imagine drawing a tiny dot at the very top. If you give the 8 a $$1/2$$ turn so it is completely upside down, that little dot moves to the bottom, but the shape still looks exactly like an 8. Because it matches before doing a full spin, you are completely right that it has rotational symmetry! 🔄 \n\nWhat other numbers do you think might have this spinning superpower?",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Introduce the concept of rotational symmetry using her question about the number 8.",
+    "reasoning": "The section is not started, so the goal is to introduce the concept. Zara is happy, focused, and asking a great question that perfectly segues into rotational symmetry."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-2",
+  "completion_percent": 25.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "introduced",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "rotational_symmetry",
+  "current_section_title": "Rotational Symmetry",
+  "current_section_content": "A shape has rotational symmetry if it looks exactly the same after being rotated (turned) by a fraction of a full turn around its centre point. The fractions we check are 1/4 turn, 1/2 turn, and 3/4 turn. A shape that only looks the same after a full turn does not count as having rotational symmetry. You can track this by placing a dot on the shape and observing where the dot ends up after each turn.",
+  "session_summary": "Zara covered rotational and reflectional symmetry, exploring fold lines in letters, triangles, circles, and ovals. She understands these concepts exceptionally well, accurately deducing symmetry for various triangles and grasping infinite symmetry in circles. Zara exhibited no struggles. Her learning state is highly engaged and progressive; having mastered basic 2D symmetry, she readily applies concepts to real-world objects and proactively asks advanced questions about stretched shapes and 3D objects.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 33357.4,
+  "step_latencies": {
+    "section_loader_ms": 66.9,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 8938.4,
+    "mastery_agent_ms": 10060.7,
+    "dialogue_agent_ms": 13460.7
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2236,
+    "completion_tokens": 3441,
+    "total_tokens": 5677
+  },
+  "student_word_count": 35,
+  "tutor_word_count": 142,
+  "has_katex": true,
+  "has_broken_katex": false
+}

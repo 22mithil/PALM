@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-03T12:22:01.749156+00:00",
+  "session_id": "19116fd5-ed13-4ad1-972a-45bcae8cdd40",
+  "student_id": "faab8348-7888-4031-bc91-a421725a52fc",
+  "student_name": "[EVAL] Kabir",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 3,
+  "student_message": "Oh thank god, I was so scared. I think it goes straight down the middle? Sorry, is that right?",
+  "final_message": "Take a deep breath, you are doing great! 💛 It is completely okay to feel a little scared, but I am right here with you. You did not mess up at all. In fact, you are absolutely right! \n\nThe line goes straight down the middle. When a line goes straight down like that, it makes both sides look like perfect mirror images of each other. We call that a line of symmetry! I am so proud of you for sharing your thoughts and figuring it out so beautifully. You have a wonderful math brain. Shall we try looking at a fun shape together next? 🌟",
+  "emotion": "fearful",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "encouragement"
+    ],
+    "goal": "Validate his correct intuition about the line of symmetry and boost his confidence.",
+    "reasoning": "Kabir is fearful and seeking validation for his answer. The dialogue agent will confirm his correct intuition about the line of symmetry, while the encouragement agent will help alleviate his fear and build his confidence."
+  },
+  "agents_fired": [
+    "dialogue",
+    "encouragement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 7,
+  "pipeline_latency_ms": 35409.2,
+  "step_latencies": {
+    "section_loader_ms": 75.9,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 9467.4,
+    "mastery_agent_ms": 7151.7,
+    "dialogue_agent_ms": 10131.8
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2358,
+    "completion_tokens": 3645,
+    "total_tokens": 6003
+  },
+  "student_word_count": 19,
+  "tutor_word_count": 105,
+  "has_katex": false,
+  "has_broken_katex": false
+}

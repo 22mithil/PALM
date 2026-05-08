@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-03T11:24:07.316068+00:00",
+  "session_id": "dbc8a468-82b3-4581-b03b-1b9beac2df6c",
+  "student_id": "4638e931-cfe3-4c60-9990-f4a592299666",
+  "student_name": "[EVAL] Riya",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 15,
+  "student_message": "A fold line? I forgot the math word. This is too hard.",
+  "final_message": "Math can definitely feel hard sometimes, Riya, but you did a brilliant job calling it a fold line! Forgetting words is totally okay and just a normal part of growing your brain. Take a deep breath, I believe in you! 💛 \n\nThat fold line is exactly right. The special math name for it is a line of symmetry, which is a fold line that divides a shape into two halves that are perfect mirror images of each other. \n\nTo help us remember, let's solve a quick riddle together. I have colorful wings that flutter and fly. If you draw a straight line right down my middle, both sides match perfectly, just like a mirror. What insect am I, and what is that magical line called? 🦋",
+  "emotion": "sad",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 10,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "encouragement",
+      "engagement"
+    ],
+    "goal": "Validate 'fold line', provide the term 'line of symmetry', and re-engage her.",
+    "reasoning": "Riya is sad, looking away, and feeling overwhelmed. She understands the concept ('fold line') but needs the formal vocabulary. Dialogue will provide the term, while encouragement and engagement address her sadness and distraction."
+  },
+  "agents_fired": [
+    "dialogue",
+    "encouragement",
+    "engagement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "struggling",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "The session covered symmetry and symmetrical letters. Riya visually understands symmetry, successfully recognizing matching parts and \"fold lines.\" However, she struggles to identify symmetrical letters (guessing R and P) and recall formal vocabulary. Her current learning state is highly frustrated and overwhelmed. Exhibiting negative self-talk, she repeatedly states the material is \"too hard.\" She lacks confidence and requires constant encouragement to connect her accurate visual understanding to the correct mathematical terms.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 60362.6,
+  "step_latencies": {
+    "section_loader_ms": 67.7,
+    "summary_regen_ms": 8705.9,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 15926.3,
+    "mastery_agent_ms": 6382.1,
+    "dialogue_agent_ms": 12259.5
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2862,
+    "completion_tokens": 6282,
+    "total_tokens": 9144
+  },
+  "student_word_count": 12,
+  "tutor_word_count": 126,
+  "has_katex": false,
+  "has_broken_katex": false
+}

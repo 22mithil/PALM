@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-03T11:55:22.358985+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 7,
+  "student_message": "That makes so much sense! The front headlights and back trunk are totally different. What if we look at a car's steering wheel, does it have both symmetry superpowers since it is shaped like a circle?",
+  "final_message": "You are asking such fantastic questions! A steering wheel is a bit tricky. The outside ring is a perfect circle, so it has both superpowers. But if we look at the inside parts where you beep the horn, they usually only have a vertical line of symmetry. That means if you slice it straight down the middle, the left and right sides are perfect mirror images. But if you spin it upside down, the bottom looks different from the top, so it doesn't have the spinning superpower! 🚗\n\nLet's practice our folding superpower with a fun puzzle. Prem wants to cut out the letter $$V$$ for a birthday banner using the fold-and-cut method. How many lines of symmetry does the letter $$V$$ have, which direction do they go, and how should he fold his paper to make it? ✨",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "quiz"
+    ],
+    "goal": "Explain steering wheel symmetry, then present a quiz to check her understanding.",
+    "reasoning": "Zara is happy, focused, and grasping the concepts well. The dialogue agent will answer her question, and since she shows strong understanding, a quiz will help solidify her learning."
+  },
+  "agents_fired": [
+    "dialogue",
+    "quiz"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "Zara covered rotational (\"spinning\") and reflectional (\"folding\") symmetry. She understood the concepts exceptionally well, correctly identifying that letters like 'Z' have only rotational symmetry, while squares and plus signs possess both. Zara exhibited no struggles during this session. Her current learning state is highly engaged and progressive; having firmly grasped 2D symmetry rules, she is now proactively inquiring about how symmetry applies to 3D objects like basketballs.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 27691.4,
+  "step_latencies": {
+    "section_loader_ms": 66.3,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 7979.3,
+    "mastery_agent_ms": 7068.8,
+    "dialogue_agent_ms": 11738.9
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2335,
+    "completion_tokens": 2981,
+    "total_tokens": 5316
+  },
+  "student_word_count": 36,
+  "tutor_word_count": 139,
+  "has_katex": true,
+  "has_broken_katex": false
+}

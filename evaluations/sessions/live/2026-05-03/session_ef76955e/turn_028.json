@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-03T12:10:19.378280+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 28,
+  "student_message": "Oh cool! The colors are like special name tags, making it impossible for the slices to trade places secretly. Can you explain what happens if we draw different pizza toppings on each yellow slice instead of changing colors?",
+  "final_message": "I love your name tag idea! 🍕 Drawing different pizza toppings works exactly the same way as painting with different colors. If you put pepperoni on one slice and mushrooms on another, they become completely unique. Because every slice has a different topping, you cannot spin the pizza or fold it in half to make the slices match up perfectly. If you try a fractional turn, the pepperoni would land on the mushrooms, and it wouldn't look the same! So, just like your rainbow pie, a pizza with all different toppings loses both its spinning and folding superpowers. If you wanted to keep the symmetry, how would you need to arrange your toppings?",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Explain how drawing different toppings affects symmetry just like using different colors.",
+    "reasoning": "The student is engaged, happy, and asked a conceptual question about symmetry using a pizza topping analogy. The dialogue agent is best suited to explain this concept."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-3",
+  "completion_percent": 50.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "in_progress",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "making_symmetrical_designs",
+  "current_section_title": "Making Symmetrical Designs",
+  "current_section_content": "You can deliberately create designs that have rotational symmetry, reflection symmetry, or both by carefully arranging or colouring shapes. A design has rotational symmetry if it looks the same after a fractional turn, and it has reflection symmetry if a mirror line splits it into two matching halves. The same set of shapes — such as squares and equilateral triangles with equal side lengths — can be arranged in different ways to produce designs with different symmetry properties. Designs can be sorted into three groups: only rotational symmetry, only reflection symmetry, or both.",
+  "session_summary": "Zara covered reflectional and rotational symmetry in shapes, letters, numbers, and composite shapes. She understands these concepts exceptionally well, accurately identifying fractional turns for squares and rectangles. Zara exhibited no struggles. Her learning state remains highly engaged and progressive. Having mastered basic 2D symmetry, she readily applies concepts to new contexts and proactively asks advanced questions about edge cases, composite shapes, and how color patterns affect mirror symmetry.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 28321.6,
+  "step_latencies": {
+    "section_loader_ms": 70.8,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 6436.9,
+    "mastery_agent_ms": 8648.0,
+    "dialogue_agent_ms": 12272.3
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2244,
+    "completion_tokens": 2572,
+    "total_tokens": 4816
+  },
+  "student_word_count": 38,
+  "tutor_word_count": 113,
+  "has_katex": false,
+  "has_broken_katex": false
+}

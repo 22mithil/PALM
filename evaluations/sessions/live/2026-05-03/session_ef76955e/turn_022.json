@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-03T12:06:19.829427+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 22,
+  "student_message": "That makes so much sense! The digits 0 and 8 work at a 1/2 turn, and 88 works too since it looks identical upside down! What if we write 808 on a license plate, does it still have rotational symmetry?",
+  "final_message": "You are so clever, Zara! Yes, $$808$$ has beautiful rotational symmetry! If you turn the license plate upside down, which is a 1/2 turn, the first $$8$$ swaps places with the last $$8$$, the $$0$$ stays right in the middle, and it still reads exactly as $$808$$. You are doing amazing with this! \n\nLet's try a fun little quiz to test your superstar skills. Imagine a perfectly even square shape sitting on your desk. If you give that square just a 1/4 turn, do you think it will look exactly the same as when you started, or will it look different? 🌟",
+  "emotion": "confident",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "quiz"
+    ],
+    "goal": "Answer the 808 question, then provide a quiz to check understanding.",
+    "reasoning": "Zara is confident and demonstrating strong comprehension of rotational symmetry. The dialogue agent will answer her specific question, and since she understands well, a quiz will be introduced to advance the lesson."
+  },
+  "agents_fired": [
+    "dialogue",
+    "quiz"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-3",
+  "completion_percent": 50.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "rotational_symmetry",
+  "current_section_title": "Rotational Symmetry",
+  "current_section_content": "A shape has rotational symmetry if it looks exactly the same after being rotated (turned) by a fraction of a full turn around its centre point. The fractions we check are 1/4 turn, 1/2 turn, and 3/4 turn. A shape that only looks the same after a full turn does not count as having rotational symmetry. You can track this by placing a dot on the shape and observing where the dot ends up after each turn.",
+  "session_summary": "Zara covered reflectional and rotational symmetry in shapes, letters ('N', 'S'), and digital numbers. She understands these concepts exceptionally well, accurately differentiating between folding and spinning symmetry. Zara exhibited no struggles. Her learning state remains highly engaged and progressive; having mastered basic 2D symmetry, she readily applies concepts to new contexts and proactively asks advanced edge-case questions, such as whether a 6 rotating into a 9 counts as rotational symmetry.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 43807.0,
+  "step_latencies": {
+    "section_loader_ms": 65.4,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 11977.5,
+    "mastery_agent_ms": 19594.2,
+    "dialogue_agent_ms": 11380.7
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2374,
+    "completion_tokens": 4329,
+    "total_tokens": 6703
+  },
+  "student_word_count": 40,
+  "tutor_word_count": 102,
+  "has_katex": true,
+  "has_broken_katex": false
+}

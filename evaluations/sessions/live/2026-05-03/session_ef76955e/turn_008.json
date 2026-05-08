@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-03T11:56:02.471745+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 8,
+  "student_message": "Oh cool! Because both sides match, 'V' has one vertical line of symmetry. He should fold it side-to-side! What if he wants to make an 'X' for the banner, how many fold lines does that letter need?",
+  "final_message": "You are exactly right about the letter $$V$$! 🌟 You are doing such a wonderful job. \n\nNow, let's think about the letter $$X$$. Imagine you have a big letter $$X$$ made out of paper. If you fold it side-to-side so the left and right parts touch, do they match perfectly? What if you fold it top-to-bottom so the top and bottom parts touch? Try picturing those folds in your head, and tell me how many fold lines you think the letter $$X$$ has! ✂️",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Guide Zara to discover the lines of symmetry in the letter 'X'.",
+    "reasoning": "Zara is happy, focused, and asked a specific conceptual question. The dialogue agent should help her visualize folding an 'X' to find the answer."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "Zara covered rotational (\"spinning\") and reflectional (\"folding\") symmetry. She understood the concepts exceptionally well, correctly identifying that letters like 'Z' have only rotational symmetry, while squares and plus signs possess both. Zara exhibited no struggles during this session. Her current learning state is highly engaged and progressive; having firmly grasped 2D symmetry rules, she is now proactively inquiring about how symmetry applies to 3D objects like basketballs.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 29609.5,
+  "step_latencies": {
+    "section_loader_ms": 67.2,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 7954.4,
+    "mastery_agent_ms": 9171.6,
+    "dialogue_agent_ms": 11639.4
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2340,
+    "completion_tokens": 3031,
+    "total_tokens": 5371
+  },
+  "student_word_count": 37,
+  "tutor_word_count": 84,
+  "has_katex": true,
+  "has_broken_katex": false
+}

@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-03T11:58:58.353886+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 12,
+  "student_message": "Oh cool! Since it has three equal points, we get exactly three fold lines! What if the triangle is shaped like a skateboard ramp with different length sides, does the point-to-flat-edge fold still work?",
+  "final_message": "You have such a wonderful math imagination, Zara! If your skateboard ramp triangle has sides that are all different lengths, the fold trick actually stops working. \n\nThink back to your long envelope! If you try to fold from a point down to the flat edge, the two sides won't be perfect mirror images. Since one side of the ramp is longer than the other, the shorter side won't reach the edge, and the longer side will stick out. They won't hug each other perfectly at all. \n\nFor a fold line to be a true line of symmetry, both halves must match exactly. Because none of the sides match on this kind of triangle, it has zero lines of symmetry! 🛹✨",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Explain why a triangle with different side lengths has no lines of symmetry.",
+    "reasoning": "The student is happy, focused, and asking a great conceptual question about the symmetry of a scalene/right triangle. The dialogue agent should answer her question to deepen her understanding."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "Zara covered rotational and reflectional symmetry, including vertical, horizontal, and diagonal fold lines in letters ('V', 'X') and shapes. She understands these concepts exceptionally well, accurately identifying multiple symmetry lines. Zara exhibited no struggles. Her learning state is highly engaged and progressive; having mastered basic 2D symmetry, she proactively asks advanced questions, such as how symmetry applies to 3D objects and why diagonal symmetry fails when squares are stretched into rectangles.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 29291.3,
+  "step_latencies": {
+    "section_loader_ms": 60.2,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 7501.0,
+    "mastery_agent_ms": 9785.4,
+    "dialogue_agent_ms": 11218.8
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2307,
+    "completion_tokens": 3052,
+    "total_tokens": 5359
+  },
+  "student_word_count": 34,
+  "tutor_word_count": 120,
+  "has_katex": false,
+  "has_broken_katex": false
+}

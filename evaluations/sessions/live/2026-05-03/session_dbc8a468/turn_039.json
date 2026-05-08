@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-03T11:48:11.800300+00:00",
+  "session_id": "dbc8a468-82b3-4581-b03b-1b9beac2df6c",
+  "student_id": "4638e931-cfe3-4c60-9990-f4a592299666",
+  "student_name": "[EVAL] Riya",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 39,
+  "student_message": "Is it 5 cats? I don't understand. This is too hard.",
+  "final_message": "Math can definitely be hard sometimes, Riya, so let's take a big, deep breath together. 💙 I am so proud of you for making a brave guess! Making mistakes is just how our brains learn, and I believe in you. \n\nLet's forget about numbers and cats for a minute and just think about pictures. A line of symmetry is simply a fold line that divides a shape into two halves that are perfect mirror images of each other. \n\nLet's try a fun little riddle together! I am an invisible line, but I act like a magic mirror. If you fold a shape along me, both halves give each other a perfect high-five. I live right down the middle of a beautiful butterfly and the letter M. Can you guess what kind of line I am? 🦋",
+  "emotion": "sad",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 34,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "encouragement",
+      "engagement"
+    ],
+    "goal": "Comfort the student, regain her attention, and gently re-explain the concept of symmetry.",
+    "reasoning": "Student is sad, looking away consecutively, and making random guesses. She needs emotional support, re-engagement, and a simplified explanation."
+  },
+  "agents_fired": [
+    "dialogue",
+    "encouragement",
+    "engagement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "struggling",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "The session covered symmetry, symmetrical letters, and basic addition and subtraction. Riya visually understands symmetry, uses finger-counting, and correctly articulates her chosen operations. However, she struggles with math vocabulary, identifying symmetrical letters, and solving basic word problems. Her current learning state remains highly frustrated and overwhelmed. She frequently guesses answers, repeatedly states the work is \"too hard,\" and lacks confidence, requiring constant emotional support and encouragement to persist.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 49225.9,
+  "step_latencies": {
+    "section_loader_ms": 66.4,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 12663.0,
+    "mastery_agent_ms": 6868.5,
+    "dialogue_agent_ms": 13179.7
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2549,
+    "completion_tokens": 4882,
+    "total_tokens": 7431
+  },
+  "student_word_count": 11,
+  "tutor_word_count": 136,
+  "has_katex": false,
+  "has_broken_katex": false
+}

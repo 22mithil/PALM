@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-03T12:48:47.017537+00:00",
+  "session_id": "a7edc2a1-994c-419a-9b02-9d435ef2f483",
+  "student_id": "8ba3fdfc-4912-4a3e-86dd-4303662f9625",
+  "student_name": "[EVAL] Ananya",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 0,
+  "student_message": "",
+  "final_message": "That's a great question! 🌟 Let me think about the best way to explain this. Can you tell me what part is most confusing? We'll figure it out together! 💪",
+  "emotion": "neutral",
+  "emotion_confidence": 0.0,
+  "gaze": "unknown",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Continue the tutoring conversation",
+    "reasoning": "orchestrator_error"
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "not_started",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 1,
+  "pipeline_latency_ms": 1638.2,
+  "step_latencies": {
+    "section_loader_ms": 66.9,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 344.3,
+    "mastery_agent_ms": 239.0,
+    "dialogue_agent_ms": 236.1
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "student_word_count": 0,
+  "tutor_word_count": 30,
+  "has_katex": false,
+  "has_broken_katex": false
+}

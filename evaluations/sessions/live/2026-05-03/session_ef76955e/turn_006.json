@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-03T11:54:43.910957+00:00",
+  "session_id": "ef76955e-73d6-4451-b51b-486524755e83",
+  "student_id": "6ea25f9c-745b-4619-8f1c-dd16e65b2401",
+  "student_name": "[EVAL] Zara",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 6,
+  "student_message": "That makes so much sense! A plain wooden toy block has both superpowers, just like a 3D square window. What if I slice a toy car, why does it only have mirror symmetry and not the spinning kind?",
+  "final_message": "You are doing so great, Zara! Let's think about your toy car. If you pretend to slice it right down the middle from the front bumper to the back, the left side and the right side match perfectly. They both have two wheels and a door! That is why it has mirror symmetry. But what happens if you try to use the spinning superpower and turn the car halfway around? The front headlights would be exactly where the back trunk usually is. Since the front of a car looks totally different from the back, it doesn't match up when you spin it. It only looks like the exact same car when you spin it all the way back to the start! So, your car only has the mirror superpower, not the spinning one. Does that make sense? 🚗✨",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Explain why a toy car has reflectional symmetry but lacks rotational symmetry.",
+    "reasoning": "The student is happy, focused, and asking a specific conceptual question about 3D symmetry. The dialogue agent is best suited to provide this explanation."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "Zara covered rotational (\"spinning\") and reflectional (\"folding\") symmetry. She understood the concepts exceptionally well, correctly identifying that letters like 'Z' have only rotational symmetry, while squares and plus signs possess both. Zara exhibited no struggles during this session. Her current learning state is highly engaged and progressive; having firmly grasped 2D symmetry rules, she is now proactively inquiring about how symmetry applies to 3D objects like basketballs.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 33021.7,
+  "step_latencies": {
+    "section_loader_ms": 66.3,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 8011.7,
+    "mastery_agent_ms": 13121.5,
+    "dialogue_agent_ms": 11051.0
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2293,
+    "completion_tokens": 3229,
+    "total_tokens": 5522
+  },
+  "student_word_count": 38,
+  "tutor_word_count": 138,
+  "has_katex": false,
+  "has_broken_katex": false
+}

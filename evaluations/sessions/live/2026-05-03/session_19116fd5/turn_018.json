@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-03T12:34:14.910225+00:00",
+  "session_id": "19116fd5-ed13-4ad1-972a-45bcae8cdd40",
+  "student_id": "faab8348-7888-4031-bc91-a421725a52fc",
+  "student_name": "[EVAL] Kabir",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 18,
+  "student_message": "Oh thank god. I was so scared. I think it goes straight up and down... but I'm probably wrong. Sorry, is that right?",
+  "final_message": "Math can definitely be hard sometimes, Kabir, and it is completely okay to feel a little scared. Please never apologize! I love how brave you were to share your answer. Remember, making mistakes is just a normal part of learning and growing your beautiful brain. \n\nI am so proud of you because you are absolutely right! The fold goes perfectly straight up and down. That is called a vertical line of symmetry, which means it acts like a mirror to make the left and right sides match perfectly. You are doing such a wonderful job, so keep believing in yourself! 💛🌟",
+  "emotion": "fearful",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "encouragement"
+    ],
+    "goal": "Validate his answer about the vertical line of symmetry and boost his confidence.",
+    "reasoning": "The student is attempting an answer but is highly fearful and lacks confidence. Dialogue will validate his math reasoning, while encouragement will provide needed emotional support."
+  },
+  "agents_fired": [
+    "dialogue",
+    "encouragement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "The session covered lines of symmetry in shapes and letters. Kabir successfully identified vertical and horizontal symmetry in letters. However, he struggles significantly with severe math anxiety, frequent self-doubt, and a fear of making mistakes, repeatedly apologizing despite providing correct answers. Currently, Kabir accurately grasps the foundational concepts of symmetry but severely lacks confidence, requiring continuous emotional support and reassurance to progress.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 36111.1,
+  "step_latencies": {
+    "section_loader_ms": 73.5,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 8571.7,
+    "mastery_agent_ms": 8958.2,
+    "dialogue_agent_ms": 8678.8
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2493,
+    "completion_tokens": 3575,
+    "total_tokens": 6068
+  },
+  "student_word_count": 23,
+  "tutor_word_count": 101,
+  "has_katex": false,
+  "has_broken_katex": false
+}
