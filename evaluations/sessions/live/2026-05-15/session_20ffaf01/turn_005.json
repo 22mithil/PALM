@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-15T06:49:46.697027+00:00",
+  "session_id": "20ffaf01-cb5f-42ea-8de6-021cb9f76ead",
+  "student_id": "bcf19734-5285-4c6a-a26c-fbf0e23a199e",
+  "student_name": "[EVAL] Dev",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 5,
+  "student_message": "Two lines! Vertical and horizontal. Next chapter!",
+  "final_message": "You are totally right again! The letter $$H$$ has both vertical and horizontal lines of symmetry. You are a symmetry superstar! 🌟 \n\nSince you are doing so amazingly well and are ready to speed ahead, let's do one final quick puzzle to prove you are a master before we turn the page to the next chapter. Picture the big uppercase letter $$A$$ in your head. If you wanted to fold it into perfect mirror images, how many lines of symmetry does it have, and which way do they go? 🤔",
+  "emotion": "confident",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "quiz",
+    "supporting_agents": [],
+    "goal": "Present a quiz question to verify mastery of lines of symmetry before advancing.",
+    "reasoning": "The student is highly confident, correctly identified the lines of symmetry, and is eager to move on. A quiz will confirm mastery."
+  },
+  "agents_fired": [
+    "quiz"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-2",
+  "completion_percent": 25.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "The session covered vertical and horizontal lines of symmetry. The student understood the concepts perfectly, easily identifying the two lines of symmetry in the uppercase letter 'H'. While the student did not struggle mathematically, they initially exhibited slight impatience and frustration with the pacing. The student's current learning state is highly confident, energetic, and eager to advance to the next chapter, demonstrating strong mastery of the current symmetry material.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 38407.9,
+  "step_latencies": {
+    "section_loader_ms": 208.5,
+    "summary_regen_ms": 8039.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 7575.7,
+    "mastery_agent_ms": 9142.5,
+    "dialogue_agent_ms": 10472.7
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2218,
+    "completion_tokens": 3496,
+    "total_tokens": 5714
+  },
+  "student_word_count": 7,
+  "tutor_word_count": 90,
+  "has_katex": true,
+  "has_broken_katex": false
+}

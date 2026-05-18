@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T06:20:35.072335+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 6,
+  "student_message": "I know! It is a line of symmetry!",
+  "final_message": "You got it! It absolutely is a line of symmetry! Look right here with me for a second. 🦋 Did you know a butterfly’s wings have perfect reflection symmetry? If you fold a picture of one right down the middle, the patterns on both wings match up exactly! Can you think of any other animals that have a line of symmetry? 🤔 \n\nWhile you think about that, let's try a fun puzzle using that same folding idea. Imagine Prem wants to cut out the letter V for a birthday banner using the fold-and-cut method. How many lines of symmetry does the letter V have? Tell me which direction the line goes, and how you think Prem should fold his paper!",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 6,
+  "orchestrator_intent": {
+    "primary_agent": "quiz",
+    "supporting_agents": [
+      "engagement"
+    ],
+    "goal": "Validate her realization and present a quiz to check understanding while regaining visual focus.",
+    "reasoning": "The student correctly recalled the math concept but has been visually distracted for 6 turns. Advancing to a quiz will test her knowledge, while the engagement agent will prompt her to look back at the screen."
+  },
+  "agents_fired": [
+    "quiz",
+    "engagement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-2",
+  "completion_percent": 25.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "The session covered the concept of symmetry and lines of symmetry. The student understood the material well, successfully identifying a vertical line of symmetry on their own body. However, the student struggled significantly with focus and attention, frequently becoming distracted by off-topic subjects like their dog and favorite color. The student's current learning state reflects a solid grasp of basic symmetry, though they require constant redirection from the tutor to stay on task.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 55677.2,
+  "step_latencies": {
+    "section_loader_ms": 450.1,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 16710.6,
+    "mastery_agent_ms": 8663.1,
+    "dialogue_agent_ms": 16582.7
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2294,
+    "completion_tokens": 4854,
+    "total_tokens": 7148
+  },
+  "student_word_count": 8,
+  "tutor_word_count": 120,
+  "has_katex": false,
+  "has_broken_katex": false
+}

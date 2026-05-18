@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T06:27:04.573462+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 12,
+  "student_message": "Four times! Because a square has four sides.",
+  "final_message": "Earth to my math explorer! 🚀 You are exactly right about the square! It matches its shape four times when you spin it because it has four equal sides. \n\nNow, let's look back at the screen and play a quick mind game together. Think of a fidget spinner. When you spin it, it matches its original shape before doing a full circle. That is exactly how rotational symmetry works! Since you are so good at this, can you guess which uppercase letter looks exactly the same when you turn it completely upside down? 🙃",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 12,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "engagement"
+    ],
+    "goal": "Validate her answer about the square and re-engage her visual attention to the screen.",
+    "reasoning": "Meera provided a math-related answer but has been looking away for 12 consecutive turns. Dialogue will address her answer about the square, while engagement will gently draw her visual focus back to the lesson."
+  },
+  "agents_fired": [
+    "dialogue",
+    "engagement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-2",
+  "completion_percent": 25.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "in_progress",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "rotational_symmetry",
+  "current_section_title": "Rotational Symmetry",
+  "current_section_content": "A shape has rotational symmetry if it looks exactly the same after being rotated (turned) by a fraction of a full turn around its centre point. The fractions we check are 1/4 turn, 1/2 turn, and 3/4 turn. A shape that only looks the same after a full turn does not count as having rotational symmetry. You can track this by placing a dot on the shape and observing where the dot ends up after each turn.",
+  "session_summary": "The session covered lines of symmetry and rotational symmetry. The student understood the material well, successfully identifying vertical symmetry on their body and examples of rotational symmetry (a Ferris wheel, the letter O). However, the student struggled significantly with focus, frequently becoming distracted by off-topic subjects like dogs and slides. The student's current learning state reflects a solid grasp of basic and rotational symmetry, though they require constant redirection to stay on task.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 48745.9,
+  "step_latencies": {
+    "section_loader_ms": 206.3,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 16992.1,
+    "mastery_agent_ms": 10005.4,
+    "dialogue_agent_ms": 9760.0
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2250,
+    "completion_tokens": 4330,
+    "total_tokens": 6580
+  },
+  "student_word_count": 8,
+  "tutor_word_count": 94,
+  "has_katex": false,
+  "has_broken_katex": false
+}

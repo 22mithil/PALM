@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T06:25:02.299286+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 10,
+  "student_message": "The letter O! It is just a round circle.",
+  "final_message": "You are so right! The letter O is a perfect example because it looks exactly the same when you turn it. \n\nNow, look right here at me for a quick riddle so you don't miss the fun! Imagine I spin around like a fidget toy. If you turn me upside down or stop me halfway, I look exactly the same as when I started. What cool math trick am I doing? 🌀",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 10,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "engagement"
+    ],
+    "goal": "Validate her correct example and regain her visual attention.",
+    "reasoning": "Meera provided a great example of rotational symmetry (the letter O), but she has been looking away for 10 consecutive frames. Dialogue will validate her answer while engagement will gently draw her focus back to the screen."
+  },
+  "agents_fired": [
+    "dialogue",
+    "engagement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-2",
+  "completion_percent": 25.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "in_progress",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "rotational_symmetry",
+  "current_section_title": "Rotational Symmetry",
+  "current_section_content": "A shape has rotational symmetry if it looks exactly the same after being rotated (turned) by a fraction of a full turn around its centre point. The fractions we check are 1/4 turn, 1/2 turn, and 3/4 turn. A shape that only looks the same after a full turn does not count as having rotational symmetry. You can track this by placing a dot on the shape and observing where the dot ends up after each turn.",
+  "session_summary": "The session covered lines of symmetry and rotational symmetry. The student understood the material well, successfully identifying vertical symmetry on their body and examples of rotational symmetry (a Ferris wheel, the letter O). However, the student struggled significantly with focus, frequently becoming distracted by off-topic subjects like dogs and slides. The student's current learning state reflects a solid grasp of basic and rotational symmetry, though they require constant redirection to stay on task.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 53991.6,
+  "step_latencies": {
+    "section_loader_ms": 220.0,
+    "summary_regen_ms": 8072.2,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 11751.1,
+    "mastery_agent_ms": 7861.0,
+    "dialogue_agent_ms": 14682.9
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2580,
+    "completion_tokens": 5113,
+    "total_tokens": 7693
+  },
+  "student_word_count": 9,
+  "tutor_word_count": 72,
+  "has_katex": false,
+  "has_broken_katex": false
+}

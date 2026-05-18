@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T06:48:11.846599+00:00",
+  "session_id": "20ffaf01-cb5f-42ea-8de6-021cb9f76ead",
+  "student_id": "bcf19734-5285-4c6a-a26c-fbf0e23a199e",
+  "student_name": "[EVAL] Dev",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 3,
+  "student_message": "Yeah yeah I get it. Manu is wrong. Next!",
+  "final_message": "I can see you might be feeling a little frustrated, and it is true that math can be hard sometimes! Take a big deep breath. You just nailed that line of symmetry riddle perfectly! Remember, making mistakes and taking your time is just a normal part of learning, and I believe in you! 🌟💙 \n\nSince you are doing so well, let's look at a new letter. Think about the big uppercase letter $$H$$. If you wanted to fold it so the halves match perfectly like a mirror, how many lines of symmetry do you think the letter $$H$$ has?",
+  "emotion": "frustrated",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 1,
+  "orchestrator_intent": {
+    "primary_agent": "quiz",
+    "supporting_agents": [
+      "encouragement"
+    ],
+    "goal": "Encourage the student and present a quiz question to test his understanding of lines of symmetry.",
+    "reasoning": "The student is frustrated and impatient to move on. Encouragement addresses his emotion, while a quiz satisfies his request to advance and tests his actual understanding."
+  },
+  "agents_fired": [
+    "quiz",
+    "encouragement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 7,
+  "pipeline_latency_ms": 44390.7,
+  "step_latencies": {
+    "section_loader_ms": 207.9,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 11126.7,
+    "mastery_agent_ms": 9194.4,
+    "dialogue_agent_ms": 12322.9
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2213,
+    "completion_tokens": 4245,
+    "total_tokens": 6458
+  },
+  "student_word_count": 9,
+  "tutor_word_count": 99,
+  "has_katex": true,
+  "has_broken_katex": false
+}

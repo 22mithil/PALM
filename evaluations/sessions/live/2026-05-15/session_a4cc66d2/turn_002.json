@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T06:16:12.441449+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 2,
+  "student_message": "I folded it! The two sides match perfectly.",
+  "final_message": "That is wonderful! Since the two sides match perfectly, that fold line right down the middle has a special name. It is called a line of symmetry. A line of symmetry is just a fold line that divides a shape into two halves that are perfect mirror images of each other. \n\nNow, let's put on our secret agent glasses and look closely! 🕵️‍♂️ If you fold the uppercase letter A right down the middle, both halves match perfectly, just like your heart. That means it has one line of symmetry. Now, picture the big uppercase letter H in your mind. Can you figure out how many hidden lines of symmetry it has? ✨",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 2,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "engagement"
+    ],
+    "goal": "Define the fold as the line of symmetry and regain her visual attention.",
+    "reasoning": "The student understands the concept of matching sides but is looking away. Dialogue will teach the term 'line of symmetry' while engagement brings her focus back."
+  },
+  "agents_fired": [
+    "dialogue",
+    "engagement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 5,
+  "pipeline_latency_ms": 46778.2,
+  "step_latencies": {
+    "section_loader_ms": 218.3,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 11662.6,
+    "mastery_agent_ms": 10904.1,
+    "dialogue_agent_ms": 10324.4
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1914,
+    "completion_tokens": 4032,
+    "total_tokens": 5946
+  },
+  "student_word_count": 8,
+  "tutor_word_count": 113,
+  "has_katex": false,
+  "has_broken_katex": false
+}

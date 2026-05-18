@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T05:50:12.897462+00:00",
+  "session_id": "f5284fc8-97fd-4ed7-9f12-df5d6c59bbb1",
+  "student_id": "1cb3ec4b-5351-43f7-9577-f5cca39f6424",
+  "student_name": "[EVAL] TestBot",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 7,
+  "student_message": "The letter E has one! Can you invent a brand new number that is symmetrical in every direction?",
+  "final_message": "You are so smart! The letter $$E$$ definitely has one horizontal line of symmetry because if you fold it from top to bottom, the halves match perfectly. Inventing a brand new number sounds like super fun magic, but let's stick to the shapes we already have for our math adventure today! 🌟 Let's look at the letter $$H$$ next. Can you tell me if the uppercase letter $$H$$ has a vertical line of symmetry, a horizontal line of symmetry, or maybe even both?",
+  "emotion": "neutral",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "quiz",
+    "supporting_agents": [
+      "dialogue"
+    ],
+    "goal": "Validate E's symmetry, redirect the off-topic request, and present a quiz.",
+    "reasoning": "The student correctly identified E's line of symmetry, demonstrating good understanding. Since they are asking playful off-topic questions, advancing to a quiz will challenge them and maintain lesson focus."
+  },
+  "agents_fired": [
+    "quiz",
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-2",
+  "completion_percent": 25.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "The session covered lines of symmetry. The student understood the concept well, correctly identifying a line of symmetry from a riddle. However, the student struggled with focus, repeatedly attempting to derail the lesson with off-topic requests regarding jokes, geography, and Python programming. The student's current learning state reflects a solid grasp of basic symmetry, but they are highly distracted and actively avoiding the primary math exercises.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 40664.2,
+  "step_latencies": {
+    "section_loader_ms": 414.1,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 16951.3,
+    "mastery_agent_ms": 9109.9,
+    "dialogue_agent_ms": 9608.9
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2115,
+    "completion_tokens": 3601,
+    "total_tokens": 5716
+  },
+  "student_word_count": 18,
+  "tutor_word_count": 83,
+  "has_katex": true,
+  "has_broken_katex": false
+}

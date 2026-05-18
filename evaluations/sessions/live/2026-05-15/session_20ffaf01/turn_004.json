@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-15T06:48:59.261570+00:00",
+  "session_id": "20ffaf01-cb5f-42ea-8de6-021cb9f76ead",
+  "student_id": "bcf19734-5285-4c6a-a26c-fbf0e23a199e",
+  "student_name": "[EVAL] Dev",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 4,
+  "student_message": "Two lines! Too easy. Next question!",
+  "final_message": "I love your speedy energy! Let's jump right into the next challenge. Picture the big uppercase letter $$H$$ in your mind. If you wanted to fold it so the halves are perfect mirror images, how many magic fold lines could you make? Remember to check both up-and-down and side-to-side! Tell me your answer when you are ready. ✨",
+  "emotion": "confident",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "quiz",
+    "supporting_agents": [],
+    "goal": "Provide a quiz question to test understanding.",
+    "reasoning": "The student is highly confident and explicitly asking for the next question, making it an ideal time to assess his knowledge with a quiz."
+  },
+  "agents_fired": [
+    "quiz"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 9,
+  "pipeline_latency_ms": 39694.2,
+  "step_latencies": {
+    "section_loader_ms": 208.2,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 13061.4,
+    "mastery_agent_ms": 11134.8,
+    "dialogue_agent_ms": 12983.8
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1908,
+    "completion_tokens": 3795,
+    "total_tokens": 5703
+  },
+  "student_word_count": 6,
+  "tutor_word_count": 58,
+  "has_katex": true,
+  "has_broken_katex": false
+}

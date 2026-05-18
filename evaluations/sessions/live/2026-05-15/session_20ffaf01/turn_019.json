@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-15T07:01:25.569644+00:00",
+  "session_id": "20ffaf01-cb5f-42ea-8de6-021cb9f76ead",
+  "student_id": "bcf19734-5285-4c6a-a26c-fbf0e23a199e",
+  "student_name": "[EVAL] Dev",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 19,
+  "student_message": "Left! Too easy! Next!",
+  "final_message": "🎉 Amazing work! You've mastered every section in this chapter! You should be incredibly proud — you answered questions, worked through tricky concepts, and showed real understanding. Head back to the dashboard to explore more topics, or click Restart to practice any section again. You're a math superstar! 🌟",
+  "emotion": "confident",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "quiz",
+    "supporting_agents": [],
+    "goal": "Present a more challenging quiz question on symmetry.",
+    "reasoning": "The student is highly confident, focused, and explicitly asking for the next challenge because the current material feels too easy."
+  },
+  "agents_fired": [
+    "quiz"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-4",
+  "completion_percent": 100.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "mastered",
+    "10-4": "mastered"
+  },
+  "was_completed": true,
+  "current_section_concept": "symmetry_in_block_printing_patterns",
+  "current_section_title": "Symmetry in Block Printing Patterns",
+  "current_section_content": "Block printing is a traditional craft from Rajasthan where artisans carve a design into a wooden block and press it repeatedly onto fabric to create beautiful repeating patterns. When the same block is stamped multiple times in different orientations, the final printed design can have rotational symmetry, reflection symmetry, or both. Importantly, the print produced by a block is the mirror image of the carved block, because the block is pressed face-down. By analysing how a block is repeated and rotated, you can predict and identify the symmetry of the resulting pattern.",
+  "session_summary": "The session covered vertical and horizontal lines of symmetry, rotational symmetry (1/3, 1/2, and 1/4 turns), and color matching in symmetrical designs. The student demonstrated perfect understanding, easily identifying multiple symmetry lines, rotational turns, and color requirements. Facing no mathematical struggles, the student remains highly impatient with the pacing. The student's current learning state is extremely confident and energetic, exhibiting strong mastery of the material and actively demanding to advance to the next chapter.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 23290.4,
+  "step_latencies": {
+    "section_loader_ms": 404.9,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 8468.1,
+    "mastery_agent_ms": 9883.5,
+    "dialogue_agent_ms": 0
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1197,
+    "completion_tokens": 1597,
+    "total_tokens": 2794
+  },
+  "student_word_count": 4,
+  "tutor_word_count": 49,
+  "has_katex": false,
+  "has_broken_katex": false
+}

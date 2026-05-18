@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-16T02:22:34.901086+00:00",
+  "session_id": "3f0ad586-e44c-466a-bf94-de704592ed07",
+  "student_id": "7241f0ea-3b47-4495-9fe0-e83f84407c21",
+  "student_name": "Mithilesh Singh",
+  "grade": 5,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 1,
+  "student_message": "hello how are you",
+  "final_message": "I am doing great, thank you so much for asking! I hope you are having a wonderful day too. Let's jump right back to our yummy pizza! 🍕 \n\nA fraction simply represents a part of a whole. The bottom number is called the denominator, and it tells you exactly how many equal slices the whole pizza is cut into. The top number is called the numerator, and it tells you how many of those delicious slices you are taking to eat! Just remember, the whole pizza must always be the same size when you are comparing different fractions. \n\nDoes thinking about pizza help make the top and bottom numbers make sense to you?",
+  "emotion": "neutral",
+  "emotion_confidence": 0.0,
+  "gaze": "unknown",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Acknowledge greeting and continue explaining fractions.",
+    "reasoning": "The student responded with a friendly greeting. The dialogue agent should reply briefly and resume teaching the concept."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 2,
+  "current_section_id": "ch2_s1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "ch2_s1": "introduced",
+    "ch2_s2": "not_started",
+    "ch2_s3": "not_started",
+    "ch2_s4": "not_started",
+    "ch2_s5": "not_started",
+    "ch2_s6": "not_started",
+    "ch2_s7": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "fraction_of_a_whole",
+  "current_section_title": "What Is a Fraction?",
+  "current_section_content": "A fraction represents a part of a whole. The whole must always be the same size when you are comparing fractions. The bottom number (denominator) tells you how many equal parts the whole is cut into, and the top number (numerator) tells you how many of those parts you are taking.",
+  "session_summary": "Mithilesh Singh is beginning a new math session focused on fractions. Because the session is currently at the initial greeting and introduction stage, specific areas of strong understanding and struggles have not yet been assessed. His current learning state is at the very beginning of the fractions topic.",
+  "message_history_length": 4,
+  "pipeline_latency_ms": 32493.9,
+  "step_latencies": {
+    "section_loader_ms": 397.7,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 7259.5,
+    "mastery_agent_ms": 7632.6,
+    "dialogue_agent_ms": 13391.1
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1617,
+    "completion_tokens": 2685,
+    "total_tokens": 4302
+  },
+  "student_word_count": 4,
+  "tutor_word_count": 113,
+  "has_katex": false,
+  "has_broken_katex": false
+}

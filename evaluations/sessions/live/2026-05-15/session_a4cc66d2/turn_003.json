@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-15T06:17:16.631319+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 3,
+  "student_message": "Wait, what were we talking about? I forgot! Hey, did you know my dog ate my left sock this morning? My dad had to chase him all around the whole yard and it was so funny! Do you have a dog?",
+  "final_message": "Oh my goodness, your dog sounds so silly! I don't have a dog, but I can just imagine your dad chasing him all over the yard! That must have been so funny to watch. \n\nBefore we got distracted by your playful pup, we were talking about lines of symmetry, just like the fold in your beautiful paper heart. Speaking of beautiful things, did you know a butterfly’s wings have perfect reflection symmetry? 🦋 If you fold a picture of a butterfly right down the middle, the bright patterns on both wings match up exactly! \n\nSince a line of symmetry divides something into two perfect mirror halves, what if we looked at ourselves? If you drew a line of symmetry on your own body, where do you think it would go? 🤔",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 3,
+  "orchestrator_intent": {
+    "primary_agent": "engagement",
+    "supporting_agents": [
+      "engagement",
+      "dialogue"
+    ],
+    "goal": "Acknowledge the dog story and gently guide focus back to lines of symmetry.",
+    "reasoning": "The student is distracted, looking away for 3 consecutive turns, and went off-topic about her dog."
+  },
+  "agents_fired": [
+    "engagement",
+    "engagement",
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 7,
+  "pipeline_latency_ms": 54914.9,
+  "step_latencies": {
+    "section_loader_ms": 222.7,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 9190.4,
+    "mastery_agent_ms": 8375.2,
+    "dialogue_agent_ms": 10965.5
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2375,
+    "completion_tokens": 5388,
+    "total_tokens": 7763
+  },
+  "student_word_count": 41,
+  "tutor_word_count": 131,
+  "has_katex": false,
+  "has_broken_katex": false
+}

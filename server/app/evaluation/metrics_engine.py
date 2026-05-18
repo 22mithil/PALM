@@ -161,24 +161,25 @@ def compute_session_metrics(turns: list[dict]) -> dict:
 
 def _compute_ttm(turns: list[dict]) -> dict:
     """Turns to Mastery — per section and overall."""
-    section_first_seen: dict[str, int] = {}
-    section_mastered_at: dict[str, int] = {}
-
-    for i, t in enumerate(turns):
+    # Count the number of turns where current_section_id was equal to sid
+    # before it reached "mastered" status. 
+    section_turns_to_mastery: dict[str, int] = {}
+    
+    current_counts: dict[str, int] = Counter()
+    
+    for t in turns:
+        sid = t.get("current_section_id")
         statuses = t.get("section_statuses", {})
-        for sid, status in statuses.items():
-            if sid not in section_first_seen:
-                section_first_seen[sid] = i
-            if status == "mastered" and sid not in section_mastered_at:
-                section_mastered_at[sid] = i
+        
+        if sid:
+            current_counts[sid] += 1
+            
+        for s_id, status in statuses.items():
+            if status == "mastered" and s_id not in section_turns_to_mastery:
+                section_turns_to_mastery[s_id] = current_counts[s_id]
 
-    per_section = {}
-    for sid in section_first_seen:
-        if sid in section_mastered_at:
-            per_section[sid] = section_mastered_at[sid] - section_first_seen[sid]
-
-    avg = round(sum(per_section.values()) / len(per_section), 1) if per_section else 0
-    return {"per_section": per_section, "average": avg}
+    avg = round(sum(section_turns_to_mastery.values()) / len(section_turns_to_mastery), 1) if section_turns_to_mastery else 0
+    return {"per_section": section_turns_to_mastery, "average": avg}
 
 
 def _compute_agent_distribution(turns: list[dict]) -> dict:

@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T05:47:39.953058+00:00",
+  "session_id": "f5284fc8-97fd-4ed7-9f12-df5d6c59bbb1",
+  "student_id": "1cb3ec4b-5351-43f7-9577-f5cca39f6424",
+  "student_name": "[EVAL] TestBot",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 4,
+  "student_message": "Wait, before we do the V, can you tell me what the capital of France is?",
+  "final_message": "The capital of France is Paris! But let's take a quick trip back to our math magic and the letter V. I have a fun riddle for you to get us right back on track. 🦋 I am an invisible line that makes a shape twin. If you fold a paper on me, both sides perfectly match to win! A butterfly wears me right down its back. Can you guess what I am? Once you guess my name, we can see if the letter V has one of these magical lines too! 🤔",
+  "emotion": "neutral",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "engagement",
+    "supporting_agents": [
+      "dialogue"
+    ],
+    "goal": "Redirect the student back to the topic of symmetry and the letter V.",
+    "reasoning": "The student is asking an off-topic question about geography. The engagement agent is needed to gently redirect focus back to the math lesson."
+  },
+  "agents_fired": [
+    "engagement",
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 9,
+  "pipeline_latency_ms": 44293.1,
+  "step_latencies": {
+    "section_loader_ms": 205.1,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 11882.8,
+    "mastery_agent_ms": 7527.6,
+    "dialogue_agent_ms": 13662.7
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2178,
+    "completion_tokens": 3511,
+    "total_tokens": 5689
+  },
+  "student_word_count": 16,
+  "tutor_word_count": 93,
+  "has_katex": false,
+  "has_broken_katex": false
+}

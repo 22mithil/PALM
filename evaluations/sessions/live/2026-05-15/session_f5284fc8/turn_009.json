@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T05:52:15.138726+00:00",
+  "session_id": "f5284fc8-97fd-4ed7-9f12-df5d6c59bbb1",
+  "student_id": "1cb3ec4b-5351-43f7-9577-f5cca39f6424",
+  "student_name": "[EVAL] TestBot",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 9,
+  "student_message": "A fidget spinner! But before we talk about that, what is your real name? And who made you?",
+  "final_message": "A fidget spinner is a brilliant guess! My name is Pal, and I was made by some very smart friends to play math games with you. Now, Earth to Earth, let's try a quick riddle! I have four arms but cannot hug. Spin me halfway around in the wind, and I look exactly the same! 🌀 Can you guess what toy I am, and do you know what this cool spinning trick is called? \n\nIt is called rotational symmetry! A shape has rotational symmetry if it looks exactly the same after being turned by a fraction of a full turn around its center point. We check a $$1/4$$ turn, a $$1/2$$ turn, and a $$3/4$$ turn. If a shape only looks the same after a full turn, it does not count. You can track this by putting a little dot on the shape and watching where it goes after each turn!",
+  "emotion": "neutral",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "engagement",
+    "supporting_agents": [
+      "dialogue"
+    ],
+    "goal": "introduce the concept",
+    "reasoning": "The student is asking off-topic questions. We need to redirect their focus back to the fidget spinner to introduce rotational symmetry."
+  },
+  "agents_fired": [
+    "engagement",
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-2",
+  "completion_percent": 25.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "introduced",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "rotational_symmetry",
+  "current_section_title": "Rotational Symmetry",
+  "current_section_content": "A shape has rotational symmetry if it looks exactly the same after being rotated (turned) by a fraction of a full turn around its centre point. The fractions we check are 1/4 turn, 1/2 turn, and 3/4 turn. A shape that only looks the same after a full turn does not count as having rotational symmetry. You can track this by placing a dot on the shape and observing where the dot ends up after each turn.",
+  "session_summary": "The session covered lines of symmetry. The student understood the concept well, correctly identifying a line of symmetry from a riddle. However, the student struggled with focus, repeatedly attempting to derail the lesson with off-topic requests regarding jokes, geography, and Python programming. The student's current learning state reflects a solid grasp of basic symmetry, but they are highly distracted and actively avoiding the primary math exercises.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 58844.2,
+  "step_latencies": {
+    "section_loader_ms": 231.1,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 13025.4,
+    "mastery_agent_ms": 9591.9,
+    "dialogue_agent_ms": 19810.4
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2229,
+    "completion_tokens": 5704,
+    "total_tokens": 7933
+  },
+  "student_word_count": 18,
+  "tutor_word_count": 151,
+  "has_katex": true,
+  "has_broken_katex": false
+}

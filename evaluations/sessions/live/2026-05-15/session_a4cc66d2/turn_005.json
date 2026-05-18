@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-15T06:19:26.001179+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 5,
+  "student_message": "Wait, what were we talking about? Hey, do you know what my favorite color is? I want to paint my whole bedroom with it!",
+  "final_message": "Ooh, I would love to guess your favorite color! Is it a bright, happy yellow or a beautiful blue? Painting your bedroom sounds like so much fun! \n\nWhile you think about what beautiful color to paint your walls, let's play a quick guessing game to remember what we were just talking about. I am an invisible line that sits right in the middle of a butterfly. If you fold a shape along me, both halves match perfectly like mirror magic! 🦋✨ \n\nCan you guess what special line I am?",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 5,
+  "orchestrator_intent": {
+    "primary_agent": "engagement",
+    "supporting_agents": [
+      "engagement",
+      "dialogue"
+    ],
+    "goal": "Acknowledge her favorite color and gently guide her back to lines of symmetry.",
+    "reasoning": "The student has been looking away for 5 consecutive turns and is asking off-topic questions, indicating she is highly distracted. The engagement agent is needed to refocus her attention on the lesson."
+  },
+  "agents_fired": [
+    "engagement",
+    "engagement",
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "The session covered the concept of symmetry and lines of symmetry. The student understood the material well, successfully identifying a vertical line of symmetry on their own body. However, the student struggled significantly with focus and attention, frequently becoming distracted by off-topic subjects like their dog and favorite color. The student's current learning state reflects a solid grasp of basic symmetry, though they require constant redirection from the tutor to stay on task.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 59225.7,
+  "step_latencies": {
+    "section_loader_ms": 222.8,
+    "summary_regen_ms": 8370.4,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 8587.8,
+    "mastery_agent_ms": 8365.2,
+    "dialogue_agent_ms": 10315.4
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2778,
+    "completion_tokens": 5231,
+    "total_tokens": 8009
+  },
+  "student_word_count": 24,
+  "tutor_word_count": 89,
+  "has_katex": false,
+  "has_broken_katex": false
+}

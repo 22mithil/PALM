@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-15T06:30:56.410874+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 15,
+  "student_message": "It needs three neon eyes and a squiggly horn!",
+  "final_message": "A creature with three neon eyes and a squiggly horn sounds super cool! Speaking of faces, did you know your own face is a symmetrical design? Well, almost! If we perfectly mirrored just one side of your face, you’d actually look like a weird alien! 👽 \n\nWe can make our very own symmetrical designs by carefully arranging and coloring shapes. A design has reflection symmetry if a mirror line perfectly splits it into two matching halves. It has rotational symmetry if it looks exactly the same after a little spin! We can arrange the exact same shapes in different ways to make all sorts of magical patterns with different kinds of symmetry. \n\nIf you look around your room right now, what is the most perfectly symmetrical thing you can spot? 🪞",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 15,
+  "orchestrator_intent": {
+    "primary_agent": "engagement",
+    "supporting_agents": [
+      "engagement",
+      "dialogue"
+    ],
+    "goal": "Re-engage the student and introduce the concept of making symmetrical designs.",
+    "reasoning": "The student is highly distracted, looking away for 15 turns and talking about off-topic subjects. The engagement agent is needed to regain her focus, while dialogue will introduce the new unstarted section."
+  },
+  "agents_fired": [
+    "engagement",
+    "engagement",
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-3",
+  "completion_percent": 50.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "introduced",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "making_symmetrical_designs",
+  "current_section_title": "Making Symmetrical Designs",
+  "current_section_content": "You can deliberately create designs that have rotational symmetry, reflection symmetry, or both by carefully arranging or colouring shapes. A design has rotational symmetry if it looks the same after a fractional turn, and it has reflection symmetry if a mirror line splits it into two matching halves. The same set of shapes — such as squares and equilateral triangles with equal side lengths — can be arranged in different ways to produce designs with different symmetry properties. Designs can be sorted into three groups: only rotational symmetry, only reflection symmetry, or both.",
+  "session_summary": "The session covered lines of symmetry and rotational symmetry. The student understood these well, successfully identifying vertical and rotational symmetry in everyday objects and letters (O, X). However, the student struggled significantly with focus, frequently interrupting with off-topic subjects like dogs, a lost tooth, and imaginary creatures. The student's current learning state reflects a solid grasp of symmetry concepts, but their severe distractibility means they require constant redirection to stay on task.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 68441.2,
+  "step_latencies": {
+    "section_loader_ms": 203.5,
+    "summary_regen_ms": 12932.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 9769.5,
+    "mastery_agent_ms": 11184.5,
+    "dialogue_agent_ms": 16401.4
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2701,
+    "completion_tokens": 6946,
+    "total_tokens": 9647
+  },
+  "student_word_count": 9,
+  "tutor_word_count": 131,
+  "has_katex": false,
+  "has_broken_katex": false
+}

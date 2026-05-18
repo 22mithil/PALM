@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-15T06:50:39.812643+00:00",
+  "session_id": "20ffaf01-cb5f-42ea-8de6-021cb9f76ead",
+  "student_id": "bcf19734-5285-4c6a-a26c-fbf0e23a199e",
+  "student_name": "[EVAL] Dev",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 6,
+  "student_message": "One horizontal line! I win! Next!",
+  "final_message": "You definitely win the reflection symmetry game! 🏆 Since you are zooming through, let's jump right into our brand new chapter like you asked. \n\nToday we are learning about rotational symmetry. Imagine spinning a shape around its very center. A shape has rotational symmetry if it looks exactly the same after being turned by a fraction of a full circle, like a $$1/4$$ turn, a $$1/2$$ turn, or a $$3/4$$ turn. If it only looks the same after spinning all the way around in a full turn, it doesn't count! A fun trick is to draw a little dot on the top of your shape and watch where the dot goes as you turn it. \n\nAre you ready to try spinning some shapes with me? 🌀",
+  "emotion": "confident",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Introduce the concept of rotational symmetry.",
+    "reasoning": "The student is highly confident, focused, and explicitly asking for the next chapter. Since the rotational symmetry section is not_started, the dialogue agent should introduce the new concept."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-2",
+  "completion_percent": 25.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "rotational_symmetry",
+  "current_section_title": "Rotational Symmetry",
+  "current_section_content": "A shape has rotational symmetry if it looks exactly the same after being rotated (turned) by a fraction of a full turn around its centre point. The fractions we check are 1/4 turn, 1/2 turn, and 3/4 turn. A shape that only looks the same after a full turn does not count as having rotational symmetry. You can track this by placing a dot on the shape and observing where the dot ends up after each turn.",
+  "session_summary": "The session covered vertical and horizontal lines of symmetry. The student understood the concepts perfectly, easily identifying the two lines of symmetry in the uppercase letter 'H'. While the student did not struggle mathematically, they initially exhibited slight impatience and frustration with the pacing. The student's current learning state is highly confident, energetic, and eager to advance to the next chapter, demonstrating strong mastery of the current symmetry material.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 43715.1,
+  "step_latencies": {
+    "section_loader_ms": 411.8,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 9558.1,
+    "mastery_agent_ms": 16471.4,
+    "dialogue_agent_ms": 12739.4
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1920,
+    "completion_tokens": 4042,
+    "total_tokens": 5962
+  },
+  "student_word_count": 6,
+  "tutor_word_count": 126,
+  "has_katex": true,
+  "has_broken_katex": false
+}

@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-15T06:15:17.336038+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 1,
+  "student_message": "Yes! I made a pink paper heart for my mom.",
+  "final_message": "A pink paper heart is so beautiful! Your mom is going to love it. Did you know your paper heart is a perfect example of reflection symmetry? If you fold your heart straight down the middle, the left side and the right side will match up perfectly. They are perfect mirror images of each other! That fold line right down the middle is called a line of symmetry. Because the line goes straight up and down, we call it a vertical line of symmetry. Can you try folding your pink heart in half right down the middle to see if the two sides match perfectly? 💖",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 1,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Use the student's paper heart to explain reflection symmetry.",
+    "reasoning": "The student is happy and shared a relevant personal experience. The dialogue agent can use her paper heart as a perfect real-world example to teach reflection symmetry."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "introduced",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 3,
+  "pipeline_latency_ms": 32426.7,
+  "step_latencies": {
+    "section_loader_ms": 210.1,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 9418.6,
+    "mastery_agent_ms": 9294.4,
+    "dialogue_agent_ms": 10749.8
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1559,
+    "completion_tokens": 2703,
+    "total_tokens": 4262
+  },
+  "student_word_count": 10,
+  "tutor_word_count": 106,
+  "has_katex": false,
+  "has_broken_katex": false
+}

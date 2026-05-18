@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-15T06:29:38.312732+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 14,
+  "student_message": "Wait, what were we talking about? Look, I lost my front tooth yesterday! The tooth fairy left me a whole shiny coin under my pillow! Do you believe in fairies?",
+  "final_message": "Wow, losing a tooth and getting a shiny coin from the tooth fairy is so exciting! 🧚 Earth to my favorite math explorer, let's fly back to our math mission! \n\nWe were just talking about symmetry, and now we get to make our very own symmetrical designs. You can carefully arrange and color shapes to create beautiful patterns. If a mirror line splits your picture into two matching halves, your design has reflection symmetry. If your design looks exactly the same after giving it a little turn, it has rotational symmetry! \n\nImagine we are drawing a perfectly symmetrical space alien together. If the left half of its face has three neon eyes and a squiggly horn, what exactly needs to go on the right side so our alien doesn't look lopsided? ✨",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 14,
+  "orchestrator_intent": {
+    "primary_agent": "engagement",
+    "supporting_agents": [
+      "engagement",
+      "dialogue"
+    ],
+    "goal": "Re-engage the student and introduce making symmetrical designs.",
+    "reasoning": "The student is highly distracted, looking away for 14 turns, and completely off-topic. The engagement agent will playfully acknowledge her tooth fairy story to regain focus, while dialogue introduces the new section."
+  },
+  "agents_fired": [
+    "engagement",
+    "engagement",
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-3",
+  "completion_percent": 50.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "making_symmetrical_designs",
+  "current_section_title": "Making Symmetrical Designs",
+  "current_section_content": "You can deliberately create designs that have rotational symmetry, reflection symmetry, or both by carefully arranging or colouring shapes. A design has rotational symmetry if it looks the same after a fractional turn, and it has reflection symmetry if a mirror line splits it into two matching halves. The same set of shapes — such as squares and equilateral triangles with equal side lengths — can be arranged in different ways to produce designs with different symmetry properties. Designs can be sorted into three groups: only rotational symmetry, only reflection symmetry, or both.",
+  "session_summary": "The session covered lines of symmetry and rotational symmetry. The student understood the material well, successfully identifying vertical symmetry on their body and examples of rotational symmetry (a Ferris wheel, the letter O). However, the student struggled significantly with focus, frequently becoming distracted by off-topic subjects like dogs and slides. The student's current learning state reflects a solid grasp of basic and rotational symmetry, though they require constant redirection to stay on task.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 73969.6,
+  "step_latencies": {
+    "section_loader_ms": 204.7,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 14017.9,
+    "mastery_agent_ms": 21402.3,
+    "dialogue_agent_ms": 13589.7
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2370,
+    "completion_tokens": 7394,
+    "total_tokens": 9764
+  },
+  "student_word_count": 30,
+  "tutor_word_count": 132,
+  "has_katex": false,
+  "has_broken_katex": false
+}

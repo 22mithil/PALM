@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T05:45:55.960269+00:00",
+  "session_id": "f5284fc8-97fd-4ed7-9f12-df5d6c59bbb1",
+  "student_id": "1cb3ec4b-5351-43f7-9577-f5cca39f6424",
+  "student_name": "[EVAL] TestBot",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 2,
+  "student_message": "I think the letter M has a line of symmetry right down the middle! Is that a vertical mirror line?",
+  "final_message": "You are exactly right! The letter M has a vertical line of symmetry straight down the middle, making the left and right sides perfect mirror images. 🌟 \n\nSince you are doing so wonderfully, let's try helping a friend with another letter. Prem wants to cut out the letter V for Lali's birthday banner using the fold-and-cut method. How many lines of symmetry do you think the letter V has? Tell me which direction they go, and how you think Prem should fold his paper to cut it out! ✂️",
+  "emotion": "neutral",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "quiz"
+    ],
+    "goal": "Confirm M has a vertical line of symmetry and give a quiz.",
+    "reasoning": "The student correctly identified a vertical line of symmetry. Confirm their understanding and present a quiz question."
+  },
+  "agents_fired": [
+    "dialogue",
+    "quiz"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 5,
+  "pipeline_latency_ms": 30799.1,
+  "step_latencies": {
+    "section_loader_ms": 207.3,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 8677.9,
+    "mastery_agent_ms": 7415.3,
+    "dialogue_agent_ms": 12054.6
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1860,
+    "completion_tokens": 2464,
+    "total_tokens": 4324
+  },
+  "student_word_count": 20,
+  "tutor_word_count": 89,
+  "has_katex": false,
+  "has_broken_katex": false
+}

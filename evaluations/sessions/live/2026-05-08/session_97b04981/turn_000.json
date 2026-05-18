@@ -1,0 +1,68 @@
+{
+  "timestamp": "2026-05-08T18:21:50.478388+00:00",
+  "session_id": "97b04981-54f4-44b4-8b0b-45c0427f7c0c",
+  "student_id": "42e076cc-21dc-4595-b623-7404da31f746",
+  "student_name": "mithilesh",
+  "grade": 5,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 0,
+  "student_message": "Greet the student named mithilesh and introduce today's topic: Far and Near. Keep it short and friendly (under 80 words).",
+  "final_message": "That's a great question! 🌟 Let me think about the best way to explain this. Can you tell me what part is most confusing? We'll figure it out together! 💪",
+  "emotion": "neutral",
+  "emotion_confidence": 0.0,
+  "gaze": "unknown",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Continue the tutoring conversation",
+    "reasoning": "orchestrator_error"
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 5,
+  "current_section_id": "5-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "5-1": "not_started",
+    "5-2": "not_started",
+    "5-3": "not_started",
+    "5-4": "not_started",
+    "5-5": "not_started",
+    "5-6": "not_started",
+    "5-7": "not_started",
+    "5-8": "not_started",
+    "5-9": "not_started",
+    "5-10": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "choosing_appropriate_units_of_length",
+  "current_section_title": "Choosing the Right Unit: Metres or Centimetres",
+  "current_section_content": "We measure length using different units depending on how big or small the object is. Centimetres (cm) are used for smaller objects like a mobile phone or a handkerchief, while metres (m) are used for larger things like the height of a building or the length of an elephant's trunk. Choosing the right unit makes measurement easier and more sensible. For example, saying an elephant's trunk is 2 m long is much clearer than saying it is 200 cm.",
+  "session_summary": "",
+  "message_history_length": 2,
+  "pipeline_latency_ms": 3881.7,
+  "step_latencies": {
+    "section_loader_ms": 138.6,
+    "summary_regen_ms": 1305.2,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 246.4,
+    "mastery_agent_ms": 262.4,
+    "dialogue_agent_ms": 268.4
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "student_word_count": 20,
+  "tutor_word_count": 30,
+  "has_katex": false,
+  "has_broken_katex": false
+}

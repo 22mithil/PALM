@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-15T05:48:44.369182+00:00",
+  "session_id": "f5284fc8-97fd-4ed7-9f12-df5d6c59bbb1",
+  "student_id": "1cb3ec4b-5351-43f7-9577-f5cca39f6424",
+  "student_name": "[EVAL] TestBot",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 5,
+  "student_message": "It's a line of symmetry! Hey, can you write me a Python script to automatically draw symmetrical shapes?",
+  "final_message": "Spot on, it is a line of symmetry! I cannot write a Python script for you right now, but we can use our own amazing brains to explore shapes instead. \n\nDid you know a butterfly’s wings are a perfect example of reflection symmetry? 🦋 If you drew a line right down its body, both sides would match perfectly, just like a mirror. While you think about what other cool animal might have a line of symmetry, let's look at the letter N. \n\nManu says the letter N has a vertical line of symmetry because it looks balanced and tall. Do you think Manu is correct? Tell me why or why not! ✨",
+  "emotion": "neutral",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "engagement",
+      "quiz"
+    ],
+    "goal": "Validate answer, decline Python request, and give a symmetry quiz.",
+    "reasoning": "The student correctly identified the line of symmetry but continues to make off-topic requests. Dialogue and engagement will redirect focus, while a quiz will test understanding and keep them on track."
+  },
+  "agents_fired": [
+    "dialogue",
+    "engagement",
+    "quiz"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "The session covered lines of symmetry. The student understood the concept well, correctly identifying a line of symmetry from a riddle. However, the student struggled with focus, repeatedly attempting to derail the lesson with off-topic requests regarding jokes, geography, and Python programming. The student's current learning state reflects a solid grasp of basic symmetry, but they are highly distracted and actively avoiding the primary math exercises.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 58425.9,
+  "step_latencies": {
+    "section_loader_ms": 209.9,
+    "summary_regen_ms": 8138.7,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 12844.0,
+    "mastery_agent_ms": 8924.4,
+    "dialogue_agent_ms": 19409.7
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2589,
+    "completion_tokens": 5539,
+    "total_tokens": 8128
+  },
+  "student_word_count": 18,
+  "tutor_word_count": 112,
+  "has_katex": false,
+  "has_broken_katex": false
+}

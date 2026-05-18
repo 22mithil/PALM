@@ -1,0 +1,78 @@
+{
+  "total_turns": 3,
+  "turns_to_mastery": {
+    "per_section": {},
+    "average": 0
+  },
+  "agent_activation_distribution": {
+    "dialogue": {
+      "count": 3,
+      "percent": 100.0
+    }
+  },
+  "avg_student_words_per_turn": 9.3,
+  "avg_tutor_words_per_turn": 103.3,
+  "student_tutor_talk_ratio": 0.09,
+  "vocabulary_adoption": {
+    "terms_introduced_by_tutor": 6,
+    "terms_adopted_by_student": 1,
+    "adoption_rate": 0.167,
+    "avg_adoption_delay_turns": 0.0
+  },
+  "affective_volatility": 0.0,
+  "time_to_boredom_turn": null,
+  "engagement_recovery_rate": 1.0,
+  "emotion_distribution": {
+    "neutral": {
+      "count": 3,
+      "percent": 100.0
+    }
+  },
+  "gaze_away_percentage": 100.0,
+  "latency_avg_ms": 35721.2,
+  "latency_p50_ms": 33599.9,
+  "latency_p95_ms": 41069.7,
+  "latency_max_ms": 41069.7,
+  "katex_usage_count": 0,
+  "katex_broken_count": 0,
+  "math_formatting_error_rate": 0.0,
+  "section_bottlenecks": [
+    {
+      "section_id": "ch2_s1",
+      "turns_spent": 3,
+      "is_bottleneck": false
+    }
+  ],
+  "hint_exhaustion_rate": {
+    "turns_with_hints": 0,
+    "turns_at_max_hints": 0,
+    "exhaustion_rate": 0.0
+  },
+  "intervention_success_rate": 1.0,
+  "total_answers_evaluated": 0,
+  "correct_answers": 0,
+  "accuracy_rate": 0.0,
+  "completion_trajectory": [
+    {
+      "turn": 0,
+      "percent": 0.0
+    },
+    {
+      "turn": 1,
+      "percent": 0.0
+    },
+    {
+      "turn": 2,
+      "percent": 0.0
+    }
+  ],
+  "final_completion_percent": 0.0,
+  "token_consumption": {
+    "total_prompt_tokens": 5059,
+    "total_completion_tokens": 9126,
+    "total_tokens": 14185,
+    "avg_tokens_per_turn": 4728.3
+  },
+  "session_id": "3f0ad586-e44c-466a-bf94-de704592ed07",
+  "session_type": "live"
+}

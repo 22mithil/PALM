@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-15T06:36:09.460587+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 20,
+  "student_message": "Wait, what were we talking about? Did you know my dog chased a giant fluffy squirrel up a tree today? He was barking so loud and his tail was wagging like a windshield wiper! Do you have any funny pets?",
+  "final_message": "A tail wagging like a windshield wiper sounds so silly and adorable! 🐶 I don't have pets, but I love hearing about yours. \n\nSpeaking of fun things, let's look at a special art called block printing! In Rajasthan, artists carve beautiful designs into wooden blocks, dip them in ink, and stamp them onto fabric to make repeating patterns. Because the block is pressed face-down, the print on the fabric is actually a perfect mirror image of the carved block. \n\nI have a fun riddle for you about this! I dive into ink and stamp on the page. If you fold my picture in half, both sides match perfectly, just like a beautiful butterfly's wings. I help make the coolest, most balanced block prints. Can you guess what kind of mirror magic I am? ✨",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 20,
+  "orchestrator_intent": {
+    "primary_agent": "engagement",
+    "supporting_agents": [
+      "engagement",
+      "dialogue"
+    ],
+    "goal": "Introduce symmetry in block printing patterns and re-engage student.",
+    "reasoning": "The student is highly distracted, looking away, and completely off-topic. The engagement agent will use her dog story to regain her attention, while dialogue introduces the new section."
+  },
+  "agents_fired": [
+    "engagement",
+    "engagement",
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-4",
+  "completion_percent": 75.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "mastered",
+    "10-4": "introduced"
+  },
+  "was_completed": false,
+  "current_section_concept": "symmetry_in_block_printing_patterns",
+  "current_section_title": "Symmetry in Block Printing Patterns",
+  "current_section_content": "Block printing is a traditional craft from Rajasthan where artisans carve a design into a wooden block and press it repeatedly onto fabric to create beautiful repeating patterns. When the same block is stamped multiple times in different orientations, the final printed design can have rotational symmetry, reflection symmetry, or both. Importantly, the print produced by a block is the mirror image of the carved block, because the block is pressed face-down. By analysing how a block is repeated and rotated, you can predict and identify the symmetry of the resulting pattern.",
+  "session_summary": "The session covered lines of symmetry, rotational symmetry, and mirror lines. The student understands these well, successfully identifying symmetry in objects and accurately describing how mirror lines reflect shapes. However, the student struggles significantly with focus, frequently interrupting with off-topic stories about pets and other distractions. Their current learning state reflects a solid grasp of symmetry concepts, but severe distractibility means they require constant redirection to stay on task.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 60394.2,
+  "step_latencies": {
+    "section_loader_ms": 203.5,
+    "summary_regen_ms": 7490.1,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 13154.6,
+    "mastery_agent_ms": 4403.7,
+    "dialogue_agent_ms": 12103.0
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2787,
+    "completion_tokens": 5815,
+    "total_tokens": 8602
+  },
+  "student_word_count": 40,
+  "tutor_word_count": 134,
+  "has_katex": false,
+  "has_broken_katex": false
+}

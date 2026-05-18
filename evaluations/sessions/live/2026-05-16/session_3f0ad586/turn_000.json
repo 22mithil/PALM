@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-16T02:21:56.333867+00:00",
+  "session_id": "3f0ad586-e44c-466a-bf94-de704592ed07",
+  "student_id": "7241f0ea-3b47-4495-9fe0-e83f84407c21",
+  "student_name": "Mithilesh Singh",
+  "grade": 5,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 0,
+  "student_message": "Greet the student named Mithilesh Singh and introduce today's topic: Fractions. Keep it short and friendly (under 80 words).",
+  "final_message": "Hello Mithilesh Singh! I am Pal, your math tutor, and I am so excited to explore fractions with you today! 🍕 \n\nA fraction simply represents a part of a whole. Imagine a yummy pizza. The bottom number, called the denominator, tells us how many equal slices the whole pizza is cut into. The top number, called the numerator, tells us how many of those slices you are taking. Remember, when comparing fractions, the whole pizzas must always be the exact same size! \n\nAre you ready to get started?",
+  "emotion": "neutral",
+  "emotion_confidence": 0.0,
+  "gaze": "unknown",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [],
+    "goal": "Introduce the concept of fractions.",
+    "reasoning": "The section has not started yet, so the dialogue agent will introduce the topic of fractions."
+  },
+  "agents_fired": [
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 2,
+  "current_section_id": "ch2_s1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "ch2_s1": "introduced",
+    "ch2_s2": "not_started",
+    "ch2_s3": "not_started",
+    "ch2_s4": "not_started",
+    "ch2_s5": "not_started",
+    "ch2_s6": "not_started",
+    "ch2_s7": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "fraction_of_a_whole",
+  "current_section_title": "What Is a Fraction?",
+  "current_section_content": "A fraction represents a part of a whole. The whole must always be the same size when you are comparing fractions. The bottom number (denominator) tells you how many equal parts the whole is cut into, and the top number (numerator) tells you how many of those parts you are taking.",
+  "session_summary": "Mithilesh Singh is beginning a new math session focused on fractions. Because the session is currently at the initial greeting and introduction stage, specific areas of strong understanding and struggles have not yet been assessed. His current learning state is at the very beginning of the fractions topic.",
+  "message_history_length": 2,
+  "pipeline_latency_ms": 41069.7,
+  "step_latencies": {
+    "section_loader_ms": 401.0,
+    "summary_regen_ms": 9180.1,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 7124.9,
+    "mastery_agent_ms": 5943.3,
+    "dialogue_agent_ms": 13023.8
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1635,
+    "completion_tokens": 3465,
+    "total_tokens": 5100
+  },
+  "student_word_count": 19,
+  "tutor_word_count": 88,
+  "has_katex": false,
+  "has_broken_katex": false
+}

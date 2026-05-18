@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T05:57:43.890307+00:00",
+  "session_id": "f5284fc8-97fd-4ed7-9f12-df5d6c59bbb1",
+  "student_id": "1cb3ec4b-5351-43f7-9577-f5cca39f6424",
+  "student_name": "[EVAL] TestBot",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 15,
+  "student_message": "A tiger's face! Hey, can you write me a Python script to draw symmetrical animals for my project?",
+  "final_message": "A tiger's face is a brilliant example of reflection symmetry! 🐯 I cannot write Python code to draw animals for you today, but we can use our math brains to build awesome symmetrical designs right here together. \n\nSpeaking of building animals, I need your help, secret agent! A spy is building a perfectly symmetrical robot butterfly. The left wing has $$3$$ blue dots and $$1$$ yellow lightning bolt. If we mirror the design, what exactly needs to go on the right wing to make it fly? 🦋",
+  "emotion": "neutral",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "engagement"
+    ],
+    "goal": "Validate the tiger face idea and redirect from the Python request back to the math lesson.",
+    "reasoning": "The student gave a relevant answer (tiger's face) but is getting distracted with off-topic requests (Python script). Dialogue will address the answer, and engagement will steer them back to the math topic."
+  },
+  "agents_fired": [
+    "dialogue",
+    "engagement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-3",
+  "completion_percent": 50.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "in_progress",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "making_symmetrical_designs",
+  "current_section_title": "Making Symmetrical Designs",
+  "current_section_content": "You can deliberately create designs that have rotational symmetry, reflection symmetry, or both by carefully arranging or colouring shapes. A design has rotational symmetry if it looks the same after a fractional turn, and it has reflection symmetry if a mirror line splits it into two matching halves. The same set of shapes — such as squares and equilateral triangles with equal side lengths — can be arranged in different ways to produce designs with different symmetry properties. Designs can be sorted into three groups: only rotational symmetry, only reflection symmetry, or both.",
+  "session_summary": "The session covered lines of symmetry, rotational symmetry, and creating symmetrical designs. The student understands these well, correctly identifying real-world examples (pinwheels, tiger faces) and suggesting design elements. However, they struggle significantly with focus. Their current learning state reflects a strong grasp of symmetry concepts, but they remain highly distracted, repeatedly attempting to derail the lesson with off-topic questions (planets, Python scripts) and disruptive requests to ignore instructions.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 56908.7,
+  "step_latencies": {
+    "section_loader_ms": 215.2,
+    "summary_regen_ms": 8595.1,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 12154.4,
+    "mastery_agent_ms": 10564.5,
+    "dialogue_agent_ms": 12024.9
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2674,
+    "completion_tokens": 5106,
+    "total_tokens": 7780
+  },
+  "student_word_count": 18,
+  "tutor_word_count": 87,
+  "has_katex": true,
+  "has_broken_katex": false
+}

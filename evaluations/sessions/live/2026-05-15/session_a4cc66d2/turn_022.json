@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T06:38:03.313679+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 22,
+  "student_message": "Yes! Every quarter turn looks exactly the same.",
+  "final_message": "🎉 Amazing work! You've mastered every section in this chapter! You should be incredibly proud — you answered questions, worked through tricky concepts, and showed real understanding. Head back to the dashboard to explore more topics, or click Restart to practice any section again. You're a math superstar! 🌟",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 22,
+  "orchestrator_intent": {
+    "primary_agent": "quiz",
+    "supporting_agents": [
+      "engagement"
+    ],
+    "goal": "Test rotational symmetry understanding and regain visual attention.",
+    "reasoning": "Meera understands the quarter turn concept well, making it ideal to advance with a quiz. Since she has been looking away for 22 turns, the engagement agent is needed to bring her visual focus back."
+  },
+  "agents_fired": [
+    "quiz",
+    "engagement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-4",
+  "completion_percent": 100.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "mastered",
+    "10-4": "mastered"
+  },
+  "was_completed": true,
+  "current_section_concept": "symmetry_in_block_printing_patterns",
+  "current_section_title": "Symmetry in Block Printing Patterns",
+  "current_section_content": "Block printing is a traditional craft from Rajasthan where artisans carve a design into a wooden block and press it repeatedly onto fabric to create beautiful repeating patterns. When the same block is stamped multiple times in different orientations, the final printed design can have rotational symmetry, reflection symmetry, or both. Importantly, the print produced by a block is the mirror image of the carved block, because the block is pressed face-down. By analysing how a block is repeated and rotated, you can predict and identify the symmetry of the resulting pattern.",
+  "session_summary": "The session covered lines of symmetry, rotational symmetry, and mirror lines. The student understands these well, successfully identifying symmetry in objects and accurately describing how mirror lines reflect shapes. However, the student struggles significantly with focus, frequently interrupting with off-topic stories about pets and other distractions. Their current learning state reflects a solid grasp of symmetry concepts, but severe distractibility means they require constant redirection to stay on task.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 38279.8,
+  "step_latencies": {
+    "section_loader_ms": 201.9,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 11773.3,
+    "mastery_agent_ms": 7797.6,
+    "dialogue_agent_ms": 0
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1375,
+    "completion_tokens": 2753,
+    "total_tokens": 4128
+  },
+  "student_word_count": 8,
+  "tutor_word_count": 49,
+  "has_katex": false,
+  "has_broken_katex": false
+}

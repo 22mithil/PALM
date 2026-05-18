@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-15T06:23:02.480408+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 8,
+  "student_message": "Wait, what were we talking about? I forgot again! Guess what? Yesterday I went to the park and went down the giant curly slide super fast! Have you ever been on a really big slide? It made my tummy tickle!",
+  "final_message": "That giant curly slide sounds like so much fun! Speaking of spinning around, we were just learning about a sneaky math trick called rotational symmetry. A shape has rotational symmetry if it looks exactly the same after being rotated, or turned, by a fraction of a full circle, like a $$1/4$$ turn or a $$1/2$$ turn. If it only looks the same after one whole giant spin, it does not count! You can even track the spins by putting a little dot on the shape to see where it ends up. Think about a fidget spinner—when you spin it, it looks exactly the same a few times before finishing a full circle. Since you love going to the park, can you think of an amusement park ride that spins around and does the exact same thing? 🎡",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 8,
+  "orchestrator_intent": {
+    "primary_agent": "engagement",
+    "supporting_agents": [
+      "engagement",
+      "dialogue"
+    ],
+    "goal": "Re-engage student and introduce rotational symmetry.",
+    "reasoning": "Student is highly distracted, looking away, and off-topic. Engagement is needed to bring focus back to introducing rotational symmetry."
+  },
+  "agents_fired": [
+    "engagement",
+    "engagement",
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-2",
+  "completion_percent": 25.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "introduced",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "rotational_symmetry",
+  "current_section_title": "Rotational Symmetry",
+  "current_section_content": "A shape has rotational symmetry if it looks exactly the same after being rotated (turned) by a fraction of a full turn around its centre point. The fractions we check are 1/4 turn, 1/2 turn, and 3/4 turn. A shape that only looks the same after a full turn does not count as having rotational symmetry. You can track this by placing a dot on the shape and observing where the dot ends up after each turn.",
+  "session_summary": "The session covered the concept of symmetry and lines of symmetry. The student understood the material well, successfully identifying a vertical line of symmetry on their own body. However, the student struggled significantly with focus and attention, frequently becoming distracted by off-topic subjects like their dog and favorite color. The student's current learning state reflects a solid grasp of basic symmetry, though they require constant redirection from the tutor to stay on task.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 56159.9,
+  "step_latencies": {
+    "section_loader_ms": 230.6,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 11894.0,
+    "mastery_agent_ms": 7522.1,
+    "dialogue_agent_ms": 14539.6
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2405,
+    "completion_tokens": 5258,
+    "total_tokens": 7663
+  },
+  "student_word_count": 40,
+  "tutor_word_count": 137,
+  "has_katex": true,
+  "has_broken_katex": false
+}

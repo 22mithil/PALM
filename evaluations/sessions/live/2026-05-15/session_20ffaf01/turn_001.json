@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T06:46:24.299146+00:00",
+  "session_id": "20ffaf01-cb5f-42ea-8de6-021cb9f76ead",
+  "student_id": "bcf19734-5285-4c6a-a26c-fbf0e23a199e",
+  "student_name": "[EVAL] Dev",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 1,
+  "student_message": "Yeah yeah I get it. Give me a question!",
+  "final_message": "You are so ready! Let's start with a quick riddle. I am an invisible magic line where if you fold a shape right on top of me, both sides match perfectly, just like looking in a mirror! 🪞 Can you guess what kind of line I am? Once you figure that out, let's see if you can help Prem. He wants to cut out the letter V for Lali's birthday banner using the fold-and-cut method. How many of these lines of symmetry does the letter V have, which direction do they go, and how exactly should he fold the paper? 🦋",
+  "emotion": "bored",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 1,
+  "orchestrator_intent": {
+    "primary_agent": "quiz",
+    "supporting_agents": [
+      "engagement"
+    ],
+    "goal": "Provide a quiz question to test understanding and re-engage the student.",
+    "reasoning": "The student claims to understand the concept and explicitly asked for a question. Since they are bored and looking away, a quiz will challenge and re-engage them."
+  },
+  "agents_fired": [
+    "quiz",
+    "engagement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-1",
+  "completion_percent": 0.0,
+  "section_statuses": {
+    "10-1": "in_progress",
+    "10-2": "not_started",
+    "10-3": "not_started",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "reflection_symmetry_and_lines_of_symmetry",
+  "current_section_title": "Reflection Symmetry and Lines of Symmetry",
+  "current_section_content": "A line of symmetry is a fold line that divides a shape into two halves that are perfect mirror images of each other. Some shapes have a vertical line of symmetry (left-right mirror), some have a horizontal line (top-bottom mirror), and some have both. You can use this idea to cut out shapes by drawing only half or one-quarter of the shape on folded paper, then cutting and unfolding. Letters like A have one vertical line of symmetry, while letters like H have both vertical and horizontal lines of symmetry.",
+  "session_summary": "",
+  "message_history_length": 3,
+  "pipeline_latency_ms": 40929.5,
+  "step_latencies": {
+    "section_loader_ms": 209.9,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 6960.9,
+    "mastery_agent_ms": 11469.7,
+    "dialogue_agent_ms": 11561.8
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1803,
+    "completion_tokens": 4109,
+    "total_tokens": 5912
+  },
+  "student_word_count": 9,
+  "tutor_word_count": 101,
+  "has_katex": false,
+  "has_broken_katex": false
+}

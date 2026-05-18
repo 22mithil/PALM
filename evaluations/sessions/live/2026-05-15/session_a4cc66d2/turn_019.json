@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-05-15T06:34:58.322397+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 19,
+  "student_message": "A sparkly purple square on the other side!",
+  "final_message": "Yes, exactly! If you put a sparkly purple square on one side of me, my mirror line will reflect a beautiful sparkly purple square right back on the other side. You are so good at this! \n\nNow, let's bring those bright eyes back to our screen, my favorite math explorer. An invisible alien just zapped exactly half of my symmetrical monster drawing! 👾 If the left side of our monster has $$3$$ squiggly horns and $$1$$ giant eye, what must we draw on the right side to make him perfectly symmetrical again? 🪞",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 19,
+  "orchestrator_intent": {
+    "primary_agent": "dialogue",
+    "supporting_agents": [
+      "engagement"
+    ],
+    "goal": "Validate her reflection concept and gently guide her visual focus back to the screen.",
+    "reasoning": "Meera correctly applied the mirror line concept, so dialogue will validate her response. Engagement is needed because she has been looking away for 19 consecutive turns."
+  },
+  "agents_fired": [
+    "dialogue",
+    "engagement"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-4",
+  "completion_percent": 75.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "mastered",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "making_symmetrical_designs",
+  "current_section_title": "Making Symmetrical Designs",
+  "current_section_content": "You can deliberately create designs that have rotational symmetry, reflection symmetry, or both by carefully arranging or colouring shapes. A design has rotational symmetry if it looks the same after a fractional turn, and it has reflection symmetry if a mirror line splits it into two matching halves. The same set of shapes — such as squares and equilateral triangles with equal side lengths — can be arranged in different ways to produce designs with different symmetry properties. Designs can be sorted into three groups: only rotational symmetry, only reflection symmetry, or both.",
+  "session_summary": "The session covered lines of symmetry and rotational symmetry. The student understood these well, successfully identifying vertical and rotational symmetry in everyday objects and letters (O, X). However, the student struggled significantly with focus, frequently interrupting with off-topic subjects like dogs, a lost tooth, and imaginary creatures. The student's current learning state reflects a solid grasp of symmetry concepts, but their severe distractibility means they require constant redirection to stay on task.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 46106.2,
+  "step_latencies": {
+    "section_loader_ms": 212.8,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 11433.5,
+    "mastery_agent_ms": 8793.9,
+    "dialogue_agent_ms": 11812.7
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2244,
+    "completion_tokens": 4195,
+    "total_tokens": 6439
+  },
+  "student_word_count": 8,
+  "tutor_word_count": 93,
+  "has_katex": true,
+  "has_broken_katex": false
+}

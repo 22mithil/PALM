@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-15T06:33:00.742439+00:00",
+  "session_id": "a4cc66d2-6269-4216-81bc-a50fb3387cef",
+  "student_id": "e4b99222-1d71-4af4-b2a5-97311345254f",
+  "student_name": "[EVAL] Meera",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 17,
+  "student_message": "Wait, what were we talking about? I forgot again! Hey, do you know what my favorite color is? It's sparkly purple! My mom just got me brand new purple shoes and they light up every time I stomp my feet!",
+  "final_message": "Sparkly purple light-up shoes sound absolutely amazing! 👟 I bet they look so cool when you stomp around. \n\nSince you love fun designs like your new shoes, let's get back to making our very own symmetrical designs. We can carefully arrange shapes and colors to make beautiful patterns that match perfectly. To help us remember what we were talking about, I have a quick riddle for you! \n\nI am a magical, invisible line. If you draw a monster's eyeball on my left side, I perfectly copy it on my right! I help butterflies and snowflakes look perfectly balanced. What kind of line am I? ✨",
+  "emotion": "happy",
+  "emotion_confidence": 0.85,
+  "gaze": "looking_away",
+  "consecutive_gaze_away": 17,
+  "orchestrator_intent": {
+    "primary_agent": "engagement",
+    "supporting_agents": [
+      "engagement",
+      "dialogue"
+    ],
+    "goal": "Acknowledge the purple shoes and re-engage her in making symmetrical designs.",
+    "reasoning": "The student has been looking away for 17 turns and is highly distracted by off-topic subjects. The engagement agent is needed to gently refocus her attention back to the math lesson."
+  },
+  "agents_fired": [
+    "engagement",
+    "engagement",
+    "dialogue"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-3",
+  "completion_percent": 50.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "in_progress",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "making_symmetrical_designs",
+  "current_section_title": "Making Symmetrical Designs",
+  "current_section_content": "You can deliberately create designs that have rotational symmetry, reflection symmetry, or both by carefully arranging or colouring shapes. A design has rotational symmetry if it looks the same after a fractional turn, and it has reflection symmetry if a mirror line splits it into two matching halves. The same set of shapes — such as squares and equilateral triangles with equal side lengths — can be arranged in different ways to produce designs with different symmetry properties. Designs can be sorted into three groups: only rotational symmetry, only reflection symmetry, or both.",
+  "session_summary": "The session covered lines of symmetry and rotational symmetry. The student understood these well, successfully identifying vertical and rotational symmetry in everyday objects and letters (O, X). However, the student struggled significantly with focus, frequently interrupting with off-topic subjects like dogs, a lost tooth, and imaginary creatures. The student's current learning state reflects a solid grasp of symmetry concepts, but their severe distractibility means they require constant redirection to stay on task.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 46334.1,
+  "step_latencies": {
+    "section_loader_ms": 205.6,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 8908.0,
+    "mastery_agent_ms": 8929.3,
+    "dialogue_agent_ms": 11040.0
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 2441,
+    "completion_tokens": 4196,
+    "total_tokens": 6637
+  },
+  "student_word_count": 40,
+  "tutor_word_count": 105,
+  "has_katex": false,
+  "has_broken_katex": false
+}

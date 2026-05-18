@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-15T06:57:35.671028+00:00",
+  "session_id": "20ffaf01-cb5f-42ea-8de6-021cb9f76ead",
+  "student_id": "bcf19734-5285-4c6a-a26c-fbf0e23a199e",
+  "student_name": "[EVAL] Dev",
+  "grade": 4,
+  "session_type": "live",
+  "test_id": null,
+  "turn_count": 14,
+  "student_message": "No! Colors don't match! Next!",
+  "final_message": "You are exactly right! The colors have to match perfectly for it to be a symmetrical design. You are zooming through these like a rocket! 🚀 \n\nLet's make a brand new design together. Imagine we have a big square, and we put a little green triangle in all four of its corners. If we spin our big square a $$1/4$$ turn, will our cool new design still look exactly the same?",
+  "emotion": "confident",
+  "emotion_confidence": 0.85,
+  "gaze": "focused",
+  "consecutive_gaze_away": 0,
+  "orchestrator_intent": {
+    "primary_agent": "quiz",
+    "supporting_agents": [],
+    "goal": "Validate the answer and present the next quiz question.",
+    "reasoning": "The student is highly confident, focused, and rapidly answering correctly while demanding the next challenge. Advancing with a quiz maintains their momentum."
+  },
+  "agents_fired": [
+    "quiz"
+  ],
+  "last_answer_correct": null,
+  "attempt_count": 0,
+  "hint_count": 0,
+  "chapter_id": 10,
+  "current_section_id": "10-4",
+  "completion_percent": 75.0,
+  "section_statuses": {
+    "10-1": "mastered",
+    "10-2": "mastered",
+    "10-3": "mastered",
+    "10-4": "not_started"
+  },
+  "was_completed": false,
+  "current_section_concept": "making_symmetrical_designs",
+  "current_section_title": "Making Symmetrical Designs",
+  "current_section_content": "You can deliberately create designs that have rotational symmetry, reflection symmetry, or both by carefully arranging or colouring shapes. A design has rotational symmetry if it looks the same after a fractional turn, and it has reflection symmetry if a mirror line splits it into two matching halves. The same set of shapes — such as squares and equilateral triangles with equal side lengths — can be arranged in different ways to produce designs with different symmetry properties. Designs can be sorted into three groups: only rotational symmetry, only reflection symmetry, or both.",
+  "session_summary": "The session covered vertical and horizontal lines of symmetry, and rotational symmetry (1/3, 1/2, and 1/4 turns). The student understood these perfectly, easily identifying symmetry in the letter 'H' and numbers '8' and '0'. While facing no mathematical struggles, the student exhibited impatience with the pacing. The student's current learning state is highly confident, energetic, and eager to advance, demonstrating strong mastery of the material.",
+  "message_history_length": 10,
+  "pipeline_latency_ms": 29585.5,
+  "step_latencies": {
+    "section_loader_ms": 204.7,
+    "summary_regen_ms": 0.0,
+    "answer_checker_ms": 0.0,
+    "orchestrator_ms": 8181.9,
+    "mastery_agent_ms": 8572.3,
+    "dialogue_agent_ms": 10155.6
+  },
+  "response_time_ms": null,
+  "token_usage": {
+    "prompt_tokens": 1950,
+    "completion_tokens": 2455,
+    "total_tokens": 4405
+  },
+  "student_word_count": 5,
+  "tutor_word_count": 71,
+  "has_katex": true,
+  "has_broken_katex": false
+}
